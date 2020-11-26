@@ -6,16 +6,10 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
-import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
-import Business.Vaccine.VaccineTester;
 import java.awt.CardLayout;
-import java.awt.Component;
-import java.util.List;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 import userinterface.PatientRole.CreatePatientJPanel;
-import userinterface.PatientRole.PatientWorkAreaJPanel;
 
 /**
  *
@@ -32,22 +26,7 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
    public ManagePateintJPanel(JPanel userProcessContainer, EcoSystem ecosystem) {
           initComponents();
           this.userProcessContainer=userProcessContainer;
-        this.ecosystem=ecosystem;populatePatientTable();
-        
-    }
-    public void populatePatientTable(){
-        DefaultTableModel model = (DefaultTableModel)testorsTable.getModel();
-        model.setRowCount(0);
-        List<Patient> vaccinetestList = ecosystem.getPatientDirectory().getpatientlist();
-        for(Patient tester: vaccinetestList){
-            Object row[] = new Object[4];
-                 row[0] = tester.getId();
-                 row[1] = tester;
-                 row[2] = tester.getAllergy();
-                 row[3] = tester.getAge();        
-                 
-            model.addRow(row);                    
-        }
+        this.ecosystem=ecosystem;
     }
 
     /**
@@ -60,10 +39,6 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         btnCreatePateint = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        testorsTable = new javax.swing.JTable();
 
         btnCreatePateint.setText("Create Patient");
         btnCreatePateint.addActionListener(new java.awt.event.ActionListener() {
@@ -72,71 +47,21 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setText("BACK");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("View Patient");
-
-        testorsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Patient ID", "Name", "Allergy", "Age"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(testorsTable);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(138, 138, 138)
                 .addComponent(btnCreatePateint)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(84, 84, 84))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreatePateint)
-                    .addComponent(jButton1))
-                .addGap(69, 69, 69))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(100, 100, 100)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(100, Short.MAX_VALUE)))
+                .addGap(129, 129, 129)
+                .addComponent(btnCreatePateint)
+                .addContainerGap(148, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -148,24 +73,8 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCreatePateintActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        PatientWorkAreaJPanel sysAdminwjp = (PatientWorkAreaJPanel) component;
-         //sysAdminwjp.populatePatientTable();
-
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreatePateint;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable testorsTable;
     // End of variables declaration//GEN-END:variables
 }

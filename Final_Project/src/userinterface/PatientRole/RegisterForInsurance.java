@@ -260,7 +260,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
          InsurancePolicy monthlyPremium=null;
          InsurancePolicy pType=null;
          String ageGroup = (String) jComboBox3.getSelectedItem();
-        String error = "";
+         String error = "";
         
         if((txtzipCode.equals(""))&&(txtMonthlyPremium.equals(""))){
           
@@ -270,11 +270,11 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         
         else{
                     zipCode = ecosystem.getInsurancePolicyDirectory().searchzipCode(txtzipCode.getText());
-                    age = ecosystem.getInsurancePolicyDirectory().searchzipCode(ageGroup);
-                    monthlyPremium = ecosystem.getInsurancePolicyDirectory().searchzipCode(txtMonthlyPremium.getText());
+                    age = ecosystem.getInsurancePolicyDirectory().searchAge(ageGroup);
+                    monthlyPremium = ecosystem.getInsurancePolicyDirectory().searchMax(Integer.parseInt(txtMonthlyPremium.getText()));
                    
                     String prefferedpolicy = (String) jComboBox3.getSelectedItem();
-                    pType = ecosystem.getInsurancePolicyDirectory().searchzipCode(prefferedpolicy);
+                    pType = ecosystem.getInsurancePolicyDirectory().searchpolicy(prefferedpolicy);
 
             }
 
