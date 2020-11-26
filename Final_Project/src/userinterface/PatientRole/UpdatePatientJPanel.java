@@ -427,16 +427,16 @@ JPanel userProcessContainer;
         String allergy=txtAllergy.getText();
         String symtoms=txtSymtoms.getText();
 
-        p.setAge(age);
-        p.setAllergy(allergy);
-        p.setConditions(contactNo);
-        p.setContactNo(contactNo);
-        p.setEmail(email);
-        p.setGender(gender);
-        p.setName(name);
-        p.setSymtoms(symtoms);
-        System.out.println(p.getSymtoms());
-        System.out.println(p);
+//        p.setAge(age);
+//        p.setAllergy(allergy);
+//        p.setConditions(contactNo);
+//        p.setContactNo(contactNo);
+//        p.setEmail(email);
+//        p.setGender(gender);
+//        p.setName(name);
+//        p.setSymtoms(symtoms);
+//        System.out.println(p.getSymtoms());
+//        System.out.println(p);
         business.getPatientDirectory().addPatient(p);
 
         Employee employee=business.getEmployeeDirectory().createEmployee(username);

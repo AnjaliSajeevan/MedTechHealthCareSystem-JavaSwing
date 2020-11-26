@@ -7,13 +7,10 @@ package userinterface.InsuranceAdminWorkArea;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.InsurancePolicy.InsurancePolicy;
 import Business.Organization.InsuranceAdminOrganization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 import userinterface.AdministrativeRole.ManageEmployeeJPanel;
 import userinterface.AdministrativeRole.ManageOrganizationJPanel;
 import userinterface.AdministrativeRole.ManageUserAccountJPanel;
@@ -38,20 +35,6 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.account = account;
         this.ecosystem=ecosystem;
         valueLabel.setText(enterprise.getName());
-        populateTree();
-    }
-    
-    public void populateTree()
-    {DefaultTableModel model = (DefaultTableModel) tblPolicy.getModel();
-        model.setRowCount(0);        
-            for (InsurancePolicy r: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
-                Object row[] = new Object[3];
-                row[0] = r;
-                row[1] = r.getMonthlyPremium();
-                row[2] = r.getPolicyType();
-                ((DefaultTableModel) tblPolicy.getModel()).addRow(row);
-            }
-    
     }
 
     /**
@@ -65,15 +48,15 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         btnAccept = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPolicy = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         btnDecline = new javax.swing.JButton();
         btnCreatePolicy = new javax.swing.JButton();
         btnViewPolicy = new javax.swing.JButton();
-        btnDeletePolicy = new javax.swing.JButton();
+        btnViewPolicy1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblPatient = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         manageOrganizationJButton = new javax.swing.JButton();
@@ -91,12 +74,12 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, -1, -1));
 
-        tblPolicy.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Monthly Premium", "Policy Type"
+                "Name", "Maximum Deductable", "Policy Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -107,11 +90,11 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblPolicy);
-        if (tblPolicy.getColumnModel().getColumnCount() > 0) {
-            tblPolicy.getColumnModel().getColumn(0).setResizable(false);
-            tblPolicy.getColumnModel().getColumn(1).setResizable(false);
-            tblPolicy.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 610, 788, 117));
@@ -122,7 +105,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 280, -1));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 280, -1));
 
         btnDecline.setText("Decline");
         add(btnDecline, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, -1, -1));
@@ -143,15 +126,15 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnViewPolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 740, -1, -1));
 
-        btnDeletePolicy.setText("Delete Policy");
-        btnDeletePolicy.addActionListener(new java.awt.event.ActionListener() {
+        btnViewPolicy1.setText("Delete Policy");
+        btnViewPolicy1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletePolicyActionPerformed(evt);
+                btnViewPolicy1ActionPerformed(evt);
             }
         });
-        add(btnDeletePolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 740, -1, -1));
+        add(btnViewPolicy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 740, -1, -1));
 
-        tblPatient.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -167,12 +150,12 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblPatient);
-        if (tblPatient.getColumnModel().getColumnCount() > 0) {
-            tblPatient.getColumnModel().getColumn(0).setResizable(false);
-            tblPatient.getColumnModel().getColumn(1).setResizable(false);
-            tblPatient.getColumnModel().getColumn(2).setResizable(false);
-            tblPatient.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
+            jTable2.getColumnModel().getColumn(2).setResizable(false);
+            jTable2.getColumnModel().getColumn(3).setResizable(false);
         }
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 788, 120));
@@ -229,6 +212,8 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\akhil\\OneDrive\\Desktop\\Anjali\\175-1758883_medical-background-free-image-background-for-hospital-website.png")); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 840));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -264,7 +249,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnCreatePolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePolicyActionPerformed
         // TODO add your handling code here:
-        CreatePolicyWorkAreaJPanel cpeaj = new CreatePolicyWorkAreaJPanel(userProcessContainer, enterprise,ecosystem,account);
+        CreatePolicyWorkAreaJPanel cpeaj = new CreatePolicyWorkAreaJPanel(userProcessContainer, enterprise,ecosystem);
         userProcessContainer.add("CreatePolicyWorkAreaJPanel", cpeaj);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -272,65 +257,33 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnViewPolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPolicyActionPerformed
         // TODO add your handling code here:
-          int selectedRow =  tblPolicy.getSelectedRow();
-        if(selectedRow <0)
-        {
-            JOptionPane.showMessageDialog(null,"Pleasse select a row","Warning", JOptionPane.WARNING_MESSAGE);
-
-        }
-
-        else
-        {
-            InsurancePolicy a = (InsurancePolicy) tblPolicy.getValueAt(selectedRow, 0);
-            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a);
-            userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-
-        }
-        
+        ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, enterprise,ecosystem);
+        userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewPolicyActionPerformed
 
-    private void btnDeletePolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePolicyActionPerformed
+    private void btnViewPolicy1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPolicy1ActionPerformed
         // TODO add your handling code here:
-          int selectedRow =  tblPolicy.getSelectedRow();
-        UserAccount c = null;
-        if(selectedRow >=0)
-        {
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult= JOptionPane.showConfirmDialog(null,"Would you like to delete restaurant details?","Warning",dialogButton);
-            if (dialogResult == JOptionPane.YES_OPTION) {
-
-                InsurancePolicy a = (InsurancePolicy) tblPolicy.getValueAt(selectedRow, 0);
-                ecosystem.getInsurancePolicyDirectory().deleteInsurancePolicy(a);
-            }
-            populateTree();
-
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"Pleasse select a row","Warning", JOptionPane.WARNING_MESSAGE);
-
-        }
-    }//GEN-LAST:event_btnDeletePolicyActionPerformed
+    }//GEN-LAST:event_btnViewPolicy1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnCreatePolicy;
     private javax.swing.JButton btnDecline;
-    private javax.swing.JButton btnDeletePolicy;
     private javax.swing.JButton btnViewPolicy;
+    private javax.swing.JButton btnViewPolicy1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;
-    private javax.swing.JTable tblPatient;
-    private javax.swing.JTable tblPolicy;
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

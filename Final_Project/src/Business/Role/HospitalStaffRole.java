@@ -7,6 +7,7 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Essentials.ProductCatalog;
 import Business.Organization.AdminOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -20,8 +21,8 @@ import userinterface.HospitalStaffWorkAreaJPanel.HospitalStaffWorkAreaJPanel;
 public class HospitalStaffRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new HospitalStaffWorkAreaJPanel(userProcessContainer, account,(AdminOrganization)organization,enterprise);
+   public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+        return new HospitalStaffWorkAreaJPanel(userProcessContainer, account,enterprise,business);
     }
     public String toString(){
         return "HospitalStaff";

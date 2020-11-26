@@ -5,10 +5,20 @@
  */
 package userinterface.HospitalStaffWorkAreaJPanel;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.AdminOrganization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import Business.Essentials.Product;
+import Business.Essentials.ProductCatalog;
+
+import Business.Organization.Organization;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +29,23 @@ public class HospitalStaffWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HospitalStaffWorkAreaJPanel
      */
-    public HospitalStaffWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization AdminOrganization, Enterprise enterprise) {
+    private JPanel userProcessContainer;
+ private ProductCatalog productcatalog;
+    private Enterprise enterprise;
+    private UserAccount account;
+    private EcoSystem ecosystem;
+    public HospitalStaffWorkAreaJPanel(JPanel userProcessContainer, UserAccount account,  Enterprise enterprise,EcoSystem ecosystem) {
         initComponents();
+  
+        this.ecosystem=ecosystem;
+         this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.account=account;
+        enterprise.getName();
+        System.out.println("enterprise.getName() "+enterprise.getName());
+        
+        //txtName.setText(s.getSupplyName());
+       // refreshTable();
     }
 
     /**
@@ -32,30 +57,91 @@ public class HospitalStaffWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        btnCreate = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
-        jLabel1.setText("Hospital Staff Work Area");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Hospital Staff- Essentials Management");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        btnCreate.setText("Create ");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+
+        btnView.setText("view");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 60, -1));
+
+        btnDelete.setText("delete");
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Name", "Quantity"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 330, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jLabel1)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel1)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+    CreateJPanel panel=new CreateJPanel(userProcessContainer,ecosystem);
+        userProcessContainer.add("CreateJPanel",panel);
+        CardLayout layout=(CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);        
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnView;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
