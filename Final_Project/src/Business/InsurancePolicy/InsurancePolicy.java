@@ -17,10 +17,61 @@ public class InsurancePolicy {
     private String policyType;
     private String policyMax;
     private String OutOfPocket;
+    private double deductable;
+    private String dental;
+    private String vision;
+    private String hearing;
+    private String fitness;
+    private String laboratory;
+    private String pharmacy;
+    private String teleHealth;
+    private String zipCode;
+    private int primaryCare;
+    private int specialist;
+    private int emergency;
+    private int surgery;
+    private int laboratoryservices;
+    private int inPatients;
+    private String userName;
+    private String Enterprise;
+    private String ageGroup;
     private ArrayList<String> HospitalList=new ArrayList<String>();
     private ArrayList<String> PharmacyList=new ArrayList<String>();
     private ArrayList<String> LaboratoryList=new ArrayList<String>();
 
+    public String getEnterprise() {
+        return Enterprise;
+    }
+
+    public void setEnterprise(String Enterprise) {
+        this.Enterprise = Enterprise;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public double getDeductable() {
+        return deductable;
+    }
+
+    public void setDeductable(double deductable) {
+        this.deductable = deductable;
+    }
+    
     public ArrayList<String> getHospitalList() {
         return HospitalList;
     }
@@ -69,29 +120,15 @@ public class InsurancePolicy {
     public void setOutOfPocket(String OutOfPocket) {
         this.OutOfPocket = OutOfPocket;
     }
-    private int ageMin;
-    private int ageMax;
 
-    public int getAgeMax() {
-        return ageMax;
+    public String getAgeGroup() {
+        return ageGroup;
     }
 
-    public void setAgeMax(int ageMax) {
-        this.ageMax = ageMax;
+    public void setAgeGroup(String ageGroup) {
+        this.ageGroup = ageGroup;
     }
-    private String dental;
-    private String vision;
-    private String hearing;
-    private String fitness;
-    private String laboratory;
-    private String pharmacy;
-    private String teleHealth;
-    private int primaryCare;
-    private int specialist;
-    private int emergency;
-    private int surgery;
-    private int laboratoryservices;
-    private int inPatients;
+       
 
     public int getInPatients() {
         return inPatients;
@@ -125,13 +162,7 @@ public class InsurancePolicy {
         this.policyType = policyType;
     }
 
-    public int getAgeMin() {
-        return ageMin;
-    }
-
-    public void setAgeMin(int ageMin) {
-        this.ageMin = ageMin;
-    }
+   
 
     public String getDental() {
         return dental;
@@ -227,6 +258,10 @@ public class InsurancePolicy {
 
     public void setLaboratoryservices(int laboratoryservices) {
         this.laboratoryservices = laboratoryservices;
+    }
+         @Override
+    public String toString() {
+        return policyName;
     }
     
 }

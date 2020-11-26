@@ -9,9 +9,18 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.InsurancePolicy.InsurancePolicy;
 import Business.Network.Network;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.MenuComponent;
+import static java.lang.Boolean.TRUE;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -26,13 +35,17 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     EcoSystem ecosystem;
     InsurancePolicy i;
+    UserAccount account;
+    String enterPriceName;
     
-    public CreatePolicyWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,EcoSystem ecosystem) {
+    public CreatePolicyWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,EcoSystem ecosystem,UserAccount account) {
     initComponents();
     this.ecosystem=ecosystem;
     this.enterprise=enterprise;
     this.userProcessContainer=userProcessContainer;
-
+    this.account=account;
+    enterPriceName=enterprise.getName();
+    
     for(Network network:ecosystem.getNetworkList()){
     for(Enterprise e:network.getEnterpriseDirectory().getEnterpriseList()){
     if(e.getEnterpriseType().getValue().equals("Hospital")){
@@ -67,18 +80,18 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         txtPolicyName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        RButton3 = new javax.swing.JRadioButton();
-        RButton4 = new javax.swing.JRadioButton();
-        RButton7 = new javax.swing.JRadioButton();
-        RButton2 = new javax.swing.JRadioButton();
+        btnTele3 = new javax.swing.JRadioButton();
+        btnVision4 = new javax.swing.JRadioButton();
+        btnHearing7 = new javax.swing.JRadioButton();
+        btnFitness2 = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         checkBoxFamily = new javax.swing.JCheckBox();
-        RButton6 = new javax.swing.JRadioButton();
+        btnLab6 = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        RButton5 = new javax.swing.JRadioButton();
+        btnPhar5 = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -95,15 +108,13 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
         jComboHospital = new javax.swing.JComboBox<>();
         btnAddHospital = new javax.swing.JButton();
         jComboLaboratories = new javax.swing.JComboBox<>();
         btnAddLaboratory = new javax.swing.JButton();
         jComboPharmacy = new javax.swing.JComboBox<>();
         btnAddPharmacy = new javax.swing.JButton();
-        RButton1 = new javax.swing.JRadioButton();
+        btnDental = new javax.swing.JRadioButton();
         jLabel40 = new javax.swing.JLabel();
         txtInpatients = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
@@ -113,8 +124,6 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         jList3 = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListHospital = new javax.swing.JList<>();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         txtPolicyName1 = new javax.swing.JTextField();
@@ -123,6 +132,8 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel23 = new javax.swing.JLabel();
         txtDeductible1 = new javax.swing.JTextField();
         checkBoxIndividual = new javax.swing.JCheckBox();
+        btnSubmit = new javax.swing.JButton();
+        jComboBoxAgeGroup = new javax.swing.JComboBox<>();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -141,34 +152,34 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 143, -1, -1));
         add(txtPolicyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 140, 117, -1));
 
-        jLabel4.setText("Monthly Premium:");
+        jLabel4.setText("Monthly Premium ($):");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Plan Features:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
-        RButton3.setBackground(new java.awt.Color(204, 204, 204));
-        RButton3.setText("TeleHealth Services");
-        add(RButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
+        btnTele3.setBackground(new java.awt.Color(204, 204, 204));
+        btnTele3.setText("TeleHealth Services");
+        add(btnTele3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
 
-        RButton4.setBackground(new java.awt.Color(204, 204, 204));
-        RButton4.setText("Vision");
-        add(RButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
+        btnVision4.setBackground(new java.awt.Color(204, 204, 204));
+        btnVision4.setText("Vision");
+        add(btnVision4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
 
-        RButton7.setBackground(new java.awt.Color(204, 204, 204));
-        RButton7.setText("Hearing");
-        add(RButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 320, -1, -1));
+        btnHearing7.setBackground(new java.awt.Color(204, 204, 204));
+        btnHearing7.setText("Hearing");
+        add(btnHearing7, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 320, -1, -1));
 
-        RButton2.setBackground(new java.awt.Color(204, 204, 204));
-        RButton2.setText("Fitness Benifits");
-        add(RButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
+        btnFitness2.setBackground(new java.awt.Color(204, 204, 204));
+        btnFitness2.setText("Fitness Benifits");
+        add(btnFitness2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
 
         jLabel6.setText("Age Group :");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
         jLabel7.setText("Policy Type:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 88, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         checkBoxFamily.setBackground(new java.awt.Color(204, 204, 204));
         checkBoxFamily.setText("Family");
@@ -177,57 +188,62 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
                 checkBoxFamilyMousePressed(evt);
             }
         });
-        add(checkBoxFamily, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 84, -1, -1));
+        add(checkBoxFamily, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
 
-        RButton6.setBackground(new java.awt.Color(204, 204, 204));
-        RButton6.setText("Laboratory Services");
-        add(RButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, -1, -1));
+        btnLab6.setBackground(new java.awt.Color(204, 204, 204));
+        btnLab6.setText("Laboratory Services");
+        add(btnLab6, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setText("Co-Payment After Deductable:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
-        jLabel9.setText("Primary Care:");
+        jLabel9.setText("Primary Care ($):");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
-        jLabel10.setText("Specialist Care:");
+        jLabel10.setText("Specialist Care ($):");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
 
-        RButton5.setBackground(new java.awt.Color(204, 204, 204));
-        RButton5.setText("Pharmacy");
-        add(RButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, -1, -1));
+        btnPhar5.setBackground(new java.awt.Color(204, 204, 204));
+        btnPhar5.setText("Pharmacy");
+        add(btnPhar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, -1, -1));
 
-        jLabel12.setText("Emergency Room Care:");
+        jLabel12.setText("Emergency Room Care ($):");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, -1, -1));
 
-        jLabel13.setText("Laboratory Services:");
+        jLabel13.setText("Laboratory Services ($):");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, 170, -1));
 
-        jLabel14.setText("Surgery:");
+        jLabel14.setText("Surgery ($):");
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 420, -1, -1));
-        add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 117, -1));
-        add(txtSpecialistCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 50, -1));
-        add(txtPrimaryCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 50, -1));
-        add(txtSurgery, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 420, 50, -1));
+        add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 117, -1));
+        add(txtSpecialistCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 420, 50, -1));
+        add(txtPrimaryCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 50, -1));
+        add(txtSurgery, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 420, 50, -1));
         add(txtLabServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 470, 50, -1));
-        add(txtEmergencyRoomCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 50, -1));
+        add(txtEmergencyRoomCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 50, -1));
 
-        jLabel15.setText("Policy Maximum:");
+        jLabel15.setText("Policy Maximum($):");
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
-        add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, 117, -1));
+        add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 117, -1));
 
         btnBack.setText("<-Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 28, -1, -1));
 
         btnCreate.setBackground(new java.awt.Color(204, 204, 204));
         btnCreate.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnCreate.setText("Create");
+        btnCreate.setText("Create Policy");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
-        add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 492, 250, 50));
+        add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 492, 160, 40));
 
         jLabel11.setText("Hospitals:");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, -1, -1));
@@ -237,12 +253,6 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel17.setText("Pharmacy:");
         add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 690, -1, -1));
-
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(26, 26, 100, 1));
-        add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
-
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(26, 26, 100, 1));
-        add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 50, -1));
 
         add(jComboHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 610, 170, -1));
 
@@ -277,13 +287,13 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnAddPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 690, -1, -1));
 
-        RButton1.setBackground(new java.awt.Color(204, 204, 204));
-        RButton1.setText("Dental");
-        add(RButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        btnDental.setBackground(new java.awt.Color(204, 204, 204));
+        btnDental.setText("Dental");
+        add(btnDental, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
 
-        jLabel40.setText("Inpatient Admissions:");
-        add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 170, -1));
-        add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 50, -1));
+        jLabel40.setText("Inpatient Admissions ($):");
+        add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 190, -1));
+        add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 50, -1));
         add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 552, -1, -1));
 
         jList2.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratory:"));
@@ -302,12 +312,6 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 610, 178, 140));
 
-        jLabel19.setText("Min:");
-        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
-
-        jLabel20.setText("Max:");
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
-
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel18.setText("Add hospitals,laboratories and pharmacies to the insurancy policy network:");
         add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, -1, -1));
@@ -316,13 +320,13 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
         add(txtPolicyName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, 110, -1));
 
-        jLabel42.setText("Annual Out-of Pocket:");
+        jLabel42.setText("Annual Out-of Pocket ($):");
         add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
-        add(txtDeductible4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 117, -1));
+        add(txtDeductible4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 117, -1));
 
-        jLabel23.setText("Annual Deductible :");
+        jLabel23.setText("Annual Deductible ($):");
         add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
-        add(txtDeductible1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 117, -1));
+        add(txtDeductible1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 117, -1));
 
         checkBoxIndividual.setBackground(new java.awt.Color(204, 204, 204));
         checkBoxIndividual.setText("Individual");
@@ -331,136 +335,223 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
                 checkBoxIndividualMousePressed(evt);
             }
         });
-        add(checkBoxIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, -1));
+        add(checkBoxIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
+
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 780, 180, -1));
+
+        jComboBoxAgeGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18-30", "30-45", "45-60", "60-80", "80-100" }));
+        add(jComboBoxAgeGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        String dental;
-        String fitness;
-        String vision;
-        String hearing;
-        String laboratory;
-        String pharmacy;
-        String teleHealth;
-        String policyType = null;
+     
+        String e ="";
         
-        String policyName=txtPolicyName.getText();
-        double monthlyPremium=Double.parseDouble(txtMonthly.getText());
-        
-        if(checkBoxFamily.isSelected())
-        {
-        policyType="Family";
+        if ((checkBoxFamily.isSelected()) || (checkBoxIndividual.isSelected())) {
+        }else{ e = "Please choose a policy type";
         }
-         if(checkBoxIndividual.isSelected())
-        {
-        policyType="Individual";
-        }
+
         
+
+        if (!(checkNumber(txtSpecialistCare.getText())== TRUE)) {
+            e = "Please enter only digits!";
+            txtSpecialistCare.setBorder(new LineBorder(Color.RED, 2));   
+        } 
+        
+        if (!(checkNumber(txtEmergencyRoomCare.getText()) == TRUE)) {
+            e = "Please enter only digits!";
+            txtEmergencyRoomCare.setBorder(new LineBorder(Color.RED, 2));   
+        } 
+        
+        if (!(checkNumber(txtSurgery.getText()) == TRUE)) {
+            e = "Please enter only digits!";
+            txtSurgery.setBorder(new LineBorder(Color.RED, 2));    
+        } 
+        
+        if (!(checkNumber(txtLabServices.getText()) == TRUE)) {
+            e = "Please enter only digits!";
+            txtLabServices.setBorder(new LineBorder(Color.RED, 2));    
+        } 
+        
+        if (!(checkNumber(txtInpatients.getText()) == TRUE)) {
+            e = "Please enter only digits!";
+            txtInpatients.setBorder(new LineBorder(Color.RED, 2));   
+        } 
+        
+        if (!(checkNumber(txtPrimaryCare.getText()) == TRUE)) {
+            e = "Please enter only digits!";
+            txtPrimaryCare.setBorder(new LineBorder(Color.RED, 2));
+         }
+        
+        if (!(checkMoney(txtPolicyMax.getText()) == TRUE)) {
+            e = "Please enter only , and digits !";
+            txtPolicyMax.setBorder(new LineBorder(Color.RED, 2));
+        } 
+
+        if (!(checkMoney(txtDeductible1.getText()) == TRUE)) {
+            e = "Please enter only , and digits !";
+            txtDeductible1.setBorder(new LineBorder(Color.RED, 2)); 
+        } 
+
+        if (!(checkMoney(txtDeductible4.getText()) == TRUE)) {
+            e = "Please enter only , and digits !";
+            txtDeductible4.setBorder(new LineBorder(Color.RED, 2));
+        }
+
+        if (!(checkMoney(txtMonthly.getText()) == TRUE)) {
+            e = "Please enter only , and digits !";
+            txtMonthly.setBorder(new LineBorder(Color.RED, 2));
+        } 
        
-        String policyMax=txtPolicyMax.getText();
-        String OutOfPocket=txtDeductible4.getText();
-        int ageMin=(Integer)jSpinner1.getValue();
-        int ageMax =  (Integer)jSpinner2.getValue();
-       
-        if(RButton1.isSelected())
-        {
-        dental="Yes";
-        }else {dental="No";
+        if (txtPolicyMax.getText().equals("") || txtPolicyName.getText().equals("") || txtMonthly.getText().equals("") || txtDeductible1.getText().equals("") || txtPrimaryCare.getText().equals("") || txtDeductible4.getText().equals("")
+                || txtSpecialistCare.getText().equals("") || txtEmergencyRoomCare.getText().equals("") || txtSurgery.getText().equals("") || txtLabServices.getText().equals("") || txtInpatients.getText().equals("") || txtPolicyName1.getText().equals("")) {
+            e = "Please enter all the required field";           
+        } 
+        
+      
+      
+        if(!(e.equals(""))){
+            JOptionPane.showMessageDialog(null,e);
+            return;
         }
-        
-        if(RButton2.isSelected())
-        {
-        vision="Yes";
-        }else {vision="No";
+        else{ 
+            String dental;
+            String fitness;
+            String vision;
+            String hearing;
+            String laboratory;
+            String pharmacy;
+            String teleHealth;
+            String policyType = null;
+            
+            String zipCode = txtPolicyName1.getText();
+            String policyName = txtPolicyName.getText();
+            double monthlyPremium = Double.parseDouble(txtMonthly.getText());
+            double deductable =Double.parseDouble(txtDeductible1.getText());
+            if (checkBoxFamily.isSelected()) {
+                policyType = "Family";
+            }
+            if (checkBoxIndividual.isSelected()) {
+                policyType = "Individual";
+            }
+
+            String policyMax = txtPolicyMax.getText();
+            String OutOfPocket = txtDeductible4.getText();
+            String ageGroup= (String) jComboBoxAgeGroup.getSelectedItem();
+
+            if (btnDental.isSelected()) {
+                dental = "Yes";
+            } else {
+                dental = "No";
+            }
+
+            if (btnVision4.isSelected()) {
+                vision = "Yes";
+            } else {
+                vision = "No";
+            }
+
+            if (btnHearing7.isSelected()) {
+                hearing = "Yes";
+            } else {
+                hearing = "No";
+            }
+
+            if (btnFitness2.isSelected()) {
+                fitness = "Yes";
+            } else {
+                fitness = "No";
+            }
+
+            if (btnLab6.isSelected()) {
+                laboratory = "Yes";
+            } else {
+                laboratory = "No";
+            }
+
+            if (btnPhar5.isSelected()) {
+                pharmacy = "Yes";
+            } else {
+                pharmacy = "No";
+            }
+
+            if (btnTele3.isSelected()) {
+                teleHealth = "Yes";
+            } else {
+                teleHealth = "No";
+            }
+
+            int primaryCare = Integer.parseInt(txtPrimaryCare.getText());
+            int specialist = Integer.parseInt(txtSpecialistCare.getText());
+            int emergency = Integer.parseInt(txtEmergencyRoomCare.getText());
+            int surgery = Integer.parseInt(txtSurgery.getText());
+            int laboratoryservices = Integer.parseInt(txtLabServices.getText());
+            int inpatients = Integer.parseInt(txtInpatients.getText());
+
+            i = ecosystem.getInsurancePolicyDirectory().addInsurancePolicy();
+            i.setAgeGroup(ageGroup);
+            i.setDental(dental);
+            i.setEmergency(emergency);
+            i.setFitness(fitness);
+            i.setHearing(hearing);
+            i.setInPatients(inpatients);
+            i.setLaboratory(laboratory);
+            i.setMonthlyPremium(monthlyPremium);
+            i.setOutOfPocket(OutOfPocket);
+            i.setPharmacy(pharmacy);
+            i.setPolicyMax(policyMax);
+            i.setPolicyName(policyName);
+            i.setSurgery(surgery);
+            i.setTeleHealth(teleHealth);
+            i.setSpecialist(specialist);
+            i.setPrimaryCare(primaryCare);
+            i.setPolicyType(policyType);
+            i.setLaboratoryservices(laboratoryservices);
+            i.setVision(vision);
+            i.setDeductable(deductable);
+            i.setZipCode(zipCode);
+            i.setUserName(account.getUsername());
+            i.setEnterprise(enterPriceName);
+            JOptionPane.showMessageDialog(null, "Successfully created!");
+
+            
+            
+                                                        
         }
-        
-        if(RButton3.isSelected())
-        {
-        hearing="Yes";
-        }else {hearing="No";
-        }
-        
-        if(RButton4.isSelected())
-        {
-        fitness="Yes";
-        }else {fitness="No";
-        }
-        
-        if(RButton5.isSelected())
-        {
-        laboratory="Yes";
-        }else {laboratory="No";
-        }
-        
-        if(RButton6.isSelected())
-        {
-        pharmacy="Yes";
-        }else {pharmacy="No";
-        }
-        
-        if(RButton7.isSelected())
-        {
-        teleHealth="Yes";
-        }else {teleHealth="No";
-        }
-        
-        int primaryCare=Integer.parseInt(txtPrimaryCare.getText());
-        int specialist=Integer.parseInt(txtSpecialistCare.getText());
-        int emergency=Integer.parseInt(txtEmergencyRoomCare.getText());
-        int surgery=Integer.parseInt(txtSurgery.getText());
-        int laboratoryservices=Integer.parseInt(txtLabServices.getText());
-        int inpatients=Integer.parseInt(txtInpatients.getText());
-        
-        i = ecosystem.getInsurancePolicyDirectory().addInsurancePolicy();
-       
-        i.setAgeMax(ageMax);
-        i.setAgeMin(ageMin);
-        i.setDental(dental);
-        i.setEmergency(emergency);
-        i.setFitness(fitness);
-        i.setHearing(hearing);
-        i.setInPatients(inpatients);
-        i.setLaboratory(laboratory);
-        i.setMonthlyPremium(monthlyPremium);
-        i.setOutOfPocket(OutOfPocket);
-        i.setPharmacy(pharmacy);
-        i.setPolicyMax(policyMax);
-        i.setPolicyName(policyName);
-        i.setSurgery(surgery);
-        i.setTeleHealth(teleHealth);
-        i.setSpecialist(specialist);
-        i.setPrimaryCare(primaryCare);
-        i.setPolicyType(policyType);
-        i.setLaboratoryservices(laboratoryservices);
-        i.setVision(vision);
-        
-        
-        
+
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnAddHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddHospitalActionPerformed
-      
-      boolean t =ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList().isEmpty();
-      if (t==false)
-      {String x = (String) jComboHospital.getSelectedItem();
-       
-       i.addHospitals(x);
-       
-      DefaultListModel DLM = new DefaultListModel();
-      for( InsurancePolicy ip : ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList())
-      {for(int counter=0;counter<ip.getHospitalList().size();counter++)
-      {DLM.addElement(ip.getHospitalList().get(counter));
-      }
-      }
-      
-      jListHospital.setModel(DLM);
-      }
-      else{JOptionPane.showMessageDialog(null, "Please create the policy first!");
-          
-      }
-      
-        
+
+        boolean t = ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList().isEmpty();
+        if (t == false) {
+            String x = (String) jComboHospital.getSelectedItem();
+
+            i.addHospitals(x);
+
+                DefaultListModel DLM = new DefaultListModel();
+            
+                for (int counter = 0; counter < i.getHospitalList().size(); counter++) {
+                    DLM.addElement(i.getHospitalList().get(counter));
+                }
+            
+
+            jListHospital.setModel(DLM);
+            int y = jComboHospital.getSelectedIndex();
+            jComboHospital.removeItemAt(y);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please create the policy first!");
+
+        }
+
+
       
     }//GEN-LAST:event_btnAddHospitalActionPerformed
 
@@ -483,7 +574,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_checkBoxIndividualMousePressed
 
     private void btnAddLaboratoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLaboratoryActionPerformed
-         boolean t =ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList().isEmpty();
+     boolean t =ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList().isEmpty();
       if (t==false)
       {  
        String x = (String) jComboLaboratories.getSelectedItem();
@@ -491,13 +582,15 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
        i.addLaboratory(x);
        
       DefaultListModel DLL = new DefaultListModel();
-      for( InsurancePolicy ip : ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList())
-      {for(int counter=0;counter<ip.getLaboratoryList().size();counter++)
-      {DLL.addElement(ip.getLaboratoryList().get(counter));
-      }
+      
+      for(int counter=0;counter<i.getLaboratoryList().size();counter++)
+      {DLL.addElement(i.getLaboratoryList().get(counter));
       }
       
+      
       jList2.setModel(DLL);
+      int y=jComboLaboratories.getSelectedIndex();
+      jComboLaboratories.removeItemAt(y);
         }
       else{JOptionPane.showMessageDialog(null, "Please create the policy first!");
           
@@ -514,35 +607,103 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
        i.addPharmacy(x);
        
       DefaultListModel DLP = new DefaultListModel();
-      for( InsurancePolicy ip : ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList())
-      {for(int counter=0;counter<ip.getPharmacyList().size();counter++)
-      {DLP.addElement(ip.getPharmacyList().get(counter));
-      }
+      
+      {for(int counter=0;counter<i.getPharmacyList().size();counter++)
+      {DLP.addElement(i.getPharmacyList().get(counter));
       }
       
+      
       jList3.setModel(DLP);
+      int y=jComboPharmacy.getSelectedIndex();
+      jComboPharmacy.removeItemAt(y);
+      }
       }
       else{JOptionPane.showMessageDialog(null, "Please create the policy first!");
           
       }
+      
+  
     }//GEN-LAST:event_btnAddPharmacyActionPerformed
 
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+    String e="";
+        if (i.getHospitalList().isEmpty()) {
+            e = "Please add hospitals to the Policy";
+        }
+        if (i.getLaboratoryList().isEmpty()) {
+            e = "Please add laboratory to the Policy";
+        }
+        if (i.getPharmacyList().isEmpty()) {
+            e = "Please add pharmacy to the list";
+        }
+        
+        if(!(e.equals(""))){
+            JOptionPane.showMessageDialog(null, e);
+        }else{txtPolicyMax.setText("");
+            txtPolicyName.setText("");
+            txtMonthly.setText("");
+            txtDeductible1.setText("");
+            txtPrimaryCare.setText("");
+            txtDeductible4.setText("");
+            txtSpecialistCare.setText("");
+            txtEmergencyRoomCare.setText("");
+            txtSurgery.setText("");
+            txtLabServices.setText("");
+            txtInpatients.setText("") ;
+            txtPolicyName1.setText("");
+ 
+            
+            JOptionPane.showMessageDialog(null, "Successfully Submitted!");
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        InsuranceAdminWorkAreaJPanel iawa = (InsuranceAdminWorkAreaJPanel) component;
+        iawa.populateTree();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
+    }//GEN-LAST:event_btnBackActionPerformed
+   public boolean checkNumber(String s){
+      String nORegex = "^[0-9]*$";
+        Pattern phonePattern = Pattern.compile(nORegex);       
+        Matcher checkPhone = phonePattern.matcher(s);
+        boolean number = checkPhone.matches();
+        return number;
+}
+   
+      public boolean checkMoney(String s){
+        String nORegex = "^[0-9]+,*[0-9]*,*[0-9]*$";
+        Pattern phonePattern = Pattern.compile(nORegex);       
+        Matcher checkPhone = phonePattern.matcher(s);
+        boolean number = checkPhone.matches();
+        return number;
+}
+   
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton RButton1;
-    private javax.swing.JRadioButton RButton2;
-    private javax.swing.JRadioButton RButton3;
-    private javax.swing.JRadioButton RButton4;
-    private javax.swing.JRadioButton RButton5;
-    private javax.swing.JRadioButton RButton6;
-    private javax.swing.JRadioButton RButton7;
     private javax.swing.JButton btnAddHospital;
     private javax.swing.JButton btnAddLaboratory;
     private javax.swing.JButton btnAddPharmacy;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JRadioButton btnDental;
+    private javax.swing.JRadioButton btnFitness2;
+    private javax.swing.JRadioButton btnHearing7;
+    private javax.swing.JRadioButton btnLab6;
+    private javax.swing.JRadioButton btnPhar5;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JRadioButton btnTele3;
+    private javax.swing.JRadioButton btnVision4;
     private javax.swing.JCheckBox checkBoxFamily;
     private javax.swing.JCheckBox checkBoxIndividual;
+    private javax.swing.JComboBox<String> jComboBoxAgeGroup;
     private javax.swing.JComboBox<String> jComboHospital;
     private javax.swing.JComboBox<String> jComboLaboratories;
     private javax.swing.JComboBox<String> jComboPharmacy;
@@ -556,9 +717,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel4;
@@ -578,8 +737,6 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField txtDeductible1;
     private javax.swing.JTextField txtDeductible4;
     private javax.swing.JTextField txtEmergencyRoomCare;
