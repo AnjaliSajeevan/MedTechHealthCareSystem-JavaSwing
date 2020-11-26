@@ -39,11 +39,11 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
          populateStaffBox();
     }
     public void populateStaffBox(){
-        staffComboBox.removeAllItems();
+        staffComboBox1.removeAllItems();
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
                 if(ua.getRole().equals("LabStaff")){
-                staffComboBox.addItem(ua);
+                staffComboBox1.addItem(ua);
                 }
             }
         }
@@ -68,7 +68,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEmployeeJButton = new javax.swing.JButton();
         userJButton = new javax.swing.JButton();
         btnAssignLabReq1 = new javax.swing.JButton();
-        staffComboBox = new javax.swing.JComboBox();
+        staffComboBox1 = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -136,9 +136,9 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        staffComboBox.addActionListener(new java.awt.event.ActionListener() {
+        staffComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                staffComboBoxActionPerformed(evt);
+                staffComboBox1ActionPerformed(evt);
             }
         });
 
@@ -167,7 +167,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(125, 125, 125)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(staffComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(staffComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(169, 169, 169)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -210,7 +210,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(staffComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAssignLabReq1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,9 +252,9 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAssignLabReq1ActionPerformed
 
-    private void staffComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffComboBoxActionPerformed
+    private void staffComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffComboBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_staffComboBoxActionPerformed
+    }//GEN-LAST:event_staffComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -268,7 +268,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable labTestingTable;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;
-    private javax.swing.JComboBox staffComboBox;
+    private javax.swing.JComboBox staffComboBox1;
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
