@@ -31,48 +31,7 @@ public class InsurancePolicyDirectory {
         return c;
     }
     
-    public void deleteInsurancePolicy(InsurancePolicy c){
+    public void deleteMenu(InsurancePolicy c){
         insurancePolicyList.remove(c);
     }
-    
-    public InsurancePolicy searchzipCode(String code){
-           
-        for(InsurancePolicy zip: insurancePolicyList){
-            if(zip.getZipCode().equals(code))
-                    {
-                return zip;
-            }
-        }
-        return null;
-            }
-    public InsurancePolicy searchAge(String age){
-           
-        for(InsurancePolicy zip: insurancePolicyList){
-           if(zip.getZipCode().equals(age))          
-                    {
-                return zip;
-            }
-        }
-        return null;
-            }
-    public InsurancePolicy searchMax(int age){
-           
-        for(InsurancePolicy zip: insurancePolicyList){
-            if(zip.getMonthlyPremium()<age)
-                    {
-                return zip;
-            }
-        }
-        return null;
-            }
-    public InsurancePolicy searchpolicy(String type){
-           
-        for(InsurancePolicy zip: insurancePolicyList){
-            if(zip.getPolicyType().equals(type))
-                    {
-                return zip;
-            }
-        }
-        return null;
-            }
 }

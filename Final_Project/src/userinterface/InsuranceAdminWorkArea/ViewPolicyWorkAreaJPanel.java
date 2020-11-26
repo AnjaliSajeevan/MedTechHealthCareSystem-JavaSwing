@@ -7,13 +7,7 @@ package userinterface.InsuranceAdminWorkArea;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.InsurancePolicy.InsurancePolicy;
-import java.awt.CardLayout;
-import java.awt.Component;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,70 +18,8 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewPolicyWorkAreaJPanel
      */
-    InsurancePolicy i;
-    JPanel userProcessContainer;
-    EcoSystem ecosystem;
-
-    public ViewPolicyWorkAreaJPanel(JPanel userProcessContainer, EcoSystem ecosystem, InsurancePolicy i) {
+    public ViewPolicyWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise,EcoSystem ecosystem) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.ecosystem = ecosystem;
-        this.i = i;
-        
-            txtPolicyMax.setEnabled(false);
-            txtPolicyName.setEnabled(false);
-            txtMonthly.setEnabled(false); 
-            txtDeductible1.setEnabled(false);
-            txtPrimaryCare.setEnabled(false);
-            txtAnnualOut.setEnabled(false);
-            txtSpecialistCare.setEnabled(false); 
-            txtEmergencyRoomCare.setEnabled(false);
-            txtSurgery.setEnabled(false);
-            txtLabServices.setEnabled(false);
-            txtInpatients.setEnabled(false);
-            txtZipCode.setEnabled(false);
-            txtMin.setEnabled(false);
-            txtPolicyType.setEnabled(false);
-            
-            
-            saveUpdateBtn.setEnabled(false);
-            viewUpdateBtn.setEnabled(true);
-        
-        
-            txtPolicyMax.setText(i.getPolicyMax());
-            txtPolicyName.setText(i.getPolicyName());
-            txtMonthly.setText(String.valueOf(i.getMonthlyPremium())); 
-            txtDeductible1.setText(String.valueOf(i.getDeductable()));
-            txtPrimaryCare.setText(String.valueOf(i.getPrimaryCare()));
-            txtAnnualOut.setText(i.getOutOfPocket());
-            txtSpecialistCare.setText(String.valueOf(i.getSpecialist())); 
-            txtEmergencyRoomCare.setText(String.valueOf(i.getEmergency()));
-            txtSurgery.setText(String.valueOf(i.getEmergency()));
-            txtLabServices.setText(String.valueOf(i.getEmergency()));
-            txtInpatients.setText(String.valueOf(i.getEmergency()));
-            txtZipCode.setText(i.getZipCode());
-            txtMin.setText(i.getAgeGroup());
-            txtPolicyType.setText(i.getPolicyType());
-            populateTable();
-            populatePharmacy();
-            populateLaboratory();
-            populateHospitals();
-    }
-    
-    
-    public void populateTable()
-    {
-        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
-        dtm.setRowCount(0);
-            Object row[] = new Object[7];
-            row[0] = i.getDental();
-            row[1] = i.getLaboratory();
-            row[2] = i.getPharmacy();
-            row[3] = i.getFitness();
-            row[4] = i.getVision();
-            row[5] = i.getHearing();
-            row[6] = i.getTeleHealth();
-            dtm.addRow(row);      
     }
 
     /**
@@ -117,19 +49,22 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         txtSurgery = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        txtLabServices = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
         txtEmergencyRoomCare = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtPolicyType = new javax.swing.JTextField();
-        saveUpdateBtn = new javax.swing.JButton();
-        viewUpdateBtn = new javax.swing.JButton();
-        txtMin = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
-        txtAnnualOut = new javax.swing.JTextField();
+        txtDeductible3 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txtDeductible1 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
-        txtInpatients = new javax.swing.JTextField();
+        jTextField12 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -139,44 +74,61 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        txtZipCode = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton3.setText("<-Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("View Insurance Policy");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
+
+        txtPolicyName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPolicyNameActionPerformed(evt);
+            }
+        });
         add(txtPolicyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 117, -1));
 
         jLabel2.setText("Policy Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 74, -1, -1));
 
         jLabel4.setText("Monthly Premium:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 190, -1, -1));
-        add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 190, 117, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+
+        txtMonthly.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMonthlyActionPerformed(evt);
+            }
+        });
+        add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 117, -1));
 
         jLabel7.setText("Policy Type:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, -1, -1));
 
         jLabel6.setText("Age Group :");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
-        add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 130, 110, -1));
+
+        txtPolicyMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPolicyMaxActionPerformed(evt);
+            }
+        });
+        add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 120, 110, -1));
 
         jLabel15.setText("Policy Maximum:");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, -1, -1));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Co-Payment After Deductable:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+
+        txtPrimaryCare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrimaryCareActionPerformed(evt);
+            }
+        });
         add(txtPrimaryCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 50, -1));
 
         jLabel9.setText("Primary Care:");
@@ -184,7 +136,19 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Specialist Care:");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, -1));
+
+        txtSpecialistCare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSpecialistCareActionPerformed(evt);
+            }
+        });
         add(txtSpecialistCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 50, -1));
+
+        txtSurgery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSurgeryActionPerformed(evt);
+            }
+        });
         add(txtSurgery, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 310, 50, -1));
 
         jLabel14.setText("Surgery:");
@@ -192,53 +156,98 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel13.setText("Laboratory Services:");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 150, -1));
-        add(txtLabServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 50, -1));
-        add(txtEmergencyRoomCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 50, -1));
+
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
+        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 50, -1));
+
+        txtEmergencyRoomCare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmergencyRoomCareActionPerformed(evt);
+            }
+        });
+        add(txtEmergencyRoomCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 50, -1));
 
         jLabel12.setText("Emergency Room Care:");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 170, -1));
-        add(txtPolicyType, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, 117, -1));
 
-        saveUpdateBtn.setText("Save");
-        saveUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+        txtPolicyType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveUpdateBtnActionPerformed(evt);
+                txtPolicyTypeActionPerformed(evt);
             }
         });
-        add(saveUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, 146, 54));
+        add(txtPolicyType, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 70, 117, -1));
 
-        viewUpdateBtn.setText("Update");
-        viewUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewUpdateBtnActionPerformed(evt);
-            }
-        });
-        add(viewUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 710, 139, 54));
-        add(txtMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 130, 130, -1));
+        jButton1.setText("Save");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, 146, 54));
+
+        jButton2.setText("Update");
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 710, 139, 54));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 29, -1));
+        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 29, -1));
 
         jLabel39.setText("Annual Out-of Pocket:");
-        add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
-        add(txtAnnualOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 117, -1));
+        add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
+
+        txtDeductible3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeductible3ActionPerformed(evt);
+            }
+        });
+        add(txtDeductible3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, 117, -1));
 
         jLabel18.setText("Annual Deductible :");
         add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+
+        txtDeductible1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeductible1ActionPerformed(evt);
+            }
+        });
         add(txtDeductible1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 100, -1));
+
+        jLabel19.setText("Min:");
+        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
+
+        jLabel20.setText("Max:");
+        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
         jLabel40.setText("Inpatient Admissions:");
         add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 160, -1));
-        add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, 50, -1));
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacy included"));
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
+        add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, 50, -1));
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane1.setViewportView(jList1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 540, 160, 140));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, 160, 140));
 
-        jList2.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratories included"));
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane2.setViewportView(jList2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 180, 140));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 540, 160, 140));
 
-        jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("Hospitals included"));
+        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane3.setViewportView(jList3);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 160, 140));
@@ -248,11 +257,11 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Dental", "Laboratory", "Pharmacy", "Fitness", "Vision", "Hearing", "TeleHealth"
+                "Dental", "Laboratory", "Pharmacy", "Fitness", "Vision", "Hearing"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -267,7 +276,6 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
         }
 
         add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 800, 110));
@@ -275,112 +283,60 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Plan Features:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
-        add(txtZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 110, -1));
-
-        jLabel21.setText("ZipCode:");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
+    private void txtPolicyNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPolicyNameActionPerformed
         // TODO add your handling code here:
-        txtPolicyMax.setEnabled(false);
-            txtPolicyName.setEnabled(false);
-            txtMonthly.setEnabled(false); 
-            txtDeductible1.setEnabled(false);
-            txtPrimaryCare.setEnabled(false);
-            txtAnnualOut.setEnabled(false);
-            txtSpecialistCare.setEnabled(false); 
-            txtEmergencyRoomCare.setEnabled(false);
-            txtSurgery.setEnabled(false);
-            txtLabServices.setEnabled(false);
-            txtInpatients.setEnabled(false);
-            txtZipCode.setEnabled(false);
-            txtMin.setEnabled(false);
-            txtPolicyType.setEnabled(false);
-            
-            saveUpdateBtn.setEnabled(false);
-            viewUpdateBtn.setEnabled(true);
-    }//GEN-LAST:event_saveUpdateBtnActionPerformed
+    }//GEN-LAST:event_txtPolicyNameActionPerformed
 
-    private void viewUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUpdateBtnActionPerformed
+    private void txtMonthlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMonthlyActionPerformed
         // TODO add your handling code here:
-            txtPolicyMax.setEnabled(true);
-            txtPolicyName.setEnabled(true);
-            txtMonthly.setEnabled(true); 
-            txtDeductible1.setEnabled(true);
-            txtPrimaryCare.setEnabled(true);
-            txtAnnualOut.setEnabled(true);
-            txtSpecialistCare.setEnabled(true); 
-            txtEmergencyRoomCare.setEnabled(true);
-            txtSurgery.setEnabled(true);
-            txtLabServices.setEnabled(true);
-            txtInpatients.setEnabled(true);
-            txtZipCode.setEnabled(true);
-            txtMin.setEnabled(true);
-            txtPolicyType.setEnabled(true);
-        
-        
+    }//GEN-LAST:event_txtMonthlyActionPerformed
 
-            i.setAgeGroup(txtMin.getText());
-            i.setMonthlyPremium(Double.parseDouble(txtMonthly.getText()));
-            i.setOutOfPocket((txtAnnualOut.getText()));         
-            i.setPolicyMax(txtPolicyMax.getText());
-            i.setPolicyName(txtPolicyName.getText());          
-            i.setSpecialist(Integer.parseInt(txtSpecialistCare.getText()));
-            i.setPrimaryCare(Integer.parseInt(txtPrimaryCare.getText()));
-            i.setPolicyType(txtPolicyType.getText());
-            i.setLaboratoryservices(Integer.parseInt(txtLabServices.getText())); 
-            i.setDeductable(Integer.parseInt(txtDeductible1.getText()));
-            i.setZipCode(txtZipCode.getText());
-            i.setEmergency(Integer.parseInt(txtEmergencyRoomCare.getText()));
-            i.setSurgery(Integer.parseInt(txtSurgery.getText()));
-            i.setInPatients(Integer.parseInt(txtInpatients.getText()));
-            
-        saveUpdateBtn.setEnabled(false);
-        viewUpdateBtn.setEnabled(true);
-        
-        
-            JOptionPane.showMessageDialog(null, " Updated Successfully");
-    }//GEN-LAST:event_viewUpdateBtnActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void txtPolicyMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPolicyMaxActionPerformed
         // TODO add your handling code here:
-         userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        InsuranceAdminWorkAreaJPanel iawa = (InsuranceAdminWorkAreaJPanel) component;
-        iawa.populateTree();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_txtPolicyMaxActionPerformed
 
-    public void populateHospitals()
-    {DefaultListModel DLM = new DefaultListModel();
-            
-                for (int counter = 0; counter < i.getHospitalList().size(); counter++) {
-                    DLM.addElement(i.getHospitalList().get(counter));
-                }
-                jList3.setModel(DLM);
-    }
-    
-    public void populateLaboratory()
-    {DefaultListModel DLM = new DefaultListModel();
-            
-                for (int counter = 0; counter < i.getHospitalList().size(); counter++) {
-                    DLM.addElement(i.getLaboratoryList().get(counter));
-                }
-                jList2.setModel(DLM);
-    }
-     public void populatePharmacy()
-    {DefaultListModel DLM = new DefaultListModel();
-            
-                for (int counter = 0; counter < i.getHospitalList().size(); counter++) {
-                    DLM.addElement(i.getPharmacyList().get(counter));
-                }
-                jList1.setModel(DLM);
-    }
+    private void txtPrimaryCareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrimaryCareActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrimaryCareActionPerformed
+
+    private void txtSpecialistCareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpecialistCareActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSpecialistCareActionPerformed
+
+    private void txtSurgeryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSurgeryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSurgeryActionPerformed
+
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void txtEmergencyRoomCareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmergencyRoomCareActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmergencyRoomCareActionPerformed
+
+    private void txtPolicyTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPolicyTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPolicyTypeActionPerformed
+
+    private void txtDeductible3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeductible3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDeductible3ActionPerformed
+
+    private void txtDeductible1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeductible1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDeductible1ActionPerformed
+
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -389,8 +345,9 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
@@ -407,13 +364,13 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton saveUpdateBtn;
-    private javax.swing.JTextField txtAnnualOut;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField txtDeductible1;
+    private javax.swing.JTextField txtDeductible3;
     private javax.swing.JTextField txtEmergencyRoomCare;
-    private javax.swing.JTextField txtInpatients;
-    private javax.swing.JTextField txtLabServices;
-    private javax.swing.JTextField txtMin;
     private javax.swing.JTextField txtMonthly;
     private javax.swing.JTextField txtPolicyMax;
     private javax.swing.JTextField txtPolicyName;
@@ -421,7 +378,5 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtPrimaryCare;
     private javax.swing.JTextField txtSpecialistCare;
     private javax.swing.JTextField txtSurgery;
-    private javax.swing.JTextField txtZipCode;
-    private javax.swing.JButton viewUpdateBtn;
     // End of variables declaration//GEN-END:variables
 }
