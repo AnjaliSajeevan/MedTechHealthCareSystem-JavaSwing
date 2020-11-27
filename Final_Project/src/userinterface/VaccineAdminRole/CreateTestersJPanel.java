@@ -694,6 +694,7 @@ public class CreateTestersJPanel extends javax.swing.JPanel {
                 }
                 tester.setDOB(txtDOB.getText());
                 tester.setAge(age);
+                tester.setGender(gender);
                 tester.setEmail(txtEmail.getText());
                 if(!txtSSN.getText().equals("")){
                     tester.setSsn(txtSSN.getText());
