@@ -3,24 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Patient;
+package Business.Doctor;
 
 import Business.Employee.Employee;
-import Business.InsurancePolicy.InsurancePolicy;
-import Business.Organization.Organization;
-import Business.Role.PatientRole;
-import Business.Role.Role;
-import Business.UserAccount.UserAccount;
-import java.util.ArrayList;
+import Business.Patient.Patient;
 import java.util.Date;
 
 /**
  *
  * @author sayu
  */
-
-public class Patient extends Employee {
-     private String patientname;
+public class Doctor extends Employee {
+     private String name;
     private String address;
     private int id;
     private static int count = 1;
@@ -34,30 +28,14 @@ public class Patient extends Employee {
     private String ssn;
     private String healthNum;
     private String license;
-    private String allergy;
-    private String healthOther;
-    private String condition;
+    private String specialization;
+    //private String photograph;
+
+    
+    
     private String photograph;
-    private InsurancePolicy insurance;
-    private String userName;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserAccount(String userName) {
-        this.userName = userName;
-    }
-
-    public InsurancePolicy getInsurance() {
-        return insurance;
-    }
-
-    public void setInsurance(InsurancePolicy insurance) {
-        this.insurance = insurance;
-    }
-
-    public Patient() {
+    public Doctor() {
         id = count;
         count++;
         this.setCreateDate();
@@ -67,14 +45,12 @@ public class Patient extends Employee {
         return id;
     }
 
-//     @Override
-    public String getPatientname() {
-        return patientname;
+    public String getName() {
+        return name;
     }
 
-     
-    public void setPatientname(String name) {
-        this.patientname = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public static int getCount() {
@@ -82,7 +58,7 @@ public class Patient extends Employee {
     }
 
     public static void setCount(int count) {
-        Patient.count = count;
+        Doctor.count = count;
     }
 
     public String getDOB() {
@@ -172,29 +148,12 @@ public class Patient extends Employee {
     public void setLicense(String license) {
         this.license = license;
     }
-
-    public String getAllergy() {
-        return allergy;
+public String getSpecialization() {
+        return specialization;
     }
 
-    public void setAllergy(String allergy) {
-        this.allergy = allergy;
-    }
-
-    public String getHealthOther() {
-        return healthOther;
-    }
-
-    public void setHealthOther(String healthOther) {
-        this.healthOther = healthOther;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
     }
 
     public String getPhotograph() {
@@ -204,13 +163,9 @@ public class Patient extends Employee {
     public void setPhotograph(String photograph) {
         this.photograph = photograph;
     }
-
-   
-
-    @Override
+      @Override
     public String toString() {
-        return patientname;
+        return name;
     }
     
-    
-}
+  }
