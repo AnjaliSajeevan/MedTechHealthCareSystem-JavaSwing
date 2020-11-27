@@ -70,6 +70,7 @@ public class DB4OUtil {
         else{
             system = systems.get(systems.size() - 1);
         }
+ //system = ConfigureASystem.configure();
         conn.close();
         return system;
     }

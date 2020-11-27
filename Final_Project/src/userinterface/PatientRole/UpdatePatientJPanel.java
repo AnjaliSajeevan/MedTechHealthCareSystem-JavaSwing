@@ -415,44 +415,44 @@ JPanel userProcessContainer;
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        Patient p=new Patient();
-        String username=txtUsername.getText();
-        String password=txtPassword.getText();
-        String age=txtAge.getText();
-        String name=txtName.getText();
-        String contactNo=txtContactNo.getText();
-        String address=txtAddress.getText();
-        String email=txtEmail.getText();
-        String gender=txtGender.getText();
-        String allergy=txtAllergy.getText();
-        String symtoms=txtSymtoms.getText();
+//        Patient p=new Patient();
+//        String username=txtUsername.getText();
+//        String password=txtPassword.getText();
+//        String age=txtAge.getText();
+//        String name=txtName.getText();
+//        String contactNo=txtContactNo.getText();
+//        String address=txtAddress.getText();
+//        String email=txtEmail.getText();
+//        String gender=txtGender.getText();
+//        String allergy=txtAllergy.getText();
+//        String symtoms=txtSymtoms.getText();
+//
+//        p.setAge(age);
+//        p.setAllergy(allergy);
+//        p.setConditions(contactNo);
+//        p.setContactNo(contactNo);
+//        p.setEmail(email);
+//        p.setGender(gender);
+//        p.setName(name);
+//        p.setSymtoms(symtoms);
+//        System.out.println(p.getSymtoms());
+//        System.out.println(p);
+//        business.getPatientDirectory().addPatient(p);
 
-        p.setAge(age);
-        p.setAllergy(allergy);
-        p.setConditions(contactNo);
-        p.setContactNo(contactNo);
-        p.setEmail(email);
-        p.setGender(gender);
-        p.setName(name);
-        p.setSymtoms(symtoms);
-        System.out.println(p.getSymtoms());
-        System.out.println(p);
-        business.getPatientDirectory().addPatient(p);
-
-        Employee employee=business.getEmployeeDirectory().createEmployee(username);
-
-        for(Network n : business.getNetworkList())
-        {
-
-            for(Enterprise e:n.getEnterpriseDirectory().getEnterpriseList())
-            {
-                System.out.println("inside entprise loop="+e);
-                System.out.println("inside entprise loop types="+e.getEnterpriseType().getValue());
-                if(e.getEnterpriseType().getValue().equals("Hospital"))
-                {UserAccount account = e.getUserAccountDirectory().createUserAccount(username, password, employee, new PatientRole());
-                }
-            }
-        }
+//        Employee employee=business.getEmployeeDirectory().createEmployee(username);
+//
+//        for(Network n : business.getNetworkList())
+//        {
+//
+//            for(Enterprise e:n.getEnterpriseDirectory().getEnterpriseList())
+//            {
+//                System.out.println("inside entprise loop="+e);
+//                System.out.println("inside entprise loop types="+e.getEnterpriseType().getValue());
+//                if(e.getEnterpriseType().getValue().equals("Hospital"))
+//                {UserAccount account = e.getUserAccountDirectory().createUserAccount(username, password, employee, new PatientRole());
+//                }
+//            }
+//        }
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 

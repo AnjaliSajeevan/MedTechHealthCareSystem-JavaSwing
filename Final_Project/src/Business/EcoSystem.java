@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Essentials.ProductCatalog;
 import Business.InsurancePolicy.InsurancePolicyDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -28,7 +29,7 @@ public class EcoSystem extends Organization{
     private VaccineDirectory vaccineDirectory;
     private VaccineTesterDirectory vaccinetesterDirectory;
     private InsurancePolicyDirectory insurancePolicyDirectory;
-    
+    private ProductCatalog productcatalog;
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -53,6 +54,7 @@ public class EcoSystem extends Organization{
         vaccineDirectory=new VaccineDirectory();
         vaccinetesterDirectory=new VaccineTesterDirectory();
         insurancePolicyDirectory= new InsurancePolicyDirectory();
+        productcatalog=new ProductCatalog();
         networkList=new ArrayList<Network>();
     }
 
@@ -79,6 +81,13 @@ public class EcoSystem extends Organization{
     public void setVaccineDirectory(VaccineDirectory vaccineDirectory) {
         this.vaccineDirectory = vaccineDirectory;
     }
+    public ProductCatalog getProductCatalogy() {
+        return productcatalog;
+    }
+
+    public void setProductCatalog(ProductCatalog vaccineDirectory) {
+        this.productcatalog = vaccineDirectory;
+    }
 
     public VaccineTesterDirectory getVaccinetesterDirectory() {
         return vaccinetesterDirectory;
@@ -103,6 +112,14 @@ public class EcoSystem extends Organization{
 
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
+    }
+
+    public ProductCatalog getProductcatalog() {
+        return productcatalog;
+    }
+
+    public void setProductcatalog(ProductCatalog productcatalog) {
+        this.productcatalog = productcatalog;
     }
     
     public boolean checkIfUserIsUnique(String userName){
