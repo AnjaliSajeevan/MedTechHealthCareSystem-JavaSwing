@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.Role.PatientRole;
 import Business.Role.Role;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -17,45 +18,75 @@ import java.util.ArrayList;
  */
 
 public class Patient extends Employee {
-     private String name;
-      private String contactNo;
-      private String email;
-      private String age;
-      private String gender;
-      private String allergy;
-      private String symtoms;
-      private String conditions;
+     private String patientname;
+    private String address;
+    private int id;
+    private static int count = 1;
+    private String DOB;
+    private int age;
+    private int contact;
+    private String email;
+    private String gender;
+    private Date createDate;
+    private Date updateDate;
+    private String ssn;
+    private String healthNum;
+    private String license;
+    private String allergy;
+    private String healthOther;
+    private String condition;
+    private String photograph;
+
+    public Patient() {
+        id = count;
+        count++;
+        this.setCreateDate();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+//     @Override
+    public String getPatientname() {
+        return patientname;
+    }
+
      
-      public Patient() {
-        super();
-    }
-     
-      
-    
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList();
-        roles.add(new PatientRole());
-        return roles;
+    public void setPatientname(String name) {
+        this.patientname = name;
     }
 
-
-      @Override
-    public void setName(String name) {
-        System.out.println("name"+name);
-        this.name = name;
-    }
-        public void setPatientName(String name) {
-      System.out.println("name"+name);
-        this.name = name;
-    }  
-        
-
-    public String getContactNo() {
-        return contactNo;
+    public static int getCount() {
+        return count;
     }
 
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
+    public static void setCount(int count) {
+        Patient.count = count;
+    }
+
+    public String getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getContact() {
+        return contact;
+    }
+
+    public void setContact(int contact) {
+        this.contact = contact;
     }
 
     public String getEmail() {
@@ -66,12 +97,12 @@ public class Patient extends Employee {
         this.email = email;
     }
 
-    public String getAge() {
-        return age;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getGender() {
@@ -82,6 +113,46 @@ public class Patient extends Employee {
         this.gender = gender;
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate() {
+        this.createDate = new Date();
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate() {
+        this.updateDate = new Date();
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
+    public String getHealthNum() {
+        return healthNum;
+    }
+
+    public void setHealthNum(String healthNum) {
+        this.healthNum = healthNum;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
     public String getAllergy() {
         return allergy;
     }
@@ -90,25 +161,36 @@ public class Patient extends Employee {
         this.allergy = allergy;
     }
 
-    public String getSymtoms() {
-        return symtoms;
+    public String getHealthOther() {
+        return healthOther;
     }
 
-    public void setSymtoms(String symtoms) {
-        this.symtoms = symtoms;
+    public void setHealthOther(String healthOther) {
+        this.healthOther = healthOther;
     }
 
-    public String getConditions() {
-        return conditions;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setConditions(String conditions) {
-        this.conditions = conditions;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
+
+    public String getPhotograph() {
+        return photograph;
+    }
+
+    public void setPhotograph(String photograph) {
+        this.photograph = photograph;
+    }
+
+   
 
     @Override
     public String toString() {
-        return name;
+        return patientname;
     }
+    
     
 }

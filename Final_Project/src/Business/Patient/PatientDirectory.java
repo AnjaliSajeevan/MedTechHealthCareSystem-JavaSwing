@@ -42,5 +42,13 @@ public class PatientDirectory {
         }
         return null;
     }
+            public void updatePatient(Patient v){
+        for(Patient vac : patientlist){
+            if(vac.getId() == v.getId()){
+               vac = v;
+                
+            }
+        }
+    }
 }
 
