@@ -682,6 +682,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 tester.setCondition(condition);
                 tester.setPhotograph(txtPhoto.getText());
                 tester.setUpdateDate();
+                tester.setUserAccount(username);
                 business.getPatientDirectory().addPatient(tester);
                 Employee employee=business.getEmployeeDirectory().createEmployee(username);
 

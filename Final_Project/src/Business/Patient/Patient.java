@@ -6,9 +6,11 @@
 package Business.Patient;
 
 import Business.Employee.Employee;
+import Business.InsurancePolicy.InsurancePolicy;
 import Business.Organization.Organization;
 import Business.Role.PatientRole;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,6 +38,24 @@ public class Patient extends Employee {
     private String healthOther;
     private String condition;
     private String photograph;
+    private InsurancePolicy insurance;
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserAccount(String userName) {
+        this.userName = userName;
+    }
+
+    public InsurancePolicy getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(InsurancePolicy insurance) {
+        this.insurance = insurance;
+    }
 
     public Patient() {
         id = count;

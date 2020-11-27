@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.InsurancePolicy.InsurancePolicy;
 import Business.Network.Network;
+import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.text.DateFormat;
@@ -39,10 +40,12 @@ public class RegisterForInsurance extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
+    UserAccount account;
     public RegisterForInsurance(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
+        this.account=account;
         
     for(Network network:ecosystem.getNetworkList()){
     for(Enterprise e:network.getEnterpriseDirectory().getEnterpriseList()){
@@ -317,13 +320,11 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         int flag=0;
         
         for (InsurancePolicy r: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
-            
             if (r.getEnterprise() == null) {
                 flag = 0;
             } else {
                 flag = 1;
             }
-
             if (flag == 1) {
                 DefaultTableModel model = (DefaultTableModel) tblSearch.getModel();
                 model.setRowCount(0);        
@@ -348,14 +349,31 @@ public class RegisterForInsurance extends javax.swing.JPanel {
 
     private void btnSelectInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectInsuranceActionPerformed
         // TODO add your handling code here:
+        String s=account.getUsername();
+        int selectedRow =  tblSearch.getSelectedRow();
+        if(selectedRow <0)
+        {
+            JOptionPane.showMessageDialog(null,"Please select a row","Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        else
+        {
+            InsurancePolicy a = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
+            a.addPatient(s);
+            for(Patient p:ecosystem.getPatientDirectory().getpatientlist())
+            {if(p.getUserName().equals(s))
+                p.setInsurance(a);
+                }
+        }
     }//GEN-LAST:event_btnSelectInsuranceActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-          int selectedRow =  tblSearch.getSelectedRow();
+        int selectedRow =  tblSearch.getSelectedRow();
         if(selectedRow <0)
         {
-            JOptionPane.showMessageDialog(null,"Pleasse select a row","Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Please select a row","Warning", JOptionPane.WARNING_MESSAGE);
 
         }
 

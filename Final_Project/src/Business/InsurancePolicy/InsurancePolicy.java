@@ -38,6 +38,15 @@ public class InsurancePolicy {
     private ArrayList<String> HospitalList=new ArrayList<String>();
     private ArrayList<String> PharmacyList=new ArrayList<String>();
     private ArrayList<String> LaboratoryList=new ArrayList<String>();
+    private ArrayList<String> UserAccountList = new ArrayList<String>();
+
+    public ArrayList<String> getUserAccount() {
+        return UserAccountList;
+    }
+
+    public void setUserAccount(ArrayList<String> UserAccountList) {
+        this.UserAccountList = UserAccountList;
+    }
 
     public String getEnterprise() {
         return Enterprise;
@@ -75,7 +84,14 @@ public class InsurancePolicy {
     public ArrayList<String> getHospitalList() {
         return HospitalList;
     }
-
+    
+     public void addPatient(String a){
+    UserAccountList.add(a);   
+    }
+     
+      public void deletePatient(String a){
+    UserAccountList.remove(a);   
+    }
 
     public void addHospitals(String a){
     HospitalList.add(a);   
