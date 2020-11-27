@@ -79,7 +79,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationJButton = new javax.swing.JButton();
         manageEmployeeJButton = new javax.swing.JButton();
         userJButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        btnPatientsProfile = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -133,7 +133,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnCreatePolicyActionPerformed(evt);
             }
         });
-        add(btnCreatePolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 740, -1, -1));
+        add(btnCreatePolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 740, -1, -1));
 
         btnViewPolicy.setText("View Policy");
         btnViewPolicy.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnViewPolicyActionPerformed(evt);
             }
         });
-        add(btnViewPolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 740, -1, -1));
+        add(btnViewPolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 740, -1, -1));
 
         btnDeletePolicy.setText("Delete Policy");
         btnDeletePolicy.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +149,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnDeletePolicyActionPerformed(evt);
             }
         });
-        add(btnDeletePolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 740, -1, -1));
+        add(btnDeletePolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 740, -1, -1));
 
         tblPatient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -229,7 +229,14 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 840));
+
+        btnPatientsProfile.setText("Patients in the Policy");
+        btnPatientsProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatientsProfileActionPerformed(evt);
+            }
+        });
+        add(btnPatientsProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 740, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
@@ -314,16 +321,20 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeletePolicyActionPerformed
 
+    private void btnPatientsProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientsProfileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPatientsProfileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnCreatePolicy;
     private javax.swing.JButton btnDecline;
     private javax.swing.JButton btnDeletePolicy;
+    private javax.swing.JButton btnPatientsProfile;
     private javax.swing.JButton btnViewPolicy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
