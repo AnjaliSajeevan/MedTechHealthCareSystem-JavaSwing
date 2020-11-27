@@ -50,6 +50,7 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("VACCINE COMPANY REPORT");
 
@@ -105,6 +106,8 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("FDA Rejections:");
 
+        jButton1.setText("Project History");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,8 +126,7 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
                         .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -138,7 +140,12 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel4)
                                     .addGap(170, 170, 170)
-                                    .addComponent(jLabel7))))))
+                                    .addComponent(jLabel7)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(12, 12, 12)))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -152,8 +159,10 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valueLabel))
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -166,7 +175,7 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel8))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,6 +190,7 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

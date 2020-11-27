@@ -5,17 +5,29 @@
  */
 package userinterface.VaccineTestingStaffRole;
 
+
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
- * @author karthik
+ * @author Manasa
  */
 public class UpdateResultJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form UpdateResultJPanel
      */
-    public UpdateResultJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem business;  
+    private UserAccount account;
+    public UpdateResultJPanel(JPanel userProcessContainer,EcoSystem business,UserAccount account ) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.business = business;
+        this.account=account;
+
     }
 
     /**

@@ -68,29 +68,29 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
                 labelFullPic.setIcon(new ImageIcon(tester.getPhotograph()));
                 if(tester.getGender().equals("Male")){
                     gender = "Male";
-                    btnMale.setEnabled(true);
+                    btnMale.setSelected(true);
                 }else if(tester.getGender().equals("Female")){
                      gender = "Female";
-                    btnFemale.setEnabled(true);
+                    btnFemale.setSelected(true);
                 }else{
                      gender = "Other";
-                    btnOther.setEnabled(true);
+                    btnOther.setSelected(true);
                 }
                 if(tester.getCondition().equals("Healthy")){
                     condition = "Healthy";
-                    btnHealthy.setEnabled(true);
+                    btnHealthy.setSelected(true);
                 }else if(tester.getGender().equals("Covid")){
                      condition = "Covid";
-                    btnCovid.setEnabled(true);
+                    btnCovid.setSelected(true);
                 }else if(tester.getGender().equals("Heart")){
                      condition = "Heart";
-                    btnHeart.setEnabled(true);
+                    btnHeart.setSelected(true);
                 }else if(tester.getGender().equals("Diabetes")){
                      condition = "Diabetes";
-                    btnDiabetes.setEnabled(true);
+                    btnDiabetes.setSelected(true);
                 }else{
                      condition = "Respiratory";
-                    btnResp.setEnabled(true);
+                    btnResp.setSelected(true);
                 }
                 txtName.setEnabled(false);
                 txtGeo.setEnabled(false);
