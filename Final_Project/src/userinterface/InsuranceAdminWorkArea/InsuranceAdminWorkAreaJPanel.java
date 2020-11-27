@@ -141,7 +141,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnViewPolicyActionPerformed(evt);
             }
         });
-        add(btnViewPolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 740, -1, -1));
+        add(btnViewPolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 740, 80, -1));
 
         btnDeletePolicy.setText("Delete Policy");
         btnDeletePolicy.addActionListener(new java.awt.event.ActionListener() {

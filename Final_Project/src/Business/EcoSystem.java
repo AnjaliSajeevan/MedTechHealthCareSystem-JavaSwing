@@ -81,14 +81,7 @@ public class EcoSystem extends Organization{
     public void setVaccineDirectory(VaccineDirectory vaccineDirectory) {
         this.vaccineDirectory = vaccineDirectory;
     }
-    public ProductCatalog getProductCatalogy() {
-        return productcatalog;
-    }
-
-    public void setProductCatalog(ProductCatalog vaccineDirectory) {
-        this.productcatalog = vaccineDirectory;
-    }
-
+    
     public VaccineTesterDirectory getVaccinetesterDirectory() {
         return vaccinetesterDirectory;
     }
@@ -113,14 +106,17 @@ public class EcoSystem extends Organization{
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
     }
-
-    public ProductCatalog getProductcatalog() {
+    
+    public ProductCatalog getProductCatalog() {
         return productcatalog;
     }
 
-    public void setProductcatalog(ProductCatalog productcatalog) {
-        this.productcatalog = productcatalog;
+    public void setProductCatalog(ProductCatalog vaccineDirectory) {
+        this.productcatalog = vaccineDirectory;
     }
+
+
+ 
     
     public boolean checkIfUserIsUnique(String userName){
         if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
