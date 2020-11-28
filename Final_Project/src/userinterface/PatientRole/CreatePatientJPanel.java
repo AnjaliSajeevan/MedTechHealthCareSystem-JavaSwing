@@ -57,7 +57,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             //Enterprise enterprise,
             EcoSystem business) {
          this.userProcessContainer = userProcessContainer;
-         System.out.println("business constru"+business);
+       
         this.business=business;
          initComponents();
      // populateComboBox();
@@ -596,7 +596,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 error+="\nFor Name - Valid name with only Alphabets and Spaces allowed!";
             }
             if(!txtPhone.getText().equalsIgnoreCase("")){
-                System.out.println(txtPhone.getText());
+                
                 String phone = (txtPhone.getText());
 
                 String phoneRegex = "^[0-9]{10}$";
@@ -621,7 +621,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 LocalDate locBirthDate= LocalDate.parse(txtDOB.getText(),dateFormatter);
                 LocalDate today = LocalDate.now();
                 Period p = Period.between(locBirthDate, today);
-                System.out.println("Age="+p.getYears());
+             
                 age = p.getYears();
             }catch (ParseException ex) {
                 error+="\nFor Date Of Birth - Please enter in \"dd/mm/yyyy\" pattern only!";
@@ -684,11 +684,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 tester.setPhotograph(txtPhoto.getText());
                 tester.setUpdateDate();
                 tester.setUserAccount(username);
-                
-                System.out.println("Business "+business );
-                System.out.println("doct dir"+business.getPatientDirectory());
-                System.out.println("--"+business.getPatientDirectory().addPatient(tester));
-                
+
                 business.getPatientDirectory().addPatient(tester);
                 Employee employee=business.getEmployeeDirectory().createEmployee(username);
 
@@ -697,8 +693,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
 
                     for(Enterprise e:n.getEnterpriseDirectory().getEnterpriseList())
                     {
-                        System.out.println("inside entprise loop="+e);
-                        System.out.println("inside entprise loop types="+e.getEnterpriseType().getValue());
+                        
                         if(e.getEnterpriseType().getValue().equals("Hospital"))
                         {UserAccount account = e.getUserAccountDirectory().createUserAccount(username, password, employee, new PatientRole());
                         }

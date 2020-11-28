@@ -8,6 +8,7 @@ package userinterface.InsuranceAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.InsurancePolicy.InsurancePolicy;
+import Business.Patient.Patient;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.DefaultListModel;
@@ -72,6 +73,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             populatePharmacy();
             populateLaboratory();
             populateHospitals();
+            populatePatients();
     }
     
     
@@ -131,7 +133,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel40 = new javax.swing.JLabel();
         txtInpatients = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList4 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -141,6 +143,8 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txtZipCode = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -228,20 +232,20 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 160, -1));
         add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, 50, -1));
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacy included"));
-        jScrollPane1.setViewportView(jList1);
+        jList4.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients in Policy"));
+        jScrollPane1.setViewportView(jList4);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 540, 160, 140));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 160, 140));
 
         jList2.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratories included"));
         jScrollPane2.setViewportView(jList2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 180, 140));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 540, 180, 140));
 
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("Hospitals included"));
         jScrollPane3.setViewportView(jList3);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 540, 160, 140));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 160, 140));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -279,6 +283,11 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel21.setText("ZipCode:");
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+
+        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacy included"));
+        jScrollPane4.setViewportView(jList1);
+
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 540, 160, 140));
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
@@ -346,10 +355,6 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
          userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        InsuranceAdminWorkAreaJPanel iawa = (InsuranceAdminWorkAreaJPanel) component;
-        iawa.populateTree();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -366,7 +371,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     public void populateLaboratory()
     {DefaultListModel DLM = new DefaultListModel();
             
-                for (int counter = 0; counter < i.getHospitalList().size(); counter++) {
+                for (int counter = 0; counter < i.getLaboratoryList().size(); counter++) {
                     DLM.addElement(i.getLaboratoryList().get(counter));
                 }
                 jList2.setModel(DLM);
@@ -374,10 +379,30 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
      public void populatePharmacy()
     {DefaultListModel DLM = new DefaultListModel();
             
-                for (int counter = 0; counter < i.getHospitalList().size(); counter++) {
+                for (int counter = 0; counter < i.getPharmacyList().size(); counter++) {
                     DLM.addElement(i.getPharmacyList().get(counter));
                 }
                 jList1.setModel(DLM);
+    }
+     public void populatePatients()
+    {   int flag=0;
+        DefaultListModel DLM = new DefaultListModel();
+    int y=ecosystem.getPatientDirectory().getpatientlist().size();
+    
+                for (Patient p:ecosystem.getPatientDirectory().getpatientlist()) {
+                    if (p.getInsurance()==null)
+                    {flag=0;
+                    }else{flag=1;
+                    }
+                    System.out.println(flag);
+                    if(flag==1){
+                    if(p.getInsurance().equals(i.getPolicyName())){
+                    DLM.addElement(p);
+                       
+                }
+                    }
+                }
+                jList4.setModel(DLM);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -402,9 +427,11 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
+    private javax.swing.JList<String> jList4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton saveUpdateBtn;

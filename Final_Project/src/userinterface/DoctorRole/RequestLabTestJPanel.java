@@ -5,6 +5,7 @@
 package userinterface.DoctorRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 
 import Business.UserAccount.UserAccount;
 
@@ -21,17 +22,17 @@ import javax.swing.JPanel;
 public class RequestLabTestJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    
+    private Enterprise enterprise;
     private UserAccount userAccount;
     /**
      * Creates new form RequestLabTestJPanel
      */
    
-    RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
+    RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise, EcoSystem ecosystem) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        
+        this.enterprise=enterprise;
         this.userAccount = account;
     }
 
@@ -45,26 +46,27 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         requestTestJButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         messageJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        testListJComboBox = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        requestTestJButton.setText("Request Test");
+        requestTestJButton.setText("Submit");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
             }
         });
-        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 95, -1, -1));
-
-        jLabel1.setText("List of all Test");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, 20));
-        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 37, 89, -1));
+        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 200, 40));
+        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 260, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -72,17 +74,32 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 138, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("Test Request");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 30));
+        enterpriseLabel.setText("Patient Diagonosis");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 180, 30));
 
         jLabel2.setText("Message");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 40, -1, 20));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, 20));
 
-        testListJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(testListJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
+        jButton1.setText("Lab test Required");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Yes" }));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, -1, -1));
+
+        jButton2.setText("Submit");
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
+
+        jLabel3.setText("Lab Test:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+
+        jLabel4.setText("Admit Patient:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
@@ -106,10 +123,14 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField messageJTextField;
     private javax.swing.JButton requestTestJButton;
-    private javax.swing.JComboBox testListJComboBox;
     // End of variables declaration//GEN-END:variables
 }
