@@ -21,7 +21,7 @@ public class DoctorRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new DoctorWorkAreaJPanel(userProcessContainer, account, (AdminOrganization)organization, enterprise);
+        return new DoctorWorkAreaJPanel(userProcessContainer, account, (AdminOrganization)organization, enterprise,business);
        
     }
     
