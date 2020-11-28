@@ -9,8 +9,10 @@ import Business.EcoSystem;
 import Business.Essentials.Product;
 import Business.Essentials.ProductCatalog;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import userinterface.SystemAdminWorkArea.ManagePateintJPanel;
 
 /**
  *
@@ -150,14 +152,23 @@ private JPanel userProcessContainer;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+//        userProcessContainer.remove(this);
+//        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+//        layout.previous(userProcessContainer);
+        
         userProcessContainer.remove(this);
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        HospitalStaffWorkAreaJPanel sysAdminwjp = (HospitalStaffWorkAreaJPanel) component;
+        sysAdminwjp.populateEssentialTable();
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        Product p=ecosystem.getProductcatalog().addProduct();
+        Product p=ecosystem.getProductCatalog().addProduct();
         p.setProdName(txtName.getText());
         p.setAvail(Integer.parseInt(txtQuantity.getText()));
         JOptionPane.showMessageDialog(null, "Esssential is Registered Successfully!");

@@ -19,12 +19,11 @@ import userinterface.HospitalStaffWorkAreaJPanel.HospitalStaffWorkAreaJPanel;
  */
 public class HospitalStaffRole extends Role{
 
-    @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new HospitalStaffWorkAreaJPanel(userProcessContainer, account,(AdminOrganization)organization,enterprise);
+   @Override
+   public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+        return new HospitalStaffWorkAreaJPanel(userProcessContainer, account,enterprise,business);
     }
     public String toString(){
         return "HospitalStaff";
     } 
 }
-    
