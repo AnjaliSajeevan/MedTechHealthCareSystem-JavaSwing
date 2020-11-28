@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Doctor.DoctorDirectory;
 import Business.Essentials.ProductCatalog;
 import Business.InsurancePolicy.InsurancePolicyDirectory;
 import Business.Network.Network;
@@ -30,6 +31,7 @@ public class EcoSystem extends Organization{
     private VaccineTesterDirectory vaccinetesterDirectory;
     private InsurancePolicyDirectory insurancePolicyDirectory;
     private ProductCatalog productcatalog;
+    private DoctorDirectory doctorDirectory;
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -55,7 +57,16 @@ public class EcoSystem extends Organization{
         vaccinetesterDirectory=new VaccineTesterDirectory();
         insurancePolicyDirectory= new InsurancePolicyDirectory();
         productcatalog=new ProductCatalog();
+        doctorDirectory= new DoctorDirectory();
         networkList=new ArrayList<Network>();
+    }
+
+    public DoctorDirectory getDoctorDirectory() {
+        return doctorDirectory;
+    }
+
+    public void setDoctorDirectory(DoctorDirectory doctorDirectory) {
+        this.doctorDirectory = doctorDirectory;
     }
 
     public static EcoSystem getBusiness() {
@@ -81,14 +92,7 @@ public class EcoSystem extends Organization{
     public void setVaccineDirectory(VaccineDirectory vaccineDirectory) {
         this.vaccineDirectory = vaccineDirectory;
     }
-    public ProductCatalog getProductCatalogy() {
-        return productcatalog;
-    }
-
-    public void setProductCatalog(ProductCatalog vaccineDirectory) {
-        this.productcatalog = vaccineDirectory;
-    }
-
+    
     public VaccineTesterDirectory getVaccinetesterDirectory() {
         return vaccinetesterDirectory;
     }
@@ -113,14 +117,17 @@ public class EcoSystem extends Organization{
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
     }
-
-    public ProductCatalog getProductcatalog() {
+    
+    public ProductCatalog getProductCatalog() {
         return productcatalog;
     }
 
-    public void setProductcatalog(ProductCatalog productcatalog) {
-        this.productcatalog = productcatalog;
+    public void setProductCatalog(ProductCatalog vaccineDirectory) {
+        this.productcatalog = vaccineDirectory;
     }
+
+
+ 
     
     public boolean checkIfUserIsUnique(String userName){
         if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
