@@ -26,7 +26,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
       JPanel userProcessContainer;
     EcoSystem ecosystem;
       UserAccount account;
-    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization AdminOrganization, Enterprise enterprise) {
+    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization AdminOrganization, Enterprise enterprise,EcoSystem ecosystem) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
@@ -45,7 +45,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnPatientHistory = new javax.swing.JButton();
+        btnUpdatedoctor = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -70,10 +70,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        btnPatientHistory.setText("Update Doctor Info.");
-        btnPatientHistory.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdatedoctor.setText("Update Doctor Info.");
+        btnUpdatedoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPatientHistoryActionPerformed(evt);
+                btnUpdatedoctorActionPerformed(evt);
             }
         });
 
@@ -128,7 +128,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPatientHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUpdatedoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +163,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(btnPatientHistory)
+                        .addComponent(btnUpdatedoctor)
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -187,15 +187,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPatientHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientHistoryActionPerformed
+    private void btnUpdatedoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatedoctorActionPerformed
         // TODO add your handling code here:
        // PatientHistoryJPanel
-        PatientHistoryJPanel panel = new PatientHistoryJPanel(userProcessContainer,account, ecosystem);
-        userProcessContainer.add("PatientHistoryJPanel", panel);
+        DoctorProfileUpdateJPanel panel = new DoctorProfileUpdateJPanel(userProcessContainer,account, ecosystem);
+        userProcessContainer.add("DoctorProfileUpdateJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
        
-    }//GEN-LAST:event_btnPatientHistoryActionPerformed
+    }//GEN-LAST:event_btnUpdatedoctorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -215,8 +215,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPatientHistory;
     private javax.swing.JButton btnPatientHistory1;
+    private javax.swing.JButton btnUpdatedoctor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
