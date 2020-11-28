@@ -26,11 +26,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
       JPanel userProcessContainer;
     EcoSystem ecosystem;
       UserAccount account;
+      Enterprise enterprise;
     public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization AdminOrganization, Enterprise enterprise,EcoSystem ecosystem) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
         this.account=account;
+        this.enterprise=enterprise;
     }
 
     /**
@@ -49,7 +51,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        btnPatientHistory1 = new javax.swing.JButton();
+        btnCheckPatient = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -77,7 +79,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("View");
+        jButton1.setText("View Patient Details");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -98,10 +100,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnPatientHistory1.setText("Check Patient ");
-        btnPatientHistory1.addActionListener(new java.awt.event.ActionListener() {
+        btnCheckPatient.setText("Check Patient ");
+        btnCheckPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPatientHistory1ActionPerformed(evt);
+                btnCheckPatientActionPerformed(evt);
             }
         });
 
@@ -132,30 +134,33 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton4)
-                                    .addGap(40, 40, 40)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel3)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(151, 151, 151)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(btnPatientHistory1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(379, 379, 379)
                         .addComponent(jLabel1)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(278, 278, 278)
+                        .addComponent(btnCheckPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,12 +182,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(btnPatientHistory1)
+                .addGap(38, 38, 38)
+                .addComponent(btnCheckPatient)
                 .addGap(95, 95, 95))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -190,7 +195,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void btnUpdatedoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatedoctorActionPerformed
         // TODO add your handling code here:
        // PatientHistoryJPanel
-        DoctorProfileUpdateJPanel panel = new DoctorProfileUpdateJPanel(userProcessContainer,account, ecosystem);
+        DoctorProfileUpdateJPanel panel = new DoctorProfileUpdateJPanel(userProcessContainer,account,enterprise,ecosystem);
         userProcessContainer.add("DoctorProfileUpdateJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -209,13 +214,18 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void btnPatientHistory1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientHistory1ActionPerformed
+    private void btnCheckPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckPatientActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPatientHistory1ActionPerformed
+        RequestLabTestJPanel ppanel = new RequestLabTestJPanel(userProcessContainer,account,enterprise,ecosystem);
+        userProcessContainer.add("RequestLabTestJPanel", ppanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+       
+    }//GEN-LAST:event_btnCheckPatientActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPatientHistory1;
+    private javax.swing.JButton btnCheckPatient;
     private javax.swing.JButton btnUpdatedoctor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

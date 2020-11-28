@@ -9,8 +9,11 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.InsurancePolicy.InsurancePolicy;
 import Business.Network.Network;
+import Business.Organization.InsuranceAdminOrganization;
+import Business.Organization.Organization;
 import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.InsuranceWorkRequest;
 import java.awt.CardLayout;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -40,12 +43,15 @@ public class RegisterForInsurance extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-    UserAccount account;
-    public RegisterForInsurance(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    UserAccount userAccount;
+  InsuranceAdminOrganization organization;
+    public RegisterForInsurance(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem,InsuranceAdminOrganization organization) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
-        this.account=account;
+        this.userAccount=userAccount;
+        this.organization=organization;
+
         
     for(Network network:ecosystem.getNetworkList()){
     for(Enterprise e:network.getEnterpriseDirectory().getEnterpriseList()){
@@ -84,6 +90,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         btnSelectInsurance = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
+        btnBack = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Search for Insurance Policy:");
@@ -137,8 +144,6 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setText("Choose Insurance Company:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +169,13 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnBack.setText("<-Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -212,7 +224,9 @@ public class RegisterForInsurance extends javax.swing.JPanel {
                 .addComponent(btnSelectInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
             .addGroup(layout.createSequentialGroup()
-                .addGap(282, 282, 282)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(174, 174, 174)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -220,8 +234,10 @@ public class RegisterForInsurance extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(btnBack))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -252,7 +268,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -316,7 +332,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
     }
     
     public void populateTree(){
-       String y=(String) jComboBox3.getSelectedItem();
+       String y=(String) jComboBox1.getSelectedItem();
         int flag=0;
         
         for (InsurancePolicy r: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
@@ -327,7 +343,8 @@ public class RegisterForInsurance extends javax.swing.JPanel {
             }
             if (flag == 1) {
                 DefaultTableModel model = (DefaultTableModel) tblSearch.getModel();
-                model.setRowCount(0);        
+                model.setRowCount(0);   
+              
             if (r.getEnterprise().equals(y)) {
                 Object row[] = new Object[8];
                 row[0] = r;
@@ -349,7 +366,8 @@ public class RegisterForInsurance extends javax.swing.JPanel {
 
     private void btnSelectInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectInsuranceActionPerformed
         // TODO add your handling code here:
-        String s=account.getUsername();
+
+        String s=userAccount.getUsername();
         int selectedRow =  tblSearch.getSelectedRow();
         if(selectedRow <0)
         {
@@ -359,13 +377,37 @@ public class RegisterForInsurance extends javax.swing.JPanel {
 
         else
         {
-            InsurancePolicy a = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
-            a.addPatient(s);
-            for(Patient p:ecosystem.getPatientDirectory().getpatientlist())
-            {if(p.getUserName().equals(s))
-                p.setInsurance(a);
-                }
+        
+        InsuranceWorkRequest request = new InsuranceWorkRequest();
+        request.setSender(userAccount);
+        request.setStatus("Insurance Requested");
+        InsurancePolicy a = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
+        request.setEnterprise(a.getEnterprise());
+        request.setInsurancepolicy(a.getPolicyName());
+        ecosystem.getWorkQueue().getWorkRequestList().add(request);
+        userAccount.getWorkQueue().getWorkRequestList().add(request);
+        
+//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+//            if (organization instanceof InsuranceAdminOrganization){
+//                org = organization;
+//                break;
+//            }
+//        }
+  
+
+            
+//            organization.getWorkQueue().getWorkRequestList().add(request);
+//            userAccount.getWorkQueue().getWorkRequestList().add(request);
+
+             JOptionPane.showMessageDialog(null,"Successfully requested for insurance");
         }
+//            InsurancePolicy a = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
+//            a.addPatient(s);
+//            for(Patient p:ecosystem.getPatientDirectory().getpatientlist())
+//            {if(p.getUserName().equals(s))
+//                p.setInsurance(a);
+//                }
+        
     }//GEN-LAST:event_btnSelectInsuranceActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
@@ -388,7 +430,16 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnViewActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSelectInsurance;
     private javax.swing.JButton btnSubmit;

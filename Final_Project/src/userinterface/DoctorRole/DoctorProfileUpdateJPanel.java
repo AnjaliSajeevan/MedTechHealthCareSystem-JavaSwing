@@ -7,6 +7,7 @@ package userinterface.DoctorRole;
 
 import Business.Doctor.Doctor;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -38,13 +39,10 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         String condition ="";
         private EcoSystem business;
         private JPanel userProcessContainer;
+        private Enterprise enterprise;
 
-   public DoctorProfileUpdateJPanel(JPanel userProcessContainer,
-            UserAccount account,
-           // Organization organization,
-            //Enterprise enterprise,
-            EcoSystem business) {
-       
+   public DoctorProfileUpdateJPanel(JPanel userProcessContainer,UserAccount account,Enterprise enterprise,EcoSystem business) {
+        this.enterprise=enterprise;
          this.userProcessContainer = userProcessContainer;
          System.out.println("business cons doctor"+business);
         this.business=business;
@@ -636,6 +634,7 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
 
                 tester.setPhotograph(txtPhoto.getText());
                 tester.setUpdateDate();
+                tester.setHospital(enterprise.getName());
                 System.out.println("Business "+business );
                 System.out.println("doct dir"+business.getDoctorDirectory());
                 System.out.println("--"+business.getDoctorDirectory().addDoctor(tester));

@@ -29,7 +29,16 @@ public class Doctor extends Employee {
     private String healthNum;
     private String license;
     private String specialization;
+    private String hospital;
     //private String photograph;
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
 
     
     

@@ -6,6 +6,8 @@
 package userinterface.PatientRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.InsuranceAdminOrganization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -24,10 +26,15 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 JPanel userProcessContainer;
     EcoSystem ecosystem;
      UserAccount account;
-    public PatientWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+InsuranceAdminOrganization iOrg;
+     
+    public PatientWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem,InsuranceAdminOrganization organization) {
          initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
+        this.iOrg=organization;
+        this.account=account;
+       
     }
 
     /**
@@ -107,7 +114,7 @@ JPanel userProcessContainer;
 
     private void btnRegisterForInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterForInsuranceActionPerformed
         // TODO add your handling code here:
-        RegisterForInsurance rfi=new RegisterForInsurance(userProcessContainer,account, ecosystem);
+        RegisterForInsurance rfi=new RegisterForInsurance(userProcessContainer,account, ecosystem,iOrg);
         userProcessContainer.add("RegisterForInsuranceJPanel",rfi);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
