@@ -564,6 +564,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         String password=txtPassword.getText();
         String error = "";
         //Validation of Mandatory fields.
+        
         if(txtName.getText().equalsIgnoreCase("")){
             error="\nName Field is mandatory!";
         }
@@ -650,11 +651,13 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             }else{
                 Patient tester = new Patient();
                 tester.setPatientname(txtName.getText());
+                
                 if(!txtGeo.getText().equals("")){
                     tester.setAddress(txtGeo.getText());
                 }else{
                     tester.setAddress("");
                 }
+                tester.setContact(Integer.parseInt(txtPhone.getText()));
                 tester.setGender(gender);
                 tester.setDOB(txtDOB.getText());
                 tester.setAge(age);

@@ -2,8 +2,12 @@
 
 package userinterface.AdministrativeRole;
 
+import Business.Doctor.Doctor;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import static Business.Organization.Organization.Type.Doctor;
 import java.awt.CardLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
 /**
@@ -14,14 +18,30 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
+    EcoSystem business;
     /** Creates new form AdminWorkAreaJPanel */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.business=business;
         valueLabel.setText(enterprise.getName());
+        populateComboBox();
     }
-    
+    public void populateComboBox(){
+        availableDoctor.removeAllItems();
+        DefaultComboBoxModel dm=new DefaultComboBoxModel();
+        
+        
+        for(Doctor n : business.getDoctorDirectory().getdoctorlist())
+        {
+            if(enterprise.getName().equalsIgnoreCase(n.getHospital()))
+            {
+                availableDoctor.addItem(n.getName());    
+            }
+   }
+       //RestaurantComboBox.setModel(dm);
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -41,7 +61,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        availableDoctor = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         emergencyRequestTable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
@@ -116,8 +136,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
+        availableDoctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(availableDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
 
         emergencyRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -199,13 +219,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> availableDoctor;
     private javax.swing.JTable emergencyRequestTable;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
