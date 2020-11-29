@@ -46,6 +46,7 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
          this.userProcessContainer = userProcessContainer;
          System.out.println("business cons doctor"+business);
         this.business=business;
+        
          initComponents();
     }
 
@@ -524,6 +525,8 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         int comp = 0;
         
         String error = "";
+        System.out.println("Enterprise name: "+ enterprise.getName());
+        
         //Validation of Mandatory fields.
         if(txtName.getText().equalsIgnoreCase("")){
             error="\nName Field is mandatory!";
@@ -635,9 +638,10 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
                 tester.setPhotograph(txtPhoto.getText());
                 tester.setUpdateDate();
                 tester.setHospital(enterprise.getName());
-                System.out.println("Business "+business );
-                System.out.println("doct dir"+business.getDoctorDirectory());
-                System.out.println("--"+business.getDoctorDirectory().addDoctor(tester));
+                
+//                System.out.println("Business "+business );
+//                System.out.println("doct dir"+business.getDoctorDirectory());
+//                System.out.println("--"+business.getDoctorDirectory().addDoctor(tester));
                 business.getDoctorDirectory().addDoctor(tester);
                 
 
