@@ -50,11 +50,13 @@ public class ViewPatientJPanel extends javax.swing.JPanel {
         
     }
 public void initializePage(){
-                txtName.setText(tester.getName());
+                txtName.setText(tester.getPatientname());
+                System.out.println("Name check"+tester.getPatientname());
                 txtGeo.setText(tester.getAddress());
                 txtDOB.setText(tester.getDOB());
                 txtEmail.setText(tester.getEmail());
                 txtPhone.setText(String.valueOf(tester.getContact()));
+                System.out.println("Conact "+tester.getContact());
                 txtSSN.setText(tester.getSsn());
                 txtOtherProbs.setText(tester.getHealthOther());
              
