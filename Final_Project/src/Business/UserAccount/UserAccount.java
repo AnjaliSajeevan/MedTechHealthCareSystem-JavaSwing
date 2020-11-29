@@ -7,7 +7,8 @@ package Business.UserAccount;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
-
+import Business.WorkQueue.LabTestWorkQueue;
+import Business.WorkQueue.VaccineWorkQueue;
 /**
  *
  * @author raunak
@@ -19,9 +20,13 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private VaccineWorkQueue vaccineWorkQueue;
+    private LabTestWorkQueue labTestWorkQueue;
 
     public UserAccount() {
         workQueue = new WorkQueue();
+        vaccineWorkQueue = new VaccineWorkQueue();
+        labTestWorkQueue = new LabTestWorkQueue();
     }
     
     
@@ -62,7 +67,14 @@ public class UserAccount {
         return workQueue;
     }
 
-    
+    public VaccineWorkQueue getVaccineWorkQueue() {
+        return vaccineWorkQueue;
+    }
+
+    public LabTestWorkQueue getLabTestWorkQueue() {
+        return labTestWorkQueue;
+    }
+
     
     @Override
     public String toString() {

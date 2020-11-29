@@ -7,6 +7,8 @@ package Business.Organization;
 import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.LabTestWorkQueue;
+import Business.WorkQueue.VaccineWorkQueue;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -18,6 +20,8 @@ public abstract class Organization {
 
     private String name;
     private WorkQueue workQueue;
+    private VaccineWorkQueue vaccineQueue;
+    private LabTestWorkQueue labQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
@@ -43,6 +47,8 @@ public abstract class Organization {
     public Organization(String name) {
         this.name = name;
         workQueue = new WorkQueue();
+        vaccineQueue = new VaccineWorkQueue();
+        labQueue = new LabTestWorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
@@ -77,6 +83,20 @@ public abstract class Organization {
 
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
+    }
+    public VaccineWorkQueue getVaccineQueue() {
+        return vaccineQueue;
+    }
+
+    public void setVaccineQueue(VaccineWorkQueue vaccineQueue) {
+        this.vaccineQueue = vaccineQueue;
+    } 
+    public LabTestWorkQueue getLabQueue() {
+        return labQueue;
+    }
+
+    public void setLabQueue(LabTestWorkQueue labQueue) {
+        this.labQueue = labQueue;
     }
     
     public String getOrganizationType(){
