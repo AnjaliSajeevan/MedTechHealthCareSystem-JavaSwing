@@ -39,11 +39,13 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;  
     private VaccineTester tester;
-    public ViewTestersJPanel(JPanel userProcessContainer,EcoSystem business,VaccineTester tester ) {
+    boolean manage;
+    public ViewTestersJPanel(JPanel userProcessContainer,EcoSystem business,VaccineTester tester ,boolean manage) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.tester=tester;
+        this.manage = manage;
         
         initializePage();
         
@@ -112,7 +114,10 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
                 btnMale.setEnabled(false);
                 btnFemale.setEnabled(false);
                 btnOther.setEnabled(false);
-                     
+        if(manage == true){
+            btnSave.setVisible(false);
+            btnSave1.setVisible(false);
+        }
                 
     }
     @SuppressWarnings("unchecked")
@@ -899,6 +904,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSave1ActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+       if(manage == true){
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
@@ -907,6 +913,11 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+       }else{
+               userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+       }
     }//GEN-LAST:event_backJButtonActionPerformed
 
 
