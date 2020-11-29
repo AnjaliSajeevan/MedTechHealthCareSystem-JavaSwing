@@ -4,8 +4,12 @@
  */
 package Business.WorkQueue;
 
+import Business.InsurancePolicy.InsurancePolicy;
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,11 +23,31 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
-    
-    public WorkRequest(){
-        requestDate = new Date();
+    private String insurancepolicy;
+    private String requestNo;
+    private String enterprise;
+
+    public String getEnterprise() {
+        return enterprise;
     }
 
+    public void setEnterprise(String enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public String getRequestNo() {
+        return requestNo;
+    }
+
+    public String getInsurancepolicy() {
+        return insurancepolicy;
+    }
+
+    public void setInsurancepolicy(String insurancepolicy) {
+        this.insurancepolicy = insurancepolicy;
+    }
+    
+  
     public String getMessage() {
         return message;
     }
@@ -70,5 +94,25 @@ public abstract class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+    public WorkRequest(){
+        requestDate = new Date();
+        List<Integer> numbers = new ArrayList();
+        for(int i = 0; i < 10; i++){
+        numbers.add(i);
+        }
+
+        Collections.shuffle(numbers);
+
+    String result = "";
+    for(int i = 0; i < 4; i++){
+        result += numbers.get(i).toString();
+        requestNo="I"+result;
+
+    }
+    }
+      @Override
+    public String toString() {
+        return requestNo;
     }
 }
