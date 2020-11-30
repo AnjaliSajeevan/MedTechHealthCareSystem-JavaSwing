@@ -40,13 +40,13 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         private EcoSystem business;
         private JPanel userProcessContainer;
         private Enterprise enterprise;
-
+        UserAccount account;
    public DoctorProfileUpdateJPanel(JPanel userProcessContainer,UserAccount account,Enterprise enterprise,EcoSystem business) {
         this.enterprise=enterprise;
          this.userProcessContainer = userProcessContainer;
          System.out.println("business cons doctor"+business);
         this.business=business;
-        
+        this.account=account;
          initComponents();
     }
 
@@ -69,7 +69,6 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         txtPhone = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
@@ -77,9 +76,7 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         jLabel26 = new javax.swing.JLabel();
         txtGeo = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -133,10 +130,6 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         jLabel12.setText("4. Biometrics Record");
 
-        jLabel19.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel19.setText("*");
-
         jLabel24.setText("1.4. Contact Number");
 
         jLabel25.setText("1.3. Date Of Birth");
@@ -144,8 +137,6 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         jLabel26.setText("1.2. Address");
 
         jLabel14.setText("1.6. Email Address");
-
-        jLabel27.setText("1.1. Name");
 
         jLabel15.setText("1.5. Gender");
 
@@ -321,10 +312,6 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(jLabel27)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jLabel19))
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
                                                         .addComponent(jLabel25)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jLabel33))
@@ -340,7 +327,6 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(txtGeo, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                                         .addComponent(txtspcialization)
@@ -352,30 +338,27 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
                                         .addGap(9, 9, 9)
                                         .addComponent(jLabel21)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtOtherProbs, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(190, 190, 190))
+                                        .addComponent(txtOtherProbs, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel13)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel17)
+                                                .addGap(21, 21, 21)
+                                                .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel12)
-                                                    .addComponent(jLabel1)
-                                                    .addComponent(jLabel6)
-                                                    .addComponent(jLabel13)
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(jLabel17)
-                                                        .addGap(21, 21, 21)
-                                                        .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(btnUpload))))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(66, 66, 66)
-                                                .addComponent(labelFullPic, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(44, 44, 44)
-                                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(136, 136, 136)))))
+                                                .addComponent(btnUpload))))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(66, 66, 66)
+                                        .addComponent(labelFullPic, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(136, 136, 136)))
                         .addGap(1651, 1651, 1651))
                     .addComponent(jSeparator5)))
         );
@@ -427,12 +410,7 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel27)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
-                        .addGap(8, 8, 8)
+                        .addGap(43, 43, 43)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtGeo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -528,9 +506,9 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         System.out.println("Enterprise name: "+ enterprise.getName());
         
         //Validation of Mandatory fields.
-        if(txtName.getText().equalsIgnoreCase("")){
-            error="\nName Field is mandatory!";
-        }
+//        if(txtName.getText().equalsIgnoreCase("")){
+//            error="\nName Field is mandatory!";
+//        }
         if(txtDOB.getText().equalsIgnoreCase("")){
             error+="\nDate Of Birth Field is mandatory!";
         }
@@ -551,14 +529,14 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         }else{
 
             //After Mandatory checks, Validation ifthe input record have valid datatypes.
-
-            String nameRegex = "^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$";
-            Pattern namePattern = Pattern.compile(nameRegex);
-            Matcher checkName = namePattern.matcher(txtName.getText());
-            boolean checkNameMatch = checkName.matches();
-            if(!(checkNameMatch == TRUE)){
-                error+="\nFor Name - Valid name with only Alphabets and Spaces allowed!";
-            }
+//
+//            String nameRegex = "^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$";
+//            Pattern namePattern = Pattern.compile(nameRegex);
+//            Matcher checkName = namePattern.matcher(txtName.getText());
+//            boolean checkNameMatch = checkName.matches();
+//            if(!(checkNameMatch == TRUE)){
+//                error+="\nFor Name - Valid name with only Alphabets and Spaces allowed!";
+//            }
             if(!txtPhone.getText().equalsIgnoreCase("")){
                 System.out.println(txtPhone.getText());
                 String phone = (txtPhone.getText());
@@ -613,7 +591,8 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null,error);
             }else{
                 Doctor tester = new Doctor();
-                tester.setName(txtName.getText());
+                tester.setName(account.getEmployee().getName());
+                tester.setUserName(account.getUsername());
                 if(!txtGeo.getText().equals("")){
                     tester.setAddress(txtGeo.getText());
                 }else{
@@ -647,7 +626,7 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
 
                 JOptionPane.showMessageDialog(null,"Doctor added successfully!!!");
 
-                txtName.setText("");
+               
                 txtGeo.setText("");
                 txtDOB.setText("");
                 txtEmail.setText("");
@@ -731,13 +710,11 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
@@ -762,7 +739,6 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtGeo;
     private javax.swing.JTextField txtLicense;
-    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtOtherProbs;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPhoto;
