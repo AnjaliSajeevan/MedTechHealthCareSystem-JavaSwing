@@ -35,16 +35,25 @@ public class InsurancePolicy {
     private String userName;
     private String Enterprise;
     private String ageGroup;
+    private double totalcost;
+
+    public double getTotalcost() {
+        return totalcost;
+    }
+
+    public void setTotalcost(double totalcost) {
+        this.totalcost = totalcost;
+    }
     private ArrayList<String> HospitalList=new ArrayList<String>();
     private ArrayList<String> PharmacyList=new ArrayList<String>();
     private ArrayList<String> LaboratoryList=new ArrayList<String>();
     private ArrayList<String> UserAccountList = new ArrayList<String>();
 
-    public ArrayList<String> getUserAccount() {
+    public ArrayList<String> getUserAccountList() {
         return UserAccountList;
     }
 
-    public void setUserAccount(ArrayList<String> UserAccountList) {
+    public void setUserAccountList(ArrayList<String> UserAccountList) {
         this.UserAccountList = UserAccountList;
     }
 

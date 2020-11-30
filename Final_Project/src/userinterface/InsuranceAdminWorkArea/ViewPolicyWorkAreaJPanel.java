@@ -73,7 +73,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             populatePharmacy();
             populateLaboratory();
             populateHospitals();
-            populatePatients();
+          
     }
     
     
@@ -132,8 +132,6 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         txtDeductible1 = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         txtInpatients = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -232,15 +230,10 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 160, -1));
         add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, 50, -1));
 
-        jList4.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients in Policy"));
-        jScrollPane1.setViewportView(jList4);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 160, 140));
-
         jList2.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratories included"));
         jScrollPane2.setViewportView(jList2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 540, 180, 140));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 540, 180, 140));
 
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("Hospitals included"));
         jScrollPane3.setViewportView(jList3);
@@ -287,7 +280,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         jList1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacy included"));
         jScrollPane4.setViewportView(jList1);
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 540, 160, 140));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, 160, 140));
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
@@ -384,26 +377,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
                 }
                 jList1.setModel(DLM);
     }
-     public void populatePatients()
-    {   int flag=0;
-        DefaultListModel DLM = new DefaultListModel();
-    int y=ecosystem.getPatientDirectory().getpatientlist().size();
-    
-                for (Patient p:ecosystem.getPatientDirectory().getpatientlist()) {
-                    if (p.getInsurance()==null)
-                    {flag=0;
-                    }else{flag=1;
-                    }
-                    System.out.println(flag);
-                    if(flag==1){
-                    if(p.getInsurance().equals(i.getPolicyName())){
-                    DLM.addElement(p);
-                       
-                }
-                    }
-                }
-                jList4.setModel(DLM);
-    }
+     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
@@ -427,8 +401,6 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

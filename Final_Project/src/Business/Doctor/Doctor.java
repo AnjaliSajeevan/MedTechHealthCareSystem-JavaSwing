@@ -7,6 +7,7 @@ package Business.Doctor;
 
 import Business.Employee.Employee;
 import Business.Patient.Patient;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -30,7 +31,57 @@ public class Doctor extends Employee {
     private String license;
     private String specialization;
     private String hospital;
+   
+    private Date dateFrom;
+    private Date dateTo;
+    private String time;
+    private String userName;
+    private ArrayList<String> TimeSlotList=new ArrayList<String>();
     //private String photograph;
+
+    public ArrayList<String> getTimeSlotList() {
+        return TimeSlotList;
+    }
+
+    public void setTimeSlotList(ArrayList<String> TimeSlotList) {
+        this.TimeSlotList = TimeSlotList;
+    }
+    
+    public void addTimeSlot(String a){
+    TimeSlotList.add(a);   
+    }
+
+    public Date getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(Date dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public Date getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(Date dateTo) {
+        this.dateTo = dateTo;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getHospital() {
         return hospital;
