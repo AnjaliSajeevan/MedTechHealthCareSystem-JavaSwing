@@ -48,17 +48,17 @@ public class InsurancePolicyDirectory {
     public InsurancePolicy searchAge(String age){
            
         for(InsurancePolicy zip: insurancePolicyList){
-           if(zip.getZipCode().equals(age))          
+           if(zip.getAgeGroup().equals(age))          
                     {
                 return zip;
             }
         }
         return null;
             }
-    public InsurancePolicy searchMax(int age){
+    public InsurancePolicy searchMax(Double max){
            
         for(InsurancePolicy zip: insurancePolicyList){
-            if(zip.getMonthlyPremium()<age)
+            if(zip.getMonthlyPremium()<=max)
                     {
                 return zip;
             }

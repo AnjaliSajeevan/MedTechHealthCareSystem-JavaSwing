@@ -11,6 +11,7 @@ import Business.InsurancePolicy.InsurancePolicy;
 import Business.Organization.AdminOrganization;
 import Business.Organization.InsuranceAdminOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.InsuranceWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -48,15 +49,19 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     }
     
-    public void populateTree()
+      public void populateTree()
     {DefaultTableModel model = (DefaultTableModel) tblPolicy.getModel();
         model.setRowCount(0);        
+        
             for (InsurancePolicy r: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
-                Object row[] = new Object[3];
+                if(r.getEnterprise().equals(enterprise.getName()))
+                {Object row[] = new Object[3];
                 row[0] = r;
                 row[1] = r.getMonthlyPremium();
                 row[2] = r.getPolicyType();
                 ((DefaultTableModel) tblPolicy.getModel()).addRow(row);
+                
+            }
             }
     
     }
@@ -71,6 +76,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             row[0] = request;
             row[1] = request.getSender().getEmployee().getName();
             row[2] = request.getInsurancepolicy();
+            row[3] = request.getStatus();
             
             model.addRow(row);
         }
@@ -119,7 +125,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Monthly Premium", "Policy Type"
+                "Policy Name", "Monthly Premium", "Policy Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -148,6 +154,11 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 280, -1));
 
         btnDecline.setText("Decline");
+        btnDecline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeclineActionPerformed(evt);
+            }
+        });
         add(btnDecline, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, -1, -1));
 
         btnCreatePolicy.setText("Create Policy");
@@ -179,11 +190,11 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Request No.", "Name", "Policy Name"
+                "Request No.", "Name", "Policy Name", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -195,6 +206,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             tblPatient.getColumnModel().getColumn(0).setResizable(false);
             tblPatient.getColumnModel().getColumn(1).setResizable(false);
             tblPatient.getColumnModel().getColumn(2).setResizable(false);
+            tblPatient.getColumnModel().getColumn(3).setResizable(false);
         }
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 788, 120));
@@ -281,6 +293,33 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
+        populateRequest();
+        JOptionPane.showMessageDialog(null,"Successfully Accepted");
+    }
+    
+    public void populateRequest(){
+    int selectedRow =  tblPatient.getSelectedRow();
+        if(selectedRow <0)
+        {
+            JOptionPane.showMessageDialog(null,"Pleasse select a row","Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        else
+        {
+        InsuranceWorkRequest request = (InsuranceWorkRequest) tblPatient.getValueAt(selectedRow, 0);
+        request.setStatus("Accepted");
+        request.setSender(account);
+        for (InsurancePolicy r: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
+        if(r.getEnterprise().equals(enterprise.getName()))
+        {if(request.getInsurancepolicy().equals(r.getPolicyName()))
+            r.addPatient(request.getSender().toString());
+        
+            }
+                }
+        }
+              
+               
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void btnCreatePolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePolicyActionPerformed
@@ -334,6 +373,22 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_btnDeletePolicyActionPerformed
+
+    private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
+        // TODO add your handling code here:
+         int selectedRow =  tblPatient.getSelectedRow();
+        if(selectedRow <0)
+        {
+            JOptionPane.showMessageDialog(null,"Pleasse select a row","Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        else
+        {
+        InsuranceWorkRequest request = (InsuranceWorkRequest) tblPolicy.getValueAt(selectedRow, 0);
+        request.setStatus("Declined");
+                }
+    }//GEN-LAST:event_btnDeclineActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
