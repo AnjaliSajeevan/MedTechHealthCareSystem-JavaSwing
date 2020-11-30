@@ -8,6 +8,7 @@ import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.LabTestWorkQueue;
+import Business.WorkQueue.PatientHospitalAppointmentWorkQueue;
 import Business.WorkQueue.VaccineWorkQueue;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public abstract class Organization {
     private String name;
     private WorkQueue workQueue;
     private VaccineWorkQueue vaccineQueue;
+    private PatientHospitalAppointmentWorkQueue hospitalQueue;
     private LabTestWorkQueue labQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
@@ -48,11 +50,20 @@ public abstract class Organization {
         this.name = name;
         workQueue = new WorkQueue();
         vaccineQueue = new VaccineWorkQueue();
+        hospitalQueue=new PatientHospitalAppointmentWorkQueue();
         labQueue = new LabTestWorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public PatientHospitalAppointmentWorkQueue getHospitalQueue() {
+        return hospitalQueue;
+    }
+
+    public void setHospitalQueue(PatientHospitalAppointmentWorkQueue hospitalQueue) {
+        this.hospitalQueue = hospitalQueue;
     }
 
     public abstract ArrayList<Role> getSupportedRole();
