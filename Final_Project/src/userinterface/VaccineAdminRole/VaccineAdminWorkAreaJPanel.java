@@ -27,11 +27,15 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
         JPanel userProcessContainer;
     Enterprise enterprise;
     EcoSystem business;
+    UserAccount account;
+    VaccineCompanyOrganization organization;
     /** Creates new form AdminWorkAreaJPanel */
     public VaccineAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, VaccineCompanyOrganization LabOrganization, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.account = account;
+        this.organization = LabOrganization;
         valueLabel.setText(enterprise.getName());
         this.business = business;
     }
@@ -235,10 +239,10 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnVaccineReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaccineReqActionPerformed
         // TODO add your handling code here:
-         VaccineRequestJPanel vaccineRequestJPanel = new VaccineRequestJPanel(userProcessContainer, enterprise,business);
+         VaccineRequestJPanel vaccineRequestJPanel = new VaccineRequestJPanel(userProcessContainer, account,organization,enterprise,business);
         userProcessContainer.add("vaccineRequestJPanel", vaccineRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);       
+        layout.next(userProcessContainer);      
     }//GEN-LAST:event_btnVaccineReqActionPerformed
 
     private void btnCheckTestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckTestsActionPerformed
@@ -246,7 +250,7 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
          TestedRequestsJPanel testedRequestsJPanel = new TestedRequestsJPanel(userProcessContainer, enterprise,business);
         userProcessContainer.add("testedRequestsJPanel", testedRequestsJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);        
+        layout.next(userProcessContainer);         
     }//GEN-LAST:event_btnCheckTestsActionPerformed
 
     private void btnCompRptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompRptActionPerformed
@@ -259,7 +263,7 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnTestorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestorsActionPerformed
         // TODO add your handling code here:
-        ManageTestersJPanel manageTestersJPanel = new ManageTestersJPanel(userProcessContainer, business);
+       ManageTestersJPanel manageTestersJPanel = new ManageTestersJPanel(userProcessContainer, business);
         userProcessContainer.add("manageTestersJPanel", manageTestersJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

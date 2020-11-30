@@ -31,6 +31,7 @@ public class Vaccine {
     private String other;
     private String preservations;
     private String sideeffects;
+    private String enterpriseName;
 
     public Vaccine() {
         dosage = new HashMap<String,Integer>();
@@ -50,6 +51,14 @@ public class Vaccine {
     
     public String getName() {
         return name;
+    }
+
+    public String getEnterpriseName() {
+        return enterpriseName;
+    }
+
+    public void setEnterpriseName(String enterpriseName) {
+        this.enterpriseName = enterpriseName;
     }
 
 

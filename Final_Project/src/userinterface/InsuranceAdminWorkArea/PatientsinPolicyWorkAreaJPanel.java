@@ -5,6 +5,9 @@
  */
 package userinterface.InsuranceAdminWorkArea;
 
+import Business.Patient.Patient;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Anjali
@@ -16,6 +19,27 @@ public class PatientsinPolicyWorkAreaJPanel extends javax.swing.JPanel {
      */
     public PatientsinPolicyWorkAreaJPanel() {
         initComponents();
+    }
+    
+    public void populatePatients()
+    {   int flag=0;
+//        DefaultListModel DLM = new DefaultListModel();
+//    int y=ecosystem.getPatientDirectory().getpatientlist().size();
+//    
+//                for (Patient p:ecosystem.getPatientDirectory().getpatientlist()) {
+//                    if (p.getInsurance()==null)
+//                    {flag=0;
+//                    }else{flag=1;
+//                    }
+//                    System.out.println(flag);
+//                    if(flag==1){
+//                    if(p.getInsurance().equals(i.getPolicyName())){
+//                    DLM.addElement(p);
+//                       
+//                }
+//                    }
+//                }
+//                jList4.setModel(DLM);
     }
 
     /**

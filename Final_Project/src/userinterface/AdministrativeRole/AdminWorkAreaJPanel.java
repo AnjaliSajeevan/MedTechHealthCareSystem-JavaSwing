@@ -8,6 +8,7 @@ import Business.Enterprise.Enterprise;
 import static Business.Organization.Organization.Type.Doctor;
 import java.awt.CardLayout;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -57,17 +58,22 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        patientAppointment = new javax.swing.JTable();
+        tblpatientAppointment = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAccept = new javax.swing.JButton();
         availableDoctor = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         emergencyRequestTable = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAcceptAmbulance = new javax.swing.JButton();
+        btnAssignAmbulanceDriver = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        jComboBoxTimeSlot = new javax.swing.JComboBox<>();
+        btnSubmit = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        btnConfirm = new javax.swing.JButton();
+        btnDecline = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -81,7 +87,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 userJButtonActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 150, -1));
+        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 150, -1));
 
         manageEmployeeJButton.setText("Manage Employee");
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +95,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageEmployeeJButtonActionPerformed(evt);
             }
         });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 150, -1));
+        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 180, -1));
 
         manageOrganizationJButton.setText("Manage Organization");
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +112,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 130, -1));
 
-        patientAppointment.setModel(new javax.swing.table.DefaultTableModel(
+        tblpatientAppointment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -117,27 +123,19 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 "Patient Name", "Health Condition"
             }
         ));
-        jScrollPane1.setViewportView(patientAppointment);
+        jScrollPane1.setViewportView(tblpatientAppointment);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 410, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 410, 90));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jLabel2.setText("Patient Waiting for Appointment");
+        jLabel2.setText("Patient Appointment Request");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        jButton1.setText("Accept Appointment");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
-
-        jButton2.setText("Assign Doctor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
+        btnAccept.setText("Accept Appointment");
+        add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, -1, -1));
 
         availableDoctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(availableDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, -1));
+        add(availableDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
 
         emergencyRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,30 +150,57 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(emergencyRequestTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 370, 90));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 370, 90));
 
-        jButton3.setText("Accept Request");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAcceptAmbulance.setText("Accept Request");
+        btnAcceptAmbulance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnAcceptAmbulanceActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, -1, -1));
+        add(btnAcceptAmbulance, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, -1, -1));
 
-        jButton4.setText("Assign Ambulance");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnAssignAmbulanceDriver.setText("Assign Ambulance");
+        btnAssignAmbulanceDriver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnAssignAmbulanceDriverActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, -1, -1));
+        add(btnAssignAmbulanceDriver, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 610, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, -1, -1));
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel3.setText("Emergency Request");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 170, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 170, -1));
+
+        add(jComboBoxTimeSlot, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 70, -1));
+
+        btnSubmit.setText("Check Time Slots");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
+
+        jLabel4.setText("Time slot available:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
+
+        btnConfirm.setText("Submit");
+        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmActionPerformed(evt);
+            }
+        });
+        add(btnConfirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, -1, -1));
+
+        btnDecline.setText("Decline Appointment");
+        add(btnDecline, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, -1, -1));
+
+        jLabel5.setText("Assign Doctor:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -205,36 +230,69 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAssignAmbulanceDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignAmbulanceDriverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAssignAmbulanceDriverActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnAcceptAmbulanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptAmbulanceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnAcceptAmbulanceActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        jComboBoxTimeSlot.removeAllItems();
+        int selectedRow =  tblpatientAppointment.getSelectedRow();
+        String doctor= (String) availableDoctor.getSelectedItem();
+        if(selectedRow <0)
+        {
+            JOptionPane.showMessageDialog(null,"Please select a row","Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        else
+        {
+            for(Doctor n : business.getDoctorDirectory().getdoctorlist())
+        {
+            if(n.getName().equals(doctor))
+            {for (int i=0;i<n.getTimeSlotList().size();i++)
+            {   String x=n.getTimeSlotList().get(i);
+                jComboBoxTimeSlot.addItem(x);
+            }    
+                }
+                
+            }
+            
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
+        // TODO add your handling code here: PatientAppointment WorkRequest Part
+        
+    }//GEN-LAST:event_btnConfirmActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> availableDoctor;
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnAcceptAmbulance;
+    private javax.swing.JButton btnAssignAmbulanceDriver;
+    private javax.swing.JButton btnConfirm;
+    private javax.swing.JButton btnDecline;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JTable emergencyRequestTable;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBoxTimeSlot;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;
-    private javax.swing.JTable patientAppointment;
+    private javax.swing.JTable tblpatientAppointment;
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

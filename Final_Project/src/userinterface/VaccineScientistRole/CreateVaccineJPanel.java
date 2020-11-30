@@ -6,11 +6,15 @@
 package userinterface.VaccineScientistRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Vaccine.Vaccine;
+import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.Date;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,16 +32,17 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     private EcoSystem business;  
-    public CreateVaccineJPanel(JPanel userProcessContainer, UserAccount account,EcoSystem business ) {
+    private Enterprise enterprise;
+    private Organization organization;
+    public CreateVaccineJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise,Organization organization,EcoSystem business ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.business = business;
-        
-        
+        this.enterprise = enterprise;
+        this.organization = organization;
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -597,7 +602,20 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             vaccine.setOther(txtOther.getText());
             vaccine.setUpdateDate();
             vaccine.setUsername(account.getUsername());
+            vaccine.setEnterpriseName(enterprise.getName());
             business.getVaccineDirectory().addVaccine(vaccine);
+            
+            VaccineWorkRequest vaccineReq = new VaccineWorkRequest();
+            vaccineReq.setSender(account);
+            vaccineReq.setVaccine(vaccine);
+            vaccineReq.setRequestDate(new Date());
+            Map<String,Date> statusMap = vaccineReq.getStatusMap();
+            statusMap.put("Formulation Phase", new Date());   
+            vaccineReq.setStatusMap(statusMap);
+            account.getVaccineWorkQueue().addWorkRequest(vaccineReq);
+            business.getVaccineQueue().addWorkRequest(vaccineReq);
+ 
+     
             JOptionPane.showMessageDialog(null,"Vaccine Added Successfully!!!");
             btnUpdate.setEnabled(true);
         }           
@@ -640,7 +658,8 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         VaccineScientistWorkAreaJPanel sysAdminwjp = (VaccineScientistWorkAreaJPanel) component;
-        sysAdminwjp.populateNewTable();
+        sysAdminwjp.populateDrugProjectTable();
+        sysAdminwjp.populateDrugRequestTable(); 
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
