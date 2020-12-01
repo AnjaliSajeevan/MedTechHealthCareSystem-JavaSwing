@@ -8,6 +8,7 @@ import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.LabTestWorkQueue;
+import Business.WorkQueue.PatientHospitalAppointmentWorkQueue;
 import Business.WorkQueue.VaccineWorkQueue;
 /**
  *
@@ -22,11 +23,13 @@ public class UserAccount {
     private WorkQueue workQueue;
     private VaccineWorkQueue vaccineWorkQueue;
     private LabTestWorkQueue labTestWorkQueue;
+    private PatientHospitalAppointmentWorkQueue hospitalWorkQueue;
 
     public UserAccount() {
         workQueue = new WorkQueue();
         vaccineWorkQueue = new VaccineWorkQueue();
         labTestWorkQueue = new LabTestWorkQueue();
+        hospitalWorkQueue= new PatientHospitalAppointmentWorkQueue();
     }
     
     
@@ -73,6 +76,10 @@ public class UserAccount {
 
     public LabTestWorkQueue getLabTestWorkQueue() {
         return labTestWorkQueue;
+    }
+
+    public PatientHospitalAppointmentWorkQueue getHospitalWorkQueue() {
+        return hospitalWorkQueue;
     }
 
     

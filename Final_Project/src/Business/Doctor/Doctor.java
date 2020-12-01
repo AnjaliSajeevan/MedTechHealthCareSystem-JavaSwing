@@ -7,8 +7,10 @@ package Business.Doctor;
 
 import Business.Employee.Employee;
 import Business.Patient.Patient;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 /**
  *
@@ -37,7 +39,16 @@ public class Doctor extends Employee {
     private String time;
     private String userName;
     private ArrayList<String> TimeSlotList=new ArrayList<String>();
+    Map<LocalDate,ArrayList<String>>appointment;
     //private String photograph;
+
+    public Map<LocalDate, ArrayList<String>> getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Map<LocalDate, ArrayList<String>> appointment) {
+        this.appointment = appointment;
+    }
 
     public ArrayList<String> getTimeSlotList() {
         return TimeSlotList;
