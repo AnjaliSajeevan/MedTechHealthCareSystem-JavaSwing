@@ -62,6 +62,7 @@ public class EcoSystem extends Organization{
     }
 
     public DoctorDirectory getDoctorDirectory() {
+        System.out.println("Business.EcoSystem.getDoctorDirectory()"+ doctorDirectory);
         return doctorDirectory;
     }
 

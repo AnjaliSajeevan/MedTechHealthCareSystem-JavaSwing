@@ -4,6 +4,8 @@
  */
 package userinterface.AdministrativeRole;
 
+import Business.Doctor.Doctor;
+import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
@@ -27,12 +29,12 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
      */
     private JPanel container;
     private Enterprise enterprise;
-
-    public ManageUserAccountJPanel(JPanel container, Enterprise enterprise) {
+private EcoSystem business;
+    public ManageUserAccountJPanel(JPanel container, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.enterprise = enterprise;
         this.container = container;
-
+        this.business=business;
         popOrganizationComboBox();
        // employeeJComboBox.removeAllItems();
         popData();
@@ -263,7 +265,14 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         Employee employee = (Employee) employeeJComboBox.getSelectedItem();
         Role role = (Role) roleJComboBox.getSelectedItem();
         organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-        
+        if(role.toString().equals("Doctor"))
+        {
+            Doctor d= new Doctor();
+            d.setUserName(userName);
+            d.setName(userName);
+            System.out.println("mange user acc USername"+ d.getUserName());
+            business.getDoctorDirectory().addDoctor(d);
+        }
         popData();
     }//GEN-LAST:event_createUserJButtonActionPerformed
 

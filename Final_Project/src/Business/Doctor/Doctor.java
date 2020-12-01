@@ -33,7 +33,7 @@ public class Doctor extends Employee {
     private String license;
     private String specialization;
     private String hospital;
-   
+    private String healthOther;
     private Date dateFrom;
     private Date dateTo;
     private String time;
@@ -60,6 +60,14 @@ public class Doctor extends Employee {
     
     public void addTimeSlot(String a){
     TimeSlotList.add(a);   
+    }
+
+    public String getHealthOther() {
+        return healthOther;
+    }
+
+    public void setHealthOther(String healthOther) {
+        this.healthOther = healthOther;
     }
 
     public Date getDateFrom() {

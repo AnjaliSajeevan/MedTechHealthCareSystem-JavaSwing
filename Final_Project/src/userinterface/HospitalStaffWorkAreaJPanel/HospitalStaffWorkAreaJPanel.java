@@ -252,6 +252,28 @@ public void populateEssentialTable(){
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        int selectedRow = essentialTable.getSelectedRow();
+        if(selectedRow >= 0)
+        {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to delete the car details", "Warning", dialogButton);
+            if(dialogResult == JOptionPane.YES_OPTION);
+            {
+//                Car car = (Car) tblCarDetails.getValueAt(selectedRow, 0);
+//                carDirectory.deleteCar(car);
+//                populateTable();
+                
+                Product p=(Product)essentialTable.getValueAt(selectedRow,0);
+                productcatalog.removeProduct(p);
+                
+                populateEssentialTable();
+            }
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 
