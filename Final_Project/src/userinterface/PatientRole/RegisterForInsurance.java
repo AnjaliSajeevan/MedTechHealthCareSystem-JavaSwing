@@ -45,13 +45,13 @@ public class RegisterForInsurance extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccount userAccount;
-  InsuranceAdminOrganization organization;
+    
     public RegisterForInsurance(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem,InsuranceAdminOrganization organization) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
         this.userAccount=userAccount;
-        this.organization=organization;
+        
 
         
     for(Network network:ecosystem.getNetworkList()){
@@ -176,7 +176,6 @@ public class RegisterForInsurance extends javax.swing.JPanel {
             tblSearch.getColumnModel().getColumn(3).setResizable(false);
             tblSearch.getColumnModel().getColumn(4).setResizable(false);
             tblSearch.getColumnModel().getColumn(5).setResizable(false);
-            tblSearch.getColumnModel().getColumn(5).setHeaderValue("");
         }
 
         jLabel6.setText("Zip Code:");
@@ -296,9 +295,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
 
         jLabel8.setText("Request Status:");
 
-        jComboBoxHospitalList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel9.setText("Choose Primary Hospital if status updated:");
+        jLabel9.setText("Choose Primary Hospital:");
 
         btnSubmitPrimaryHospital.setText("Submit");
         btnSubmitPrimaryHospital.addActionListener(new java.awt.event.ActionListener() {
@@ -369,9 +366,10 @@ public class RegisterForInsurance extends javax.swing.JPanel {
                                 .addGap(174, 174, 174)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
                                 .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxHospitalList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxHospitalList, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSubmitPrimaryHospital)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -519,9 +517,12 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         InsuranceWorkRequest request = new InsuranceWorkRequest();
         request.setSender(userAccount);
         request.setStatus("Insurance Requested");
-        InsurancePolicy a = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
-        request.setEnterprise(a.getEnterprise());
-        request.setInsurancepolicy(a.getPolicyName());
+        
+        InsurancePolicy insurance = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
+        
+        request.setEnterprise(insurance.getEnterprise());
+        request.setInsurancepolicy(insurance.getPolicyName());
+        request.setRequestDate(new Date());
         ecosystem.getWorkQueue().getWorkRequestList().add(request);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
         
@@ -538,11 +539,11 @@ public class RegisterForInsurance extends javax.swing.JPanel {
             row[2] = request.getInsurancepolicy();
             row[3] = request.getStatus();
             model.addRow(row);
-             JOptionPane.showMessageDialog(null,"Successfully requested for insurance");
+            
              
             
-            for (int counter = 0; counter < a.getHospitalList().size(); counter++) {
-                    jComboBoxHospitalList.addItem(a.getHospitalList().get(counter));
+            for (int counter = 0; counter < insurance.getHospitalList().size(); counter++) {
+                    jComboBoxHospitalList.addItem(insurance.getHospitalList().get(counter));
                 }
             
         }
@@ -594,13 +595,15 @@ public class RegisterForInsurance extends javax.swing.JPanel {
     }//GEN-LAST:event_txtAdultActionPerformed
 
     private void btnSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmit1ActionPerformed
-        double x=Double.parseDouble(txtAdult.getText());
         double z;
+        
+        
         int selectedRow =  tblSearch.getSelectedRow();
         
         InsurancePolicy r =(InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
        if(r.getPolicyType().equals("Family"))
-       {    double y = x*r.getMonthlyPremium();
+       {    double x=Double.parseDouble(txtAdult.getText());
+           double y = x*r.getMonthlyPremium();
             z=x;
            r.setTotalcost(y);
        }else {
@@ -635,6 +638,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
     private void btnSubmitPrimaryHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitPrimaryHospitalActionPerformed
         // TODO add your handling code here:
        int selectedRow =  tblStatus.getSelectedRow();
+       int selectedRow2 =  tblConfirmedPolicy.getSelectedRow();
         if(selectedRow <0)
         {
             JOptionPane.showMessageDialog(null,"Please select a row","Warning", JOptionPane.WARNING_MESSAGE);
@@ -645,17 +649,20 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         {
         
         InsuranceWorkRequest a =  (InsuranceWorkRequest) tblStatus.getValueAt(selectedRow, 0);
-            if(a.getStatus().equals("Approved"))
-            {
+         InsurancePolicy insurance = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);   
         String y = (String) jComboBoxHospitalList.getSelectedItem();
         for(Patient p:ecosystem.getPatientDirectory().getpatientlist())
-        {if(p.getUserName().equals(userAccount.getUsername()))
+        {if(p.getUserName().equals(userAccount.getEmployee().getName()))
         {p.setPrimaryHospital(y);
+        p.setInsurance(insurance);
+        
+        
             } 
         }
-            }else {JOptionPane.showMessageDialog(null,"The Insurance policy request should be approved to select primary hospital");
+         JOptionPane.showMessageDialog(null,"Successfully requested for insurance");
+            
             }
-            }
+            
     }//GEN-LAST:event_btnSubmitPrimaryHospitalActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

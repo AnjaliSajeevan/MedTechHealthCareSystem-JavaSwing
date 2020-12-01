@@ -10,8 +10,17 @@ import Business.EcoSystem;
 import static Business.Organization.Organization.Type.Doctor;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import static java.util.concurrent.TimeUnit.DAYS;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -28,6 +37,7 @@ public class DoctorAvailability extends javax.swing.JPanel {
     EcoSystem ecosystem;
     Date dfrom;
     Date dto;
+
     public DoctorAvailability(JPanel userProcessContainer, UserAccount account,EcoSystem ecosystem) {
         initComponents();
         this.ecosystem=ecosystem;
@@ -93,20 +103,6 @@ public class DoctorAvailability extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dateTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(235, 235, 235))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(334, 334, 334)
@@ -120,15 +116,30 @@ public class DoctorAvailability extends javax.swing.JPanel {
                         .addGap(25, 25, 25)
                         .addComponent(btnBack)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(dateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dateTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addGap(4, 4, 4)
+                .addGap(3, 3, 3)
                 .addComponent(jLabel1)
-                .addGap(104, 104, 104)
+                .addGap(105, 105, 105)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel4)
@@ -148,14 +159,17 @@ public class DoctorAvailability extends javax.swing.JPanel {
     private void dateFromMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateFromMouseClicked
         // TODO add your handling code here:
         if(evt.getClickCount()==2)
-        {dfrom=dateFrom.getDate();
-        dto=dateTo.getDate();
+        {
+        
 
         }   
     }//GEN-LAST:event_dateFromMouseClicked
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        HashMap<LocalDate,ArrayList<String>>appointment=new HashMap<LocalDate,ArrayList<String>>();
+        dfrom=dateFrom.getDate();
+        dto=dateTo.getDate();
         String t = (String) jComboTime.getSelectedItem();
         for (Doctor doc : ecosystem.getDoctorDirectory().getdoctorlist()) {
             if (doc.getUserName().equals(account.getUsername())) {
@@ -194,11 +208,20 @@ public class DoctorAvailability extends javax.swing.JPanel {
                       
                     }
             }
-                
-                
+            
+            LocalDate dFrom=new java.sql.Date(dfrom.getTime()).toLocalDate();
+            LocalDate dTo=new java.sql.Date(dto.getTime()).toLocalDate();
+            for (LocalDate date = dFrom; date.isBefore(dTo); date = date.plusDays(1))
+            {
+            appointment.put(date,doc.getTimeSlotList());
+            }
+            
+            doc.setAppointment(appointment);
+           
+            
         }
-        }
-
+                  
+        } JOptionPane.showMessageDialog(null, "Successfully Submitted");
 
     }//GEN-LAST:event_btnSubmitActionPerformed
 

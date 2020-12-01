@@ -94,7 +94,7 @@ public class Patient extends Employee {
         return id;
     }
 
-//     @Override
+
     public String getPatientname() {
         return patientname;
     }
