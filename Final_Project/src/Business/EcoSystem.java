@@ -14,8 +14,6 @@ import Business.Patient.Patient;
 import Business.Patient.PatientDirectory;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
-import Business.Vaccine.VaccineDirectory;
-import Business.Vaccine.VaccineTesterDirectory;
 import java.util.ArrayList;
 
 /**
@@ -27,8 +25,6 @@ public class EcoSystem extends Organization{
     private static EcoSystem business;
     private ArrayList<Network> networkList;
     private PatientDirectory patientDirectory;
-    private VaccineDirectory vaccineDirectory;
-    private VaccineTesterDirectory vaccinetesterDirectory;
     private InsurancePolicyDirectory insurancePolicyDirectory;
     private ProductCatalog productcatalog;
     private DoctorDirectory doctorDirectory;
@@ -53,8 +49,6 @@ public class EcoSystem extends Organization{
     private EcoSystem(){
         super(null);
         patientDirectory=new PatientDirectory();
-        vaccineDirectory=new VaccineDirectory();
-        vaccinetesterDirectory=new VaccineTesterDirectory();
         insurancePolicyDirectory= new InsurancePolicyDirectory();
         productcatalog=new ProductCatalog();
         doctorDirectory= new DoctorDirectory();
@@ -84,22 +78,6 @@ public class EcoSystem extends Organization{
 
     public void setInsurancePolicyDirectory(InsurancePolicyDirectory insurancePolicyDirectory) {
         this.insurancePolicyDirectory = insurancePolicyDirectory;
-    }
-
-    public VaccineDirectory getVaccineDirectory() {
-        return vaccineDirectory;
-    }
-
-    public void setVaccineDirectory(VaccineDirectory vaccineDirectory) {
-        this.vaccineDirectory = vaccineDirectory;
-    }
-    
-    public VaccineTesterDirectory getVaccinetesterDirectory() {
-        return vaccinetesterDirectory;
-    }
-
-    public void setVaccinetesterDirectory(VaccineTesterDirectory vaccinetesterDirectory) {
-        this.vaccinetesterDirectory = vaccinetesterDirectory;
     }
 
     public PatientDirectory getPatientDirectory() {

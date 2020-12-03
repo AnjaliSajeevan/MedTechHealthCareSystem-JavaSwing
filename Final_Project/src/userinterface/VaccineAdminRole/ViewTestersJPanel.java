@@ -6,6 +6,8 @@
 package userinterface.VaccineAdminRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.VaccineEnterprise;
 import Business.Vaccine.VaccineTester;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -39,14 +41,15 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;  
     private VaccineTester tester;
+    private VaccineEnterprise enterprise;
     boolean manage;
-    public ViewTestersJPanel(JPanel userProcessContainer,EcoSystem business,VaccineTester tester ,boolean manage) {
+    public ViewTestersJPanel(JPanel userProcessContainer,EcoSystem business, Enterprise enterprise,VaccineTester tester ,boolean manage) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.tester=tester;
         this.manage = manage;
-        
+        this.enterprise = (VaccineEnterprise)enterprise;
         initializePage();
         
     }
@@ -690,7 +693,6 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
                 error+="\nFor Name - Valid name with only Alphabets and Spaces allowed!";
             }
             if(!txtPhone.getText().equalsIgnoreCase("")){
-                System.out.println(txtPhone.getText());
                 String phone = (txtPhone.getText());
 
                 String phoneRegex = "^[0-9]{10}$";
@@ -719,7 +721,6 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             LocalDate locBirthDate= LocalDate.parse(txtDOB.getText(),dateFormatter);
             LocalDate today = LocalDate.now();
             Period p = Period.between(locBirthDate, today);
-            System.out.println("Age="+p.getYears());
             age = p.getYears();
             String emailRegex = "^(.+)@(.+)[.](.+)$";
             Pattern emailPattern = Pattern.compile(emailRegex);
@@ -779,7 +780,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
                 tester.setCondition(condition);
                 tester.setPhotograph(txtPhoto.getText());
                 tester.setUpdateDate();
-                business.getVaccinetesterDirectory().updateVaccineTester(tester);
+                enterprise.getVaccinetesterDirectory().updateVaccineTester(tester);
                 JOptionPane.showMessageDialog(null,"Tester updated successfully!!!");
 
                 txtName.setText("");
@@ -910,7 +911,6 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
         ManageTestersJPanel sysAdminwjp = (ManageTestersJPanel) component;
         sysAdminwjp.populateTesterTable();
-
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
        }else{

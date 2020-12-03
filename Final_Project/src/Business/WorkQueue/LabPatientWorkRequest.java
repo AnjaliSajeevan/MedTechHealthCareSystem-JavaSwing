@@ -5,28 +5,30 @@
  */
 package Business.WorkQueue;
 
+import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import Business.Vaccine.Vaccine;
 import Business.Vaccine.VaccineTester;
+import java.util.Date;
 
 /**
  *
  * @author Manasa
  */
-public class LabTestWorkRequest {
+public class LabPatientWorkRequest {
        private Vaccine vaccine;
-    private VaccineTester tester;
+    private String patient;
     private int id;
-    private String result;
-    private boolean complete;
     private String message;
+    private String slotDate;
+    private String slotTime;
     private String labTestType;
     private UserAccount receiver;
     private UserAccount sender;
         
    private static int count = 1;
 
-    public LabTestWorkRequest() {
+    public LabPatientWorkRequest() {
         id = count;
         count++;
     }
@@ -39,12 +41,12 @@ public class LabTestWorkRequest {
         this.vaccine = vaccine;
     }
 
-    public VaccineTester getTester() {
-        return tester;
+    public String getPatient() {
+        return patient;
     }
 
-    public void setTester(VaccineTester tester) {
-        this.tester = tester;
+    public void setPatient(String patient) {
+        this.patient = patient;
     }
 
     public String getLabTestType() {
@@ -59,17 +61,7 @@ public class LabTestWorkRequest {
         return String.valueOf(id);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
+ 
 
     public String getMessage() {
         return message;
@@ -95,12 +87,20 @@ public class LabTestWorkRequest {
         this.sender = sender;
     }
 
-    public boolean isComplete() {
-        return complete;
+    public String getSlotDate() {
+        return slotDate;
     }
 
-    public void setComplete(boolean complete) {
-        this.complete = complete;
+    public void setSlotDate(String slotDate) {
+        this.slotDate = slotDate;
+    }
+
+    public String getSlotTime() {
+        return slotTime;
+    }
+
+    public void setSlotTime(String slotTime) {
+        this.slotTime = slotTime;
     }
 
 
