@@ -33,6 +33,14 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JPanel;
 import userinterface.SystemAdminWorkArea.ManagePateintJPanel;
 /**
@@ -557,7 +565,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
+String toemail;
         //Validation of Personal Information and Address.
         int comp = 0;
         String username=txtUsername.getText();
@@ -661,6 +669,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 tester.setGender(gender);
                 tester.setDOB(txtDOB.getText());
                 tester.setAge(age);
+                 toemail=txtEmail.getText();
                 tester.setEmail(txtEmail.getText());
                 if(!txtSSN.getText().equals("")){
                     tester.setSsn(txtSSN.getText());
@@ -703,7 +712,9 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                     }
                 }
                 JOptionPane.showMessageDialog(null,"Patient added successfully!!!");
-
+                sendFromGMail("sayali98365", "#Vu4f1314020", new String[]{toemail},"patient ceated","body");
+                System.out.println("email bbcm");
+//String from, String pass, String[] to, String subject, String body
                 txtName.setText("");
                 txtGeo.setText("");
                 txtDOB.setText("");
@@ -767,7 +778,46 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+ private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
 
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+            message.setFrom(new InternetAddress(from));
+            InternetAddress[] toAddress = new InternetAddress[to.length];
+
+            // To get the array of addresses
+            for( int i = 0; i < to.length; i++ ) {
+                toAddress[i] = new InternetAddress(to[i]);
+            }
+
+            for( int i = 0; i < toAddress.length; i++) {
+                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+            }
+
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }
+        catch (AddressException ae) {
+            ae.printStackTrace();
+        }
+        catch (MessagingException me) {
+            me.printStackTrace();
+        }
+    }
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed

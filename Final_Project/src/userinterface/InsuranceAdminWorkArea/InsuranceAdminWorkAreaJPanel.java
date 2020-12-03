@@ -14,6 +14,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.InsuranceWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -284,7 +285,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
+        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise,ecosystem);
         userProcessContainer.add("ManageUserAccountJPanel", muajp);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -293,8 +294,9 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-        populateRequest();
+        
         JOptionPane.showMessageDialog(null,"Successfully Accepted");
+        populateRequest();
     }
     
     public void populateRequest(){
@@ -310,6 +312,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         InsuranceWorkRequest request = (InsuranceWorkRequest) tblPatient.getValueAt(selectedRow, 0);
         request.setStatus("Accepted");
         request.setSender(account);
+        request.setResolveDate(new Date());
         for (InsurancePolicy r: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
         if(r.getEnterprise().equals(enterprise.getName()))
         {if(request.getInsurancepolicy().equals(r.getPolicyName()))

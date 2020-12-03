@@ -5,6 +5,7 @@
  */
 package userinterface.PharmacyAdminRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.PharmacyOrganization;
 import Business.UserAccount.UserAccount;
@@ -25,6 +26,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
+    EcoSystem ecosystem;
     public PharmacyAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, PharmacyOrganization LabOrganization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -567,7 +569,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
+        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise,ecosystem);
         userProcessContainer.add("ManageUserAccountJPanel", muajp);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -622,7 +624,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void userJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButton1ActionPerformed
         // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
+        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise,ecosystem);
         userProcessContainer.add("ManageUserAccountJPanel", muajp);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

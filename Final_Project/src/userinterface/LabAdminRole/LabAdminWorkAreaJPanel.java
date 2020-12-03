@@ -5,6 +5,7 @@
  */
 package userinterface.LabAdminRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.LaboratoryOrganization;
 import Business.Organization.Organization;
@@ -29,12 +30,13 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Enterprise enterprise;
     UserAccount account;
-   
-    public LabAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, LaboratoryOrganization LabOrganization, Enterprise enterprise) {
+   EcoSystem business;
+    public LabAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, LaboratoryOrganization LabOrganization, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.account = account;
+        this.business=business;
         valueLabel.setText(enterprise.getName());
          populateStaffBox();
     }
@@ -220,7 +222,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
+        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise,business);
         userProcessContainer.add("ManageUserAccountJPanel", muajp);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
