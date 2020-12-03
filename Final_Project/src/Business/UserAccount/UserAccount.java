@@ -6,9 +6,11 @@ package Business.UserAccount;
 
 import Business.Employee.Employee;
 import Business.Role.Role;
+import Business.WorkQueue.LabPatientWorkQueue;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.LabTestWorkQueue;
 import Business.WorkQueue.PatientHospitalAppointmentWorkQueue;
+import Business.WorkQueue.PharmaWorkQueue;
 import Business.WorkQueue.VaccineWorkQueue;
 /**
  *
@@ -23,12 +25,16 @@ public class UserAccount {
     private WorkQueue workQueue;
     private VaccineWorkQueue vaccineWorkQueue;
     private LabTestWorkQueue labTestWorkQueue;
+    private PharmaWorkQueue pharmaWorkQueue;
+    private LabPatientWorkQueue labPatientWorkQueue;
     private PatientHospitalAppointmentWorkQueue hospitalWorkQueue;
 
     public UserAccount() {
         workQueue = new WorkQueue();
-        vaccineWorkQueue = new VaccineWorkQueue();
+     vaccineWorkQueue = new VaccineWorkQueue();
         labTestWorkQueue = new LabTestWorkQueue();
+        labPatientWorkQueue = new LabPatientWorkQueue();
+        pharmaWorkQueue = new PharmaWorkQueue();
         hospitalWorkQueue= new PatientHospitalAppointmentWorkQueue();
     }
     
@@ -76,6 +82,21 @@ public class UserAccount {
 
     public LabTestWorkQueue getLabTestWorkQueue() {
         return labTestWorkQueue;
+    }
+    public PharmaWorkQueue getPharmaWorkQueue() {
+        return pharmaWorkQueue;
+    }
+
+    public void setPharmaWorkQueue(PharmaWorkQueue pharmaWorkQueue) {
+        this.pharmaWorkQueue = pharmaWorkQueue;
+    }
+
+    public LabPatientWorkQueue getLabPatientWorkQueue() {
+        return labPatientWorkQueue;
+    }
+
+    public void setLabPatientWorkQueue(LabPatientWorkQueue labPatientWorkQueue) {
+        this.labPatientWorkQueue = labPatientWorkQueue;
     }
 
     public PatientHospitalAppointmentWorkQueue getHospitalWorkQueue() {

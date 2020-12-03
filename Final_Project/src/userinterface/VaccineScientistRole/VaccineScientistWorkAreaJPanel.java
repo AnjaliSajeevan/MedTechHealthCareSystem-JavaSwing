@@ -107,7 +107,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                     latestKey = mapEntry.getKey();
                 }
                }
-            if(latestKey.equals("Request Created")){
+            if(latestKey.equals("Vaccine Request Created")){
             Object row[] = new Object[8];
                  row[0] = req;
                  row[1] = req.getVaccine().getName();
@@ -134,6 +134,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         List<VaccineWorkRequest> requestList = business.getVaccineQueue().getVaccineRequestList();
         for(VaccineWorkRequest req: requestList){
+            if(req.getVaccine().getEnterprise().getName().equals(enterprise.getName())){
                     Map<String,Date> map = req.getStatusMap();
                     String latestKey = "";
             for (Map.Entry<String,Date> mapEntry : req.getStatusMap().entrySet()) {  
@@ -144,7 +145,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                     latestKey = mapEntry.getKey();
                 }
                }
-            Object row[] = new Object[8];
+            Object row[] = new Object[9];
                  row[0] = req;
                  row[1] = req.getVaccine().getName();
                  row[2] = req.getVaccine().getCondition();
@@ -165,10 +166,12 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
 
    
                  row[7] = latestKey;
+                 row[8] = req.getMessage();
             
 
             
-            model.addRow(row);          
+            model.addRow(row);    
+            }
         }
     }
     
@@ -193,31 +196,28 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         btnFormulate = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnProceed = new javax.swing.JButton();
-        btnRemove = new javax.swing.JButton();
-        btnProceedApproval = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        reasonText = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         drugProjectTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        btnProceed = new javax.swing.JButton();
+        reasonText = new javax.swing.JTextField();
+        btnRemove = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         drugRequestTable = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        btnProceedApproval = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         responseTable = new javax.swing.JTable();
-        btnViewVaccine1 = new javax.swing.JButton();
         btnHistory1 = new javax.swing.JButton();
-        btnTestResponses1 = new javax.swing.JButton();
+        btnViewVaccine1 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         timelineTable = new javax.swing.JTable();
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel1.setText("Vaccine Scientists Panel");
+        btnTestResponses1 = new javax.swing.JButton();
 
         btnFormulate.setText("Formulate new Drug");
         btnFormulate.addActionListener(new java.awt.event.ActionListener() {
@@ -226,41 +226,10 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel1.setText("Vaccine Scientists Panel");
+
         jLabel3.setText("New Drug Projects");
-
-        btnProceed.setText("Proceed drug request");
-        btnProceed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProceedActionPerformed(evt);
-            }
-        });
-
-        btnRemove.setText("Remove Project");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-
-        btnProceedApproval.setText("Proceed for Approval");
-        btnProceedApproval.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProceedApprovalActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Vaccine Testing Requests:");
-
-        jLabel2.setText("Reason:");
-
-        jLabel5.setText("Vaccine Responses and History:");
-
-        jButton1.setText("View Vaccine");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         drugProjectTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -283,6 +252,29 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(drugProjectTable);
 
+        jButton1.setText("View Vaccine");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnProceed.setText("Proceed drug request");
+        btnProceed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProceedActionPerformed(evt);
+            }
+        });
+
+        btnRemove.setText("Remove Project");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Reason:");
+
         drugRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -304,19 +296,30 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(drugRequestTable);
 
+        jLabel4.setText("Vaccine Testing Requests:");
+
+        btnProceedApproval.setText("Proceed for Approval");
+        btnProceedApproval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProceedApprovalActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Vaccine Responses and History:");
+
         responseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "VaccineID", "Name", "Type", "CreateDate", "ResolveDate", "Sender", "Receiver", "Status"
+                "VaccineID", "Name", "Type", "CreateDate", "ResolveDate", "Sender", "Receiver", "Status", "Message"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -325,13 +328,6 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(responseTable);
 
-        btnViewVaccine1.setText("View Vaccine");
-        btnViewVaccine1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewVaccine1ActionPerformed(evt);
-            }
-        });
-
         btnHistory1.setText("View Timeline");
         btnHistory1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,10 +335,10 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnTestResponses1.setText("View Test Responses");
-        btnTestResponses1.addActionListener(new java.awt.event.ActionListener() {
+        btnViewVaccine1.setText("View Vaccine");
+        btnViewVaccine1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTestResponses1ActionPerformed(evt);
+                btnViewVaccine1ActionPerformed(evt);
             }
         });
 
@@ -366,6 +362,13 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane6.setViewportView(timelineTable);
+
+        btnTestResponses1.setText("View Test Responses");
+        btnTestResponses1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestResponses1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -403,9 +406,6 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(587, 587, 587))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnProceedApproval))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnViewVaccine1)
                 .addGap(81, 81, 81)
@@ -419,15 +419,19 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(96, 96, 96)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProceedApproval, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,58 +480,9 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnProceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProceedActionPerformed
-        // TODO add your handling code here:
-                          int selectedRow = drugProjectTable.getSelectedRow();
-        if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)drugProjectTable.getValueAt(selectedRow, 0);
-        Map<String,Date> reqMap = vaccineReq.getStatusMap();
-        reqMap.put("Request Created", new Date());
-        vaccineReq.setStatusMap(reqMap);
-        business.getVaccineQueue().updateWorkRequest(vaccineReq, business.getVaccineQueue().getVaccineRequestList());
-        
-        populateDrugProjectTable();
-        populateDrugRequestTable();
-    }//GEN-LAST:event_btnProceedActionPerformed
-
-    private void btnProceedApprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProceedApprovalActionPerformed
-        // TODO add your handling code here:
-                int row = drugRequestTable.getSelectedRow();
-        if(row<0){
-            JOptionPane.showMessageDialog(null, "Please select a request!!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }   
-         VaccineWorkRequest vacReq= (VaccineWorkRequest)drugRequestTable.getValueAt(row, 0);
-        Map<String,Date> reqMap = vacReq.getStatusMap();
-        reqMap.put("Pending Approval", new Date());
-        vacReq.setStatusMap(reqMap);
-        business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
-
-        for (UserAccount userAccount:enterprise.getUserAccountDirectory().getUserAccountList()){
-            if(userAccount.getRole().toString().equals("VaccineAdmin")){
-                userAccount.getVaccineWorkQueue().addWorkRequest(vacReq);
-                account.getVaccineWorkQueue().removeWorkRequest(vacReq);
-        business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
-        
-
-                
-            }
-        }
-
-                    populateDrugProjectTable();
-        populateDrugRequestTable();     
- 
- JOptionPane.showMessageDialog(null, "Request proceeded from approval successfully!", "Warning", JOptionPane.WARNING_MESSAGE);       
-
-    }//GEN-LAST:event_btnProceedApprovalActionPerformed
-
     private void btnFormulateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormulateActionPerformed
         // TODO add your handling code here:
-       CreateVaccineJPanel createVaccineJPanel=new CreateVaccineJPanel(userProcessContainer,account,enterprise,organization,business);
+        CreateVaccineJPanel createVaccineJPanel=new CreateVaccineJPanel(userProcessContainer,account,enterprise,organization,business);
         userProcessContainer.add("manageNetworkJPanel",createVaccineJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -535,62 +490,45 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                int selectedRow = drugProjectTable.getSelectedRow();
+        int selectedRow = drugProjectTable.getSelectedRow();
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         VaccineWorkRequest vaccineReq= (VaccineWorkRequest)drugProjectTable.getValueAt(selectedRow, 0);
-          
+
         ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(userProcessContainer,account,business,vaccineReq.getVaccine(),true);
         userProcessContainer.add("viewVaccineJPanel",viewVaccineJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnViewVaccine1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewVaccine1ActionPerformed
+    private void btnProceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProceedActionPerformed
         // TODO add your handling code here:
-                  int selectedRow = responseTable.getSelectedRow();
+        int selectedRow = drugProjectTable.getSelectedRow();
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)responseTable.getValueAt(selectedRow, 0);
-          
-        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(userProcessContainer,account,business,vaccineReq.getVaccine(),false);
-        userProcessContainer.add("viewVaccineJPanel",viewVaccineJPanel);
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnViewVaccine1ActionPerformed
+        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)drugProjectTable.getValueAt(selectedRow, 0);
+        Map<String,Date> reqMap = vaccineReq.getStatusMap();
+        reqMap.put("Vaccine Request Created", new Date());
+        vaccineReq.setStatusMap(reqMap);
+        business.getVaccineQueue().updateWorkRequest(vaccineReq, business.getVaccineQueue().getVaccineRequestList());
 
-    private void btnHistory1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistory1ActionPerformed
-        // TODO add your handling code here:
-                  int selectedRow = responseTable.getSelectedRow();
-        if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a Vaccine Request row!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        VaccineWorkRequest vaccine= (VaccineWorkRequest)responseTable.getValueAt(selectedRow, 0);
-          
-       populateTimeline(vaccine);
-    }//GEN-LAST:event_btnHistory1ActionPerformed
-
-    private void btnTestResponses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestResponses1ActionPerformed
-        // TODO add your handling code here:
-        populateAllDrugRequestTable();
-        populateTimeline("");
-    }//GEN-LAST:event_btnTestResponses1ActionPerformed
+        populateDrugProjectTable();
+        populateDrugRequestTable();
+    }//GEN-LAST:event_btnProceedActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
-                if(reasonText.getText().equals("")){
+        if(reasonText.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Please provide reason for vaccine request removal!!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;            
+            return;
         }
-                          int selectedRow = drugProjectTable.getSelectedRow();
+        int selectedRow = drugProjectTable.getSelectedRow();
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
@@ -599,18 +537,81 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         VaccineWorkRequest vacReq= (VaccineWorkRequest)drugProjectTable.getValueAt(selectedRow, 0);
         Map<String,Date> reqMap = vacReq.getStatusMap();
         reqMap.put("Request Removed", new Date());
-       vacReq.setStatusMap(reqMap);
+        vacReq.setStatusMap(reqMap);
         vacReq.setReceiver(account);
         vacReq.setResolveDate(new Date());
         business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
-        
+
         populateDrugProjectTable();
         populateDrugRequestTable();
         reasonText.setText("");
-            JOptionPane.showMessageDialog(null, "Request has been removed!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Request has been removed!", "Information", JOptionPane.INFORMATION_MESSAGE);
 
-        
     }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnProceedApprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProceedApprovalActionPerformed
+        // TODO add your handling code here:
+        int row = drugRequestTable.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Please select a request!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        VaccineWorkRequest vacReq= (VaccineWorkRequest)drugRequestTable.getValueAt(row, 0);
+        Map<String,Date> reqMap = vacReq.getStatusMap();
+        reqMap.put("Pending Approval", new Date());
+        vacReq.setStatusMap(reqMap);
+        business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
+
+        for (UserAccount userAccount:enterprise.getUserAccountDirectory().getUserAccountList()){
+            if(userAccount.getRole().toString().equals("VaccineAdmin")){
+                vacReq.setReceiver(userAccount);
+                userAccount.getVaccineWorkQueue().addWorkRequest(vacReq);
+                account.getVaccineWorkQueue().removeWorkRequest(vacReq);
+                business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
+
+            }
+        }
+
+        populateDrugProjectTable();
+        populateDrugRequestTable();
+
+        JOptionPane.showMessageDialog(null, "Request proceeded from approval successfully!", "Warning", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_btnProceedApprovalActionPerformed
+
+    private void btnHistory1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistory1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = responseTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine Request row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        VaccineWorkRequest vaccine= (VaccineWorkRequest)responseTable.getValueAt(selectedRow, 0);
+
+        populateTimeline(vaccine);
+    }//GEN-LAST:event_btnHistory1ActionPerformed
+
+    private void btnViewVaccine1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewVaccine1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = responseTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)responseTable.getValueAt(selectedRow, 0);
+
+        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(userProcessContainer,account,business,vaccineReq.getVaccine(),false);
+        userProcessContainer.add("viewVaccineJPanel",viewVaccineJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewVaccine1ActionPerformed
+
+    private void btnTestResponses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestResponses1ActionPerformed
+        // TODO add your handling code here:
+        populateAllDrugRequestTable();
+        populateTimeline("");
+    }//GEN-LAST:event_btnTestResponses1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,6 +4,8 @@
  */
 package Business.Vaccine;
 
+import Business.Enterprise.Enterprise;
+import Business.UserAccount.UserAccount;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,16 +25,19 @@ public class Vaccine {
     private String allergens;
     private Date createDate;
     private Date updateDate;
-    private String username;
+    private UserAccount username;
     private int minAgeGroup;
     private int maxAgeGroup;
     private Map<String,Integer> dosage;
     private String administration;
     private String other;
     private String preservations;
+    private Enterprise enterprise;
     private String sideeffects;
     private String enterpriseName;
-
+    private int testerNum;
+    private boolean tested;
+    
     public Vaccine() {
         dosage = new HashMap<String,Integer>();
         id = count;
@@ -111,11 +116,11 @@ public class Vaccine {
         this.updateDate = new Date();
     }
 
-    public String getUsername() {
+    public UserAccount getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(UserAccount username) {
         this.username = username;
     }
 
@@ -172,6 +177,30 @@ public class Vaccine {
 
     public void setSideeffects(String sideeffects) {
         this.sideeffects = sideeffects;
+    }
+
+    public int getTesterNum() {
+        return testerNum;
+    }
+
+    public void setTesterNum(int testerNum) {
+        this.testerNum = testerNum;
+    }
+
+    public boolean isTested() {
+        return tested;
+    }
+
+    public void setTested(boolean tested) {
+        this.tested = tested;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
     @Override

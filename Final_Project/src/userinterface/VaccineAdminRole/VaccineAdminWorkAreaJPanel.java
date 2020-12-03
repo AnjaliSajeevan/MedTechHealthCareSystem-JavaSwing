@@ -7,6 +7,7 @@ package userinterface.VaccineAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.VaccineEnterprise;
 import Business.Organization.VaccineCompanyOrganization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -49,20 +50,37 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
+        valueLabel = new javax.swing.JLabel();
+        enterpriseLabel = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        manageOrganizationJButton = new javax.swing.JButton();
         manageEmployeeJButton = new javax.swing.JButton();
         userJButton = new javax.swing.JButton();
-        manageOrganizationJButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
-        btnVaccineReq = new javax.swing.JButton();
-        btnCheckTests = new javax.swing.JButton();
-        btnCompRpt = new javax.swing.JButton();
-        btnMedReport = new javax.swing.JButton();
-        btnTestors = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        btnCheckTests = new javax.swing.JButton();
+        btnVaccineReq = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
+        btnCompRpt = new javax.swing.JButton();
+        btnTestors = new javax.swing.JButton();
+        btnMedReport = new javax.swing.JButton();
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Vaccine Company Admin");
+
+        valueLabel.setText("<value>");
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("EnterPrise :");
+
+        jSeparator3.setBackground(new java.awt.Color(102, 0, 0));
+
+        manageOrganizationJButton.setText("Manage Organization");
+        manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageOrganizationJButtonActionPerformed(evt);
+            }
+        });
 
         manageEmployeeJButton.setText("Manage Employee");
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -78,27 +96,7 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageOrganizationJButton.setText("Manage Organization");
-        manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageOrganizationJButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Vaccine Company Admin");
-
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-
-        valueLabel.setText("<value>");
-
-        btnVaccineReq.setText("Process Vaccine Requests");
-        btnVaccineReq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVaccineReqActionPerformed(evt);
-            }
-        });
+        jSeparator1.setBackground(new java.awt.Color(102, 0, 0));
 
         btnCheckTests.setText("Process Tested Vaccines");
         btnCheckTests.addActionListener(new java.awt.event.ActionListener() {
@@ -107,17 +105,19 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnVaccineReq.setText("Process Vaccine Requests");
+        btnVaccineReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVaccineReqActionPerformed(evt);
+            }
+        });
+
+        jSeparator2.setBackground(new java.awt.Color(102, 0, 0));
+
         btnCompRpt.setText("Display VaccineCompany Report");
         btnCompRpt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompRptActionPerformed(evt);
-            }
-        });
-
-        btnMedReport.setText("Check Medical Demands");
-        btnMedReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMedReportActionPerformed(evt);
             }
         });
 
@@ -128,11 +128,12 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jSeparator1.setBackground(new java.awt.Color(102, 0, 0));
-
-        jSeparator2.setBackground(new java.awt.Color(102, 0, 0));
-
-        jSeparator3.setBackground(new java.awt.Color(102, 0, 0));
+        btnMedReport.setText("Check Medical Demands");
+        btnMedReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMedReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -210,25 +211,6 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
-        // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
-        userProcessContainer.add("ManageUserAccountJPanel", muajp);
-
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_userJButtonActionPerformed
-
-    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
-
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
-
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-
-    }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
-
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
 
         ManageOrganizationJPanel manageVaccineOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),"Vaccine Organization");
@@ -237,21 +219,39 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
 
-    private void btnVaccineReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaccineReqActionPerformed
-        // TODO add your handling code here:
-         VaccineRequestJPanel vaccineRequestJPanel = new VaccineRequestJPanel(userProcessContainer, account,organization,enterprise,business);
-        userProcessContainer.add("vaccineRequestJPanel", vaccineRequestJPanel);
+    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
+
+        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);      
-    }//GEN-LAST:event_btnVaccineReqActionPerformed
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
+
+    private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
+        // TODO add your handling code here:
+        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise,business);
+        userProcessContainer.add("ManageUserAccountJPanel", muajp);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_userJButtonActionPerformed
 
     private void btnCheckTestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckTestsActionPerformed
         // TODO add your handling code here:
-         TestedRequestsJPanel testedRequestsJPanel = new TestedRequestsJPanel(userProcessContainer, enterprise,business);
+        TestedRequestsJPanel testedRequestsJPanel = new TestedRequestsJPanel(userProcessContainer, account,enterprise,business);
         userProcessContainer.add("testedRequestsJPanel", testedRequestsJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);         
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCheckTestsActionPerformed
+
+    private void btnVaccineReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaccineReqActionPerformed
+        // TODO add your handling code here:
+        VaccineRequestJPanel vaccineRequestJPanel = new VaccineRequestJPanel(userProcessContainer, account,organization,enterprise,business);
+        userProcessContainer.add("vaccineRequestJPanel", vaccineRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnVaccineReqActionPerformed
 
     private void btnCompRptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompRptActionPerformed
         // TODO add your handling code here:
@@ -263,7 +263,7 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnTestorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestorsActionPerformed
         // TODO add your handling code here:
-       ManageTestersJPanel manageTestersJPanel = new ManageTestersJPanel(userProcessContainer, business);
+        ManageTestersJPanel manageTestersJPanel = new ManageTestersJPanel(userProcessContainer, business, (VaccineEnterprise) enterprise);
         userProcessContainer.add("manageTestersJPanel", manageTestersJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

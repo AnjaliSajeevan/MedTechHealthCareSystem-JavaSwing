@@ -4,6 +4,7 @@
  */
 package userinterface.AdministrativeRole;
 
+import Business.Doctor.Doctor;
 import Business.Employee.Employee;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
@@ -207,6 +208,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         String name = nameJTextField.getText();
         
         organization.getEmployeeDirectory().createEmployee(name);
+      
         populateTable(organization);
         
     }//GEN-LAST:event_addJButtonActionPerformed

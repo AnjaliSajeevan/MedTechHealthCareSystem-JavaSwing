@@ -22,16 +22,18 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PatientWorkAreaJPanel
      */
-   
+    
 JPanel userProcessContainer;
     EcoSystem ecosystem;
      UserAccount account;
+     Enterprise enterprise;
 InsuranceAdminOrganization iOrg;
      
-    public PatientWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem,InsuranceAdminOrganization organization) {
+    public PatientWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise,EcoSystem ecosystem,InsuranceAdminOrganization organization) {
          initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
+        this.enterprise = enterprise;
         this.iOrg=organization;
         this.account=account;
        
@@ -47,9 +49,10 @@ InsuranceAdminOrganization iOrg;
     private void initComponents() {
 
         btnRegisterForInsurance = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        btnBookLab = new javax.swing.JButton();
+        btnMedReq = new javax.swing.JButton();
 
         btnRegisterForInsurance.setText("Register for Insurance");
         btnRegisterForInsurance.addActionListener(new java.awt.event.ActionListener() {
@@ -57,8 +60,6 @@ InsuranceAdminOrganization iOrg;
                 btnRegisterForInsuranceActionPerformed(evt);
             }
         });
-
-        jButton2.setText("Book Appointment for Lab");
 
         jButton3.setText("Book Appointment Hospital");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -69,17 +70,34 @@ InsuranceAdminOrganization iOrg;
 
         jButton4.setText("Emergency- Ambulance ");
 
+        btnBookLab.setText("Book Appointment for Lab");
+        btnBookLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookLabActionPerformed(evt);
+            }
+        });
+
+        btnMedReq.setText("Send Medicine Request");
+        btnMedReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMedReqActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRegisterForInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnMedReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBookLab))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnRegisterForInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,13 +105,15 @@ InsuranceAdminOrganization iOrg;
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(btnRegisterForInsurance)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBookLab)
+                .addGap(24, 24, 24)
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(btnMedReq)
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -113,10 +133,27 @@ InsuranceAdminOrganization iOrg;
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnBookLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookLabActionPerformed
+        // TODO add your handling code here:
+        BookLabJPanel bookLabJPanel=new BookLabJPanel(userProcessContainer,account, enterprise,ecosystem);
+        userProcessContainer.add("bookLabJPanel",bookLabJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnBookLabActionPerformed
+
+    private void btnMedReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedReqActionPerformed
+        // TODO add your handling code here:
+        RequestMedicineJPanel reqMedJPanel=new RequestMedicineJPanel(userProcessContainer,account, enterprise,ecosystem);
+        userProcessContainer.add("reqMedJPanel",reqMedJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnMedReqActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBookLab;
+    private javax.swing.JButton btnMedReq;
     private javax.swing.JButton btnRegisterForInsurance;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
