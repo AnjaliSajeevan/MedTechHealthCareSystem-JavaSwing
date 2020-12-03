@@ -7,6 +7,7 @@ package userinterface.VaccineScientistRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.VaccineEnterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Vaccine.Vaccine;
@@ -526,7 +527,12 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Minimum or Maximum Age For Vaccine usage cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;          
         }
-        
+        if((minAge > 100) || (minAge < 1) ||(maxAge > 100) || (maxAge < 1)){
+             JOptionPane.showMessageDialog(null, "Minimum and Maximum Age for Vaccine needs to be of range 1 to 100 years only!", "Warning", JOptionPane.WARNING_MESSAGE);
+             lblMin.setForeground(Color.red);
+              lblMax.setForeground(Color.red); 
+             return;               
+        }
         if(btnMorning.isSelected()) {
              int mornDose = (Integer)mornDosage.getValue();
              if((mornDose <= 0)){
@@ -601,9 +607,11 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             vaccine.setSideeffects(txtSide.getText());
             vaccine.setOther(txtOther.getText());
             vaccine.setUpdateDate();
-            vaccine.setUsername(account.getUsername());
+            vaccine.setUsername(account);
             vaccine.setEnterpriseName(enterprise.getName());
-            business.getVaccineDirectory().addVaccine(vaccine);
+            vaccine.setEnterprise(enterprise);
+            VaccineEnterprise enterPrise = (VaccineEnterprise)enterprise;
+            enterPrise.getVaccineDirectory().addVaccine(vaccine);
             
             VaccineWorkRequest vaccineReq = new VaccineWorkRequest();
             vaccineReq.setSender(account);
@@ -618,7 +626,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
      
             JOptionPane.showMessageDialog(null,"Vaccine Added Successfully!!!");
             btnUpdate.setEnabled(true);
-        }           
+        }  
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnHeartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeartActionPerformed
@@ -654,7 +662,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRespActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-        userProcessContainer.remove(this);
+            userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         VaccineScientistWorkAreaJPanel sysAdminwjp = (VaccineScientistWorkAreaJPanel) component;

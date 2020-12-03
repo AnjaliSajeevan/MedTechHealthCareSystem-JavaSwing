@@ -19,7 +19,7 @@ import userinterface.FDAWorkAreaJPanel.FDAWorkAreaJPanel;
 public class FDARole extends Role{
      @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new FDAWorkAreaJPanel(userProcessContainer, enterprise);
+        return new FDAWorkAreaJPanel(userProcessContainer, account,organization,enterprise,business);
     }
      public String toString(){
         return "FDAAdmin";

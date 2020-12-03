@@ -5,6 +5,8 @@
  */
 package userinterface.VaccineAdminRole;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.VaccineEnterprise;
 import Business.Vaccine.Vaccine;
 import Business.Vaccine.VaccineTester;
 import java.awt.CardLayout;
@@ -20,17 +22,19 @@ public class ManageTestersJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem business;  
-    public ManageTestersJPanel(JPanel userProcessContainer,EcoSystem business ) {
+    private VaccineEnterprise enterprise;
+    public ManageTestersJPanel(JPanel userProcessContainer,EcoSystem business,VaccineEnterprise enterprise ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
+        this.enterprise = (VaccineEnterprise)enterprise;
         populateTesterTable();
         
     }
     public void populateTesterTable(){
         DefaultTableModel model = (DefaultTableModel)testorsTable.getModel();
         model.setRowCount(0);
-        List<VaccineTester> vaccinetestList = business.getVaccinetesterDirectory().getVaccineTesterList();
+        List<VaccineTester> vaccinetestList = enterprise.getVaccinetesterDirectory().getVaccineTesterList();
         for(VaccineTester tester: vaccinetestList){
             Object row[] = new Object[4];
                  row[0] = tester.getId();
@@ -191,7 +195,7 @@ public class ManageTestersJPanel extends javax.swing.JPanel {
         }
 
         VaccineTester tester= (VaccineTester)testorsTable.getValueAt(selectedRow, 1);
-        ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,tester,true);
+        ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,true);
         userProcessContainer.add("viewTestersJPanel", viewTestersJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -199,7 +203,7 @@ public class ManageTestersJPanel extends javax.swing.JPanel {
 
     private void btnaddTesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddTesterActionPerformed
         // TODO add your handling code here:
-        CreateTestersJPanel createTestersJPanel = new CreateTestersJPanel(userProcessContainer, business);
+        CreateTestersJPanel createTestersJPanel = new CreateTestersJPanel(userProcessContainer, business,(Enterprise)enterprise);
         userProcessContainer.add("createTestersJPanel", createTestersJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -207,16 +211,16 @@ public class ManageTestersJPanel extends javax.swing.JPanel {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
-                int selectedRow = testorsTable.getSelectedRow();
+                  int selectedRow = testorsTable.getSelectedRow();
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null, "Please select a Testor to remove details!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         VaccineTester tester= (VaccineTester)testorsTable.getValueAt(selectedRow, 0);
-        business.getVaccinetesterDirectory().removeVaccineTester(tester);
+        enterprise.getVaccinetesterDirectory().removeVaccineTester(tester);
         populateTesterTable();
-            JOptionPane.showMessageDialog(null, "Tester has been removed!!", "Confirmed", JOptionPane.INFORMATION_MESSAGE);        
+            JOptionPane.showMessageDialog(null, "Tester has been removed!!", "Confirmed", JOptionPane.INFORMATION_MESSAGE);          
     }//GEN-LAST:event_btnRemoveActionPerformed
 
 
