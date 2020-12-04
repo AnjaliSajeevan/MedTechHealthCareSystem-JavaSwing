@@ -21,7 +21,7 @@ public class InsuranceClaimRole extends Role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new InsuranceClaimWorkAreaJPanel(userProcessContainer, enterprise);
+        return new InsuranceClaimWorkAreaJPanel(userProcessContainer,account, enterprise,business);
     }
     public String toString(){
         return "InsuranceClaim";

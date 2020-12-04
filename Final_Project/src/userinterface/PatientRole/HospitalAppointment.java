@@ -11,6 +11,7 @@ import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 import java.awt.CardLayout;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Map;
@@ -33,24 +34,28 @@ public class HospitalAppointment extends javax.swing.JPanel {
     Patient patient;
     Date date;
     InsurancePolicy Insurancepolicy;
-    //Map<String, String> appointment;
+    String policy;
     public HospitalAppointment(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.account = account;
-        String patientName = account.getEmployee().getName();
+        String patientName = account.getUsername();
+        dateApp.setDate(new Date());
         
         
         for (Patient p : ecosystem.getPatientDirectory().getpatientlist()) {
-            
+ System.out.println(p.getUserName());
+  System.out.println(patientName);
             if (p.getUserName().equals(patientName)) {
                 patient = p;
+                System.out.println(p);
             }
         }
 
         Insurancepolicy = patient.getInsurance();
-        System.out.println("Insurance Policy1"+Insurancepolicy);
+        System.out.println(Insurancepolicy);
+        policy = Insurancepolicy.toString();
         
         
         String from = "08:00:00", to = "20:00:00";
@@ -67,11 +72,9 @@ public class HospitalAppointment extends javax.swing.JPanel {
    
    public void populateComboBox()
    {for (InsurancePolicy a: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList())
-   {    System.out.println(ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList());
-       System.out.println(a.getPolicyName());
-        System.out.println("Insurance Policy2"+Insurancepolicy);
+   {    
    
-       if(a.getPolicyName().equals(Insurancepolicy))
+       if(a.getPolicyName().equalsIgnoreCase(policy))
        {for (int counter = 0; counter < a.getHospitalList().size(); counter++) {
             System.out.println(a.getHospitalList().get(counter));
                     jComboBoxHospitalList.addItem(a.getHospitalList().get(counter));
@@ -104,6 +107,7 @@ public class HospitalAppointment extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jCheckBoxPrimaryHospital = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         tblRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,6 +168,8 @@ public class HospitalAppointment extends javax.swing.JPanel {
 
         jLabel5.setText("If other hospital please choose from the list:");
 
+        jLabel6.setText("Appointment Details");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,7 +186,7 @@ public class HospitalAppointment extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
@@ -194,12 +200,14 @@ public class HospitalAppointment extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
+                        .addGap(307, 307, 307)
                         .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 47, Short.MAX_VALUE))
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,13 +236,15 @@ public class HospitalAppointment extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(btnSubmit))
+                            .addComponent(txtDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(dateApp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(95, 95, 95)
+                .addComponent(btnSubmit)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -247,9 +257,11 @@ public class HospitalAppointment extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        date=dateApp.getDate();
-       String selected=(String) jComboBoxHospitalList.getSelectedItem();
-        String hospital;
+       date=dateApp.getDate();
+       LocalDate dates=new java.sql.Date(date.getTime()).toLocalDate();
+       String selected=(String) jComboBoxTime.getSelectedItem();
+       System.out.println(selected);
+       String hospital;
         boolean primary= jCheckBoxPrimaryHospital.isSelected();
         if(primary==true)
         { hospital= patient.getPrimaryHospital();      
@@ -261,14 +273,11 @@ public class HospitalAppointment extends javax.swing.JPanel {
         r.setHospital(hospital);
         r.setMessage(txtDetails.getText());
         r.setSender(account);
-        r.setAppDate(date);
+        r.setAppDate(dates);
         r.setTime(selected);
         r.setStatus("Appointment requested");
-        
-        System.out.println(account.getUsername());
-        
-       // appointment.put(account.getUsername(),account.getUsername());
-     //   r.setAppointment(appointment);
+        r.setInsurance(Insurancepolicy);
+       
         r.setRequestDate(new Date());
         ecosystem.getHospitalQueue().hospitalRequestList().add(r);
         account.getHospitalWorkQueue().hospitalRequestList().add(r);
@@ -276,23 +285,17 @@ public class HospitalAppointment extends javax.swing.JPanel {
         String s;
         DefaultTableModel model = (DefaultTableModel)tblRequest.getModel();
         model.setRowCount(0);
-               if(r.getReceiver()==null){
-                s="Not Assigned";
-            }else{ s= r.getReceiver().getEmployee().getName();
-                
-            }
+
             Object[] row = new Object[7];
             row[0] = r;
-            row[1] = s;
-            row[2] = r.getHospital();
-            row[3] = r.getAppDate();
-            row[4] = r.getTime();
-            row[5] = r.getMessage();
-            row[6] = r.getStatus();
+            row[1] = r.getHospital();
+            row[2] = r.getAppDate();
+            row[3] = r.getTime();
+            row[4] = r.getMessage();
+            row[5] = r.getStatus();
             model.addRow(row);
-             JOptionPane.showMessageDialog(null,"Successfully requested for insurance");
+             JOptionPane.showMessageDialog(null,"Successfully requested appointment");
              
-        
 
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -316,6 +319,7 @@ public class HospitalAppointment extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblRequest;
     private javax.swing.JTextField txtDetails;

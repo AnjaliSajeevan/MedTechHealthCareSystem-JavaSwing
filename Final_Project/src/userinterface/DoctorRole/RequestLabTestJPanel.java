@@ -6,13 +6,20 @@ package userinterface.DoctorRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Essentials.Product;
+import Business.Patient.Patient;
 
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ClaimWorkQueue;
+import Business.WorkQueue.ClaimWorkRequest;
+import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -24,18 +31,21 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private UserAccount userAccount;
+    EcoSystem ecosystem;
     /**
      * Creates new form RequestLabTestJPanel
      */
-   
-    RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise, EcoSystem ecosystem) {
+   PatientHospitalAppointmentWorkRequest request;
+    RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise, EcoSystem ecosystem,PatientHospitalAppointmentWorkRequest request) {
         initComponents();
-        
+        this.request=request;
         this.userProcessContainer = userProcessContainer;
         this.enterprise=enterprise;
         this.userAccount = account;
+        this.ecosystem=ecosystem;
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,16 +56,13 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         requestTestJButton = new javax.swing.JButton();
-        messageJTextField = new javax.swing.JTextField();
+        txtResult = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -66,7 +73,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             }
         });
         add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 200, 40));
-        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 260, -1));
+        add(txtResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 260, -1));
 
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -81,30 +88,66 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 180, 30));
 
         jLabel2.setText("Message");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, 20));
-
-        jButton1.setText("Lab test Required");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Yes" }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, -1, -1));
 
-        jButton2.setText("Submit");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
-
-        jLabel3.setText("Lab Test:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
-
         jLabel4.setText("Admit Patient:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Room", "Deluxe Room", "ICU" }));
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+        Patient patient = null;
+        String result = txtResult.getText();
+        request.setResult(result);
+        request.setStatus("Consultation done");
+        String combo = (String) jComboBox1.getSelectedItem();
+        String room = (String) jComboBox2.getSelectedItem();
+        if(combo.equals("Yes"))
+                {for(Product tester: ecosystem.getProductCatalog().getProductcatalog()){
+                    if (tester.getProdName().equalsIgnoreCase("Room")) {
+                        int countR = tester.getAvail()-1;
+                        tester.setAvail(countR);
+                        request.setCost(300);
+                    }
+                    if (tester.getProdName().equalsIgnoreCase("Deluxe Room")) {
+                        int countR = tester.getAvail()-1;
+                        tester.setAvail(countR);
+                        request.setCost(450);
+                    }
+                    if (tester.getProdName().equalsIgnoreCase("ICU")) {
+                       int countR = tester.getAvail()-1;
+                        tester.setAvail(countR);
+                        request.setCost(550);
+            }
+                    
+                }
+                }
+        String insuranceCompany = request.getInsurance().getEnterprise();
+        for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
+            System.out.println(p.getUserName());
+            System.out.println(request.getSender());
+            if(p.getUserName().equals(request.getSender().toString()))
+            { patient =p;
+            
+        }}
+        ClaimWorkRequest r = new ClaimWorkRequest();
+        r.setSender(userAccount);
+        r.setPatient(patient);
+        r.setRequestDate(new Date());
+        r.setCost(request.getCost());
+        r.setStatus("Claim Requested");
+        r.setInsurancepolicy(request.getInsurance());
+        r.setInsuranceEnterprise(insuranceCompany);
+        r.setHospital(enterprise);
         
-        
+         ecosystem.getClaimWorkQueue().getWorkRequestList().add(r);
+        userAccount.getClaimWorkQueue().getWorkRequestList().add(r);
+        JOptionPane.showMessageDialog(null, "Successfully Submitted");
         
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
@@ -123,14 +166,11 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField messageJTextField;
     private javax.swing.JButton requestTestJButton;
+    private javax.swing.JTextField txtResult;
     // End of variables declaration//GEN-END:variables
 }

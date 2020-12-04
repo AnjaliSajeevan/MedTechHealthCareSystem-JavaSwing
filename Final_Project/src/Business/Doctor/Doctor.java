@@ -49,7 +49,12 @@ public class Doctor extends Employee {
     public void setAppointment(Map<LocalDate, ArrayList<String>> appointment) {
         this.appointment = appointment;
     }
-
+    
+     public void removeAppointment(LocalDate dates,String selected){
+         appointment.get(dates).remove(selected);
+        
+    }
+     
     public ArrayList<String> getTimeSlotList() {
         return TimeSlotList;
     }
@@ -61,6 +66,10 @@ public class Doctor extends Employee {
     public void addTimeSlot(String a){
     TimeSlotList.add(a);   
     }
+    public void removeAllTimeSlot(){
+    TimeSlotList.clear();   
+    }
+    
 
     public String getHealthOther() {
         return healthOther;

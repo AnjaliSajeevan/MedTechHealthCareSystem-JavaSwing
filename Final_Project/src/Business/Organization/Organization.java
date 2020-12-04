@@ -7,6 +7,7 @@ package Business.Organization;
 import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.ClaimWorkQueue;
 import Business.WorkQueue.LabTestWorkQueue;
 import Business.WorkQueue.PatientHospitalAppointmentWorkQueue;
 import Business.WorkQueue.VaccineWorkQueue;
@@ -23,6 +24,7 @@ public abstract class Organization {
     private WorkQueue workQueue;
     private VaccineWorkQueue vaccineQueue;
     private PatientHospitalAppointmentWorkQueue hospitalQueue;
+    private ClaimWorkQueue claimWorkQueue;
     private LabTestWorkQueue labQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
@@ -51,11 +53,20 @@ public abstract class Organization {
         workQueue = new WorkQueue();
         vaccineQueue = new VaccineWorkQueue();
         hospitalQueue=new PatientHospitalAppointmentWorkQueue();
+        claimWorkQueue = new ClaimWorkQueue();
         labQueue = new LabTestWorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
         ++counter;
+    }
+
+    public ClaimWorkQueue getClaimWorkQueue() {
+        return claimWorkQueue;
+    }
+
+    public void setClaimWorkQueue(ClaimWorkQueue claimWorkQueue) {
+        this.claimWorkQueue = claimWorkQueue;
     }
 
     public PatientHospitalAppointmentWorkQueue getHospitalQueue() {
