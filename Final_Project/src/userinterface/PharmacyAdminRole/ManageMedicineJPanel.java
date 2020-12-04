@@ -9,9 +9,6 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.PharmacyEnterprise;
 import Business.Essentials.Medicine;
-import Business.Network.Network;
-import Business.Organization.Organization;
-import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import static java.lang.Boolean.TRUE;
@@ -20,7 +17,6 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.VaccineScientistRole.VaccineScientistWorkAreaJPanel;
 
 /**
  *
@@ -67,20 +63,14 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)medTable.getModel();
         model.setRowCount(0);
 
-         for(Medicine med: enterprise.getMedicineCatalog().getMedicineList()){{
-
+         for(Medicine med: enterprise.getMedicineCatalog().getMedicineList()){
             Object row[] = new Object[5];
                  row[0] = med;
                  row[1] = med.getDosage();
                  row[2] = med.getPrice();
                  row[3] = med.getQuantity();
-                 model.addRow(row); 
-            }
-        
-    
-    
-
-            
+                 row[4] = med.getDemand();
+                 model.addRow(row);                 
         }
     }
     public void initializeFields(){
@@ -124,17 +114,17 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
 
         medTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Medicine Name", "Dosage", "Price", "Quantity"
+                "Medicine Name", "Dosage", "Price", "Quantity", "Demand"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -147,6 +137,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             medTable.getColumnModel().getColumn(1).setResizable(false);
             medTable.getColumnModel().getColumn(2).setResizable(false);
             medTable.getColumnModel().getColumn(3).setResizable(false);
+            medTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         btnRemove.setText("Remove");
@@ -353,7 +344,12 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             medicine.setPrice(Double.parseDouble(txtPrice.getText()));
             medicine.setQuantity(quant);
             medicine.setCondition(txtCond.getText());
-            System.out.println("medinmanage="+medicine.getCondition());
+            int dem = (medicine.getDemand() - medicine.getQuantity());
+            if(dem <= 0){
+                medicine.setDemand(0);
+            }else{
+            medicine.setDemand(dem);
+            }
             enterprise.getMedicineCatalog().updateMedicine(medicine);
               populateMedTable();
                         JOptionPane.showMessageDialog(null, "Medicine Updated successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -371,6 +367,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
          txtPrice.setText(String.valueOf(medicine.getPrice()));
          txtDose.setText(String.valueOf(medicine.getDosage()));
          txtQuant.setText(String.valueOf(medicine.getQuantity()));
+         txtCond.setText(String.valueOf(medicine.getCondition()));
          medPanel.setEnabled(true);
          btnCreate.setEnabled(false);
          btnSave.setEnabled(true);
@@ -421,7 +418,8 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
             Medicine med = new Medicine(txtName.getText(),Double.parseDouble(txtPrice.getText()),quant,dose);
                      med.setCondition(txtCond.getText());
-                               System.out.println("medinmanage="+med.getCondition());
+                     
+                     med.setDemand(0);
 
             enterprise.getMedicineCatalog().addMedicine(med);
             populateMedTable();

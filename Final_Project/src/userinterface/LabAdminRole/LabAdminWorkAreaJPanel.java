@@ -11,8 +11,6 @@ import Business.Organization.LaboratoryOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
-import Business.WorkQueue.LabTestWorkRequest;
-import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -49,19 +47,19 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
     public void populateStaffBox(){
         staffComboBox.removeAllItems();
+         staffComboBox.addItem("");
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
-                if(ua.getRole().equals("LabStaff")){
+                   if(ua.getRole().toString().equals("LabStaff")){
                 staffComboBox.addItem(ua);
                 }
             }
-        }
+                 }
     }
     public void populateLabTests(){
                 DefaultTableModel model = (DefaultTableModel)labTestingTable.getModel();
         model.setRowCount(0);
         for(LabPatientWorkRequest work : account.getLabPatientWorkQueue().getLabPatientRequestList()){
-            System.out.println("work="+work);
                             Object[] row = new Object[8];
                     row[0] = work;
                     row[1] = work.getLabTestType();
@@ -185,7 +183,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Laboratory Admin");
 
-        jButton3.setText("Manage Supplies");
+        jButton3.setText("Manage Services");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -203,9 +201,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -285,20 +281,16 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         int selectedRow = labTestingTable.getSelectedRow();
-        if(selectedRow <= 0){
+        if(selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a Lab Test from table!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         LabPatientWorkRequest labReq= (LabPatientWorkRequest)labTestingTable.getValueAt(selectedRow, 0);
-
-        for(UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()){
-            if(ua.getUsername().equals(staffComboBox.getSelectedItem().toString())){
-                labReq.setReceiver(ua);
-                labReq.setSender(account);
+        UserAccount ua = (UserAccount)staffComboBox.getSelectedItem();
+       labReq.setReceiver(ua);
                 ua.getLabPatientWorkQueue().addLabPatientRequest(labReq);
-            }
-        }
         account.getLabPatientWorkQueue().removeLabPatientRequest(labReq);
+                    JOptionPane.showMessageDialog(null, "Lab test Request assigned Successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
         populateLabTests();
     }//GEN-LAST:event_btnAssignLabReq1ActionPerformed
 
