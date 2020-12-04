@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.LaboratoryOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.LabPatientWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,11 +24,15 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
      * Creates new form ProcessTestJPanel
      */
     private JPanel userProcessContainer;
-    private EcoSystem business;  
-    public ProcessTestJPanel(JPanel userProcessContainer, EcoSystem business) {
+   // private EcoSystem business;  
+    private UserAccount account;
+    private LabPatientWorkRequest request;
+    public ProcessTestJPanel(JPanel userProcessContainer, UserAccount account,LabPatientWorkRequest req) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
-        this.business = business;
+    //    this.business = business;
+        this.account = account;
+        this.request = req;
     }
 
     /**
@@ -136,7 +141,11 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Result is mandatory to submit the request!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;               
         }
-        //send back request tp patient queue.
+        UserAccount ua = request.getSender();
+        request.setSender(account);
+        request.setMessage(txtResult.getText());
+        ua.getLabPatientWorkQueue().addLabPatientRequest(request);
+                   JOptionPane.showMessageDialog(null, "Result Submitted successfuly!", "Warning", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCovidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCovidActionPerformed

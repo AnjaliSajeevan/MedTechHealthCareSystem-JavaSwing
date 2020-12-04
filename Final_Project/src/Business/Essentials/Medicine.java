@@ -14,6 +14,7 @@ public class Medicine {
     private Double price;
     private int quantity;
     private int dosage;
+    private int demand;
     private String condition;
         private int id;
     private static int count = 1;
@@ -68,6 +69,14 @@ public class Medicine {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public int getDemand() {
+        return demand;
+    }
+
+    public void setDemand(int demand) {
+        this.demand = demand;
     }
 
     @Override
