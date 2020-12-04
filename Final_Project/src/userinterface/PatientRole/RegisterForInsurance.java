@@ -16,6 +16,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.InsuranceWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,12 +47,12 @@ public class RegisterForInsurance extends javax.swing.JPanel {
     EcoSystem ecosystem;
     UserAccount userAccount;
     
-    public RegisterForInsurance(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecosystem,InsuranceAdminOrganization organization) {
+    public RegisterForInsurance(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem,InsuranceAdminOrganization organization) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
-        this.userAccount=userAccount;
-        
+        this.userAccount=account;
+        populateTree();
 
         
     for(Network network:ecosystem.getNetworkList()){
@@ -114,7 +115,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         btnSubmit = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        btnSelectInsurance = new javax.swing.JButton();
+        btnRequest = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         btnBack = new javax.swing.JButton();
@@ -124,14 +125,8 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtAdult = new javax.swing.JTextField();
         btnSubmit1 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblStatus = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jComboBoxHospitalList = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
-        btnSubmitPrimaryHospital = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel1.setText("Search for Insurance Policy:");
 
         jLabel3.setText("Policy Type:");
@@ -180,7 +175,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
 
         jLabel6.setText("Zip Code:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setText("Choose Insurance Company:");
 
         btnSubmit.setText("Submit");
@@ -193,10 +188,10 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Register for Insurance");
 
-        btnSelectInsurance.setText("Request");
-        btnSelectInsurance.addActionListener(new java.awt.event.ActionListener() {
+        btnRequest.setText("Request");
+        btnRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectInsuranceActionPerformed(evt);
+                btnRequestActionPerformed(evt);
             }
         });
 
@@ -262,45 +257,10 @@ public class RegisterForInsurance extends javax.swing.JPanel {
             }
         });
 
-        btnSubmit1.setText("Submit");
+        btnSubmit1.setText("Proceed");
         btnSubmit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmit1ActionPerformed(evt);
-            }
-        });
-
-        tblStatus.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "RequestNo.", "Receiver", "Insurance Policy", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(tblStatus);
-        if (tblStatus.getColumnModel().getColumnCount() > 0) {
-            tblStatus.getColumnModel().getColumn(0).setResizable(false);
-            tblStatus.getColumnModel().getColumn(1).setResizable(false);
-            tblStatus.getColumnModel().getColumn(2).setResizable(false);
-            tblStatus.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        jLabel8.setText("Request Status:");
-
-        jLabel9.setText("Choose Primary Hospital:");
-
-        btnSubmitPrimaryHospital.setText("Submit");
-        btnSubmitPrimaryHospital.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitPrimaryHospitalActionPerformed(evt);
             }
         });
 
@@ -309,29 +269,12 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(btnView))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAdult, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(btnSubmit1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSelectInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(223, 223, 223))
+                .addGap(253, 253, 253)
+                .addComponent(btnRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -339,10 +282,9 @@ public class RegisterForInsurance extends javax.swing.JPanel {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnSubmit))
-                            .addComponent(btnRefresh))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnSubmit)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -350,30 +292,36 @@ public class RegisterForInsurance extends javax.swing.JPanel {
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtzipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtzipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack)
-                                .addGap(174, 174, 174)
+                                .addGap(191, 191, 191)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxHospitalList, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSubmitPrimaryHospital)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(txtAdult, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnView)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRefresh)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(316, 316, 316)
+                .addComponent(btnSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,60 +330,51 @@ public class RegisterForInsurance extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(btnBack))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel5)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSubmit)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtzipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtzipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSubmit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(btnRefresh)))
+                                .addGap(26, 26, 26)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(72, 72, 72)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnView)
-                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefresh)
+                    .addComponent(btnView))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtAdult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSubmit1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtAdult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(btnSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelectInsurance)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jComboBoxHospitalList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSubmitPrimaryHospital))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addComponent(btnRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -500,10 +439,10 @@ public class RegisterForInsurance extends javax.swing.JPanel {
    
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void btnSelectInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectInsuranceActionPerformed
+    private void btnRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestActionPerformed
         // TODO add your handling code here:
 
-        String s=userAccount.getUsername();
+        
         int selectedRow =  tblConfirmedPolicy.getSelectedRow();
         if(selectedRow <0)
         {
@@ -514,7 +453,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         else
         {
         
-        InsuranceWorkRequest request = new InsuranceWorkRequest();
+        WorkRequest request = new InsuranceWorkRequest();
         request.setSender(userAccount);
         request.setStatus("Insurance Requested");
         
@@ -525,33 +464,9 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         request.setRequestDate(new Date());
         ecosystem.getWorkQueue().getWorkRequestList().add(request);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
-        
-        DefaultTableModel model = (DefaultTableModel)tblStatus.getModel();
-        model.setRowCount(0);
-               if(request.getReceiver()==null){
-                s="Not Assigned";
-            }else{ s= request.getReceiver().getEmployee().getName();
-                
-            }
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = s;
-            row[2] = request.getInsurancepolicy();
-            row[3] = request.getStatus();
-            model.addRow(row);
-            
-             
-            
-            for (int counter = 0; counter < insurance.getHospitalList().size(); counter++) {
-                    jComboBoxHospitalList.addItem(insurance.getHospitalList().get(counter));
-                }
-            
-        }
-        
-            
-
-        
-    }//GEN-LAST:event_btnSelectInsuranceActionPerformed
+        JOptionPane.showMessageDialog(null,"Successfully Requested");
+        }      
+    }//GEN-LAST:event_btnRequestActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
@@ -575,10 +490,14 @@ public class RegisterForInsurance extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
-        // TODO add your handling code here:
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        PatientInsuranceWorkAreaJPanel pajp = (PatientInsuranceWorkAreaJPanel) component;
+        pajp.populateTree();
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+ 
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
@@ -594,36 +513,6 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdultActionPerformed
 
-    private void btnSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmit1ActionPerformed
-        double z;
-        
-        
-        int selectedRow =  tblSearch.getSelectedRow();
-        
-        InsurancePolicy r =(InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
-       if(r.getPolicyType().equals("Family"))
-       {    double x=Double.parseDouble(txtAdult.getText());
-           double y = x*r.getMonthlyPremium();
-            z=x;
-           r.setTotalcost(y);
-       }else {
-           r.setTotalcost(r.getMonthlyPremium());
-           z=1;
-       }
-        DefaultTableModel model = (DefaultTableModel)tblConfirmedPolicy.getModel();
-        model.setRowCount(0);
-        
-            Object row[] = new Object[5];
-                row[0] = r;
-                row[1] = r.getPolicyType();
-                row[2] = r.getPolicyMax();
-                row[3] = z;
-                row[4] = r.getTotalcost();
-
-            model.addRow(row);                    
-        
-    }//GEN-LAST:event_btnSubmit1ActionPerformed
-
     private void txtAdultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAdultMouseClicked
         // TODO add your handling code here:
        int selectedRow =  tblSearch.getSelectedRow(); 
@@ -635,49 +524,93 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         
     }//GEN-LAST:event_txtAdultMouseClicked
 
-    private void btnSubmitPrimaryHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitPrimaryHospitalActionPerformed
-        // TODO add your handling code here:
-       int selectedRow =  tblStatus.getSelectedRow();
-       int selectedRow2 =  tblConfirmedPolicy.getSelectedRow();
-        if(selectedRow <0)
-        {
-            JOptionPane.showMessageDialog(null,"Please select a row","Warning", JOptionPane.WARNING_MESSAGE);
-
+    private void btnSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmit1ActionPerformed
+        double z = 0;
+        double y;
+        String members = txtAdult.getText();
+        int selectedRow = tblSearch.getSelectedRow();
+        String e = "";
+        int ages = 0;
+        int agee = 0;
+        InsurancePolicy r = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
+        String age = r.getAgeGroup();
+        if (age.equals("18-30")) {
+            ages = 18;
+            agee = 30;
+        }
+        if (age.equals("30-45")) {
+            ages = 30;
+            agee = 45;
+        }
+        if (age.equals("45-60")) {
+            ages = 45;
+            agee = 60;
+        }
+        if (age.equals("60-80")) {
+            ages = 60;
+            agee = 80;
+        }
+        if (age.equals("80-100")) {
+            ages = 80;
+            agee = 100;
         }
 
-        else
-        {
-        
-        InsuranceWorkRequest a =  (InsuranceWorkRequest) tblStatus.getValueAt(selectedRow, 0);
-         InsurancePolicy insurance = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);   
-        String y = (String) jComboBoxHospitalList.getSelectedItem();
-        for(Patient p:ecosystem.getPatientDirectory().getpatientlist())
-        {if(p.getUserName().equals(userAccount.getEmployee().getName()))
-        {p.setPrimaryHospital(y);
-        p.setInsurance(insurance);
-        
-        
-            } 
-        }
-         JOptionPane.showMessageDialog(null,"Successfully requested for insurance");
-            
+        for (Patient p : ecosystem.getPatientDirectory().getpatientlist()) {
+            if (p.getUserName().equals(userAccount.getEmployee().getName())) {
+                if (!(p.getAge() >= ages && p.getAge() <= agee)) {
+                    e = "Please choose a policy for your age group";
+                }
             }
-            
-    }//GEN-LAST:event_btnSubmitPrimaryHospitalActionPerformed
+        }
+        if (r.getPolicyType().equals("Family")) {
+            if (members.equals("")) {
+                e = "Please enter the number of members who fall under the choosen policy age group or below";
+            } else {
+                double x = Double.parseDouble(members);
+                if (x == 0.0) {
+                    x = 1;
+                }
+                y = x * r.getMonthlyPremium();
+                z = x;
+                r.setTotalcost(y);
+            }
+
+        } else {
+            r.setTotalcost(r.getMonthlyPremium());
+            z = 1;
+        }
+
+        if ((e.equals(""))) {
+            DefaultTableModel model = (DefaultTableModel) tblConfirmedPolicy.getModel();
+            model.setRowCount(0);
+
+            Object row[] = new Object[5];
+            row[0] = r;
+            row[1] = r.getPolicyType();
+            row[2] = r.getPolicyMax();
+            row[3] = z;
+            row[4] = r.getTotalcost();
+
+            model.addRow(row);
+        } else {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+
+
+    }//GEN-LAST:event_btnSubmit1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnRequest;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnSelectInsurance;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnSubmit1;
-    private javax.swing.JButton btnSubmitPrimaryHospital;
     private javax.swing.JButton btnView;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBoxHospitalList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -685,15 +618,11 @@ public class RegisterForInsurance extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblConfirmedPolicy;
     private javax.swing.JTable tblSearch;
-    private javax.swing.JTable tblStatus;
     private javax.swing.JTextField txtAdult;
     private javax.swing.JTextField txtzipCode;
     // End of variables declaration//GEN-END:variables

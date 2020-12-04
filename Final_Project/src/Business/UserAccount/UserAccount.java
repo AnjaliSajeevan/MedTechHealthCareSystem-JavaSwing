@@ -6,6 +6,7 @@ package Business.UserAccount;
 
 import Business.Employee.Employee;
 import Business.Role.Role;
+import Business.WorkQueue.ClaimWorkQueue;
 import Business.WorkQueue.LabPatientWorkQueue;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.LabTestWorkQueue;
@@ -28,14 +29,24 @@ public class UserAccount {
     private PharmaWorkQueue pharmaWorkQueue;
     private LabPatientWorkQueue labPatientWorkQueue;
     private PatientHospitalAppointmentWorkQueue hospitalWorkQueue;
+    private ClaimWorkQueue claimWorkQueue; 
 
     public UserAccount() {
         workQueue = new WorkQueue();
-     vaccineWorkQueue = new VaccineWorkQueue();
+        vaccineWorkQueue = new VaccineWorkQueue();
         labTestWorkQueue = new LabTestWorkQueue();
         labPatientWorkQueue = new LabPatientWorkQueue();
         pharmaWorkQueue = new PharmaWorkQueue();
         hospitalWorkQueue= new PatientHospitalAppointmentWorkQueue();
+        claimWorkQueue = new ClaimWorkQueue();
+    }
+
+    public ClaimWorkQueue getClaimWorkQueue() {
+        return claimWorkQueue;
+    }
+
+    public void setClaimWorkQueue(ClaimWorkQueue claimWorkQueue) {
+        this.claimWorkQueue = claimWorkQueue;
     }
     
     

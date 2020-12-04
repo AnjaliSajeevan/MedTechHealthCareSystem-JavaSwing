@@ -5,8 +5,12 @@
  */
 package userinterface.InsuranceClaimWorkAreaJPanel;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ClaimWorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,10 +21,39 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form InsuranceClaimWorkAreaJPanel
      */
-    public InsuranceClaimWorkAreaJPanel(JPanel userProcessContainer,Enterprise enterprise) {
+    JPanel userProcessContainer;
+    UserAccount account;
+    Enterprise enterprise;
+    EcoSystem ecosystem;
+    public InsuranceClaimWorkAreaJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise, EcoSystem business) {
         initComponents();
+        this.ecosystem=business;
+        this.enterprise=enterprise;
+        this.account=account;
+        this.userProcessContainer=userProcessContainer;
+        populate();
     }
 
+    public void populate(){
+       for(ClaimWorkRequest r : ecosystem.getClaimWorkQueue().getWorkRequestList())
+       {    String enterpriseName=enterprise.toString();
+           if(r.getInsuranceEnterprise().equals(enterpriseName))
+           { System.out.println(r.getPatient());
+             DefaultTableModel model = (DefaultTableModel)tblClaim.getModel();
+            model.setRowCount(0);
+
+            Object[] row = new Object[7];
+            row[0] = r;
+            row[1] = r.getHospital();
+  
+            row[2] = r.getCost();
+            row[3] = r.getRequestDate();
+            row[4] = r.getStatus();
+            row[5] = r.getPatient();
+            model.addRow(row);
+    }
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +65,7 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblClaim = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -40,31 +73,33 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Insurance Claim Work Area");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblClaim.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Insurance Number", "Sender", "Amount", "Date"
+                "Insurance Number", "Sender", "Amount", "Date", "Status", "Patient"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tblClaim);
+        if (tblClaim.getColumnModel().getColumnCount() > 0) {
+            tblClaim.getColumnModel().getColumn(0).setResizable(false);
+            tblClaim.getColumnModel().getColumn(1).setResizable(false);
+            tblClaim.getColumnModel().getColumn(2).setResizable(false);
+            tblClaim.getColumnModel().getColumn(3).setResizable(false);
+            tblClaim.getColumnModel().getColumn(4).setResizable(false);
+            tblClaim.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jButton1.setText("View Client Details");
+        jButton1.setText("View Details");
 
         jButton2.setText("View Policy Details");
 
@@ -78,25 +113,25 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(92, 92, 92)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(158, 158, 158)
-                        .addComponent(jButton3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(214, 214, 214)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(55, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(55, 55, 55))
+                        .addComponent(jLabel1)
+                        .addGap(291, 291, 291))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(255, 255, 255))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(291, 291, 291))))
+                        .addGap(277, 277, 277))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,15 +139,15 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addComponent(jLabel1)
                 .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(jButton3)
+                    .addComponent(jButton1)
                     .addComponent(jButton4))
-                .addGap(56, 56, 56)
+                .addGap(57, 57, 57)
                 .addComponent(jButton2)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -124,6 +159,6 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblClaim;
     // End of variables declaration//GEN-END:variables
 }
