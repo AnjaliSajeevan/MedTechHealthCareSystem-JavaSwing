@@ -98,17 +98,17 @@ public class UserAccount {
         return pharmaWorkQueue;
     }
 
-    public void setPharmaWorkQueue(PharmaWorkQueue pharmaWorkQueue) {
+  /*  public void setPharmaWorkQueue(PharmaWorkQueue pharmaWorkQueue) {
         this.pharmaWorkQueue = pharmaWorkQueue;
-    }
+    }*/
 
     public LabPatientWorkQueue getLabPatientWorkQueue() {
         return labPatientWorkQueue;
     }
 
-    public void setLabPatientWorkQueue(LabPatientWorkQueue labPatientWorkQueue) {
+  /*  public void setLabPatientWorkQueue(LabPatientWorkQueue labPatientWorkQueue) {
         this.labPatientWorkQueue = labPatientWorkQueue;
-    }
+    }*/
 
     public PatientHospitalAppointmentWorkQueue getHospitalWorkQueue() {
         return hospitalWorkQueue;

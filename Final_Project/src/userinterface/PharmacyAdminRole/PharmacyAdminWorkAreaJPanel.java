@@ -76,8 +76,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         List<PharmaWorkRequest> requestList = account.getPharmaWorkQueue().getPharmaList();
         for(PharmaWorkRequest req: requestList){
             String medList = "";
-                Map<Medicine,Integer> medMap = new HashMap<Medicine,Integer>();
-                medMap = req.getMedList();
+                Map<Medicine,Integer> medMap= req.getMedList();
                 for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {  
                     if(medList.equals("")){
                         medList+=medicine.getKey();
@@ -415,6 +414,8 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
+        UserAccount patient = null;
+        UserAccount deliv = null;
         int selectedRow = medicineTable1.getSelectedRow();
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null, "Please select a Medicine Request row!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -430,16 +431,23 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
         Map<Medicine,Integer> medMap = pharmaRequest.getMedList();
-
+               patient= pharmaRequest.getSender();
         for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {
             for(Medicine m: pharma.getMedicineCatalog().getMedicineList())        {
                 if(medicine.getKey().getName().equals(m.getName())){
                     if(m.getQuantity() < medicine.getValue()){
+                      int dem = (m.getDemand() + medicine.getValue());
+                        m.setDemand(dem);
+                        pharma.getMedicineCatalog().updateMedicine(m);
                         if(stockOutMed.equals("")){
                             stockOutMed=m.getName();
                         }else{
                             stockOutMed+=","+m.getName();
                         }
+                    }else{
+                        int quant = (m.getQuantity() - medicine.getValue());
+                        m.setQuantity(quant);
+                        pharma.getMedicineCatalog().updateMedicine(m);
                     }
                 }
             }
@@ -453,6 +461,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }else{
                 message = "Medicines in stock and reserved.\n Please pickup from pharmacy at the earliest!" ;
             }
+            pharmaRequest.setSender(null);
         }else{
             JOptionPane.showMessageDialog(null, "Please fill up Medicines - OutOfStock -"+stockOutMed, "Information", JOptionPane.INFORMATION_MESSAGE);
             Date future = new Date();
@@ -462,14 +471,24 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }else{
                 message = "Medicines currently OutOfStock.\nPlease pickup from pharmacy anyday after"+future ;
             }
+                 for (Organization organization1 : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua1 : organization1.getUserAccountDirectory().getUserAccountList()) {
+                if(ua1.getUsername().equals(delivComboBox.getSelectedItem().toString())){
+                pharmaRequest.setSender(ua1);
+                deliv = ua1;
+                }
+            }
+        }
 
         }
 
-        UserAccount ua = pharmaRequest.getSender();
-        pharmaRequest.setReceiver(ua);
-        pharmaRequest.setSender(account);
+        pharmaRequest.setReceiver(patient);
+    //    pharmaRequest.setSender(account);
         pharmaRequest.setMessage(message);
-        ua.getPharmaWorkQueue().addPharmaRequest(pharmaRequest);
+        if(deliv!=null){
+            deliv.getPharmaWorkQueue().removePharmaRequest(pharmaRequest);
+        }
+        patient.getPharmaWorkQueue().addPharmaRequest(pharmaRequest);
         account.getPharmaWorkQueue().removePharmaRequest(pharmaRequest);
         populatePatientRequests();
                   JOptionPane.showMessageDialog(null, message+"\nMessage sent to Patient!", "Information", JOptionPane.INFORMATION_MESSAGE);

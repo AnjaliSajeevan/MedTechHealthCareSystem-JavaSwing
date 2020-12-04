@@ -6,7 +6,6 @@
 package userinterface.PatientRole;
 
 import Business.EcoSystem;
-import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;

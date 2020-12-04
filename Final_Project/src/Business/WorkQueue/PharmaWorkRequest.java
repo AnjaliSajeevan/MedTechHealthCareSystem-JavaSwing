@@ -6,14 +6,9 @@
 package Business.WorkQueue;
 
 import Business.Essentials.Medicine;
-import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
-import Business.Vaccine.Vaccine;
-import Business.Vaccine.VaccineTester;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -77,14 +72,15 @@ public class PharmaWorkRequest {
         this.patient = patient;
     }
 
-    public Map<Medicine,Integer> getMedList() {
+
+    public Map<Medicine, Integer> getMedList() {
         return medList;
     }
 
-    public void setMedList(Map<Medicine,Integer> medicine) {
-        medList = medicine;
+    public void updateMedList(Medicine med,Integer num) {
+        medList.put(med, num);
     }
-
+    
     public String getPrescription() {
         return prescription;
     }
