@@ -5,6 +5,7 @@
  */
 package Business.WorkQueue;
 
+import Business.UserAccount.UserAccount;
 import Business.Vaccine.Vaccine;
 import Business.Vaccine.VaccineTester;
 
@@ -17,9 +18,11 @@ public class LabTestWorkRequest {
     private VaccineTester tester;
     private int id;
     private String result;
+    private boolean complete;
     private String message;
     private String labTestType;
-    private String username;
+    private UserAccount receiver;
+    private UserAccount sender;
         
    private static int count = 1;
 
@@ -52,8 +55,8 @@ public class LabTestWorkRequest {
         this.labTestType = labTestType;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return String.valueOf(id);
     }
 
     public void setId(int id) {
@@ -76,15 +79,32 @@ public class LabTestWorkRequest {
         this.message = message;
     }
 
-    public String getUsername() {
-        return username;
+    public UserAccount getReceiver() {
+        return receiver;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setReceiver(UserAccount receiver) {
+        this.receiver = receiver;
+    }
+
+    public UserAccount getSender() {
+        return sender;
+    }
+
+    public void setSender(UserAccount sender) {
+        this.sender = sender;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 
 
+    
 
     @Override
     public String toString() {

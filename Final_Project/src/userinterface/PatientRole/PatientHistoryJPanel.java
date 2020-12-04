@@ -7,7 +7,9 @@ package userinterface.PatientRole;
 
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,10 +20,36 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PatientHistoryJPanel
      */
-   
+    EcoSystem ecosystem;
+    JPanel userProcessContainer;
+    String account;
 
-    public PatientHistoryJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
+    public PatientHistoryJPanel(JPanel userProcessContainer, String account, EcoSystem ecosystem) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        populateTable();
+    }
+           public void populateTable(){
+            DefaultTableModel model = (DefaultTableModel)tblpatientAppointment.getModel();
+        model.setRowCount(0);
+            
+        for(PatientHospitalAppointmentWorkRequest request : ecosystem.getHospitalQueue().hospitalRequestList()){           
+            if(request.getSender().equals(account)){
+            Object[] row = new Object[8];
+            row[0] = request;
+            row[1] = request.getAppDate();
+            row[2] = request.getTime();
+            row[3] = request.getStatus();
+            row[4] = request.getHospital();
+            row[5] = request.getDoctor();
+            row[6] = request.getResult();
+            
+            model.addRow(row);
+        }
+        }
+        
     }
 
     /**
@@ -33,19 +61,79 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblpatientAppointment = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        tblpatientAppointment.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Appointment No.", "Date", "Time", "Status", "Hospital", "Doctor", "Result"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblpatientAppointment);
+        if (tblpatientAppointment.getColumnModel().getColumnCount() > 0) {
+            tblpatientAppointment.getColumnModel().getColumn(0).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(1).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(2).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(3).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(4).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(5).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(6).setResizable(false);
+        }
+
+        jLabel1.setText("Patient Hospital appointment history");
+
+        jButton1.setText("<-Back");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(321, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblpatientAppointment;
     // End of variables declaration//GEN-END:variables
 }

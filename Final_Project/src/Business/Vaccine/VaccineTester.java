@@ -4,6 +4,7 @@
  */
 package Business.Vaccine;
 
+import Business.Enterprise.Enterprise;
 import java.util.Date;
 
 /**
@@ -30,6 +31,7 @@ public class VaccineTester {
     private String healthOther;
     private String condition;
     private String photograph;
+    private Enterprise enterprise;
 
     public VaccineTester() {
         id = count;
@@ -175,6 +177,14 @@ public class VaccineTester {
 
     public void setPhotograph(String photograph) {
         this.photograph = photograph;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
    

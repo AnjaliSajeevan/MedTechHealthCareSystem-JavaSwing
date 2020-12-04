@@ -54,7 +54,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         }
         btnUpdate.setEnabled(true);
         btnSave.setEnabled(false);
-        txtUsername.setText(vaccine.getUsername());
+        txtUsername.setText(vaccine.getUsername().toString());
         txtUsername.setEnabled(false);
         txtUsername.setForeground(Color.black);
         txtCreateDate.setText(vaccine.getCreateDate().toString());
@@ -138,136 +138,148 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        backJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        lblDesc = new javax.swing.JLabel();
-        txtDesc = new javax.swing.JTextField();
-        lblAge = new javax.swing.JLabel();
-        lblMin = new javax.swing.JLabel();
-        lblMax = new javax.swing.JLabel();
-        quantityMinAgeSpinner = new javax.swing.JSpinner();
-        quantityMaxAgeSpinner = new javax.swing.JSpinner();
-        lblCore = new javax.swing.JLabel();
+        btnSave = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel20 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        lblUsername = new javax.swing.JLabel();
+        lblCreate = new javax.swing.JLabel();
+        lblUpdate = new javax.swing.JLabel();
+        txtCreateDate = new javax.swing.JTextField();
+        txtUpdateDate = new javax.swing.JTextField();
+        lblVaccine = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
         txtCore = new javax.swing.JTextField();
-        lblAllergens = new javax.swing.JLabel();
         txtAllergens = new javax.swing.JTextField();
-        lblCond = new javax.swing.JLabel();
-        lblDosage = new javax.swing.JLabel();
-        txtPreservations = new javax.swing.JTextField();
-        lblPreservation = new javax.swing.JLabel();
+        lblAllergens = new javax.swing.JLabel();
+        lblCore = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        txtDesc = new javax.swing.JTextField();
+        lblDesc = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        lblAge = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        lblSide = new javax.swing.JLabel();
-        txtSide = new javax.swing.JTextField();
-        txtOther = new javax.swing.JTextField();
-        lblOther = new javax.swing.JLabel();
-        btnMorning = new javax.swing.JRadioButton();
-        btnAfternoon = new javax.swing.JRadioButton();
-        btnNight = new javax.swing.JRadioButton();
-        mornDosage = new javax.swing.JSpinner();
-        afterDosage = new javax.swing.JSpinner();
-        nightDosage = new javax.swing.JSpinner();
+        lblCond = new javax.swing.JLabel();
+        lblMax = new javax.swing.JLabel();
+        quantityMaxAgeSpinner = new javax.swing.JSpinner();
+        quantityMinAgeSpinner = new javax.swing.JSpinner();
+        lblMin = new javax.swing.JLabel();
         lblAdministration = new javax.swing.JLabel();
         btnIntra = new javax.swing.JRadioButton();
         btnPills = new javax.swing.JRadioButton();
-        lblCreate = new javax.swing.JLabel();
-        txtCreateDate = new javax.swing.JTextField();
-        txtUpdateDate = new javax.swing.JTextField();
-        lblUpdate = new javax.swing.JLabel();
-        lblUsername = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        btnUpdate = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel20 = new javax.swing.JLabel();
-        lblVaccine = new javax.swing.JLabel();
+        lblDosage = new javax.swing.JLabel();
         btnHeart = new javax.swing.JRadioButton();
         btnDiabetes = new javax.swing.JRadioButton();
         btnCovid = new javax.swing.JRadioButton();
+        btnMorning = new javax.swing.JRadioButton();
+        mornDosage = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        afterDosage = new javax.swing.JSpinner();
+        btnAfternoon = new javax.swing.JRadioButton();
         btnResp = new javax.swing.JRadioButton();
-        backJButton = new javax.swing.JButton();
+        btnNight = new javax.swing.JRadioButton();
+        nightDosage = new javax.swing.JSpinner();
+        jLabel22 = new javax.swing.JLabel();
+        txtOther = new javax.swing.JTextField();
+        lblOther = new javax.swing.JLabel();
+        txtPreservations = new javax.swing.JTextField();
+        txtSide = new javax.swing.JTextField();
+        lblPreservation = new javax.swing.JLabel();
+        lblSide = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+
+        backJButton.setText("<< Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("View Vaccine");
 
-        lblName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblName.setText("Name:");
+        btnSave.setText("Save");
+        btnSave.setEnabled(false);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
-        txtName.setEnabled(false);
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
-        lblDesc.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblDesc.setText("Description:");
+        jSeparator3.setBackground(new java.awt.Color(102, 0, 0));
 
-        txtDesc.setEnabled(false);
+        jLabel20.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel20.setText("Vaccine ID:");
 
-        lblAge.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblAge.setText("Age-Group:");
+        txtUsername.setEnabled(false);
 
-        lblMin.setText("Min :");
+        lblUsername.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblUsername.setText("Formulated By:");
 
-        lblMax.setText("Max:");
+        lblCreate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblCreate.setText("Create Date:");
 
-        quantityMinAgeSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        lblUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblUpdate.setText("Update Date:");
 
-        quantityMaxAgeSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        txtCreateDate.setEnabled(false);
 
-        lblCore.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblCore.setText("Core Component:");
+        txtUpdateDate.setEnabled(false);
+
+        lblVaccine.setEnabled(false);
+
+        jSeparator4.setBackground(new java.awt.Color(102, 0, 0));
 
         txtCore.setEnabled(false);
+
+        txtAllergens.setEnabled(false);
 
         lblAllergens.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         lblAllergens.setText("Any Allergens:");
 
-        txtAllergens.setEnabled(false);
+        lblCore.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblCore.setText("Core Component:");
 
-        lblCond.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblCond.setText("Usage For Condition:");
+        txtName.setEnabled(false);
 
-        lblDosage.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblDosage.setText("Dosage:");
+        txtDesc.setEnabled(false);
 
-        txtPreservations.setEnabled(false);
+        lblDesc.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblDesc.setText("Description:");
 
-        lblPreservation.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblPreservation.setText("Preservation instructions:");
+        lblName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblName.setText("Name:");
+
+        jSeparator5.setBackground(new java.awt.Color(102, 0, 0));
+
+        lblAge.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblAge.setText("Age-Group:");
 
         jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel13.setText("(in years)");
 
-        lblSide.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblSide.setText("Possible Side Effects:");
+        lblCond.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblCond.setText("Usage For Condition:");
 
-        txtSide.setEnabled(false);
+        lblMax.setText("Max:");
 
-        txtOther.setEnabled(false);
+        quantityMaxAgeSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        lblOther.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblOther.setText("Other Instructions:");
+        quantityMinAgeSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        btnMorning.setText("Morning");
-        btnMorning.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMorningActionPerformed(evt);
-            }
-        });
-
-        btnAfternoon.setText("Afternoon");
-
-        btnNight.setText("Night");
-
-        mornDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        afterDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        nightDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        lblMin.setText("Min :");
 
         lblAdministration.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         lblAdministration.setText("Administration:");
@@ -286,54 +298,8 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblCreate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblCreate.setText("Create Date:");
-
-        txtCreateDate.setEnabled(false);
-
-        txtUpdateDate.setEnabled(false);
-
-        lblUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblUpdate.setText("Update Date:");
-
-        lblUsername.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        lblUsername.setText("Formulated By:");
-
-        txtUsername.setEnabled(false);
-
-        jSeparator1.setBackground(new java.awt.Color(102, 0, 0));
-
-        jLabel10.setText("(milligrams)");
-
-        jLabel21.setText("(milligrams)");
-
-        jLabel22.setText("(milligrams)");
-
-        jSeparator3.setBackground(new java.awt.Color(102, 0, 0));
-
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnSave.setText("Save");
-        btnSave.setEnabled(false);
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
-        jSeparator4.setBackground(new java.awt.Color(102, 0, 0));
-
-        jSeparator5.setBackground(new java.awt.Color(102, 0, 0));
-
-        jLabel20.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel20.setText("Vaccine ID:");
-
-        lblVaccine.setEnabled(false);
+        lblDosage.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblDosage.setText("Dosage:");
 
         btnHeart.setText("Heart Disease");
         btnHeart.addActionListener(new java.awt.event.ActionListener() {
@@ -356,6 +322,23 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnMorning.setText("Morning");
+        btnMorning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMorningActionPerformed(evt);
+            }
+        });
+
+        mornDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jLabel10.setText("(milligrams)");
+
+        jLabel21.setText("(milligrams)");
+
+        afterDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        btnAfternoon.setText("Afternoon");
+
         btnResp.setText("Respiratory problems");
         btnResp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,45 +346,61 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        backJButton.setText("<< Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
+        btnNight.setText("Night");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        nightDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jLabel22.setText("(milligrams)");
+
+        txtOther.setEnabled(false);
+
+        lblOther.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblOther.setText("Other Instructions:");
+
+        txtPreservations.setEnabled(false);
+
+        txtSide.setEnabled(false);
+
+        lblPreservation.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblPreservation.setText("Preservation instructions:");
+
+        lblSide.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lblSide.setText("Possible Side Effects:");
+
+        jSeparator1.setBackground(new java.awt.Color(102, 0, 0));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPreservation)
                             .addComponent(lblSide))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtPreservations)
                             .addComponent(txtSide, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblOther)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCond)
                             .addComponent(lblAge)
                             .addComponent(jLabel13))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblMin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(quantityMinAgeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblMax)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(quantityMaxAgeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -409,48 +408,48 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                             .addComponent(btnDiabetes)
                             .addComponent(btnCovid)
                             .addComponent(btnResp))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
                                     .addGap(44, 44, 44)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
                                             .addComponent(lblAdministration)
                                             .addGap(18, 18, 18)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(btnPills)
                                                 .addComponent(btnIntra)))
                                         .addComponent(lblDosage)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(layout.createSequentialGroup()
                                     .addGap(61, 61, 61)
                                     .addComponent(btnMorning)
                                     .addGap(12, 12, 12)
                                     .addComponent(mornDosage, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel10)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnNight)
                                     .addComponent(btnAfternoon))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(afterDosage, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel21))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(nightDosage, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel22))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblUsername)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(228, 228, 228)
                                         .addComponent(jLabel20)
@@ -458,35 +457,35 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                                         .addComponent(lblVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(lblCreate)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblUpdate)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtUpdateDate, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jSeparator3)
                                 .addComponent(jSeparator4)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblName)
                             .addComponent(lblDesc))
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(82, 82, 82)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblAllergens)
                             .addComponent(lblCore))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAllergens, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCore, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(177, 177, 177)
                         .addComponent(jLabel1)
@@ -496,46 +495,46 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUsername)
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel20))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUpdate)
                             .addComponent(txtUpdateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(lblVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCore)
                     .addComponent(txtCore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDesc)
                     .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAllergens)
@@ -543,50 +542,50 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblAdministration)
                                     .addComponent(btnIntra))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPills))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblAge)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel13)))
                         .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblMin)
                             .addComponent(quantityMinAgeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblMax)
                             .addComponent(quantityMaxAgeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDosage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnMorning)
                             .addComponent(mornDosage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAfternoon)
                             .addComponent(afterDosage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21))
                         .addGap(8, 8, 8)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnNight)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(nightDosage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel22))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCond)
                             .addComponent(btnHeart))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -598,96 +597,46 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lblPreservation)
                         .addGap(17, 17, 17)
                         .addComponent(lblSide)
                         .addGap(11, 11, 11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblOther)
                             .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtPreservations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11))))
         );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 798, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMorningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMorningActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMorningActionPerformed
+    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
-    private void btnIntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIntraActionPerformed
-        // TODO add your handling code here:
-         btnIntra.setName("Intravenous");
-        btnPills.setSelected(false);
-    }//GEN-LAST:event_btnIntraActionPerformed
-
-    private void btnPillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPillsActionPerformed
-        // TODO add your handling code here:
-        btnPills.setName("Pills");
-        btnIntra.setSelected(false);
-    }//GEN-LAST:event_btnPillsActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-         btnUpdate.setEnabled(false);
-        btnSave.setEnabled(true);
-        txtUsername.setEnabled(false);
-        txtCreateDate.setEnabled(false);
-        txtUpdateDate.setEnabled(false);
-        txtName.setEnabled(true);
-        txtDesc.setEnabled(true);
-        txtAllergens.setEnabled(true);
-        txtCore.setEnabled(true);
-        lblVaccine.setEnabled(true);
-        btnPills.setEnabled(true);
-        btnIntra.setEnabled(true);
-        quantityMinAgeSpinner.setEnabled(true);
-        quantityMaxAgeSpinner.setEnabled(true);
-        btnHeart.setEnabled(true);
-        btnDiabetes.setEnabled(true);
-        btnCovid.setEnabled(true);
-        btnResp.setEnabled(true);
-        btnMorning.setEnabled(true);
-        btnAfternoon.setEnabled(true);
-        btnNight.setEnabled(true);
-        mornDosage.setEnabled(true);
-        afterDosage.setEnabled(true);
-        nightDosage.setEnabled(true);
-        txtPreservations.setEnabled(true);
-        txtSide.setEnabled(true);
-        txtOther.setEnabled(true);
-
-    }//GEN-LAST:event_btnUpdateActionPerformed
+        if(manage == true){
+            userProcessContainer.remove(this);
+            Component[] componentArray = userProcessContainer.getComponents();
+            Component component = componentArray[componentArray.length - 1];
+            VaccineScientistWorkAreaJPanel sysAdminwjp = (VaccineScientistWorkAreaJPanel) component;
+            sysAdminwjp.populateDrugProjectTable();
+            sysAdminwjp.populateDrugRequestTable();
+            sysAdminwjp.populateTimeline("");
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+        }else{
+            userProcessContainer.remove(this);
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+        }
+    }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-       lblName.setForeground(Color.black);
+        lblName.setForeground(Color.black);
         lblUsername.setForeground(Color.black);
         lblCreate.setForeground(Color.black);
         lblUpdate.setForeground(Color.black);
@@ -739,7 +688,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             if((!btnMorning.isSelected()) &&(!btnAfternoon.isSelected()) && (!btnNight.isSelected())){
                 lblDosage.setForeground(Color.red);
             }
-             if((txtPreservations.getText().equalsIgnoreCase(""))){
+            if((txtPreservations.getText().equalsIgnoreCase(""))){
                 txtPreservations.setForeground(Color.red);
             }
             if((txtSide.getText().equalsIgnoreCase(""))){
@@ -748,7 +697,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             if((txtOther.getText().equalsIgnoreCase(""))){
                 lblOther.setForeground(Color.red);
             }
-                        if((!btnPills.isSelected()) &&(!btnIntra.isSelected())){
+            if((!btnPills.isSelected()) &&(!btnIntra.isSelected())){
                 lblAdministration.setForeground(Color.red);
             }
             if((!btnMorning.isSelected()) &&(!btnAfternoon.isSelected()) && (!btnNight.isSelected())){
@@ -802,60 +751,103 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
 
         }
 
-            vaccine.setName(txtName.getText());
-            vaccine.setDescription(txtDesc.getText());
-            vaccine.setCoreComponents(txtCore.getText());
-            vaccine.setAllergens(txtAllergens.getText());
-            vaccine.setMinAgeGroup((Integer)quantityMinAgeSpinner.getValue());
-            vaccine.setMaxAgeGroup((Integer)quantityMaxAgeSpinner.getValue());
-            if(btnPills.isSelected()){
-                vaccine.setAdministration(btnPills.getName());
-            }else{
-                vaccine.setAdministration(btnIntra.getName());
-            }
-            String condition = "";
-            if(btnHeart.isSelected()){
-                condition=btnHeart.getName();
-            }else if(btnCovid.isSelected()){
-                condition=btnCovid.getName();
-            }else if(btnResp.isSelected()){
-                condition=btnResp.getName();
-            }else{
-                condition=btnDiabetes.getName();
-            }
-            vaccine.setCondition(condition);
-                        int dose =0;
-            Map<String,Integer> doseMap = vaccine.getDosage();
-            if((Integer)mornDosage.getValue()<=0){
-                doseMap.put("Morning", dose);
-            }else{
+        vaccine.setName(txtName.getText());
+        vaccine.setDescription(txtDesc.getText());
+        vaccine.setCoreComponents(txtCore.getText());
+        vaccine.setAllergens(txtAllergens.getText());
+        vaccine.setMinAgeGroup((Integer)quantityMinAgeSpinner.getValue());
+        vaccine.setMaxAgeGroup((Integer)quantityMaxAgeSpinner.getValue());
+        if(btnPills.isSelected()){
+            vaccine.setAdministration(btnPills.getName());
+        }else{
+            vaccine.setAdministration(btnIntra.getName());
+        }
+        String condition = "";
+        if(btnHeart.isSelected()){
+            condition=btnHeart.getName();
+        }else if(btnCovid.isSelected()){
+            condition=btnCovid.getName();
+        }else if(btnResp.isSelected()){
+            condition=btnResp.getName();
+        }else{
+            condition=btnDiabetes.getName();
+        }
+        vaccine.setCondition(condition);
+        int dose =0;
+        Map<String,Integer> doseMap = vaccine.getDosage();
+        if((Integer)mornDosage.getValue()<=0){
+            doseMap.put("Morning", dose);
+        }else{
             doseMap.put("Morning", (Integer)mornDosage.getValue());
-            }
-            if((Integer)afterDosage.getValue()<=0){
-                doseMap.put("Afternoon", dose);
-            }else{
+        }
+        if((Integer)afterDosage.getValue()<=0){
+            doseMap.put("Afternoon", dose);
+        }else{
             doseMap.put("Afternoon", (Integer)afterDosage.getValue());
-            }
-            if((Integer)nightDosage.getValue()<=0){
-               doseMap.put("Night", dose);
-            }else{
+        }
+        if((Integer)nightDosage.getValue()<=0){
+            doseMap.put("Night", dose);
+        }else{
             doseMap.put("Night", (Integer)nightDosage.getValue());
-            }
-            vaccine.setDosage(doseMap);
-            vaccine.setPreservations(txtPreservations.getText());
-            vaccine.setSideeffects(txtSide.getText());
-            vaccine.setOther(txtOther.getText());
-            vaccine.setUpdateDate();
-            vaccine.setUsername(account.getUsername());
+        }
+        vaccine.setDosage(doseMap);
+        vaccine.setPreservations(txtPreservations.getText());
+        vaccine.setSideeffects(txtSide.getText());
+        vaccine.setOther(txtOther.getText());
+        vaccine.setUpdateDate();
+        vaccine.setUsername(account);
         //    business.getVaccineDirectory().updateVaccine(vaccine);
-            JOptionPane.showMessageDialog(null,"Vaccine Updated Successfully!!!");
-            btnSave.setEnabled(false);
-            btnUpdate.setEnabled(true); 
+        JOptionPane.showMessageDialog(null,"Vaccine Updated Successfully!!!");
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        btnUpdate.setEnabled(false);
+        btnSave.setEnabled(true);
+        txtUsername.setEnabled(false);
+        txtCreateDate.setEnabled(false);
+        txtUpdateDate.setEnabled(false);
+        txtName.setEnabled(true);
+        txtDesc.setEnabled(true);
+        txtAllergens.setEnabled(true);
+        txtCore.setEnabled(true);
+        lblVaccine.setEnabled(true);
+        btnPills.setEnabled(true);
+        btnIntra.setEnabled(true);
+        quantityMinAgeSpinner.setEnabled(true);
+        quantityMaxAgeSpinner.setEnabled(true);
+        btnHeart.setEnabled(true);
+        btnDiabetes.setEnabled(true);
+        btnCovid.setEnabled(true);
+        btnResp.setEnabled(true);
+        btnMorning.setEnabled(true);
+        btnAfternoon.setEnabled(true);
+        btnNight.setEnabled(true);
+        mornDosage.setEnabled(true);
+        afterDosage.setEnabled(true);
+        nightDosage.setEnabled(true);
+        txtPreservations.setEnabled(true);
+        txtSide.setEnabled(true);
+        txtOther.setEnabled(true);
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnIntraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIntraActionPerformed
+        // TODO add your handling code here:
+        btnIntra.setName("Intravenous");
+        btnPills.setSelected(false);
+    }//GEN-LAST:event_btnIntraActionPerformed
+
+    private void btnPillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPillsActionPerformed
+        // TODO add your handling code here:
+        btnPills.setName("Pills");
+        btnIntra.setSelected(false);
+    }//GEN-LAST:event_btnPillsActionPerformed
 
     private void btnHeartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeartActionPerformed
         // TODO add your handling code here:
-                btnHeart.setName("Heart");
+        btnHeart.setName("Heart");
         btnDiabetes.setSelected(false);
         btnCovid.setSelected(false);
         btnResp.setSelected(false);
@@ -863,7 +855,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
 
     private void btnDiabetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiabetesActionPerformed
         // TODO add your handling code here:
-                btnDiabetes.setName("Diabetes");
+        btnDiabetes.setName("Diabetes");
         btnHeart.setSelected(false);
         btnCovid.setSelected(false);
         btnResp.setSelected(false);
@@ -871,39 +863,23 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
 
     private void btnCovidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCovidActionPerformed
         // TODO add your handling code here:
-                btnCovid.setName("Covid");
+        btnCovid.setName("Covid");
         btnDiabetes.setSelected(false);
         btnHeart.setSelected(false);
         btnResp.setSelected(false);
     }//GEN-LAST:event_btnCovidActionPerformed
 
+    private void btnMorningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMorningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMorningActionPerformed
+
     private void btnRespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRespActionPerformed
         // TODO add your handling code here:
-                btnResp.setName("Resp");
+        btnResp.setName("Resp");
         btnDiabetes.setSelected(false);
         btnCovid.setSelected(false);
         btnHeart.setSelected(false);
     }//GEN-LAST:event_btnRespActionPerformed
-
-    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-         if(manage == true){
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        VaccineScientistWorkAreaJPanel sysAdminwjp = (VaccineScientistWorkAreaJPanel) component;
-        sysAdminwjp.populateDrugProjectTable();
-         sysAdminwjp.populateDrugRequestTable();
-          sysAdminwjp.populateTimeline("");
-        }else{
-      userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);         
-        }
-
-
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -926,7 +902,6 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;

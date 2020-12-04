@@ -43,6 +43,15 @@ public class Patient extends Employee {
     private int adultNo;
     private int childrenNo;
     private String primaryHospital;
+    private String insuranceOrderNo;
+
+    public String getInsuranceOrderNo() {
+        return insuranceOrderNo;
+    }
+
+    public void setInsuranceOrderNo(String insuranceOrderNo) {
+        this.insuranceOrderNo = insuranceOrderNo;
+    }
 
     public String getPrimaryHospital() {
         return primaryHospital;

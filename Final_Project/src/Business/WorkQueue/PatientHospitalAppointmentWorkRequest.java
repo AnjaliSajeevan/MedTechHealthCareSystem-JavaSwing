@@ -5,7 +5,9 @@
  */
 package Business.WorkQueue;
 
+import Business.InsurancePolicy.InsurancePolicy;
 import Business.UserAccount.UserAccount;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -21,7 +23,41 @@ public class PatientHospitalAppointmentWorkRequest {
     private UserAccount sender;
     private UserAccount receiver;
     private String requestNo;
+    private String doctor;
+    private String result;
+    private double cost;
+    private InsurancePolicy Insurance;
 
+    public InsurancePolicy getInsurance() {
+        return Insurance;
+    }
+
+    public void setInsurance(InsurancePolicy Insurance) {
+        this.Insurance = Insurance;
+    }
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
     public String getRequestNo() {
         return requestNo;
     }
@@ -33,7 +69,7 @@ public class PatientHospitalAppointmentWorkRequest {
     private Date requestDate;
     private Date resolveDate;
     private String hospital;
-    private Date appDate;
+    private LocalDate appDate;
     private String time;
      private String status;
 
@@ -53,11 +89,11 @@ public class PatientHospitalAppointmentWorkRequest {
         this.time = time;
     }
 
-    public Date getAppDate() {
+    public LocalDate getAppDate() {
         return appDate;
     }
 
-    public void setAppDate(Date appDate) {
+    public void setAppDate(LocalDate appDate) {
         this.appDate = appDate;
     }
 

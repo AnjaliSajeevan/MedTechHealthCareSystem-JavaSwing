@@ -7,13 +7,26 @@ package userinterface.PharmacyAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.PharmacyEnterprise;
+import Business.Essentials.Medicine;
+import Business.Organization.Organization;
 import Business.Organization.PharmacyOrganization;
 import Business.UserAccount.UserAccount;
+import Business.Vaccine.Vaccine;
+import Business.WorkQueue.PharmaWorkRequest;
+import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import userinterface.AdministrativeRole.ManageEmployeeJPanel;
 import userinterface.AdministrativeRole.ManageOrganizationJPanel;
 import userinterface.AdministrativeRole.ManageUserAccountJPanel;
+import userinterface.VaccineScientistRole.ViewVaccineJPanel;
 
 /**
  *
@@ -26,14 +39,70 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
-    EcoSystem ecosystem;
-    public PharmacyAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, PharmacyOrganization LabOrganization, Enterprise enterprise) {
+    EcoSystem business;
+    UserAccount account;
+    PharmacyOrganization organization;
+    public PharmacyAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, PharmacyOrganization organization, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.account = account;
+        this.business = business;
+        this.organization = organization;
         valueLabel.setText(enterprise.getName());
+        populateNewMedTable();
+        populatePatientRequests();
+        populateDeliv();
     }
+    public void populateNewMedTable(){
+              DefaultTableModel model = (DefaultTableModel)vaccineRequestTable.getModel();
+        model.setRowCount(0);
+        List<VaccineWorkRequest> requestList = account.getVaccineWorkQueue().getVaccineRequestList();
+        for(VaccineWorkRequest req: requestList){
 
+            Object row[] = new Object[5];
+                 row[0] = req;
+                 row[1] = req.getVaccine();
+                 row[2] = req.getVaccine().getCondition();
+                 row[3] = req.getResolveDate();          
+                 model.addRow(row); 
+            }
+        
+    
+    }
+    public void populatePatientRequests(){
+                      DefaultTableModel model = (DefaultTableModel)medicineTable1.getModel();
+        model.setRowCount(0);
+        List<PharmaWorkRequest> requestList = account.getPharmaWorkQueue().getPharmaList();
+        for(PharmaWorkRequest req: requestList){
+            String medList = "";
+                Map<Medicine,Integer> medMap= req.getMedList();
+                for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {  
+                    if(medList.equals("")){
+                        medList+=medicine.getKey();
+                    }else{    
+                        medList+=","+medicine.getKey();
+                  }
+                } 
+             Object row[] = new Object[8];
+                 row[0] = req;
+                 row[1] = req.getSender().getUsername();              
+                 row[2] = medList;
+                 row[3] = req.getCreateDate();
+                 row[4] = req.getCondition();
+                 model.addRow(row); 
+            }
+    }
+    public void populateDeliv(){
+        delivComboBox.removeAllItems();
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+                if(ua.getRole().toString().equals("DeliveryMan")){
+                delivComboBox.addItem(ua);
+                }
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,122 +112,42 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
-        manageOrganizationJButton = new javax.swing.JButton();
-        manageEmployeeJButton = new javax.swing.JButton();
-        userJButton = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        medicineTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         delivComboBox = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        btnCheck = new javax.swing.JButton();
         btnProcess = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        newMedTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        btnProcess1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        enterpriseLabel1 = new javax.swing.JLabel();
-        valueLabel1 = new javax.swing.JLabel();
-        manageOrganizationJButton1 = new javax.swing.JButton();
-        manageEmployeeJButton1 = new javax.swing.JButton();
-        userJButton1 = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
         medicineTable1 = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        delivComboBox1 = new javax.swing.JComboBox();
-        btnProcess2 = new javax.swing.JButton();
-        jSeparator5 = new javax.swing.JSeparator();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        newMedTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        btnAddSupply = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        vaccineRequestTable = new javax.swing.JTable();
+        btnVaccine = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        btnProcess3 = new javax.swing.JButton();
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Pharmacy Admin");
-
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-
-        valueLabel.setText("<value>");
-
-        manageOrganizationJButton.setText("Manage Organization");
-        manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageOrganizationJButtonActionPerformed(evt);
-            }
-        });
-
-        manageEmployeeJButton.setText("Manage Employee");
-        manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageEmployeeJButtonActionPerformed(evt);
-            }
-        });
-
-        userJButton.setText("Manage User");
-        userJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userJButtonActionPerformed(evt);
-            }
-        });
-
-        jSeparator1.setBackground(new java.awt.Color(102, 0, 0));
-
-        medicineTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "PatientName", "DocID", "Medicine", "Quantity", "RequestDate", "CovidCondition"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(medicineTable);
-        if (medicineTable.getColumnModel().getColumnCount() > 0) {
-            medicineTable.getColumnModel().getColumn(0).setResizable(false);
-            medicineTable.getColumnModel().getColumn(1).setResizable(false);
-            medicineTable.getColumnModel().getColumn(2).setResizable(false);
-            medicineTable.getColumnModel().getColumn(2).setHeaderValue("Dosage");
-            medicineTable.getColumnModel().getColumn(3).setResizable(false);
-            medicineTable.getColumnModel().getColumn(4).setResizable(false);
-            medicineTable.getColumnModel().getColumn(4).setHeaderValue("RequestDate");
-            medicineTable.getColumnModel().getColumn(5).setResizable(false);
-            medicineTable.getColumnModel().getColumn(5).setHeaderValue("CovidCondition");
-        }
-
-        jLabel1.setText("New Medicine Requests:");
-
-        jLabel3.setText("DeliveryMan");
+        btnAddMed = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        manageOrganizationJButton1 = new javax.swing.JButton();
+        manageEmployeeJButton1 = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
+        userJButton1 = new javax.swing.JButton();
+        valueLabel = new javax.swing.JLabel();
+        enterpriseLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         delivComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delivComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("DeliveryMan");
+
+        btnCheck.setText("CheckAvailability");
+        btnCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckActionPerformed(evt);
             }
         });
 
@@ -169,58 +158,78 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jSeparator2.setBackground(new java.awt.Color(102, 0, 0));
-
-        newMedTable.setModel(new javax.swing.table.DefaultTableModel(
+        medicineTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Medicine", "Type", "ApproveDate"
+                "RequestID", "PatientName", "Medicine", "RequestDate", "CovidCondition"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(newMedTable);
-        if (newMedTable.getColumnModel().getColumnCount() > 0) {
-            newMedTable.getColumnModel().getColumn(0).setResizable(false);
-            newMedTable.getColumnModel().getColumn(1).setResizable(false);
-            newMedTable.getColumnModel().getColumn(2).setResizable(false);
-        }
+        jScrollPane3.setViewportView(medicineTable1);
 
-        jButton1.setText("Add to Supply");
+        jLabel8.setText("Patient Medicine Requests:");
 
-        jButton2.setText("Display Pharmacy Reports");
+        jSeparator5.setBackground(new java.awt.Color(102, 0, 0));
 
-        jLabel4.setText("Patient Medicine Requests:");
-
-        jButton3.setText("Manage Medicine Supplies");
-
-        jSeparator3.setBackground(new java.awt.Color(102, 0, 0));
-
-        btnProcess1.setText("CheckAvailability");
-        btnProcess1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddSupply.setText("Add to Supply");
+        btnAddSupply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcess1ActionPerformed(evt);
+                btnAddSupplyActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setText("Pharmacy Admin");
+        vaccineRequestTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "RequestID", "Medicine", "Type", "ApproveDate"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        enterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel1.setText("EnterPrise :");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(vaccineRequestTable);
 
-        valueLabel1.setText("<value>");
+        btnVaccine.setText("View Vaccine contents");
+        btnVaccine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVaccineActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("New Medicine Requests:");
+
+        jSeparator6.setBackground(new java.awt.Color(102, 0, 0));
+
+        btnAddMed.setText("Manage Medicine Supplies");
+        btnAddMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddMedActionPerformed(evt);
+            }
+        });
+
+        jSeparator4.setBackground(new java.awt.Color(102, 0, 0));
 
         manageOrganizationJButton1.setText("Manage Organization");
         manageOrganizationJButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +245,13 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnReport.setText("Display Pharmacy Reports");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+
         userJButton1.setText("Manage User");
         userJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,204 +259,13 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jSeparator4.setBackground(new java.awt.Color(102, 0, 0));
+        valueLabel.setText("<value>");
 
-        medicineTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "PatientName", "DocID", "Medicine", "Quantity", "RequestDate", "CovidCondition"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("EnterPrise :");
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(medicineTable1);
-
-        jLabel6.setText("New Medicine Requests:");
-
-        jLabel7.setText("DeliveryMan");
-
-        delivComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delivComboBox1ActionPerformed(evt);
-            }
-        });
-
-        btnProcess2.setText("Process Request");
-        btnProcess2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcess2ActionPerformed(evt);
-            }
-        });
-
-        jSeparator5.setBackground(new java.awt.Color(102, 0, 0));
-
-        newMedTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Medicine", "Type", "ApproveDate"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(newMedTable1);
-
-        jButton4.setText("Add to Supply");
-
-        jButton5.setText("Display Pharmacy Reports");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Patient Medicine Requests:");
-
-        jButton6.setText("Manage Medicine Supplies");
-
-        jSeparator6.setBackground(new java.awt.Color(102, 0, 0));
-
-        btnProcess3.setText("CheckAvailability");
-        btnProcess3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcess3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnProcess2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(btnProcess3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addGap(8, 8, 8)
-                                .addComponent(delivComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(130, 130, 130)
-                                        .addComponent(jLabel5))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(60, 60, 60)
-                                                .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(manageOrganizationJButton1))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(50, 50, 50)
-                                                .addComponent(manageEmployeeJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(52, 52, 52)
-                                                .addComponent(userJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(valueLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(228, 228, 228)
-                                .addComponent(jButton4)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator6)
-            .addComponent(jSeparator4)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jLabel8)
-                    .addContainerGap(480, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(1, 1, 1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseLabel1)
-                    .addComponent(valueLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(manageOrganizationJButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addComponent(userJButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(manageEmployeeJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProcess2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(delivComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProcess3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(450, Short.MAX_VALUE)
-                    .addComponent(jLabel8)
-                    .addGap(191, 191, 191)))
-        );
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Pharmacy Admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -449,72 +274,59 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(btnProcess1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(8, 8, 8)
-                                .addComponent(delivComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(130, 130, 130)
-                                        .addComponent(jLabel2))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(60, 60, 60)
-                                                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(manageOrganizationJButton))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(50, 50, 50)
-                                                .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(52, 52, 52)
-                                                .addComponent(userJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(btnProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(btnCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(delivComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(228, 228, 228)
-                                .addComponent(jButton1)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator3)
-            .addComponent(jSeparator1)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jLabel4)
-                    .addContainerGap(480, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(69, 69, 69)
+                                        .addComponent(jLabel8))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(70, 70, 70)
+                                        .addComponent(btnAddMed, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(manageOrganizationJButton1)
+                                        .addGap(53, 53, 53)
+                                        .addComponent(manageEmployeeJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(userJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(184, 184, 184)
+                                        .addComponent(btnAddSupply)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnVaccine)))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(105, Short.MAX_VALUE))
+            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator5))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,85 +337,205 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enterpriseLabel)
                     .addComponent(valueLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(manageOrganizationJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addComponent(userJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(manageOrganizationJButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userJButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageEmployeeJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddMed, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddSupply, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel8)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(delivComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProcess1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(450, Short.MAX_VALUE)
-                    .addComponent(jLabel4)
-                    .addGap(191, 191, 191)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(btnCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(delivComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
-        // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise,ecosystem);
-        userProcessContainer.add("ManageUserAccountJPanel", muajp);
-
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_userJButtonActionPerformed
-
-    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
-
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
-
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
-
-    private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
-
-        ManageOrganizationJPanel managePharmacyOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),"Pharmacy Organization");
-        userProcessContainer.add("managePharmacyOrganizationJPanel", managePharmacyOrganizationJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
 
     private void delivComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delivComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_delivComboBoxActionPerformed
 
+    private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
+        // TODO add your handling code here:
+        String stockOutMed = "";
+        int selectedRow = medicineTable1.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Medicine Request row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        PharmacyEnterprise pharma = (PharmacyEnterprise) enterprise;
+        PharmaWorkRequest pharmaRequest= (PharmaWorkRequest)medicineTable1.getValueAt(selectedRow, 0);
+        Map<Medicine,Integer> medMap = pharmaRequest.getMedList();
+
+        for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {
+            for(Medicine m: pharma.getMedicineCatalog().getMedicineList())        {
+                if(medicine.getKey().getName().equals(m.getName())){
+                    if(m.getQuantity() < medicine.getValue()){
+                        if(stockOutMed.equals("")){
+                            stockOutMed=m.getName();
+                        }else{
+                            stockOutMed+=","+m.getName();
+                        }
+                    }
+                }
+            }
+        }
+        if(stockOutMed.equals("")){
+            JOptionPane.showMessageDialog(null, "All Medicines are in Stock!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "Please fill up Medicines - OutOfStock -"+stockOutMed, "Information", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+
+    }//GEN-LAST:event_btnCheckActionPerformed
+
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
+        UserAccount patient = null;
+        UserAccount deliv = null;
+        int selectedRow = medicineTable1.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Medicine Request row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String stockOutMed = "";
+        PharmacyEnterprise pharma = (PharmacyEnterprise) enterprise;
+        PharmaWorkRequest pharmaRequest= (PharmaWorkRequest)medicineTable1.getValueAt(selectedRow, 0);
+        if(pharmaRequest.getCondition().equals("Covid")){
+            if(delivComboBox.getSelectedItem().toString().equals("")){
+                JOptionPane.showMessageDialog(null, "Handling Covid case, Delivery staff selection is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+        Map<Medicine,Integer> medMap = pharmaRequest.getMedList();
+               patient= pharmaRequest.getSender();
+        for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {
+            for(Medicine m: pharma.getMedicineCatalog().getMedicineList())        {
+                if(medicine.getKey().getName().equals(m.getName())){
+                    if(m.getQuantity() < medicine.getValue()){
+                      int dem = (m.getDemand() + medicine.getValue());
+                        m.setDemand(dem);
+                        pharma.getMedicineCatalog().updateMedicine(m);
+                        if(stockOutMed.equals("")){
+                            stockOutMed=m.getName();
+                        }else{
+                            stockOutMed+=","+m.getName();
+                        }
+                    }else{
+                        int quant = (m.getQuantity() - medicine.getValue());
+                        m.setQuantity(quant);
+                        pharma.getMedicineCatalog().updateMedicine(m);
+                    }
+                }
+            }
+        }
+        String message = "";
+        if(stockOutMed.equals("")){
+
+            JOptionPane.showMessageDialog(null, "All Medicines are in Stock!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            if(pharmaRequest.getCondition().equals("Covid")){
+                message = "Medicines in stock and reserved.\n DeliveryStaff: "+delivComboBox.getSelectedItem().toString()+" will deliver at the earliest" ;
+            }else{
+                message = "Medicines in stock and reserved.\n Please pickup from pharmacy at the earliest!" ;
+            }
+            pharmaRequest.setSender(null);
+        }else{
+            JOptionPane.showMessageDialog(null, "Please fill up Medicines - OutOfStock -"+stockOutMed, "Information", JOptionPane.INFORMATION_MESSAGE);
+            Date future = new Date();
+            future.setDate(future.getDate()+10);
+            if(pharmaRequest.getCondition().equals("Covid")){
+                message = "Medicines currently OutOfStock.\n DeliveryStaff: "+delivComboBox.getSelectedItem().toString()+" will deliver anyday after"+future ;
+            }else{
+                message = "Medicines currently OutOfStock.\nPlease pickup from pharmacy anyday after"+future ;
+            }
+                 for (Organization organization1 : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua1 : organization1.getUserAccountDirectory().getUserAccountList()) {
+                if(ua1.getUsername().equals(delivComboBox.getSelectedItem().toString())){
+                pharmaRequest.setSender(ua1);
+                deliv = ua1;
+                }
+            }
+        }
+
+        }
+
+        pharmaRequest.setReceiver(patient);
+    //    pharmaRequest.setSender(account);
+        pharmaRequest.setMessage(message);
+        if(deliv!=null){
+            deliv.getPharmaWorkQueue().removePharmaRequest(pharmaRequest);
+        }
+        patient.getPharmaWorkQueue().addPharmaRequest(pharmaRequest);
+        account.getPharmaWorkQueue().removePharmaRequest(pharmaRequest);
+        populatePatientRequests();
+                  JOptionPane.showMessageDialog(null, message+"\nMessage sent to Patient!", "Information", JOptionPane.INFORMATION_MESSAGE);
+   
     }//GEN-LAST:event_btnProcessActionPerformed
 
-    private void btnProcess1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcess1ActionPerformed
+    private void btnAddSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProcess1ActionPerformed
+        int selectedRow = vaccineRequestTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Vaccine vaccine= (Vaccine)vaccineRequestTable.getValueAt(selectedRow, 1);
+        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
+        account.getVaccineWorkQueue().removeWorkRequest(vaccineReq);
+        ManageMedicineJPanel mngMedJPanel=new ManageMedicineJPanel(userProcessContainer,enterprise,business,vaccine.getName(),vaccine.getCondition());
+        userProcessContainer.add("mngMedJPanel",mngMedJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+    }//GEN-LAST:event_btnAddSupplyActionPerformed
+
+    private void btnVaccineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaccineActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = vaccineRequestTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Medicine row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Vaccine vaccine= (Vaccine)vaccineRequestTable.getValueAt(selectedRow, 1);
+
+        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(userProcessContainer,account,business,vaccine,false);
+        userProcessContainer.add("viewVaccineJPanel",viewVaccineJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnVaccineActionPerformed
+
+    private void btnAddMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMedActionPerformed
+        // TODO add your handling code here:
+        ManageMedicineJPanel mngMedJPanel=new ManageMedicineJPanel(userProcessContainer,enterprise,business);
+        userProcessContainer.add("mngMedJPanel",mngMedJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnAddMedActionPerformed
 
     private void manageOrganizationJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButton1ActionPerformed
 
@@ -622,77 +554,43 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageEmployeeJButton1ActionPerformed
 
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportActionPerformed
+
     private void userJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButton1ActionPerformed
         // TODO add your handling code here:
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise,ecosystem);
+        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise,business);
         userProcessContainer.add("ManageUserAccountJPanel", muajp);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_userJButton1ActionPerformed
 
-    private void delivComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delivComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_delivComboBox1ActionPerformed
-
-    private void btnProcess2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcess2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnProcess2ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void btnProcess3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcess3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnProcess3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddMed;
+    private javax.swing.JButton btnAddSupply;
+    private javax.swing.JButton btnCheck;
     private javax.swing.JButton btnProcess;
-    private javax.swing.JButton btnProcess1;
-    private javax.swing.JButton btnProcess2;
-    private javax.swing.JButton btnProcess3;
+    private javax.swing.JButton btnReport;
+    private javax.swing.JButton btnVaccine;
     private javax.swing.JComboBox delivComboBox;
-    private javax.swing.JComboBox delivComboBox1;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JLabel enterpriseLabel1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageEmployeeJButton1;
-    private javax.swing.JButton manageOrganizationJButton;
     private javax.swing.JButton manageOrganizationJButton1;
-    private javax.swing.JTable medicineTable;
     private javax.swing.JTable medicineTable1;
-    private javax.swing.JTable newMedTable;
-    private javax.swing.JTable newMedTable1;
-    private javax.swing.JButton userJButton;
     private javax.swing.JButton userJButton1;
+    private javax.swing.JTable vaccineRequestTable;
     private javax.swing.JLabel valueLabel;
-    private javax.swing.JLabel valueLabel1;
     // End of variables declaration//GEN-END:variables
 }

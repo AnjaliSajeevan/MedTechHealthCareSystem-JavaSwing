@@ -6,7 +6,8 @@
 package userinterface.VaccineAdminRole;
 
 import Business.EcoSystem;
-import Business.UserAccount.UserAccount;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.VaccineEnterprise;
 import Business.Vaccine.VaccineTester;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -38,13 +39,15 @@ public class CreateTestersJPanel extends javax.swing.JPanel {
         String condition ="";
     private JPanel userProcessContainer;
     private EcoSystem business;  
-    public CreateTestersJPanel(JPanel userProcessContainer,EcoSystem business ) {
+    private VaccineEnterprise enterprise;
+    public CreateTestersJPanel(JPanel userProcessContainer,EcoSystem business,Enterprise enterprise ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
-        
+        this.enterprise = (VaccineEnterprise)enterprise;
         
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -632,7 +635,6 @@ public class CreateTestersJPanel extends javax.swing.JPanel {
                 error+="\nFor Name - Valid name with only Alphabets and Spaces allowed!";
             }
             if(!txtPhone.getText().equalsIgnoreCase("")){
-                System.out.println(txtPhone.getText());
                 String phone = (txtPhone.getText());
 
                 String phoneRegex = "^[0-9]{10}$";
@@ -657,7 +659,6 @@ public class CreateTestersJPanel extends javax.swing.JPanel {
             LocalDate locBirthDate= LocalDate.parse(txtDOB.getText(),dateFormatter);
             LocalDate today = LocalDate.now();
             Period p = Period.between(locBirthDate, today);
-            System.out.println("Age="+p.getYears());
             age = p.getYears();
             }catch (ParseException ex) {
                 error+="\nFor Date Of Birth - Please enter in \"dd/mm/yyyy\" pattern only!";
@@ -724,7 +725,8 @@ public class CreateTestersJPanel extends javax.swing.JPanel {
                 tester.setCondition(condition);
                 tester.setPhotograph(txtPhoto.getText());
                 tester.setUpdateDate();
-                business.getVaccinetesterDirectory().addVaccineTester(tester);
+                tester.setEnterprise(enterprise);
+                enterprise.getVaccinetesterDirectory().addVaccineTester(tester);
                 JOptionPane.showMessageDialog(null,"Tester added successfully!!!");
 
                 txtName.setText("");
@@ -742,6 +744,7 @@ public class CreateTestersJPanel extends javax.swing.JPanel {
 
             }
         }
+   
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed

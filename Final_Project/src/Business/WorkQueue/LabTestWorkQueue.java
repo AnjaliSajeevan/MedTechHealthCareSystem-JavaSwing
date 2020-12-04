@@ -31,14 +31,14 @@ public class LabTestWorkQueue {
     
         public void updateLabRequest(LabTestWorkRequest w,List<LabTestWorkRequest> labRequestList){
             for(LabTestWorkRequest work: labRequestList){
-                if(work.getId()== w.getId()){
+                if(work.getId().equals(w.getId())){
                    work=w;
                 }
             }
         }
         public LabTestWorkRequest getLabRequest(LabTestWorkRequest w){
             for(LabTestWorkRequest work: labRequestList){
-                if(work.getId()  == w.getId()){
+                if(work.getId().equals(w.getId())){
                     return work;
                 }
             }

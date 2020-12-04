@@ -111,8 +111,6 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         jLabel31 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        txtLicense = new javax.swing.JTextField();
         txtSSN = new javax.swing.JTextField();
         txtPhoto = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
@@ -201,8 +199,6 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         jLabel31.setText("2.1. Social Security Number");
 
         jLabel17.setText("4.1 Full Face Photograph");
-
-        jLabel36.setText("2.3. Doctor's License Number");
 
         btnSave.setBackground(new java.awt.Color(102, 102, 102));
         btnSave.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
@@ -363,13 +359,10 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                                                             .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)))))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel36)
                                                     .addComponent(jLabel31)
                                                     .addComponent(jLabel10))
                                                 .addGap(9, 9, 9)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(txtSSN, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                                    .addComponent(txtLicense, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                                .addComponent(txtSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel15)
@@ -516,11 +509,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel31)
                             .addComponent(txtSSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel36)
-                            .addComponent(txtLicense, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(109, 109, 109)))
+                        .addGap(157, 157, 157)))
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
@@ -582,10 +571,10 @@ String toemail;
         if(txtEmail.getText().equalsIgnoreCase("")){
             error+="\nEmail Field is mandatory!";
         }
-        if((txtSSN.getText().equalsIgnoreCase(""))
+        if((txtSSN.getText().equalsIgnoreCase("")))
 
-            && (txtLicense.getText().equalsIgnoreCase(""))){
-            error+="\nIt is mandatory to fill atleast one Identification Record!";
+          {
+            error+="\nIt is mandatory to fill SSN!";
         }
         /* if(txtPhoto.getText().equalsIgnoreCase("")){
             error+="\nPhotograph Upload is mandatory!";
@@ -677,11 +666,7 @@ String toemail;
                     tester.setSsn("");
                 }
 
-                if(!txtLicense.getText().equals("")){
-                    tester.setLicense(txtLicense.getText());
-                }else{
-                    tester.setLicense("");
-                }
+               
                 if(!(txtAllergy.getText().equals(""))){
                     tester.setAllergy(txtAllergy.getText());
                 }else{
@@ -722,7 +707,7 @@ String toemail;
                 txtPhone.setText("");
                 txtSSN.setText("");
 
-                txtLicense.setText("");
+               
                 txtOtherProbs.setText("");
                 txtAllergy.setText("");
                 txtPhoto.setText("");
@@ -863,7 +848,6 @@ String toemail;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -882,7 +866,6 @@ String toemail;
     private javax.swing.JTextField txtDOB;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtGeo;
-    private javax.swing.JTextField txtLicense;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtOtherProbs;
     private javax.swing.JTextField txtPassword;

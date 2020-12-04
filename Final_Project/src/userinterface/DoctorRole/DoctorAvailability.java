@@ -74,7 +74,7 @@ public class DoctorAvailability extends javax.swing.JPanel {
 
         jLabel4.setText("Available Date From:");
 
-        jComboTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00 - 16:00", "16:00 - 24:00", "01:00 - 08:00", "LEAVE" }));
+        jComboTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00 - 16:00", "16:00 - 23:00", "01:00 - 08:00", "LEAVE" }));
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -125,12 +125,12 @@ public class DoctorAvailability extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(dateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addComponent(dateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dateTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))))
+                        .addComponent(dateTo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,6 +167,7 @@ public class DoctorAvailability extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        ArrayList<String>dummyArray = null;
         HashMap<LocalDate,ArrayList<String>>appointment=new HashMap<LocalDate,ArrayList<String>>();
         dfrom=dateFrom.getDate();
         dto=dateTo.getDate();
@@ -176,19 +177,18 @@ public class DoctorAvailability extends javax.swing.JPanel {
                 doc.setDateFrom(dfrom);
                 doc.setDateTo(dto);
                 doc.setTime(t);
+                doc.removeAllTimeSlot();
                 if (doc.getTime().equals("08:00 - 16:00")) {
                     String from = "08:00:00", to = "16:00:00";
                     LocalTime fromTime = LocalTime.parse(from), toTime = LocalTime.parse(to);
 
-                    for (LocalTime counter = fromTime;
-                            counter.compareTo(toTime) <= 0;
-                            counter = counter.plusMinutes(30)) {
+                    for (LocalTime counter = fromTime;counter.compareTo(toTime) <= 0;counter = counter.plusMinutes(30)) {
                         doc.addTimeSlot(counter.toString());
                         
                     }
 
-                }else if(doc.getTime().equals("16:00 - 24:00")){
-                    String from = "16:00:00", to = "24:00:00";
+                }else if(doc.getTime().equals("16:00 - 23:00")){
+                    String from = "16:00:00", to = "23:00:00";
                     LocalTime fromTime = LocalTime.parse(from), toTime = LocalTime.parse(to);
 
                     for (LocalTime counter = fromTime;
@@ -198,7 +198,7 @@ public class DoctorAvailability extends javax.swing.JPanel {
                         
                     }
             }else if(doc.getTime().equals("01:00 - 08:00")){
-                    String from = "01:00:00", to = "08:00:00";
+                    String from = "00:00:00", to = "08:00:00";
                     LocalTime fromTime = LocalTime.parse(from), toTime = LocalTime.parse(to);
 
                     for (LocalTime counter = fromTime;
@@ -211,17 +211,21 @@ public class DoctorAvailability extends javax.swing.JPanel {
             
             LocalDate dFrom=new java.sql.Date(dfrom.getTime()).toLocalDate();
             LocalDate dTo=new java.sql.Date(dto.getTime()).toLocalDate();
-            for (LocalDate date = dFrom; date.isBefore(dTo); date = date.plusDays(1))
+            System.out.println(dFrom);
+            System.out.println(dTo);
+            for (LocalDate date = dFrom; date.isBefore(dTo.plusDays(1)); date = date.plusDays(1))
             {
             appointment.put(date,doc.getTimeSlotList());
             }
             
             doc.setAppointment(appointment);
-           
+           System.out.println(appointment);
             
         }
                   
         } JOptionPane.showMessageDialog(null, "Successfully Submitted");
+
+                                           
 
     }//GEN-LAST:event_btnSubmitActionPerformed
 

@@ -9,6 +9,7 @@ import static Business.Organization.Organization.Type.Doctor;
 import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 import java.awt.CardLayout;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
@@ -26,30 +27,28 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Enterprise enterprise;
     EcoSystem business;
-    Date d;
+    LocalDate d;
     String time;
+    
     Map<LocalDate,ArrayList<String>>appointment;
-    /** Creates new form AdminWorkAreaJPanel */
+
     public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, EcoSystem business) {
-        initComponents();
+           initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.business = business;
         valueLabel.setText(enterprise.getName());
-        populateComboBox();
+        String from = "08:00:00", to = "20:00:00";
+        LocalTime fromTime = LocalTime.parse(from), toTime = LocalTime.parse(to);
+
+        for (LocalTime counter = fromTime;
+                counter.compareTo(toTime) <= 0;
+                counter = counter.plusMinutes(30)) {
+            jComboBoxTimeSlot.addItem(counter.toString());
+
+                    }
+//        populateComboBox();
         populateTable();
-    }
-
-    public void populateComboBox() {
-        availableDoctor.removeAllItems();
-        DefaultComboBoxModel dm = new DefaultComboBoxModel();
-
-        for (Doctor n : business.getDoctorDirectory().getdoctorlist()) {
-            if (enterprise.getName().equalsIgnoreCase(n.getHospital())) {
-                availableDoctor.addItem(n.getName());
-            }
-        }
-
     }
 
        public void populateTable(){
@@ -178,8 +177,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
 
-        availableDoctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(availableDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 80, -1));
+        add(availableDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 80, -1));
 
         emergencyRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -219,7 +217,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setText("Emergency Request");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 170, -1));
 
-        add(jComboBoxTimeSlot, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 70, -1));
+        add(jComboBoxTimeSlot, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 70, -1));
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -230,13 +228,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, -1, -1));
 
         jLabel4.setText("Time slot available:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
 
         btnDecline.setText("Decline Appointment");
         add(btnDecline, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, -1, -1));
 
         jLabel5.setText("Assign Doctor:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -276,49 +274,75 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-        jComboBoxTimeSlot.removeAllItems();
-        ArrayList<String> s;
+        availableDoctor.removeAllItems();
+        
+
         String y = null;
+        String doctor;
         int selectedRow = tblpatientAppointment.getSelectedRow();
-        String doctor = (String) availableDoctor.getSelectedItem();
+        String time = (String) jComboBoxTimeSlot.getSelectedItem();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else {
             for (Doctor n : business.getDoctorDirectory().getdoctorlist()) {
-                if (n.getName().equals(doctor)) {
-                    appointment=n.getAppointment();
-                    for (LocalDate dates : appointment.keySet()) {
-                        if (dates.equals(d)) {
-                            s = appointment.get(dates);
-                            for (int i = 0; i < s.size(); i++) {
-                                y = s.get(i);
-                            }
-                            jComboBoxTimeSlot.addItem(y);
-                        }
-                    }
+                appointment = n.getAppointment();
+                System.out.println(appointment);
+                for (LocalDate dates : appointment.keySet()) {
 
+                    if (dates.equals(d)) {
+
+                        for (Map.Entry<LocalDate, ArrayList<String>> appointment : appointment.entrySet()) {
+                            for (String timess : appointment.getValue()) {
+                                if (timess.equals(time)) {
+                                    doctor = n.toString();
+                                    availableDoctor.addItem(doctor);
+                                }
+
+                            }
+                        }
+
+                    }
                 }
+
             }
         }
-
-
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
        
-       
-        String doctor=(String) availableDoctor.getSelectedItem();
-        String selected = (String) jComboBoxTimeSlot.getSelectedItem();
-        for (LocalDate dates:appointment.keySet()){
-        if(dates.equals(d))
-        {appointment.get(dates).remove(selected);
+        int selectedRow = tblpatientAppointment.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            PatientHospitalAppointmentWorkRequest request = (PatientHospitalAppointmentWorkRequest) tblpatientAppointment.getValueAt(selectedRow, 0);
+            String doctor = (String) availableDoctor.getSelectedItem();
+            String selected = (String) jComboBoxTimeSlot.getSelectedItem();
+            for (LocalDate dates : appointment.keySet()) {
+                if (dates.equals(d)) {
+                    for (Doctor doc : business.getDoctorDirectory().getdoctorlist()) {
+                        if (doc.getName().equals(doctor)) {
+                            doc.removeAppointment(dates, selected);
+                            appointment.get(d).remove(selected);
+                        }
+                        System.out.println(doc.getAppointment());
+                    }
+                }
+
+                request.setStatus("Appointment confirmed");
+                request.setCost(123.4);
+                request.setDoctor(doctor);
+
+            }
+            JOptionPane.showMessageDialog(null, "Appointmnent confirmed and assigned to doctor");
+            populateTable();
         }
-        
-        } 
+   
     }//GEN-LAST:event_btnAcceptActionPerformed
-    
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> availableDoctor;

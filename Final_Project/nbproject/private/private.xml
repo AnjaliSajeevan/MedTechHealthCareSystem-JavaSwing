@@ -3,15 +3,61 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/userinterface/DoctorRole/DoctorAvailability.java</file>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/userinterface/PatientRole/HospitalAppointment.java</file>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/userinterface/DoctorRole/DoctorProfileUpdateJPanel.java</file>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/userinterface/AdministrativeRole/AdminWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/Business/Patient/Patient.java</file>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/userinterface/PatientRole/PatientWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/Business/UserAccount/UserAccount.java</file>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/userinterface/PatientRole/RegisterForInsurance.java</file>
-            <file>file:/C:/Users/anjal/Documents/NetBeansProjects/Final_Project/src/userinterface/MainJFrame.java</file>
+<<<<<<< HEAD
+            <file>file:/C:/Users/anjal/Desktop/Documents/Study%20Materials/Northeastern%20University/AED/GitHubFiles/FinalProject%20Git/Final_Project/Final_Project/src/Business/ConfigureASystem.java</file>
+            <file>file:/C:/Users/anjal/Desktop/Documents/Study%20Materials/Northeastern%20University/AED/GitHubFiles/FinalProject%20Git/Final_Project/Final_Project/src/userinterface/PatientRole/RegisterForInsurance.java</file>
+=======
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineScientistRole/CreateVaccineJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/LabAdminRole/ManageServicesJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineAdminRole/TestedRequestsJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineTestingStaffRole/UpdateResultJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/LabAdminRole/ManageTimeJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/PatientRole/EmergencyJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/UserAccount/UserAccount.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Enterprise/PharmacyEnterprise.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/AdministrativeRole/ManageUserAccountJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineAdminRole/ManageTestersJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Enterprise/VaccineEnterprise.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Role/PharmacyAdminRole.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Essentials/Medicine.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Enterprise/Enterprise.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Organization/Organization.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/EcoSystem.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/FDAWorkAreaJPanel/FDAWorkAreaJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/LabAdminRole/LabAdminWorkAreaJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/WorkQueue/VaccineWorkRequest.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Vaccine/VaccineTester.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineAdminRole/ViewTestersJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineTestingStaffRole/ViewVaccineTestJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/LabStaffRole/LabStaffWorkAreaJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/WorkQueue/LabTestWorkQueue.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Role/FDARole.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/PatientRole/RequestMedicineJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/WorkQueue/PharmaWorkQueue.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/PatientRole/BookLabJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/SystemAdminWorkArea/ManageEnterpriseAdminJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/WorkQueue/PharmaWorkRequest.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/WorkQueue/LabPatientWorkQueue.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Enterprise/LabEnterprise.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineAdminRole/CreateTestersJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineTestingStaffRole/VaccineTestingStaffWorkPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Role/PatientRole.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/WorkQueue/LabTestWorkRequest.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineAdminRole/VaccineRequestJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineAdminRole/VaccineCompReportJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/PatientRole/CreatePatientJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/PharmacyAdminRole/PharmacyAdminWorkAreaJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/MainJFrame.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Vaccine/Vaccine.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineAdminRole/VaccineAdminWorkAreaJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/DoctorRole/DoctorAvailability.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineScientistRole/ViewVaccineJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/Essentials/MedicineCatalog.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/PatientRole/RegisterForInsurance.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/userinterface/VaccineScientistRole/VaccineScientistWorkAreaJPanel.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/WorkQueue/LabPatientWorkRequest.java</file>
+            <file>file:/Users/karthik/NetBeansProjects/AEDFinalProject/Final_Project/Final_Project/src/Business/DB4OUtil/DB4OUtil.java</file>
+>>>>>>> refs/remotes/origin/Anjali_Project
         </group>
     </open-files>
 </project-private>
