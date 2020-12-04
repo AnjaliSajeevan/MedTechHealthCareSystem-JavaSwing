@@ -88,7 +88,32 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
       lblTot.setText("Total Price :"+sum);
       lblTot.setVisible(true);
     }
-
+   public void populatePatientRequests(){
+        DefaultTableModel model = (DefaultTableModel)respTable.getModel();
+        model.setRowCount(0);
+        List<PharmaWorkRequest> requestList = account.getPharmaWorkQueue().getPharmaList();
+        for(PharmaWorkRequest req: requestList){
+            String medList1 = "";
+                Map<Medicine,Integer> medMap= req.getMedList();
+                for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {  
+                    if(medList1.equals("")){
+                        medList1+=medicine.getKey();
+                    }else{    
+                        medList1+=","+medicine.getKey();
+                  }
+                } 
+             Object row[] = new Object[8];
+                 row[0] = req;
+                 row[1] = medList1;             
+                 row[2] = req.getMessage();
+                 if(req.getSender() == null){
+                 row[3] = account;    
+                 }else{
+                 row[3] = req.getSender();
+                 }
+                 model.addRow(row); 
+            }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,6 +143,9 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         btnRemove = new javax.swing.JButton();
         btnUpload = new javax.swing.JButton();
         txtPres = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        respTable = new javax.swing.JTable();
+        btnTrack = new javax.swing.JButton();
 
         btnBack.setText("<-Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +234,9 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         if (medReqTable.getColumnModel().getColumnCount() > 0) {
             medReqTable.getColumnModel().getColumn(0).setResizable(false);
             medReqTable.getColumnModel().getColumn(1).setResizable(false);
+            medReqTable.getColumnModel().getColumn(1).setHeaderValue("Price");
             medReqTable.getColumnModel().getColumn(2).setResizable(false);
+            medReqTable.getColumnModel().getColumn(2).setHeaderValue("Quantity");
         }
 
         modQuant.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
@@ -238,6 +268,40 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
+        respTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "PharmacyID", "Medicine", "Message", "DeliveryStaff"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(respTable);
+        if (respTable.getColumnModel().getColumnCount() > 0) {
+            respTable.getColumnModel().getColumn(0).setResizable(false);
+            respTable.getColumnModel().getColumn(1).setResizable(false);
+            respTable.getColumnModel().getColumn(2).setResizable(false);
+            respTable.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        btnTrack.setText("Track Medicine Requests");
+        btnTrack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -248,8 +312,27 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnUpload)
+                                    .addComponent(txtPres, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSendMed, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMod))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRemove)
+                                .addGap(105, 105, 105)
+                                .addComponent(lblTot, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(modQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
@@ -269,76 +352,62 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                                 .addGap(26, 26, 26)
                                 .addComponent(pharmacyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(btnDisplayMed, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 10, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnDisplayMed, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(btnRemove))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnUpload)
-                                    .addComponent(txtPres, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTot, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(modQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSendMed, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMod)))))
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnTrack, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 97, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pharmacyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addComponent(btnDisplayMed, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCart)
+                    .addComponent(quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(modQuant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTot, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRemove))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addComponent(txtPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnUpload))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(pharmacyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)))
-                            .addComponent(btnDisplayMed, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCart)
-                            .addComponent(quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(modQuant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblTot, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRemove))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSendMed, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMod))))
-                .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnSendMed, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMod)))
+                .addGap(18, 18, 18)
+                .addComponent(btnTrack, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -388,7 +457,6 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
       PharmaWorkRequest pharmaReq = new PharmaWorkRequest();
       pharmaReq.setPatient(account.getEmployee().getName());
       pharmaReq.setSender(account);
-      pharmaReq.setMedList(medList);
       boolean covidCond = false;
         for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) {  
             if(medicine.getKey().getCondition().equals("Covid")){
@@ -400,22 +468,21 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         }else{
            pharmaReq.setCondition("Not Covid");  
         }
-        
+              for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) { 
+          pharmaReq.updateMedList(medicine.getKey(),medicine.getValue());
+      }
       for (Network network : business.getNetworkList()){
         for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
             if(enterpriseCheck.getName().equals(pharmacyComboBox.getSelectedItem().toString())){
                 for (UserAccount ua : enterpriseCheck.getUserAccountDirectory().getUserAccountList()) {                
                 if(ua.getRole().toString().equals("PharmacyAdmin")){
-                    System.out.println("ua="+ua);
-                    System.out.println("uaQ="+ua.getPharmaWorkQueue());
-                    System.out.println("req="+pharmaReq);
                       ua.getPharmaWorkQueue().addPharmaRequest(pharmaReq);
                 }
         }
 
         }
         } 
-     }
+     }  
         medList.clear();
         requestInprog = "";
       populateMedReqTable();  
@@ -446,7 +513,9 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
             return;               
          }
       Medicine med = (Medicine) medTable.getValueAt(rows, 0);
+      if((!(med.getName().equals(""))) || (!(quantity > 0))){
       medList.put(med,quantity);
+      }
       requestInprog = pharmacyComboBox.getSelectedItem().toString();
       populateMedReqTable();
 
@@ -455,13 +524,9 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
 
     private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
         // TODO add your handling code here:
-        int rows = medReqTable.getSelectedRowCount();
-        if(rows <= 0){
+        int rows = medReqTable.getSelectedRow();
+        if(rows < 0){
              JOptionPane.showMessageDialog(null,"Select the medicine to modify quantity", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;           
-        }
-        if(rows > 1){
-             JOptionPane.showMessageDialog(null,"Select only one medicine at a time to modify required quantity", "Warning", JOptionPane.WARNING_MESSAGE);
             return;           
         }
          int quantity = (Integer)modQuant.getValue();
@@ -469,7 +534,7 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
           JOptionPane.showMessageDialog(null,"Quantity of desired medicine cannot be less than or equal to zero!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;  
          }
-        Medicine med = (Medicine) medTable.getValueAt(rows, 0);
+        Medicine med = (Medicine) medReqTable.getValueAt(rows, 0);
                for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) {  
                    if(medicine.getKey().getName().equals(med.getName())){
                        
@@ -504,6 +569,11 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnUploadActionPerformed
 
+    private void btnTrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrackActionPerformed
+        // TODO add your handling code here:
+        populatePatientRequests();
+    }//GEN-LAST:event_btnTrackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -512,6 +582,7 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnMod;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSendMed;
+    private javax.swing.JButton btnTrack;
     private javax.swing.JButton btnUpload;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -519,12 +590,14 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblTot;
     private javax.swing.JTable medReqTable;
     private javax.swing.JTable medTable;
     private javax.swing.JSpinner modQuant;
     private javax.swing.JComboBox<String> pharmacyComboBox;
     private javax.swing.JSpinner quant;
+    private javax.swing.JTable respTable;
     private javax.swing.JTextField txtPres;
     // End of variables declaration//GEN-END:variables
 }

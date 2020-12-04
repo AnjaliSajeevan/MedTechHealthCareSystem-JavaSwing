@@ -13,12 +13,10 @@ import java.awt.CardLayout;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Date;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import java.util.Calendar;
 /**
  *
  * @author Manasa
@@ -71,7 +69,6 @@ public class ManageTimeJPanel extends javax.swing.JPanel {
              LabEnterprise e = (LabEnterprise) enterprise;
       Map<String,String> slots = e.getTimeSlot();
             for (Map.Entry<String,String> slot : slots.entrySet()) {  
-                System.out.println(slot.getKey());
                 String [] slotDet =  slot.getKey().split(",");
                     Object[] row = new Object[5];
                     row[0] = slotDet[0];

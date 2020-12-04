@@ -8,18 +8,11 @@ package userinterface.PatientRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.LabEnterprise;
-import Business.Essentials.Medicine;
 import Business.Network.Network;
-import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
-import Business.WorkQueue.PharmaWorkRequest;
-import Business.WorkQueue.LabPatientWorkQueue;
 import java.awt.CardLayout;
-import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -47,6 +40,8 @@ public class BookLabJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.account = account;
         this.business = business;
+        labComboBox.removeAllItems();
+        serviceComboBox.removeAllItems();
         populateLabs();
     }
     public void populateLabs(){
@@ -85,6 +80,21 @@ public class BookLabJPanel extends javax.swing.JPanel {
                 }
          }
     }
+         public void populateTestingTable(){
+        DefaultTableModel model = (DefaultTableModel)labTestingTable.getModel();
+        model.setRowCount(0);
+        for(LabPatientWorkRequest work : account.getLabPatientWorkQueue().getLabPatientRequestList()){
+                    Object[] row = new Object[8];
+                    row[0] = work;
+                    row[1] = work.getLabTestType();
+                    row[2] = work.getPatient();
+                     row[3] = work.getSlotDate();
+                    row[4] = work.getSlotTime();
+                    row[5] = work.getMessage();
+
+                    model.addRow(row);  
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,6 +116,9 @@ public class BookLabJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btnBook = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        labTestingTable = new javax.swing.JTable();
+        btnResults = new javax.swing.JButton();
 
         jLabel1.setText("Lab Appointment Booking");
 
@@ -167,6 +180,34 @@ public class BookLabJPanel extends javax.swing.JPanel {
 
         jSeparator1.setBackground(new java.awt.Color(102, 0, 0));
 
+        labTestingTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "LabID", "TestName", "PatientName", "Date", "Time", "Message"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(labTestingTable);
+
+        btnResults.setText("Display Lab Results");
+        btnResults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResultsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,8 +242,15 @@ public class BookLabJPanel extends javax.swing.JPanel {
                                 .addGap(66, 66, 66)
                                 .addComponent(jButton1)))
                         .addGap(0, 88, Short.MAX_VALUE))
-                    .addComponent(jSeparator1))
+                    .addComponent(jSeparator1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane2)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnResults)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,10 +272,14 @@ public class BookLabJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addGap(12, 12, 12)
+                .addComponent(btnResults)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -264,26 +316,20 @@ public class BookLabJPanel extends javax.swing.JPanel {
              for (Network network : business.getNetworkList()){
         for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
             if(enterpriseCheck.getName().equals(labComboBox.getSelectedItem().toString())){
-                System.out.println("enerprise="+enterpriseCheck);
                 LabEnterprise e = (LabEnterprise) enterpriseCheck;
                   Map<String,String> slots = e.getTimeSlot();
                   slots.put(slotDate+","+slotTime, "true");
-                  e.setTimeSlot(slots);
-                  
-             //  for(Organization organization : enterpriseCheck.getOrganizationDirectory().getOrganizationList()){
+                  e.setTimeSlot(slots);                 
                  for (UserAccount ua : e.getUserAccountDirectory().getUserAccountList()) {
-                     System.out.println("ua="+ua);
                    if(ua.getRole().toString().equals("LabAdmin")){
-                       System.out.println("ua="+ua.getRole());
                       ua.getLabPatientWorkQueue().addLabPatientRequest(request);
                    }
                  }
-              // }
             }
         }
       }
                  
-                  JOptionPane.showMessageDialog(null,"Booked Lab appointment successfully!", "Warning", JOptionPane.WARNING_MESSAGE); 
+       JOptionPane.showMessageDialog(null,"Booked Lab appointment successfully!", "Warning", JOptionPane.WARNING_MESSAGE); 
                  LabEnterprise labEnterpise = null;
             for (Network network : business.getNetworkList()){
         for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
@@ -315,18 +361,26 @@ public class BookLabJPanel extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultsActionPerformed
+        // TODO add your handling code here:
+        populateTestingTable();
+    }//GEN-LAST:event_btnResultsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBook;
+    private javax.swing.JButton btnResults;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JComboBox<String> labComboBox;
+    private javax.swing.JTable labTestingTable;
     private javax.swing.JComboBox<String> serviceComboBox;
     private javax.swing.JTable slotTable;
     // End of variables declaration//GEN-END:variables

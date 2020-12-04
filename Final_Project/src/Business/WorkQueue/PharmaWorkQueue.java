@@ -16,21 +16,29 @@ public class PharmaWorkQueue {
     private ArrayList<PharmaWorkRequest> pharmacyList;
 
     public PharmaWorkQueue() {
-        pharmacyList = new ArrayList();
+        pharmacyList = new ArrayList<PharmaWorkRequest>();
     }
 
     public ArrayList<PharmaWorkRequest> getPharmaList() {
+        System.out.println("inside get pharma="+pharmacyList);
+        for(PharmaWorkRequest w: pharmacyList){
+            System.out.println("inside get loop pharma="+w.getMedList());
+        }
         return pharmacyList;
     }
     public void addPharmaRequest(PharmaWorkRequest pharmaReq) {
-        pharmacyList.add(pharmaReq);
+        System.out.println("inside add pharma="+pharmaReq.getMedList());
+        this.pharmacyList.add(pharmaReq);
+             for(PharmaWorkRequest w: pharmacyList){
+            System.out.println("inside add loop pharma="+w.getMedList());
+        }
     }
             public void removePharmaRequest(PharmaWorkRequest pharmaReq) {
         pharmacyList.remove(pharmaReq);
     }
     
-        public void updatePharmaRequest(PharmaWorkRequest pharmaReq,List<PharmaWorkRequest> labRequestList){
-            for(PharmaWorkRequest work: pharmacyList){
+        public void updatePharmaRequest(PharmaWorkRequest pharmaReq,List<PharmaWorkRequest> pharmaList){
+            for(PharmaWorkRequest work: pharmaList){
                 if(work.getId().equals(pharmaReq.getId())){
                    work=pharmaReq;
                 }
