@@ -82,13 +82,12 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBack = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        medTable = new javax.swing.JTable();
-        btnRemove = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        medTable = new javax.swing.JTable();
         medPanel = new javax.swing.JPanel();
         txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -102,6 +101,28 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         txtCond = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
+        btnUpdate.setText("Update Medicine");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setText("Add NEW Medicine");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -109,8 +130,6 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-
-        jLabel5.setText("Manage Supplies");
 
         medTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,34 +151,6 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(medTable);
-        if (medTable.getColumnModel().getColumnCount() > 0) {
-            medTable.getColumnModel().getColumn(0).setResizable(false);
-            medTable.getColumnModel().getColumn(1).setResizable(false);
-            medTable.getColumnModel().getColumn(2).setResizable(false);
-            medTable.getColumnModel().getColumn(3).setResizable(false);
-            medTable.getColumnModel().getColumn(4).setResizable(false);
-        }
-
-        btnRemove.setText("Remove");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setText("Update Medicine");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnAdd.setText("Add NEW Medicine");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
         medPanel.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -261,6 +252,8 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
+        jLabel5.setText("Manage Supplies");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -308,53 +301,6 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPriceActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        if((txtName.getText().equals("")) || (txtPrice.getText().equals("")) ||(txtQuant.getText().equals(""))||(txtDose.getText().equals(""))){
-              JOptionPane.showMessageDialog(null, "Name, Dose, Quantity and Price are mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;          
-        }
-            String priceRegex ="[0-9]+\\.[0-9]{2,}";
-            Pattern namePattern = Pattern.compile(priceRegex);
-            Matcher checkFirstName = namePattern.matcher(txtPrice.getText());
-            boolean checkNameMatch = checkFirstName.matches();
-            if(!(checkNameMatch == TRUE)){
-                JOptionPane.showMessageDialog(null, "Please enter Price in decimal format only!!\n(mininmum 2 digits after decimal)", "Warning", JOptionPane.WARNING_MESSAGE);       
-                          return;
-            }
-            int dose = 0;
-            int quant = 0;
-            try{
-                dose = Integer.parseInt(txtDose.getText());
-                quant = Integer.parseInt(txtQuant.getText());
-            }catch(NumberFormatException e){
-                 JOptionPane.showMessageDialog(null, "Please enter dosage and quantity in integer format only", "Warning", JOptionPane.WARNING_MESSAGE);       
-                          return;               
-            }
-            if((dose <= 0) ||(quant <= 0)){
-                  JOptionPane.showMessageDialog(null, "Dosage and quantity need tp be more than zero!", "Warning", JOptionPane.WARNING_MESSAGE);       
-                          return;                
-            }
-            medicine.setName(txtName.getText());
-            medicine.setDosage(dose);
-            medicine.setPrice(Double.parseDouble(txtPrice.getText()));
-            medicine.setQuantity(quant);
-            medicine.setCondition(txtCond.getText());
-            int dem = (medicine.getDemand() - medicine.getQuantity());
-            if(dem <= 0){
-                medicine.setDemand(0);
-            }else{
-            medicine.setDemand(dem);
-            }
-            enterprise.getMedicineCatalog().updateMedicine(medicine);
-              populateMedTable();
-                        JOptionPane.showMessageDialog(null, "Medicine Updated successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnSaveActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         int selectedRow = medTable.getSelectedRow();
@@ -362,70 +308,31 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a Medicine row!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-         medicine= (Medicine)medTable.getValueAt(selectedRow, 0);
-         txtName.setText(medicine.getName());
-         txtPrice.setText(String.valueOf(medicine.getPrice()));
-         txtDose.setText(String.valueOf(medicine.getDosage()));
-         txtQuant.setText(String.valueOf(medicine.getQuantity()));
-         txtCond.setText(String.valueOf(medicine.getCondition()));
-         medPanel.setEnabled(true);
-         btnCreate.setEnabled(false);
-         btnSave.setEnabled(true);
-         
-         
+        medicine= (Medicine)medTable.getValueAt(selectedRow, 0);
+        txtName.setText(medicine.getName());
+        txtPrice.setText(String.valueOf(medicine.getPrice()));
+        txtDose.setText(String.valueOf(medicine.getDosage()));
+        txtQuant.setText(String.valueOf(medicine.getQuantity()));
+        txtCond.setText(String.valueOf(medicine.getCondition()));
+        medPanel.setEnabled(true);
+        btnCreate.setEnabled(false);
+        btnSave.setEnabled(true);
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        
-          medPanel.setEnabled(true);
-         btnCreate.setEnabled(true);
-         btnSave.setEnabled(false);      
-         if(!medName.equals("")){
-             txtName.setText(medName);
-             txtCond.setText(cond);
-             txtName.setEnabled(false);
-             txtCond.setEnabled(false);
-         }
-    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        // TODO add your handling code here:
-       if((txtName.getText().equals("")) || (txtPrice.getText().equals("")) ||(txtQuant.getText().equals(""))||(txtDose.getText().equals("") ||(txtCond.getText().equals("")))){
-              JOptionPane.showMessageDialog(null, "Name, Dose, Quantity,Condition and Price are mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;          
+        medPanel.setEnabled(true);
+        btnCreate.setEnabled(true);
+        btnSave.setEnabled(false);
+        if(!medName.equals("")){
+            txtName.setText(medName);
+            txtCond.setText(cond);
+            txtName.setEnabled(false);
+            txtCond.setEnabled(false);
         }
-            String priceRegex ="[0-9]+\\.[0-9]{2,}";
-            Pattern namePattern = Pattern.compile(priceRegex);
-            Matcher checkFirstName = namePattern.matcher(txtPrice.getText());
-            boolean checkNameMatch = checkFirstName.matches();
-            if(!(checkNameMatch == TRUE)){
-                JOptionPane.showMessageDialog(null, "Please enter Price in decimal format only!!\n(mininmum 2 digits after decimal)", "Warning", JOptionPane.WARNING_MESSAGE);       
-                          return;
-            }
-            int dose = 0;
-            int quant = 0;
-            try{
-                dose = Integer.parseInt(txtDose.getText());
-                quant = Integer.parseInt(txtQuant.getText());
-            }catch(NumberFormatException e){
-                 JOptionPane.showMessageDialog(null, "Please enter dosage and quantity in integer format only", "Warning", JOptionPane.WARNING_MESSAGE);       
-                          return;               
-            }
-            if((dose <= 0) ||(quant <= 0)){
-                  JOptionPane.showMessageDialog(null, "Dosage and quantity need tp be more than zero!", "Warning", JOptionPane.WARNING_MESSAGE);       
-                          return;                
-            }
-            Medicine med = new Medicine(txtName.getText(),Double.parseDouble(txtPrice.getText()),quant,dose);
-                     med.setCondition(txtCond.getText());
-                     
-                     med.setDemand(0);
-
-            enterprise.getMedicineCatalog().addMedicine(med);
-            populateMedTable();
-                                    JOptionPane.showMessageDialog(null, "Medicine Created successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
-
-    }//GEN-LAST:event_btnCreateActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
@@ -434,23 +341,107 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a Medicine row!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-         Medicine m = (Medicine)medTable.getValueAt(selectedRow, 0);        
-         enterprise.getMedicineCatalog().removeMedicine(m);
-         populateMedTable();
+        Medicine m = (Medicine)medTable.getValueAt(selectedRow, 0);
+        enterprise.getMedicineCatalog().removeMedicine(m);
+        populateMedTable();
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-                userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         PharmacyAdminWorkAreaJPanel sysAdminwjp = (PharmacyAdminWorkAreaJPanel) component;
         sysAdminwjp.populateNewMedTable();
-         sysAdminwjp.populatePatientRequests();
+        sysAdminwjp.populatePatientRequests();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-   
+
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        if((txtName.getText().equals("")) || (txtPrice.getText().equals("")) ||(txtQuant.getText().equals(""))||(txtDose.getText().equals(""))){
+            JOptionPane.showMessageDialog(null, "Name, Dose, Quantity and Price are mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String priceRegex ="[0-9]+\\.[0-9]{2,}";
+        Pattern namePattern = Pattern.compile(priceRegex);
+        Matcher checkFirstName = namePattern.matcher(txtPrice.getText());
+        boolean checkNameMatch = checkFirstName.matches();
+        if(!(checkNameMatch == TRUE)){
+            JOptionPane.showMessageDialog(null, "Please enter Price in decimal format only!!\n(mininmum 2 digits after decimal)", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int dose = 0;
+        int quant = 0;
+        try{
+            dose = Integer.parseInt(txtDose.getText());
+            quant = Integer.parseInt(txtQuant.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please enter dosage and quantity in integer format only", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if((dose <= 0) ||(quant <= 0)){
+            JOptionPane.showMessageDialog(null, "Dosage and quantity need tp be more than zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        medicine.setName(txtName.getText());
+        medicine.setDosage(dose);
+        medicine.setPrice(Double.parseDouble(txtPrice.getText()));
+        medicine.setQuantity(quant);
+        medicine.setCondition(txtCond.getText());
+        int dem = (medicine.getDemand() - medicine.getQuantity());
+        if(dem <= 0){
+            medicine.setDemand(0);
+        }else{
+            medicine.setDemand(dem);
+        }
+        enterprise.getMedicineCatalog().updateMedicine(medicine);
+        populateMedTable();
+        JOptionPane.showMessageDialog(null, "Medicine Updated successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        if((txtName.getText().equals("")) || (txtPrice.getText().equals("")) ||(txtQuant.getText().equals(""))||(txtDose.getText().equals("") ||(txtCond.getText().equals("")))){
+            JOptionPane.showMessageDialog(null, "Name, Dose, Quantity,Condition and Price are mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        String priceRegex ="[0-9]+\\.[0-9]{2,}";
+        Pattern namePattern = Pattern.compile(priceRegex);
+        Matcher checkFirstName = namePattern.matcher(txtPrice.getText());
+        boolean checkNameMatch = checkFirstName.matches();
+        if(!(checkNameMatch == TRUE)){
+            JOptionPane.showMessageDialog(null, "Please enter Price in decimal format only!!\n(mininmum 2 digits after decimal)", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int dose = 0;
+        int quant = 0;
+        try{
+            dose = Integer.parseInt(txtDose.getText());
+            quant = Integer.parseInt(txtQuant.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please enter dosage and quantity in integer format only", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if((dose <= 0) ||(quant <= 0)){
+            JOptionPane.showMessageDialog(null, "Dosage and quantity need tp be more than zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Medicine med = new Medicine(txtName.getText(),Double.parseDouble(txtPrice.getText()),quant,dose);
+        med.setCondition(txtCond.getText());
+
+        med.setDemand(0);
+
+        enterprise.getMedicineCatalog().addMedicine(med);
+        populateMedTable();
+        JOptionPane.showMessageDialog(null, "Medicine Created successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnCreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

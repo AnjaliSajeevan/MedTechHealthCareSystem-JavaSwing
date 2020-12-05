@@ -21,7 +21,7 @@ public class AmbulanceDriverRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new AmbulanceDriverWorkAreaJPanel(userProcessContainer, account,(AdminOrganization)organization,enterprise);
+        return new AmbulanceDriverWorkAreaJPanel(userProcessContainer, account,business,enterprise);
     }
     public String toString(){
         return "AmbulanceDriver";

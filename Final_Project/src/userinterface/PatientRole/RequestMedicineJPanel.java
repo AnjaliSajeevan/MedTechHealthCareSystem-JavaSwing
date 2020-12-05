@@ -124,28 +124,28 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         btnBack = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        medTable = new javax.swing.JTable();
         pharmacyComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnDisplayMed = new javax.swing.JButton();
-        btnSendMed = new javax.swing.JButton();
-        btnCart = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        medTable = new javax.swing.JTable();
         quant = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
+        btnCart = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         medReqTable = new javax.swing.JTable();
-        modQuant = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
-        btnMod = new javax.swing.JButton();
+        btnSendMed = new javax.swing.JButton();
         lblTot = new javax.swing.JLabel();
         btnRemove = new javax.swing.JButton();
-        btnUpload = new javax.swing.JButton();
         txtPres = new javax.swing.JTextField();
+        btnUpload = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         respTable = new javax.swing.JTable();
         btnTrack = new javax.swing.JButton();
+        btnMod = new javax.swing.JButton();
+        modQuant = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
 
         btnBack.setText("<-Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +154,18 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
+        pharmacyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel2.setText("Pharmacy:");
+
         jLabel1.setText("Medicine Request");
+
+        btnDisplayMed.setText("Display Medicines");
+        btnDisplayMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisplayMedActionPerformed(evt);
+            }
+        });
 
         medTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,29 +187,10 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(medTable);
-        if (medTable.getColumnModel().getColumnCount() > 0) {
-            medTable.getColumnModel().getColumn(0).setResizable(false);
-            medTable.getColumnModel().getColumn(1).setResizable(false);
-            medTable.getColumnModel().getColumn(2).setResizable(false);
-        }
 
-        pharmacyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        quant.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        jLabel2.setText("Pharmacy:");
-
-        btnDisplayMed.setText("Display Medicines");
-        btnDisplayMed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDisplayMedActionPerformed(evt);
-            }
-        });
-
-        btnSendMed.setText("SEND MEDICINE REQUEST");
-        btnSendMed.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSendMedActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Quantity");
 
         btnCart.setText("ADD TO CART");
         btnCart.addActionListener(new java.awt.event.ActionListener() {
@@ -206,10 +198,6 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                 btnCartActionPerformed(evt);
             }
         });
-
-        quant.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel3.setText("Quantity");
 
         medReqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,22 +219,11 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(medReqTable);
-        if (medReqTable.getColumnModel().getColumnCount() > 0) {
-            medReqTable.getColumnModel().getColumn(0).setResizable(false);
-            medReqTable.getColumnModel().getColumn(1).setResizable(false);
-            medReqTable.getColumnModel().getColumn(1).setHeaderValue("Price");
-            medReqTable.getColumnModel().getColumn(2).setResizable(false);
-            medReqTable.getColumnModel().getColumn(2).setHeaderValue("Quantity");
-        }
 
-        modQuant.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel4.setText("Quantity");
-
-        btnMod.setText("Modify Quantity");
-        btnMod.addActionListener(new java.awt.event.ActionListener() {
+        btnSendMed.setText("SEND MEDICINE REQUEST");
+        btnSendMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModActionPerformed(evt);
+                btnSendMedActionPerformed(evt);
             }
         });
 
@@ -288,12 +265,6 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane3.setViewportView(respTable);
-        if (respTable.getColumnModel().getColumnCount() > 0) {
-            respTable.getColumnModel().getColumn(0).setResizable(false);
-            respTable.getColumnModel().getColumn(1).setResizable(false);
-            respTable.getColumnModel().getColumn(2).setResizable(false);
-            respTable.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         btnTrack.setText("Track Medicine Requests");
         btnTrack.addActionListener(new java.awt.event.ActionListener() {
@@ -301,6 +272,17 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                 btnTrackActionPerformed(evt);
             }
         });
+
+        btnMod.setText("Modify Quantity");
+        btnMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModActionPerformed(evt);
+            }
+        });
+
+        modQuant.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jLabel4.setText("Quantity");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -396,7 +378,6 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addComponent(txtPres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnUpload))
@@ -421,144 +402,129 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     private void btnDisplayMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayMedActionPerformed
         // TODO add your handling code here:
 
-                if(pharmacyComboBox.getSelectedItem().equals("")){
-         JOptionPane.showMessageDialog(null, "Please choose a Pharmacy to display medicine list!", "Warning", JOptionPane.WARNING_MESSAGE);       
-                  return;
+        if(pharmacyComboBox.getSelectedItem().equals("")){
+            JOptionPane.showMessageDialog(null, "Please choose a Pharmacy to display medicine list!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
         DefaultTableModel model = (DefaultTableModel)medTable.getModel();
         model.setRowCount(0);
-                for (Network network : business.getNetworkList()){
-        for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(enterpriseCheck.getName().equals(pharmacyComboBox.getSelectedItem().toString())){
-                PharmacyEnterprise pharmaE = (PharmacyEnterprise) enterpriseCheck;
-                for(Medicine med:pharmaE.getMedicineCatalog().getMedicineList()){
-                    Object[] row = new Object[5];
-                    row[0] = med;
-                    row[1] = med.getPrice();
-                    row[2] = med.getDosage();
+        for (Network network : business.getNetworkList()){
+            for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterpriseCheck.getName().equals(pharmacyComboBox.getSelectedItem().toString())){
+                    PharmacyEnterprise pharmaE = (PharmacyEnterprise) enterpriseCheck;
+                    for(Medicine med:pharmaE.getMedicineCatalog().getMedicineList()){
+                        Object[] row = new Object[5];
+                        row[0] = med;
+                        row[1] = med.getPrice();
+                        row[2] = med.getDosage();
 
-                    model.addRow(row);                    
+                        model.addRow(row);
+                    }
                 }
             }
         }
-                }
     }//GEN-LAST:event_btnDisplayMedActionPerformed
-
-    private void btnSendMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendMedActionPerformed
-        // TODO add your handling code here:
-        if(medList.isEmpty()){
-              JOptionPane.showMessageDialog(null,"Please add medicines required from the desired Pharmacy options", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;            
-        }
-        if(txtPres.getText().equals("")){
-              JOptionPane.showMessageDialog(null,"Uploading prescription is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;               
-        }
-      PharmaWorkRequest pharmaReq = new PharmaWorkRequest();
-      pharmaReq.setPatient(account.getEmployee().getName());
-      pharmaReq.setSender(account);
-      boolean covidCond = false;
-        for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) {  
-            if(medicine.getKey().getCondition().equals("Covid")){
-                covidCond = true;
-            }
-        } 
-        if(covidCond == true){
-            pharmaReq.setCondition("Covid");
-        }else{
-           pharmaReq.setCondition("Not Covid");  
-        }
-              for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) { 
-          pharmaReq.updateMedList(medicine.getKey(),medicine.getValue());
-      }
-      for (Network network : business.getNetworkList()){
-        for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(enterpriseCheck.getName().equals(pharmacyComboBox.getSelectedItem().toString())){
-                for (UserAccount ua : enterpriseCheck.getUserAccountDirectory().getUserAccountList()) {                
-                if(ua.getRole().toString().equals("PharmacyAdmin")){
-                      ua.getPharmaWorkQueue().addPharmaRequest(pharmaReq);
-                }
-        }
-
-        }
-        } 
-     }  
-        medList.clear();
-        requestInprog = "";
-      populateMedReqTable();  
-      lblTot.setVisible(false);
-                  JOptionPane.showMessageDialog(null,"Pharmacy Request successuly submitted!", "Warning", JOptionPane.WARNING_MESSAGE); 
-    
-    }//GEN-LAST:event_btnSendMedActionPerformed
 
     private void btnCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartActionPerformed
         // TODO add your handling code here:
         if(!requestInprog.equals("")){
-             if(!requestInprog.equals(pharmacyComboBox.getSelectedItem().toString())){
-                 if(!medList.isEmpty()){
-      JOptionPane.showMessageDialog(null, "You already have medicines of other pharmacy in the cart.\n Cannot place medicine request on multiple pharmacies at a time.\n Please send the existing request and then add other pharmacy request.","Warning", JOptionPane.WARNING_MESSAGE); 
-               return;
-             }
-       
-        }
-        }
-         int rows = medTable.getSelectedRow();
-        if(rows <0){
-             JOptionPane.showMessageDialog(null,"Selected one medicine at a time to send pharmacy request", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;           
-        }
-         int quantity = (Integer)quant.getValue();
-         if(quantity <= 0){
-          JOptionPane.showMessageDialog(null,"Quantity of desired medicine cannot be less than or equal to zero!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;               
-         }
-      Medicine med = (Medicine) medTable.getValueAt(rows, 0);
-      if((!(med.getName().equals(""))) || (!(quantity > 0))){
-      medList.put(med,quantity);
-      }
-      requestInprog = pharmacyComboBox.getSelectedItem().toString();
-      populateMedReqTable();
+            if(!requestInprog.equals(pharmacyComboBox.getSelectedItem().toString())){
+                if(!medList.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "You already have medicines of other pharmacy in the cart.\n Cannot place medicine request on multiple pharmacies at a time.\n Please send the existing request and then add other pharmacy request.","Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
 
+            }
+        }
+        int rows = medTable.getSelectedRow();
+        if(rows <0){
+            JOptionPane.showMessageDialog(null,"Selected one medicine at a time to send pharmacy request", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int quantity = (Integer)quant.getValue();
+        if(quantity <= 0){
+            JOptionPane.showMessageDialog(null,"Quantity of desired medicine cannot be less than or equal to zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Medicine med = (Medicine) medTable.getValueAt(rows, 0);
+        if((!(med.getName().equals(""))) || (!(quantity > 0))){
+            medList.put(med,quantity);
+        }
+        requestInprog = pharmacyComboBox.getSelectedItem().toString();
+        populateMedReqTable();
 
     }//GEN-LAST:event_btnCartActionPerformed
 
-    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
+    private void btnSendMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendMedActionPerformed
         // TODO add your handling code here:
-        int rows = medReqTable.getSelectedRow();
-        if(rows < 0){
-             JOptionPane.showMessageDialog(null,"Select the medicine to modify quantity", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;           
+        if(medList.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please add medicines required from the desired Pharmacy options", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-         int quantity = (Integer)modQuant.getValue();
-         if(quantity <= 0){
-          JOptionPane.showMessageDialog(null,"Quantity of desired medicine cannot be less than or equal to zero!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;  
-         }
-        Medicine med = (Medicine) medReqTable.getValueAt(rows, 0);
-               for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) {  
-                   if(medicine.getKey().getName().equals(med.getName())){
-                       
-                   }
-               }
-               medList.put(med,quantity);
-                     populateMedReqTable();
-    }//GEN-LAST:event_btnModActionPerformed
+        if(txtPres.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Uploading prescription is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        PharmaWorkRequest pharmaReq = new PharmaWorkRequest();
+        pharmaReq.setEnterprise(pharmacyComboBox.getSelectedItem().toString());
+        pharmaReq.setPatient(account.getEmployee().getName());
+        pharmaReq.setSender(account);
+        Map<String,Date> reqMap = pharmaReq.getStatusMap();
+        reqMap.put("Medicine Request Created", new Date());
+        pharmaReq.setStatusMap(reqMap);
+        boolean covidCond = false;
+        for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) {
+            if(medicine.getKey().getCondition().equals("Covid")){
+                covidCond = true;
+            }
+        }
+        if(covidCond == true){
+            pharmaReq.setCondition("Covid");
+        }else{
+            pharmaReq.setCondition("Not Covid");
+        }
+        for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) {
+            pharmaReq.updateMedList(medicine.getKey(),medicine.getValue());
+        }
+        for (Network network : business.getNetworkList()){
+            for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterpriseCheck.getName().equals(pharmacyComboBox.getSelectedItem().toString())){
+                    for (UserAccount ua : enterpriseCheck.getUserAccountDirectory().getUserAccountList()) {
+                        if(ua.getRole().toString().equals("PharmacyAdmin")){
+                            reqMap.put("Request Sent to Admin", new Date());
+                            pharmaReq.setStatusMap(reqMap);
+                            ua.getPharmaWorkQueue().addPharmaRequest(pharmaReq);
+                            business.getPharmaQueue().addPharmaRequest(pharmaReq);
+                        }
+                    }
+
+                }
+            }
+        }
+
+        medList.clear();
+        requestInprog = "";
+        populateMedReqTable();
+        lblTot.setVisible(false);
+        JOptionPane.showMessageDialog(null,"Pharmacy Request successuly submitted!", "Warning", JOptionPane.WARNING_MESSAGE);
+
+    }//GEN-LAST:event_btnSendMedActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
         int rows = medReqTable.getSelectedRowCount();
         if(rows <= 0){
-             JOptionPane.showMessageDialog(null,"Select the medicine to be removed!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;           
-        }  
-        Medicine med = (Medicine) medTable.getValueAt(rows, 0);      
-        medList.remove(med);      
-              populateMedReqTable();
+            JOptionPane.showMessageDialog(null,"Select the medicine to be removed!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Medicine med = (Medicine) medTable.getValueAt(rows, 0);
+        medList.remove(med);
+        populateMedReqTable();
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
-                JFileChooser fileChoose = new JFileChooser();
+        JFileChooser fileChoose = new JFileChooser();
         fileChoose.showOpenDialog(null);
         File photoFile = fileChoose.getSelectedFile();
         String filename = photoFile.getAbsolutePath();
@@ -573,6 +539,28 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         populatePatientRequests();
     }//GEN-LAST:event_btnTrackActionPerformed
+
+    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
+        // TODO add your handling code here:
+        int rows = medReqTable.getSelectedRow();
+        if(rows < 0){
+            JOptionPane.showMessageDialog(null,"Select the medicine to modify quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int quantity = (Integer)modQuant.getValue();
+        if(quantity <= 0){
+            JOptionPane.showMessageDialog(null,"Quantity of desired medicine cannot be less than or equal to zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Medicine med = (Medicine) medReqTable.getValueAt(rows, 0);
+        for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) {
+            if(medicine.getKey().getName().equals(med.getName())){
+
+            }
+        }
+        medList.put(med,quantity);
+        populateMedReqTable();
+    }//GEN-LAST:event_btnModActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
