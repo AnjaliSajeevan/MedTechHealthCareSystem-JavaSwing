@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import Business.Utility.SmsSender;
 import Business.Vaccine.VaccineTester;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -654,7 +655,7 @@ String toemail;
                 }else{
                     tester.setAddress("");
                 }
-                tester.setContact(Integer.parseInt(txtPhone.getText()));
+                tester.setContact(txtPhone.getText().trim());
                 tester.setGender(gender);
                 tester.setDOB(txtDOB.getText());
                 tester.setAge(age);
@@ -698,6 +699,7 @@ String toemail;
                 }
                 JOptionPane.showMessageDialog(null,"Patient added successfully!!!");
                 sendFromGMail("sayali98365", "#Vu4f1314020", new String[]{toemail},"patient ceated","body");
+                SmsSender.sendSms(txtPhone.getText(), "Hi u r registered");
                 System.out.println("email bbcm");
 //String from, String pass, String[] to, String subject, String body
                 txtName.setText("");
