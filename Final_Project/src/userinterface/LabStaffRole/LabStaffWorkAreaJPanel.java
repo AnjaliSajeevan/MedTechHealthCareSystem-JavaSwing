@@ -11,6 +11,8 @@ import Business.Organization.LaboratoryOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
 import java.awt.CardLayout;
+import java.util.Date;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,10 +29,10 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
         private JPanel userProcessContainer;
     private EcoSystem business;  
     private UserAccount account;
-    public LabStaffWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, LaboratoryOrganization LabOrganization, Enterprise enterprise) {
+    public LabStaffWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business,UserAccount account, LaboratoryOrganization LabOrganization, Enterprise enterprise) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
-   //     this.business = business;
+        this.business = business;
         this.account = account;
         populateTestingTable();
     }
@@ -60,11 +62,18 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnAssign = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         labTestingTable = new javax.swing.JTable();
-        btnAssign = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnProcess = new javax.swing.JButton();
+
+        btnAssign.setText("Assign Receiver");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignActionPerformed(evt);
+            }
+        });
 
         labTestingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,13 +95,6 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(labTestingTable);
-
-        btnAssign.setText("Assign Receiver");
-        btnAssign.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Lab Staff Panel");
 
@@ -139,17 +141,27 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
+         int selectedRow = labTestingTable.getSelectedRow();
+                 if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a Lab Test from table!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        LabPatientWorkRequest labReq= (LabPatientWorkRequest)labTestingTable.getValueAt(selectedRow, 0);
+        Map<String,Date> reqMap = labReq.getStatusMap();
+        reqMap.put("LabTest Assigned-"+account, new Date());
+        labReq.setStatusMap(reqMap);
+        business.getLabPatQueue().updateLabPatientRequest(labReq, business.getLabPatQueue().getLabPatientRequestList());
     }//GEN-LAST:event_btnAssignActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
-          int selectedRow = labTestingTable.getSelectedRow();
+        int selectedRow = labTestingTable.getSelectedRow();
         if(selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a Lab Test from table!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         LabPatientWorkRequest labReq= (LabPatientWorkRequest)labTestingTable.getValueAt(selectedRow, 0);
-        ProcessTestJPanel processTestJPanel = new ProcessTestJPanel(userProcessContainer, account,labReq);
+        ProcessTestJPanel processTestJPanel = new ProcessTestJPanel(userProcessContainer, account,business,labReq);
         userProcessContainer.add("processTestJPanel", processTestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

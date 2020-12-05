@@ -21,7 +21,8 @@ public class LabStaffRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new LabStaffWorkAreaJPanel(userProcessContainer, account,(LaboratoryOrganization)organization,enterprise);
+        return new LabStaffWorkAreaJPanel(userProcessContainer, business,account,(LaboratoryOrganization)organization,enterprise);
+    
     }
     
     public String toString(){
