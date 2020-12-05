@@ -26,7 +26,7 @@ public class Patient extends Employee {
     private static int count = 1;
     private String DOB;
     private int age;
-    private int contact;
+    private String contact;
     private String email;
     private String gender;
     private Date createDate;
@@ -137,11 +137,11 @@ public class Patient extends Employee {
         this.age = age;
     }
 
-    public int getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(int contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 
