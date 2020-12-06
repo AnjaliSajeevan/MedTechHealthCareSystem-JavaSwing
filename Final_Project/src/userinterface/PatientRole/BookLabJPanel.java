@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
 import java.awt.CardLayout;
 import static java.lang.Boolean.TRUE;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -104,23 +105,21 @@ public class BookLabJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         labComboBox = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        slotTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         serviceComboBox = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        btnBook = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        slotTable = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
+        btnBook = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         labTestingTable = new javax.swing.JTable();
         btnResults = new javax.swing.JButton();
-
-        jLabel1.setText("Lab Appointment Booking");
 
         btnBack.setText("<-Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +131,21 @@ public class BookLabJPanel extends javax.swing.JPanel {
         labComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Select Laboratory");
+
+        jLabel1.setText("Lab Appointment Booking");
+
+        jButton1.setText("View Services and Available Slots");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        serviceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel6.setText("Choose Service:");
+
+        jLabel2.setText("Showing Next Week Available Slots:");
 
         slotTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,23 +167,8 @@ public class BookLabJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(slotTable);
-        if (slotTable.getColumnModel().getColumnCount() > 0) {
-            slotTable.getColumnModel().getColumn(0).setResizable(false);
-            slotTable.getColumnModel().getColumn(1).setResizable(false);
-        }
 
-        jButton1.setText("View Services and Available Slots");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Showing Next Week Available Slots:");
-
-        serviceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel6.setText("Choose Service:");
+        jSeparator1.setBackground(new java.awt.Color(102, 0, 0));
 
         btnBook.setText("BOOK LAB APPOINTMENT");
         btnBook.addActionListener(new java.awt.event.ActionListener() {
@@ -177,8 +176,6 @@ public class BookLabJPanel extends javax.swing.JPanel {
                 btnBookActionPerformed(evt);
             }
         });
-
-        jSeparator1.setBackground(new java.awt.Color(102, 0, 0));
 
         labTestingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -290,76 +287,83 @@ public class BookLabJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(labComboBox.getSelectedItem().equals("")){
+            JOptionPane.showMessageDialog(null, "Please select a Laboratory to check slots and services!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        LabEnterprise labEnterpise = null;
+        for (Network network : business.getNetworkList()){
+            for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterpriseCheck.getName().equals(labComboBox.getSelectedItem().toString())){
+                    labEnterpise = (LabEnterprise) enterpriseCheck;
+                }
+            }
+        }
+        if(labEnterpise!=null){
+            populateServices(labEnterpise);
+            populateSlots(labEnterpise);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         // TODO add your handling code here:
         if(serviceComboBox.getSelectedItem().equals("")){
-         JOptionPane.showMessageDialog(null, "Service Selection is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);       
-                  return;
+            JOptionPane.showMessageDialog(null, "Service Selection is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-       int rows = slotTable.getSelectedRowCount();
+        int rows = slotTable.getSelectedRowCount();
         if(rows <= 0){
-             JOptionPane.showMessageDialog(null,"Selecting one time slot is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;           
-        }  
+            JOptionPane.showMessageDialog(null,"Selecting one time slot is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if(rows >1){
-             JOptionPane.showMessageDialog(null,"Please select only one slot!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;               
+            JOptionPane.showMessageDialog(null,"Please select only one slot!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
         String slotDate = (String) slotTable.getValueAt(rows, 0);
         String slotTime = (String) slotTable.getValueAt(rows, 1);
-          LabPatientWorkRequest request = new LabPatientWorkRequest();
-      request.setPatient(account.getEmployee().getName());
-      request.setSender(account);
-      request.setLabTestType(serviceComboBox.getSelectedItem().toString());
-      request.setSlotDate(slotDate);
-      request.setSlotTime(slotTime);
-             for (Network network : business.getNetworkList()){
-        for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(enterpriseCheck.getName().equals(labComboBox.getSelectedItem().toString())){
-                LabEnterprise e = (LabEnterprise) enterpriseCheck;
-                  Map<String,String> slots = e.getTimeSlot();
-                  slots.put(slotDate+","+slotTime, "true");
-                  e.setTimeSlot(slots);                 
-                 for (UserAccount ua : e.getUserAccountDirectory().getUserAccountList()) {
-                   if(ua.getRole().toString().equals("LabAdmin")){
-                      ua.getLabPatientWorkQueue().addLabPatientRequest(request);
-                   }
-                 }
+        LabPatientWorkRequest request = new LabPatientWorkRequest();
+        request.setEnterprise(labComboBox.getSelectedItem().toString());
+        request.setPatient(account.getEmployee().getName());
+        request.setSender(account);
+        request.setLabTestType(serviceComboBox.getSelectedItem().toString());
+        request.setSlotDate(slotDate);
+        request.setSlotTime(slotTime);
+        Map<String,Date> reqMap = request.getStatusMap();
+        reqMap.put("Lab Appointment Created", new Date());
+        request.setStatusMap(reqMap);
+        for (Network network : business.getNetworkList()){
+            for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterpriseCheck.getName().equals(labComboBox.getSelectedItem().toString())){
+                    LabEnterprise e = (LabEnterprise) enterpriseCheck;
+                    Map<String,String> slots = e.getTimeSlot();
+                    slots.put(slotDate+","+slotTime, "true");
+                    e.setTimeSlot(slots);
+                    for (UserAccount ua : e.getUserAccountDirectory().getUserAccountList()) {
+                        if(ua.getRole().toString().equals("LabAdmin")){
+                            reqMap.put("Request Sent to Laboratory", new Date());
+                            request.setStatusMap(reqMap);
+                            ua.getLabPatientWorkQueue().addLabPatientRequest(request);
+                            business.getLabPatQueue().addLabPatientRequest(request);
+                        }
+                    }
+                }
             }
         }
-      }
-                 
-       JOptionPane.showMessageDialog(null,"Booked Lab appointment successfully!", "Warning", JOptionPane.WARNING_MESSAGE); 
-                 LabEnterprise labEnterpise = null;
-            for (Network network : business.getNetworkList()){
-        for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(enterpriseCheck.getName().equals(labComboBox.getSelectedItem().toString())){
-                labEnterpise = (LabEnterprise) enterpriseCheck;
-            }
-        }   
-            }
-                  populateSlots(labEnterpise);
-    }//GEN-LAST:event_btnBookActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-              if(labComboBox.getSelectedItem().equals("")){
-         JOptionPane.showMessageDialog(null, "Please select a Laboratory to check slots and services!", "Warning", JOptionPane.WARNING_MESSAGE);       
-                  return;
+        JOptionPane.showMessageDialog(null,"Booked Lab appointment successfully!", "Warning", JOptionPane.WARNING_MESSAGE);
+        LabEnterprise labEnterpise = null;
+        for (Network network : business.getNetworkList()){
+            for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterpriseCheck.getName().equals(labComboBox.getSelectedItem().toString())){
+                    labEnterpise = (LabEnterprise) enterpriseCheck;
+                }
+            }
         }
-              LabEnterprise labEnterpise = null;
-            for (Network network : business.getNetworkList()){
-        for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
-            if(enterpriseCheck.getName().equals(labComboBox.getSelectedItem().toString())){
-                labEnterpise = (LabEnterprise) enterpriseCheck;
-            }
-        }   
-            }
-            if(labEnterpise!=null){
-        populateServices(labEnterpise);
         populateSlots(labEnterpise);
-            }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBookActionPerformed
 
     private void btnResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultsActionPerformed
         // TODO add your handling code here:

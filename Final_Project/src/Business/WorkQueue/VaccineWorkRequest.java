@@ -23,6 +23,7 @@ public class VaccineWorkRequest {
     private Map<String,Date> statusMap;
     private Date requestDate;
     private Date resolveDate;
+    private String enterprise;
     
     public VaccineWorkRequest(){
         requestDate = new Date();
@@ -67,6 +68,14 @@ public class VaccineWorkRequest {
 
     public void setStatusMap(Map<String, Date> statusMap) {
         this.statusMap = statusMap;
+    }
+
+    public String getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(String enterprise) {
+        this.enterprise = enterprise;
     }
     
     public Date getRequestDate() {
