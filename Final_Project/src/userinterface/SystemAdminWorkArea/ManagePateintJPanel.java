@@ -9,13 +9,16 @@ import Business.EcoSystem;
 import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import java.awt.Component;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
 import userinterface.PatientRole.CreatePatientJPanel;
-import userinterface.PatientRole.PatientWorkAreaJPanel;
 import userinterface.PatientRole.ViewPatientJPanel;
 
 /**
@@ -64,6 +67,7 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
         patientTable = new javax.swing.JTable();
         btnCreatePateint = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnchart = new javax.swing.JButton();
 
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +111,13 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnchart.setText("chart");
+        btnchart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnchartActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,28 +126,32 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(195, 195, 195))
             .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(btnCreatePateint)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(btnCreatePateint)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnchart))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addGap(58, 58, 58)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreatePateint)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(btnchart))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -171,10 +186,50 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnchartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchartActionPerformed
+        // TODO add your handling code here:
+        // int age1=tester.getAge();
+        //  int selectedRow=patientTable.getSelectedRow();
+        //  Patient pa=(Patient)patientTable.getValueAt(selectedRow, 1);
+        int countA = 0;
+        int countB=0;
+        int countC=0;
+        int countD=0;
+        for(Patient patient : ecosystem.getPatientDirectory().getpatientlist()){
+            if(patient.getAge() <= 25){
+                ++countA;
+            }
+            else if(patient.getAge()>=26 && patient.getAge()<=35)
+            {
+                ++countB;
+            }
+            else if(patient.getAge()>=36 && patient.getAge()<=45)
+            {
+                ++countC;
+            }
+            else if(patient.getAge()>=46 && patient.getAge()<=100)
+            {
+                ++countD;
+            }
+        }
+       
+        DefaultPieDataset piedataset= new DefaultPieDataset();
+        piedataset.setValue("Below 26", countA);
+        piedataset.setValue("from 26 to 35",countB );
+        piedataset.setValue("from 36 to 45",countC);
+        piedataset.setValue("from 46 to 100",countD);
+        JFreeChart chart=ChartFactory.createPieChart("Pie Chart", piedataset, true, true, true);
+        PiePlot p=(PiePlot)chart.getPlot();
+        ChartFrame frame=new ChartFrame("Pie Chart", chart);
+        frame.setVisible(true);
+        frame.setSize(450,500);
+    }//GEN-LAST:event_btnchartActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreatePateint;
+    private javax.swing.JButton btnchart;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable patientTable;
