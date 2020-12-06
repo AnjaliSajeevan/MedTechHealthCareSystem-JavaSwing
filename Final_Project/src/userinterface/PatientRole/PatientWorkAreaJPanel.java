@@ -210,11 +210,10 @@ InsuranceAdminOrganization iOrg;
     private javax.swing.JButton btnPatientHistory;
     private javax.swing.JButton btnRegisterForInsurance;
     private javax.swing.JButton jButton3;
-<<<<<<< HEAD
+
     private javax.swing.JButton jButton4;
-=======
+
     private javax.swing.JLabel jLabel1;
->>>>>>> 10852a24585ce65adb373041e38fe50d08079858
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
