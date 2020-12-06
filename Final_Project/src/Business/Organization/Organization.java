@@ -8,8 +8,11 @@ import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.ClaimWorkQueue;
+import Business.WorkQueue.EmergencyQueue;
+import Business.WorkQueue.LabPatientWorkQueue;
 import Business.WorkQueue.LabTestWorkQueue;
 import Business.WorkQueue.PatientHospitalAppointmentWorkQueue;
+import Business.WorkQueue.PharmaWorkQueue;
 import Business.WorkQueue.VaccineWorkQueue;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
@@ -26,6 +29,9 @@ public abstract class Organization {
     private PatientHospitalAppointmentWorkQueue hospitalQueue;
     private ClaimWorkQueue claimWorkQueue;
     private LabTestWorkQueue labQueue;
+    private PharmaWorkQueue pharmaQueue;
+    private LabPatientWorkQueue labPatQueue;
+    private EmergencyQueue emergencyQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
@@ -54,6 +60,10 @@ public abstract class Organization {
         vaccineQueue = new VaccineWorkQueue();
         hospitalQueue=new PatientHospitalAppointmentWorkQueue();
         claimWorkQueue = new ClaimWorkQueue();
+        labPatQueue = new LabPatientWorkQueue();
+        pharmaQueue = new PharmaWorkQueue();
+        emergencyQueue = new EmergencyQueue();
+        hospitalQueue=new PatientHospitalAppointmentWorkQueue();
         labQueue = new LabTestWorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
@@ -119,6 +129,30 @@ public abstract class Organization {
 
     public void setLabQueue(LabTestWorkQueue labQueue) {
         this.labQueue = labQueue;
+    }
+
+    public PharmaWorkQueue getPharmaQueue() {
+        return pharmaQueue;
+    }
+
+    public void setPharmaQueue(PharmaWorkQueue pharmaQueue) {
+        this.pharmaQueue = pharmaQueue;
+    }
+
+    public LabPatientWorkQueue getLabPatQueue() {
+        return labPatQueue;
+    }
+
+    public void setLabPatQueue(LabPatientWorkQueue labPatQueue) {
+        this.labPatQueue = labPatQueue;
+    }
+
+    public EmergencyQueue getEmergencyQueue() {
+        return emergencyQueue;
+    }
+
+    public void setEmergencyQueue(EmergencyQueue emergencyQueue) {
+        this.emergencyQueue = emergencyQueue;
     }
     
     public String getOrganizationType(){

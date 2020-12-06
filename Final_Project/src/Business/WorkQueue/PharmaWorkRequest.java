@@ -22,8 +22,10 @@ public class PharmaWorkRequest {
     private Map<Medicine,Integer> medList;
     private UserAccount receiver;
     private UserAccount sender;
+    private Map<String,Date> statusMap;
     private String prescription;
     private String message;
+    private String enterprise;
     private Date createDate;
         
    private static int count = 1;
@@ -32,6 +34,7 @@ public class PharmaWorkRequest {
         id = count;
         count++;
         medList = new HashMap<Medicine,Integer>();
+        statusMap = new HashMap<String,Date>();
         createDate=new Date();
     }
 
@@ -99,6 +102,22 @@ public class PharmaWorkRequest {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(String enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public Map<String, Date> getStatusMap() {
+        return statusMap;
+    }
+
+    public void setStatusMap(Map<String, Date> statusMap) {
+        this.statusMap = statusMap;
     }
 
 

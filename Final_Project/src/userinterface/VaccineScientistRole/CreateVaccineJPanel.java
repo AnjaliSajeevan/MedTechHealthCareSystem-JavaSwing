@@ -90,13 +90,13 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        btnUpdate = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JSeparator();
         btnHeart = new javax.swing.JRadioButton();
         btnDiabetes = new javax.swing.JRadioButton();
         btnCovid = new javax.swing.JRadioButton();
         btnResp = new javax.swing.JRadioButton();
         backJButton = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("Create Vaccine");
@@ -186,13 +186,6 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
 
         jSeparator3.setBackground(new java.awt.Color(153, 0, 0));
 
-        btnUpdate.setText("CREATE VACCINE");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
         jSeparator5.setBackground(new java.awt.Color(102, 0, 0));
 
         btnHeart.setText("Heart Disease");
@@ -227,6 +220,13 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setText("CREATE VACCINE");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -308,6 +308,10 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                                     .addComponent(txtAllergens, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCore, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(168, 168, 168)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,11 +326,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lblOther)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(168, 168, 168)
-                                .addComponent(jLabel1)))
+                                .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(67, Short.MAX_VALUE))
                     .addComponent(jSeparator3)
                     .addComponent(jSeparator1)))
@@ -425,9 +425,9 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                         .addComponent(txtPreservations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(61, 61, 61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -446,188 +446,6 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
          btnPills.setName("Pills");
          btnIntra.setSelected(false);
     }//GEN-LAST:event_btnPillsActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        lblName.setForeground(Color.black);
-        lblDesc.setForeground(Color.black);
-        lblCond.setForeground(Color.black);
-        lblPreservation.setForeground(Color.black);
-        lblOther.setForeground(Color.black);
-        lblCore.setForeground(Color.black);
-        lblAllergens.setForeground(Color.black);
-        lblDosage.setForeground(Color.black);
-        lblAdministration.setForeground(Color.black);
-        lblAge.setForeground(Color.black);
-        lblSide.setForeground(Color.black);
-        lblMax.setForeground(Color.black); 
-        lblMin.setForeground(Color.black); 
-        
-        String error = "";
-        if((txtName.getText().equalsIgnoreCase("")) ||
-            (txtDesc.getText().equalsIgnoreCase(""))||
-            (txtCore.getText().equals(""))||
-            (txtAllergens.getText().equalsIgnoreCase(""))||
-            (txtOther.getText().equalsIgnoreCase(""))||
-            (txtSide.getText().equalsIgnoreCase(""))||
-            (txtPreservations.getText().equalsIgnoreCase(""))||
-            ((!btnResp.isSelected()) &&(!btnCovid.isSelected()) && (!btnHeart.isSelected()) &&(!btnDiabetes.isSelected()))||
-                 ((!btnPills.isSelected()) &&(!btnIntra.isSelected())) ||
-                ((!btnMorning.isSelected()) &&(!btnAfternoon.isSelected()) && (!btnNight.isSelected()))
-                ){
-            error="\nAll the fields are Mandatory!!!";
-            //Highligting the unfilled blocks to RED
-            if((txtName.getText().equalsIgnoreCase(""))){
-                lblName.setForeground(Color.red);
-            }
-            if((txtPreservations.getText().equalsIgnoreCase(""))){
-                lblPreservation.setForeground(Color.red);
-            }
-            if((txtSide.getText().equalsIgnoreCase(""))){
-                lblSide.setForeground(Color.red);
-            }
-            if((txtOther.getText().equalsIgnoreCase(""))){
-                lblOther.setForeground(Color.red);
-            }
-            if((txtDesc.getText().equalsIgnoreCase(""))){
-                lblDesc.setForeground(Color.red);
-            }
-            if((txtCore.getText().equalsIgnoreCase(""))){
-                lblCore.setForeground(Color.red);
-            }
-            if((txtAllergens.getText().equalsIgnoreCase(""))){
-                lblAllergens.setForeground(Color.red);
-            }
-            if((!btnResp.isSelected()) &&(!btnCovid.isSelected()) && (!btnHeart.isSelected()) &&(!btnDiabetes.isSelected())){
-                lblCond.setForeground(Color.red);
-            }
-            if((!btnPills.isSelected()) &&(!btnIntra.isSelected())){
-                lblAdministration.setForeground(Color.red);
-            }
-            if((!btnMorning.isSelected()) &&(!btnAfternoon.isSelected()) && (!btnNight.isSelected())){
-                lblDosage.setForeground(Color.red);
-            }
-            if(((Integer)quantityMinAgeSpinner.getValue() <= 0) || ((Integer)quantityMaxAgeSpinner.getValue()<=0)){
-                lblAge.setForeground(Color.red);
-            }
-
-        }
-        if(!error.equals("")){
-            JOptionPane.showMessageDialog(null,error);
-            return;
-        }else{
-                    int minAge = (Integer)quantityMinAgeSpinner.getValue();
-                    int maxAge = (Integer)quantityMaxAgeSpinner.getValue();
-        if((minAge <= 0) || (maxAge<=0)){
-            if(minAge <= 0){
-                lblMin.setForeground(Color.red);
-            }else{
-               lblMax.setForeground(Color.red); 
-            }
-            JOptionPane.showMessageDialog(null, "Minimum or Maximum Age For Vaccine usage cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;          
-        }
-        if((minAge > 100) || (minAge < 1) ||(maxAge > 100) || (maxAge < 1)){
-             JOptionPane.showMessageDialog(null, "Minimum and Maximum Age for Vaccine needs to be of range 1 to 100 years only!", "Warning", JOptionPane.WARNING_MESSAGE);
-             lblMin.setForeground(Color.red);
-              lblMax.setForeground(Color.red); 
-             return;               
-        }
-        if(btnMorning.isSelected()) {
-             int mornDose = (Integer)mornDosage.getValue();
-             if((mornDose <= 0)){
-
-            JOptionPane.showMessageDialog(null, "Morning Dosage Selected!\nDosage for selected time cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;          
-             }
-        }
-        if(btnAfternoon.isSelected()){
-            int aftDose = (Integer)afterDosage.getValue();
-             if((aftDose <= 0)){
-
-            JOptionPane.showMessageDialog(null, "Afternoon Dosage Selected!\nDosage for selected time cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;          
-             }
-        }
-        if(btnNight.isSelected()){
-            int nightDose = (Integer)nightDosage.getValue();
-             if((nightDose <= 0)){
-
-            JOptionPane.showMessageDialog(null, "Night Dosage Selected!\nDosage for selected time cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;          
-             }
-        }
-        
-        }
-        if(!error.equals("")){
-            JOptionPane.showMessageDialog(null,error);
-        }else{
-            Vaccine vaccine = new Vaccine();
-            vaccine.setName(txtName.getText());
-            vaccine.setDescription(txtDesc.getText());
-            vaccine.setCoreComponents(txtCore.getText());
-            vaccine.setAllergens(txtAllergens.getText());
-            vaccine.setMinAgeGroup((Integer)quantityMinAgeSpinner.getValue());
-            vaccine.setMaxAgeGroup((Integer)quantityMaxAgeSpinner.getValue());
-            if(btnPills.isSelected()){
-                vaccine.setAdministration(btnPills.getName());
-            }else{
-                vaccine.setAdministration(btnIntra.getName());
-            }
-            String condition = "";
-            if(btnHeart.isSelected()){
-                condition=btnHeart.getName();
-            }else if(btnCovid.isSelected()){
-                condition=btnCovid.getName();
-            }else if(btnResp.isSelected()){
-                condition=btnResp.getName();
-            }else{
-                condition=btnDiabetes.getName();
-            }
-            vaccine.setCondition(condition);
-            int dose =0;
-            Map<String,Integer> doseMap = vaccine.getDosage();
-            if((Integer)mornDosage.getValue()<=0){
-                doseMap.put("Morning", dose);
-            }else{
-            doseMap.put("Morning", (Integer)mornDosage.getValue());
-            }
-            if((Integer)afterDosage.getValue()<=0){
-                doseMap.put("Afternoon", dose);
-            }else{
-            doseMap.put("Afternoon", (Integer)afterDosage.getValue());
-            }
-            if((Integer)nightDosage.getValue()<=0){
-               doseMap.put("Night", dose);
-            }else{
-            doseMap.put("Night", (Integer)nightDosage.getValue());
-            }
-            vaccine.setDosage(doseMap);
-            vaccine.setPreservations(txtPreservations.getText());
-            vaccine.setSideeffects(txtSide.getText());
-            vaccine.setOther(txtOther.getText());
-            vaccine.setUpdateDate();
-            vaccine.setUsername(account);
-            vaccine.setEnterpriseName(enterprise.getName());
-            vaccine.setEnterprise(enterprise);
-            VaccineEnterprise enterPrise = (VaccineEnterprise)enterprise;
-            enterPrise.getVaccineDirectory().addVaccine(vaccine);
-            
-            VaccineWorkRequest vaccineReq = new VaccineWorkRequest();
-            vaccineReq.setSender(account);
-            vaccineReq.setVaccine(vaccine);
-            vaccineReq.setRequestDate(new Date());
-            Map<String,Date> statusMap = vaccineReq.getStatusMap();
-            statusMap.put("Formulation Phase", new Date());   
-            vaccineReq.setStatusMap(statusMap);
-            account.getVaccineWorkQueue().addWorkRequest(vaccineReq);
-            business.getVaccineQueue().addWorkRequest(vaccineReq);
- 
-     
-            JOptionPane.showMessageDialog(null,"Vaccine Added Successfully!!!");
-            btnUpdate.setEnabled(true);
-        }  
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnHeartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeartActionPerformed
         // TODO add your handling code here:
@@ -672,6 +490,188 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        lblName.setForeground(Color.black);
+        lblDesc.setForeground(Color.black);
+        lblCond.setForeground(Color.black);
+        lblPreservation.setForeground(Color.black);
+        lblOther.setForeground(Color.black);
+        lblCore.setForeground(Color.black);
+        lblAllergens.setForeground(Color.black);
+        lblDosage.setForeground(Color.black);
+        lblAdministration.setForeground(Color.black);
+        lblAge.setForeground(Color.black);
+        lblSide.setForeground(Color.black);
+        lblMax.setForeground(Color.black);
+        lblMin.setForeground(Color.black);
+
+        String error = "";
+        if((txtName.getText().equalsIgnoreCase("")) ||
+            (txtDesc.getText().equalsIgnoreCase(""))||
+            (txtCore.getText().equals(""))||
+            (txtAllergens.getText().equalsIgnoreCase(""))||
+            (txtOther.getText().equalsIgnoreCase(""))||
+            (txtSide.getText().equalsIgnoreCase(""))||
+            (txtPreservations.getText().equalsIgnoreCase(""))||
+            ((!btnResp.isSelected()) &&(!btnCovid.isSelected()) && (!btnHeart.isSelected()) &&(!btnDiabetes.isSelected()))||
+            ((!btnPills.isSelected()) &&(!btnIntra.isSelected())) ||
+            ((!btnMorning.isSelected()) &&(!btnAfternoon.isSelected()) && (!btnNight.isSelected()))
+        ){
+            error="\nAll the fields are Mandatory!!!";
+            //Highligting the unfilled blocks to RED
+            if((txtName.getText().equalsIgnoreCase(""))){
+                lblName.setForeground(Color.red);
+            }
+            if((txtPreservations.getText().equalsIgnoreCase(""))){
+                lblPreservation.setForeground(Color.red);
+            }
+            if((txtSide.getText().equalsIgnoreCase(""))){
+                lblSide.setForeground(Color.red);
+            }
+            if((txtOther.getText().equalsIgnoreCase(""))){
+                lblOther.setForeground(Color.red);
+            }
+            if((txtDesc.getText().equalsIgnoreCase(""))){
+                lblDesc.setForeground(Color.red);
+            }
+            if((txtCore.getText().equalsIgnoreCase(""))){
+                lblCore.setForeground(Color.red);
+            }
+            if((txtAllergens.getText().equalsIgnoreCase(""))){
+                lblAllergens.setForeground(Color.red);
+            }
+            if((!btnResp.isSelected()) &&(!btnCovid.isSelected()) && (!btnHeart.isSelected()) &&(!btnDiabetes.isSelected())){
+                lblCond.setForeground(Color.red);
+            }
+            if((!btnPills.isSelected()) &&(!btnIntra.isSelected())){
+                lblAdministration.setForeground(Color.red);
+            }
+            if((!btnMorning.isSelected()) &&(!btnAfternoon.isSelected()) && (!btnNight.isSelected())){
+                lblDosage.setForeground(Color.red);
+            }
+            if(((Integer)quantityMinAgeSpinner.getValue() <= 0) || ((Integer)quantityMaxAgeSpinner.getValue()<=0)){
+                lblAge.setForeground(Color.red);
+            }
+
+        }
+        if(!error.equals("")){
+            JOptionPane.showMessageDialog(null,error);
+            return;
+        }else{
+            int minAge = (Integer)quantityMinAgeSpinner.getValue();
+            int maxAge = (Integer)quantityMaxAgeSpinner.getValue();
+            if((minAge <= 0) || (maxAge<=0)){
+                if(minAge <= 0){
+                    lblMin.setForeground(Color.red);
+                }else{
+                    lblMax.setForeground(Color.red);
+                }
+                JOptionPane.showMessageDialog(null, "Minimum or Maximum Age For Vaccine usage cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if((minAge > 100) || (minAge < 1) ||(maxAge > 100) || (maxAge < 1)){
+                JOptionPane.showMessageDialog(null, "Minimum and Maximum Age for Vaccine needs to be of range 1 to 100 years only!", "Warning", JOptionPane.WARNING_MESSAGE);
+                lblMin.setForeground(Color.red);
+                lblMax.setForeground(Color.red);
+                return;
+            }
+            if(btnMorning.isSelected()) {
+                int mornDose = (Integer)mornDosage.getValue();
+                if((mornDose <= 0)){
+
+                    JOptionPane.showMessageDialog(null, "Morning Dosage Selected!\nDosage for selected time cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+            if(btnAfternoon.isSelected()){
+                int aftDose = (Integer)afterDosage.getValue();
+                if((aftDose <= 0)){
+
+                    JOptionPane.showMessageDialog(null, "Afternoon Dosage Selected!\nDosage for selected time cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+            if(btnNight.isSelected()){
+                int nightDose = (Integer)nightDosage.getValue();
+                if((nightDose <= 0)){
+
+                    JOptionPane.showMessageDialog(null, "Night Dosage Selected!\nDosage for selected time cannot be zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+
+        }
+        if(!error.equals("")){
+            JOptionPane.showMessageDialog(null,error);
+        }else{
+            Vaccine vaccine = new Vaccine();
+            vaccine.setName(txtName.getText());
+            vaccine.setDescription(txtDesc.getText());
+            vaccine.setCoreComponents(txtCore.getText());
+            vaccine.setAllergens(txtAllergens.getText());
+            vaccine.setMinAgeGroup((Integer)quantityMinAgeSpinner.getValue());
+            vaccine.setMaxAgeGroup((Integer)quantityMaxAgeSpinner.getValue());
+            if(btnPills.isSelected()){
+                vaccine.setAdministration(btnPills.getName());
+            }else{
+                vaccine.setAdministration(btnIntra.getName());
+            }
+            String condition = "";
+            if(btnHeart.isSelected()){
+                condition=btnHeart.getName();
+            }else if(btnCovid.isSelected()){
+                condition=btnCovid.getName();
+            }else if(btnResp.isSelected()){
+                condition=btnResp.getName();
+            }else{
+                condition=btnDiabetes.getName();
+            }
+            vaccine.setCondition(condition);
+            int dose =0;
+            Map<String,Integer> doseMap = vaccine.getDosage();
+            if((Integer)mornDosage.getValue()<=0){
+                doseMap.put("Morning", dose);
+            }else{
+                doseMap.put("Morning", (Integer)mornDosage.getValue());
+            }
+            if((Integer)afterDosage.getValue()<=0){
+                doseMap.put("Afternoon", dose);
+            }else{
+                doseMap.put("Afternoon", (Integer)afterDosage.getValue());
+            }
+            if((Integer)nightDosage.getValue()<=0){
+                doseMap.put("Night", dose);
+            }else{
+                doseMap.put("Night", (Integer)nightDosage.getValue());
+            }
+            vaccine.setDosage(doseMap);
+            vaccine.setPreservations(txtPreservations.getText());
+            vaccine.setSideeffects(txtSide.getText());
+            vaccine.setOther(txtOther.getText());
+            vaccine.setUpdateDate();
+            vaccine.setUsername(account);
+            vaccine.setEnterpriseName(enterprise.getName());
+            vaccine.setEnterprise(enterprise);
+            VaccineEnterprise enterPrise = (VaccineEnterprise)enterprise;
+            enterPrise.getVaccineDirectory().addVaccine(vaccine);
+
+            VaccineWorkRequest vaccineReq = new VaccineWorkRequest();
+            vaccineReq.setEnterprise(enterprise.getName());
+            vaccineReq.setSender(account);
+            vaccineReq.setVaccine(vaccine);
+            vaccineReq.setRequestDate(new Date());
+            Map<String,Date> statusMap = vaccineReq.getStatusMap();
+            statusMap.put("Formulation Phase", new Date());
+            vaccineReq.setStatusMap(statusMap);
+            account.getVaccineWorkQueue().addWorkRequest(vaccineReq);
+            business.getVaccineQueue().addWorkRequest(vaccineReq);
+
+            JOptionPane.showMessageDialog(null,"Vaccine Added Successfully!!!");
+            btnUpdate.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

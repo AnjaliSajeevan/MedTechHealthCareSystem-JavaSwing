@@ -3,30 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Patient;
+package Business.Driver;
 
 import Business.Employee.Employee;
-import Business.InsurancePolicy.InsurancePolicy;
-import Business.Organization.Organization;
-import Business.Role.PatientRole;
-import Business.Role.Role;
-import Business.UserAccount.UserAccount;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 /**
  *
  * @author sayu
  */
-
-public class Patient extends Employee {
-     private String patientname;
+public class Driver extends Employee {
+     private String name;
     private String address;
     private int id;
     private static int count = 1;
     private String DOB;
     private int age;
-    private String contact;
+    private int contact;
     private String email;
     private String gender;
     private Date createDate;
@@ -34,66 +30,74 @@ public class Patient extends Employee {
     private String ssn;
     private String healthNum;
     private String license;
-    private String allergy;
+   
+    private String hospital;
     private String healthOther;
-    private String condition;
-    private String photograph;
-    private InsurancePolicy insurance;
+    private Date dateFrom;
+    private Date dateTo;
+    private String time;
     private String userName;
-    private int adultNo;
-    private int childrenNo;
-    private String primaryHospital;
-    private String insuranceOrderNo;
+ 
+    //private String photograph;
 
-    public String getInsuranceOrderNo() {
-        return insuranceOrderNo;
+   
+
+   
+   
+
+    public String getHealthOther() {
+        return healthOther;
     }
 
-    public void setInsuranceOrderNo(String insuranceOrderNo) {
-        this.insuranceOrderNo = insuranceOrderNo;
+    public void setHealthOther(String healthOther) {
+        this.healthOther = healthOther;
     }
 
-    public String getPrimaryHospital() {
-        return primaryHospital;
+    public Date getDateFrom() {
+        return dateFrom;
     }
 
-    public void setPrimaryHospital(String primaryHospital) {
-        this.primaryHospital = primaryHospital;
+    public void setDateFrom(Date dateFrom) {
+        this.dateFrom = dateFrom;
     }
 
-    public int getAdultNo() {
-        return adultNo;
+    public Date getDateTo() {
+        return dateTo;
     }
 
-    public void setAdultNo(int adultNo) {
-        this.adultNo = adultNo;
+    public void setDateTo(Date dateTo) {
+        this.dateTo = dateTo;
     }
 
-    public int getChildrenNo() {
-        return childrenNo;
+    public String getTime() {
+        return time;
     }
 
-    public void setChildrenNo(int childrenNo) {
-        this.childrenNo = childrenNo;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserAccount(String userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public InsurancePolicy getInsurance() {
-        return insurance;
+    public String getHospital() {
+        return hospital;
     }
 
-    public void setInsurance(InsurancePolicy insurance) {
-        this.insurance = insurance;
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 
-    public Patient() {
+    
+    
+    private String photograph;
+
+    public Driver() {
         id = count;
         count++;
         this.setCreateDate();
@@ -103,14 +107,12 @@ public class Patient extends Employee {
         return id;
     }
 
-
-    public String getPatientname() {
-        return patientname;
+    public String getName() {
+        return name;
     }
 
-     
-    public void setPatientname(String name) {
-        this.patientname = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public static int getCount() {
@@ -118,7 +120,7 @@ public class Patient extends Employee {
     }
 
     public static void setCount(int count) {
-        Patient.count = count;
+        Driver.count = count;
     }
 
     public String getDOB() {
@@ -137,11 +139,11 @@ public class Patient extends Employee {
         this.age = age;
     }
 
-    public String getContact() {
+    public int getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public void setContact(int contact) {
         this.contact = contact;
     }
 
@@ -209,29 +211,6 @@ public class Patient extends Employee {
         this.license = license;
     }
 
-    public String getAllergy() {
-        return allergy;
-    }
-
-    public void setAllergy(String allergy) {
-        this.allergy = allergy;
-    }
-
-    public String getHealthOther() {
-        return healthOther;
-    }
-
-    public void setHealthOther(String healthOther) {
-        this.healthOther = healthOther;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
 
     public String getPhotograph() {
         return photograph;
@@ -240,13 +219,9 @@ public class Patient extends Employee {
     public void setPhotograph(String photograph) {
         this.photograph = photograph;
     }
-
-   
-
-    @Override
+      @Override
     public String toString() {
-        return patientname;
+        return name;
     }
     
-    
-}
+  }

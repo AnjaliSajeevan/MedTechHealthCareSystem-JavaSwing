@@ -53,6 +53,14 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JButton" name="btnAssign">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Assign Receiver"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAssignActionPerformed"/>
+      </Events>
+    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -79,14 +87,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnAssign">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Assign Receiver"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAssignActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Lab Staff Panel"/>

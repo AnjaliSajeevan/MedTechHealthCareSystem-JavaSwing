@@ -7,6 +7,7 @@ package Business.UserAccount;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.ClaimWorkQueue;
+import Business.WorkQueue.EmergencyQueue;
 import Business.WorkQueue.LabPatientWorkQueue;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.LabTestWorkQueue;
@@ -28,6 +29,7 @@ public class UserAccount {
     private LabTestWorkQueue labTestWorkQueue;
     private PharmaWorkQueue pharmaWorkQueue;
     private LabPatientWorkQueue labPatientWorkQueue;
+    private EmergencyQueue emergencyQueue;
     private PatientHospitalAppointmentWorkQueue hospitalWorkQueue;
     private ClaimWorkQueue claimWorkQueue; 
 
@@ -37,6 +39,7 @@ public class UserAccount {
         labTestWorkQueue = new LabTestWorkQueue();
         labPatientWorkQueue = new LabPatientWorkQueue();
         pharmaWorkQueue = new PharmaWorkQueue();
+        emergencyQueue = new EmergencyQueue();
         hospitalWorkQueue= new PatientHospitalAppointmentWorkQueue();
         claimWorkQueue = new ClaimWorkQueue();
     }
@@ -105,10 +108,15 @@ public class UserAccount {
     public LabPatientWorkQueue getLabPatientWorkQueue() {
         return labPatientWorkQueue;
     }
+    public EmergencyQueue getEmergencyQueue() {
+        return emergencyQueue;
+    }
 
-  /*  public void setLabPatientWorkQueue(LabPatientWorkQueue labPatientWorkQueue) {
-        this.labPatientWorkQueue = labPatientWorkQueue;
-    }*/
+    public void setEmergencyQueue(EmergencyQueue emergencyQueue) {
+        this.emergencyQueue = emergencyQueue;
+    }
+    
+
 
     public PatientHospitalAppointmentWorkQueue getHospitalWorkQueue() {
         return hospitalWorkQueue;
