@@ -20,17 +20,13 @@ public class PharmaWorkQueue {
     }
 
     public ArrayList<PharmaWorkRequest> getPharmaList() {
-        System.out.println("inside get pharma="+pharmacyList);
         for(PharmaWorkRequest w: pharmacyList){
-            System.out.println("inside get loop pharma="+w.getMedList());
         }
         return pharmacyList;
     }
     public void addPharmaRequest(PharmaWorkRequest pharmaReq) {
-        System.out.println("inside add pharma="+pharmaReq.getMedList());
         this.pharmacyList.add(pharmaReq);
              for(PharmaWorkRequest w: pharmacyList){
-            System.out.println("inside add loop pharma="+w.getMedList());
         }
     }
             public void removePharmaRequest(PharmaWorkRequest pharmaReq) {

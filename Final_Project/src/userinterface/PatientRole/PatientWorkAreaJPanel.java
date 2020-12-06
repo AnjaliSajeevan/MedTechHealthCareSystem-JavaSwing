@@ -53,7 +53,7 @@ InsuranceAdminOrganization iOrg;
 
         btnRegisterForInsurance = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnEmergency = new javax.swing.JButton();
         btnBookLab = new javax.swing.JButton();
         btnMedReq = new javax.swing.JButton();
         lblUsername = new javax.swing.JLabel();
@@ -74,7 +74,12 @@ InsuranceAdminOrganization iOrg;
             }
         });
 
-        jButton4.setText("Emergency- Ambulance ");
+        btnEmergency.setText("Emergency- Ambulance ");
+        btnEmergency.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmergencyActionPerformed(evt);
+            }
+        });
 
         btnBookLab.setText("Book Appointment for Lab");
         btnBookLab.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +118,7 @@ InsuranceAdminOrganization iOrg;
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnRegisterForInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(btnPatientHistory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnMedReq, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,7 +145,7 @@ InsuranceAdminOrganization iOrg;
                 .addGap(24, 24, 24)
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(btnEmergency)
                 .addGap(17, 17, 17)
                 .addComponent(btnMedReq)
                 .addGap(18, 18, 18)
@@ -189,14 +194,27 @@ InsuranceAdminOrganization iOrg;
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnPatientHistoryActionPerformed
 
+    private void btnEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmergencyActionPerformed
+        // TODO add your handling code here:
+                        EmergencyJPanel emergencyJPanel=new EmergencyJPanel(userProcessContainer,account,ecosystem);
+        userProcessContainer.add("emergencyJPanel",emergencyJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnEmergencyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBookLab;
+    private javax.swing.JButton btnEmergency;
     private javax.swing.JButton btnMedReq;
     private javax.swing.JButton btnPatientHistory;
     private javax.swing.JButton btnRegisterForInsurance;
     private javax.swing.JButton jButton3;
+<<<<<<< HEAD
     private javax.swing.JButton jButton4;
+=======
+    private javax.swing.JLabel jLabel1;
+>>>>>>> 10852a24585ce65adb373041e38fe50d08079858
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables

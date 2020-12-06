@@ -10,6 +10,8 @@ import Business.UserAccount.UserAccount;
 import Business.Vaccine.Vaccine;
 import Business.Vaccine.VaccineTester;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -22,15 +24,19 @@ public class LabPatientWorkRequest {
     private String message;
     private String slotDate;
     private String slotTime;
+    private String enterprise;
     private String labTestType;
     private UserAccount receiver;
     private UserAccount sender;
+    private Map<String,Date> statusMap;
         
    private static int count = 1;
 
     public LabPatientWorkRequest() {
         id = count;
         count++;
+        statusMap = new HashMap<String,Date>();
+        
     }
 
     public Vaccine getVaccine() {
@@ -55,6 +61,14 @@ public class LabPatientWorkRequest {
 
     public void setLabTestType(String labTestType) {
         this.labTestType = labTestType;
+    }
+
+    public String getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(String enterprise) {
+        this.enterprise = enterprise;
     }
 
     public String getId() {
@@ -101,6 +115,14 @@ public class LabPatientWorkRequest {
 
     public void setSlotTime(String slotTime) {
         this.slotTime = slotTime;
+    }
+
+    public Map<String, Date> getStatusMap() {
+        return statusMap;
+    }
+
+    public void setStatusMap(Map<String, Date> statusMap) {
+        this.statusMap = statusMap;
     }
 
 
