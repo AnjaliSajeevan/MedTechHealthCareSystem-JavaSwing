@@ -38,6 +38,7 @@ InsuranceAdminOrganization iOrg;
         this.iOrg=organization;
         this.account=account;
         patient=account.getUsername();
+        lblUsername.setText(patient);
        
     }
 
@@ -55,7 +56,7 @@ InsuranceAdminOrganization iOrg;
         btnEmergency = new javax.swing.JButton();
         btnBookLab = new javax.swing.JButton();
         btnMedReq = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnPatientHistory = new javax.swing.JButton();
 
@@ -94,7 +95,7 @@ InsuranceAdminOrganization iOrg;
             }
         });
 
-        jLabel1.setText("<Value>");
+        lblUsername.setText("<Value>");
 
         jLabel2.setText("Welcome");
 
@@ -126,7 +127,7 @@ InsuranceAdminOrganization iOrg;
                         .addGap(228, 228, 228)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
+                        .addComponent(lblUsername)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(195, 195, 195))
         );
@@ -135,7 +136,7 @@ InsuranceAdminOrganization iOrg;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblUsername)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(btnRegisterForInsurance)
@@ -209,7 +210,12 @@ InsuranceAdminOrganization iOrg;
     private javax.swing.JButton btnPatientHistory;
     private javax.swing.JButton btnRegisterForInsurance;
     private javax.swing.JButton jButton3;
+<<<<<<< HEAD
+    private javax.swing.JButton jButton4;
+=======
     private javax.swing.JLabel jLabel1;
+>>>>>>> 10852a24585ce65adb373041e38fe50d08079858
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
 }

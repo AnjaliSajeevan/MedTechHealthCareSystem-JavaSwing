@@ -112,6 +112,11 @@ public class AmbulanceDriverWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addGap(225, 225, 225)
+                .addComponent(jLabel1)
+                .addContainerGap(274, Short.MAX_VALUE))
+=======
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
@@ -124,17 +129,23 @@ public class AmbulanceDriverWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addGap(193, 193, 193)))
                 .addContainerGap())
+>>>>>>> 10852a24585ce65adb373041e38fe50d08079858
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
+                .addComponent(jLabel1)
+                .addContainerGap(450, Short.MAX_VALUE))
+=======
                 .addComponent(jLabel2)
                 .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(btnUpdate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> 10852a24585ce65adb373041e38fe50d08079858
         );
     }// </editor-fold>//GEN-END:initComponents
 
