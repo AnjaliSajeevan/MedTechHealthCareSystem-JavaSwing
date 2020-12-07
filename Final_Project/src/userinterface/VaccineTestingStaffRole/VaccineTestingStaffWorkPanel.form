@@ -92,20 +92,20 @@
         <Property name="text" type="java.lang.String" value="Vaccine Testing Staff Panel"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnEmaill">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Email Testers"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmaillActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnAdminister">
       <Properties>
         <Property name="text" type="java.lang.String" value="Administer Medicine on Tester"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdministerActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnEmaill">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email Testers"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmaillActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnUpdateRes">

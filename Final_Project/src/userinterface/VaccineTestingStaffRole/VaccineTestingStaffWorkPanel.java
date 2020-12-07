@@ -55,17 +55,16 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
                  row[1] = labTest.getLabTestType();
                  row[2] = labTest.getVaccine();
                  row[3] =labTest.getTester();
-                 row[4] = labTest.getLabTestType();
-                 row[5] = labTest.getReceiver();
+                 row[4] = labTest.getReceiver();
                  if(labTest.getResult() == null){
-                     row[6] = "";
+                     row[5] = "";
                  }else{
-                 row[6] = labTest.getResult();
+                 row[5] = labTest.getResult();
                  }
                  if(labTest.getMessage() == null){
-                     row[7] = "";
+                     row[6] = "";
                  }else{
-                 row[7] = labTest.getMessage();
+                 row[6] = labTest.getMessage();
                  }
                  
 
@@ -88,8 +87,8 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         testRequestTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        btnEmaill = new javax.swing.JButton();
         btnAdminister = new javax.swing.JButton();
+        btnEmaill = new javax.swing.JButton();
         btnUpdateRes = new javax.swing.JButton();
 
         testRequestTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -116,17 +115,17 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("Vaccine Testing Staff Panel");
 
-        btnEmaill.setText("Email Testers");
-        btnEmaill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmaillActionPerformed(evt);
-            }
-        });
-
         btnAdminister.setText("Administer Medicine on Tester");
         btnAdminister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdministerActionPerformed(evt);
+            }
+        });
+
+        btnEmaill.setText("Email Testers");
+        btnEmaill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmaillActionPerformed(evt);
             }
         });
 
@@ -174,6 +173,20 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAdministerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministerActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = testRequestTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Test row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        LabTestWorkRequest labReq= (LabTestWorkRequest)testRequestTable.getValueAt(selectedRow, 0);
+
+        //email testers
+        labReq.setResult("Vaccine Administered");
+        populateLabTestTable();
+    }//GEN-LAST:event_btnAdministerActionPerformed
+
     private void btnEmaillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmaillActionPerformed
         // TODO add your handling code here:
         int selectedRow = testRequestTable.getSelectedRow();
@@ -188,20 +201,6 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null,"Email sent to Vaccine testers!!!");
         populateLabTestTable();
     }//GEN-LAST:event_btnEmaillActionPerformed
-
-    private void btnAdministerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministerActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = testRequestTable.getSelectedRow();
-        if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a Test row!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        LabTestWorkRequest labReq= (LabTestWorkRequest)testRequestTable.getValueAt(selectedRow, 0);
-
-        //email testers
-        labReq.setResult("Vaccine Administered");
-        populateLabTestTable();
-    }//GEN-LAST:event_btnAdministerActionPerformed
 
     private void btnUpdateResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateResActionPerformed
         // TODO add your handling code here:

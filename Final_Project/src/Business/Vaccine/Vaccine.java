@@ -18,7 +18,7 @@ public class Vaccine {
     
     private String name;
     private int id;
-    private static int count = 1;
+   // private static int count = 1;
     private String description;
     private String coreComponents;
     private String condition;
@@ -38,13 +38,12 @@ public class Vaccine {
     private int testerNum;
     private boolean tested;
     
-    public Vaccine() {
+    public Vaccine(int id) {
         dosage = new HashMap<String,Integer>();
-        id = count;
-        count++;
         this.setCreateDate();
+        this.id = id;
     }
-
+ 
     public int getId() {
         return id;
     }
