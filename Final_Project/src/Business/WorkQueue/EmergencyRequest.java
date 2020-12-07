@@ -24,6 +24,7 @@ public class EmergencyRequest {
     private int id;
     private Map<String,Date> statusMap;
    private static int count = 1;
+   private String location;
 
     public EmergencyRequest() {
         id = count;
@@ -95,6 +96,14 @@ public class EmergencyRequest {
 
     public void setStatusMap(Map<String, Date> statusMap) {
         this.statusMap = statusMap;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
    

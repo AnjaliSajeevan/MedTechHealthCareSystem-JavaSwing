@@ -11,7 +11,9 @@ import Business.Enterprise.PharmacyEnterprise;
 import Business.Essentials.Medicine;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ClaimWorkRequest;
 import Business.WorkQueue.PharmaWorkRequest;
 import java.awt.CardLayout;
 import java.io.File;
@@ -44,6 +46,7 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     UserAccount account;
     String requestInprog;
     Map<Medicine,Integer> medList;
+    Double costClaim;
     public RequestMedicineJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -86,6 +89,7 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     
       }
       lblTot.setText("Total Price :"+sum);
+      costClaim=Double.valueOf(sum);
       lblTot.setVisible(true);
     }
    public void populatePatientRequests(){
@@ -508,6 +512,26 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         lblTot.setVisible(false);
         JOptionPane.showMessageDialog(null,"Pharmacy Request successuly submitted!", "Warning", JOptionPane.WARNING_MESSAGE);
 
+        Patient patient1 = null;
+        String pat= account.getUsername();
+        for(Patient p:business.getPatientDirectory().getpatientlist())
+        {if (p.getUserName().equals(pat)){
+            patient1=p;
+        }
+        }
+        
+              
+        ClaimWorkRequest r = new ClaimWorkRequest();
+        r.setSender(account);
+        r.setPatient(patient1);
+        r.setRequestDate(new Date());
+        r.setCost(costClaim);
+        r.setStatus("Claim Requested");
+        r.setInsurancepolicy(patient1.getInsurance());
+        r.setHospital(enterprise);
+        
+        business.getClaimWorkQueue().getWorkRequestList().add(r);
+        account.getClaimWorkQueue().getWorkRequestList().add(r);
     }//GEN-LAST:event_btnSendMedActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed

@@ -32,7 +32,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
       UserAccount account;
       Enterprise enterprise;
-      String patient;
+      UserAccount patient;
     public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization AdminOrganization, Enterprise enterprise,EcoSystem ecosystem) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
@@ -44,26 +44,32 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }
     
      public void populateTable(){
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+
+        for (PatientHospitalAppointmentWorkRequest request : ecosystem.getHospitalQueue().hospitalRequestList()) {
+            if (request.getDoctor().equals(account.getEmployee().getName())) {
+                String message;
+                if (request.getResult() == null) {
+                    message = "Not available yet";
+                } else {
+                    message = request.getResult();
+                }
             
-        for(PatientHospitalAppointmentWorkRequest request : ecosystem.getHospitalQueue().hospitalRequestList()){           
-            if(request.getDoctor()==null){
-            System.out.println(request.getDoctor());
-            System.out.println(account.getEmployee().getName());}
-            else if(request.getDoctor().equals(account.getEmployee().getName())){
-            Object[] row = new Object[5];
+            Object[] row = new Object[7];
             row[0] = request;
-//            row[1] = request.getSender().getEmployee().getName();
-//            row[2] = request.getAppDate();
-//            row[3] = request.getTime();
-            row[1] = request.getStatus();
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = request.getAppDate();
+            row[3] = request.getTime();
+            row[4] = request.getStatus();
+            row[5] = request.getMessage();
+            row[6] = message;
             model.addRow(row);
-            patient=request.getSender().getUsername();
+            patient = request.getSender();
         }
+    
         }
-        
-    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,16 +95,33 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Patient name", "Appointment status"
+                "AppointmentNo.", "Patient name", "Date", "Time", "Status", "PatientCondition", "Result"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         jButton1.setText("View Patient History");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -159,12 +182,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,6 +191,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(272, 272, 272))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(jLabel4)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,10 +251,23 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvailabilityActionPerformed
         // TODO add your handling code here:
-        DoctorAvailability da = new DoctorAvailability(userProcessContainer,account,ecosystem);
-        userProcessContainer.add("DoctorAvailability", da);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        for (Doctor d : ecosystem.getDoctorDirectory().getdoctorlist()) {
+
+            if (d.getUserName().equals(account.getUsername())) {
+                if (d.getHospital() == null) {
+                    JOptionPane.showMessageDialog(null, "Please update the doctor details first");
+                } else {
+                    DoctorAvailability da = new DoctorAvailability(userProcessContainer, account, ecosystem);
+                    userProcessContainer.add("DoctorAvailability", da);
+                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                    layout.next(userProcessContainer);
+
+                }
+            }
+        }
+        
+        
+       
     }//GEN-LAST:event_btnAvailabilityActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed

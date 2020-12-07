@@ -42,11 +42,14 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
     private EcoSystem business; 
     private UserAccount account;
     private Doctor doc;
+    Enterprise enterprise;
     public ViewDoctorProfileJPanel(JPanel userProcessContainer,UserAccount account,Enterprise enterprise, EcoSystem business,Doctor doc ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.doc=doc;
+        this.enterprise=enterprise;
+        
         this.account=account;
         
         initializePage();
@@ -698,9 +701,11 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
                 doc.setSpecialization(txtSplcialization.getText());
                 doc.setPhotograph(txtPhoto.getText());
                 doc.setUpdateDate();
+                 doc.setHospital(enterprise.getName());
+                System.out.println("tHE HOSPITAL" +doc.getHospital()); 
                 System.out.println("view pandel doc"+doc);
                 business.getDoctorDirectory().updateDoctor(doc);
-                JOptionPane.showMessageDialog(null,"Tester updated successfully!!!");
+                JOptionPane.showMessageDialog(null,"Doctor details updated successfully!!!");
 
                 txtName.setText("");
                 txtGeo.setText("");

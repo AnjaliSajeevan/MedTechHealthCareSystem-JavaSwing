@@ -1,0 +1,22 @@
+Change 24:00 to 00:000
+Change:Insurancepolicy = patient.getInsurance();
+        policy = Insurancepolicy.toString();
+        String from = "08:00:00", to = "20:00:00";
+        LocalTime fromTime = LocalTime.parse(from), toTime = LocalTime.parse(to);
+
+        for (LocalTime counter = fromTime;
+                counter.compareTo(toTime) <= 0;
+                counter = counter.plusMinutes(30)) {
+            jComboBoxTime.addItem(counter.toString());
+
+                    }
+        populateComboBox();
+    }
+   
+   public void populateComboBox()
+   {for (InsurancePolicy a: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList())
+   {    System.out.println(ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList());
+       System.out.println(a.getPolicyName());
+        System.out.println("Insurance Policy2"+Insurancepolicy);
+   
+       if(a.getPolicyName().equalsIgnoreCase(policy))
