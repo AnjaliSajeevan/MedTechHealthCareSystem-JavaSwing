@@ -45,7 +45,7 @@
                               <Component id="btnManagePatient" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="165" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="116" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>

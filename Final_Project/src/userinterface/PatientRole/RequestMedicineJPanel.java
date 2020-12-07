@@ -95,8 +95,9 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
    public void populatePatientRequests(){
         DefaultTableModel model = (DefaultTableModel)respTable.getModel();
         model.setRowCount(0);
-        List<PharmaWorkRequest> requestList = account.getPharmaWorkQueue().getPharmaList();
+        List<PharmaWorkRequest> requestList = business.getPharmaQueue().getPharmaList();
         for(PharmaWorkRequest req: requestList){
+            if(req.getCust().equals(account)){
             String medList1 = "";
                 Map<Medicine,Integer> medMap= req.getMedList();
                 for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {  
@@ -106,17 +107,29 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                         medList1+=","+medicine.getKey();
                   }
                 } 
+                    Map<String,Date> map = req.getStatusMap();
+                    String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : req.getStatusMap().entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+               }
              Object row[] = new Object[8];
                  row[0] = req;
-                 row[1] = medList1;             
-                 row[2] = req.getMessage();
+                 row[1] = medList1;   
+                 row[2] = latestKey;
+                 row[3] = req.getMessage();
                  if(req.getSender() == null){
-                 row[3] = account;    
+                 row[4] = account;    
                  }else{
-                 row[3] = req.getSender();
+                 row[4] = req.getSender();
                  }
                  model.addRow(row); 
             }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -472,6 +485,7 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         PharmaWorkRequest pharmaReq = new PharmaWorkRequest();
         pharmaReq.setEnterprise(pharmacyComboBox.getSelectedItem().toString());
         pharmaReq.setPatient(account.getEmployee().getName());
+        pharmaReq.setCust(account);
         pharmaReq.setSender(account);
         Map<String,Date> reqMap = pharmaReq.getStatusMap();
         reqMap.put("Medicine Request Created", new Date());
