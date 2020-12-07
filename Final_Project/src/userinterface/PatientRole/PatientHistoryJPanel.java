@@ -10,10 +10,34 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
 import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 import Business.WorkQueue.PharmaWorkRequest;
+import com.lowagie.text.BadElementException;
+
+
 import java.awt.CardLayout;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
+import com.lowagie.text.Paragraph;
 
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -28,13 +52,17 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     JPanel userProcessContainer;
     UserAccount account;
-   
+   String patient;
     public PatientHistoryJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.account = account;
         populateTable();
+        populateTableLab();
+        populateTablePhar();
+        patient = account.getEmployee().getName();
+        jLabel5.setText(patient);
     }
            public void populateTable(){
             DefaultTableModel model = (DefaultTableModel)tblpatientAppointment.getModel();
@@ -69,7 +97,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             row[2] = request.getLabTestType();
             row[3] = request.getSlotTime();
             row[4] = request.getSlotDate();
-            row[5] = request.getVaccine();
+         //   row[5] = request.getMessage();
 
             model.addRow(row);
         }
@@ -86,7 +114,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             Object[] row = new Object[8];
             row[0] = request;
             row[1] = request.getEnterprise();
-            row[2] = request.getPrescription();
+           // row[2] = request.getMessage();
             row[3] = request.getCondition();
             row[4] = request.getCreateDate();
      
@@ -117,6 +145,8 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnGeneratePdf = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         tblpatientAppointment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,7 +198,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Appointment No.", "Laboratory", "Lab Test type", "Time", "Date", "Vaccine"
+                "Appointment No.", "Laboratory", "Lab Test type", "Time", "Date", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -186,9 +216,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             tblpatientAppointment2.getColumnModel().getColumn(2).setResizable(false);
             tblpatientAppointment2.getColumnModel().getColumn(3).setResizable(false);
             tblpatientAppointment2.getColumnModel().getColumn(4).setResizable(false);
-            tblpatientAppointment2.getColumnModel().getColumn(4).setHeaderValue("Hospital");
             tblpatientAppointment2.getColumnModel().getColumn(5).setResizable(false);
-            tblpatientAppointment2.getColumnModel().getColumn(5).setHeaderValue("Doctor");
         }
 
         tblpatientAppointment3.setModel(new javax.swing.table.DefaultTableModel(
@@ -199,7 +227,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Order No.", "Pharmacy", "Prescription", "Condition", "Date"
+                "Order No.", "Pharmacy", "Status", "Condition", "Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -230,6 +258,12 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("'s History");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setText("<>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -248,6 +282,10 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(282, 282, 282)
                 .addComponent(btnGeneratePdf)
                 .addGap(43, 43, 43))
         );
@@ -256,12 +294,19 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnGeneratePdf)))
-                .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnBack))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(btnGeneratePdf)))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,20 +331,160 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
     private void btnGeneratePdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePdfActionPerformed
         // TODO add your handling code here:
+        String path = "";
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = j.showSaveDialog(this);
 
-   
-       
-        
+        if (x == JFileChooser.APPROVE_OPTION) {
+
+            path = j.getSelectedFile().getPath();
+
+            Document doc = new Document();
+            try {
+                PdfWriter.getInstance(doc, new FileOutputStream(path+"PatientHistory.pdf"));
+                doc.open();
+                 // load image
+                
+                //Image image =Image.getInstance("MedTech.PNG");
+                
+               // doc.add(image);
+                doc.add(new Paragraph((patient+"'s MedTech History"),FontFactory.getFont(FontFactory.TIMES_BOLD, 18,Font.BOLD, Color.black)));
+                doc.add(new Paragraph(new Date().toString()));
+                doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------"));
+                PdfPTable tbl = new PdfPTable(7);
+                PdfPCell cell=new PdfPCell(new Paragraph("                            Patient Hospital History                                                "));
+                cell.setColspan(4);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setBackgroundColor(Color.lightGray);
+                tbl.addCell(cell);
+                
+                tbl.addCell("Appointment ID");
+                tbl.addCell("Date");
+                tbl.addCell("Time");
+                tbl.addCell("Status");
+                tbl.addCell("Hospital");
+                tbl.addCell("Doctor");
+                tbl.addCell("Result");
+
+                for (int i = 0; i < tblpatientAppointment.getRowCount(); i++) {
+                    String appointmentID = tblpatientAppointment.getValueAt(i, 0).toString();
+                    String date = tblpatientAppointment.getValueAt(i, 1).toString();
+                    String time = tblpatientAppointment.getValueAt(i, 2).toString();
+                    String status = tblpatientAppointment.getValueAt(i, 3).toString();
+                    String hospital = tblpatientAppointment.getValueAt(i, 4).toString();
+                    String doctor = tblpatientAppointment.getValueAt(i, 5).toString();
+                    String result = tblpatientAppointment.getValueAt(i, 6).toString();
+
+                    tbl.addCell(appointmentID);
+                    tbl.addCell(date);
+                    tbl.addCell(time);
+                    tbl.addCell(status);
+                    tbl.addCell(hospital);
+                    tbl.addCell(doctor);
+                    tbl.addCell(result);
+                }
+
+                doc.add(tbl);
+
+                PdfPCell blankRow = new PdfPCell(new Paragraph("\n"));
+                blankRow.setFixedHeight(5f);
+                blankRow.setColspan(4);
+                
+                PdfPTable tbl2 = new PdfPTable(6);
+                PdfPCell cell2=new PdfPCell(new Paragraph("                            Patient Laboratory History"                                                 ));
+                cell2.setColspan(4);
+                cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell2.setBackgroundColor(Color.lightGray);
+                tbl2.addCell(cell);
+                
+                tbl2.addCell("Appointment ID");
+                tbl2.addCell("Laboratory");
+                tbl2.addCell("Lab test type");
+                tbl2.addCell("Time");
+                tbl2.addCell("Date");
+                tbl2.addCell("Status");
+
+
+                for (int i = 0; i < tblpatientAppointment2.getRowCount(); i++) {
+                    String appointment = tblpatientAppointment2.getValueAt(i, 0).toString();
+                    String laboratory = tblpatientAppointment2.getValueAt(i, 1).toString();
+                    String labTest = tblpatientAppointment2.getValueAt(i, 2).toString();
+                    String times = tblpatientAppointment2.getValueAt(i, 3).toString();
+                    String dates = tblpatientAppointment2.getValueAt(i, 4).toString();
+                //    String statuss = tblpatientAppointment2.getValueAt(i, 5).toString();
+
+
+                    tbl2.addCell(appointment);
+                    tbl2.addCell(laboratory);
+                    tbl2.addCell(labTest);
+                    tbl2.addCell(times);
+                    tbl2.addCell(dates);
+                //    tbl2.addCell(statuss);
+
+                }
+
+                doc.add(tbl2);
+                
+                PdfPCell blankRow2 = new PdfPCell(new Paragraph("\n"));
+                blankRow2.setFixedHeight(5f);
+                blankRow2.setColspan(4);
+                
+                PdfPTable tbl3 = new PdfPTable(6);
+                PdfPCell cell3=new PdfPCell(new Paragraph("                                       Patient Pharmacy History"                                                  ));
+                cell3.setColspan(4);
+                cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell3.setBackgroundColor(Color.lightGray);
+                tbl3.addCell(cell);
+                
+                tbl3.addCell("Order No");
+                tbl3.addCell("Pharmacy");
+                tbl3.addCell("Status");
+                tbl3.addCell("Condition");
+                tbl3.addCell("Date");
+
+
+
+                for (int i = 0; i < tblpatientAppointment3.getRowCount(); i++) {
+                    String orderNo = tblpatientAppointment3.getValueAt(i, 0).toString();
+                    String Pharmacy = tblpatientAppointment3.getValueAt(i, 1).toString();
+                   // String Statusss = tblpatientAppointment3.getValueAt(i, 2).toString();
+                    String Condition = tblpatientAppointment3.getValueAt(i, 3).toString();
+                    String datess = tblpatientAppointment3.getValueAt(i, 4).toString();
+                   
+
+
+                    tbl3.addCell(orderNo);
+                    tbl3.addCell(Pharmacy);
+                   // tbl3.addCell(Statusss);
+                    tbl3.addCell(Condition);
+                    tbl3.addCell(datess);
+
+                }
+
+                doc.add(tbl3);
+                
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(PatientHistoryJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DocumentException | IOException ex) {
+                Logger.getLogger(PatientHistoryJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            doc.close();
+        }
+ JOptionPane.showMessageDialog(null,"Report Generated Successfully!");
 
     }//GEN-LAST:event_btnGeneratePdfActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnGeneratePdf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
