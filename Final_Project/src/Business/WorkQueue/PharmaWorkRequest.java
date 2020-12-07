@@ -16,12 +16,13 @@ import java.util.Map;
  * @author Manasa
  */
 public class PharmaWorkRequest {
-    private String patient;
     private int id;
     private String condition;
     private Map<Medicine,Integer> medList;
     private UserAccount receiver;
     private UserAccount sender;
+    private String patient;
+    private UserAccount cust;
     private Map<String,Date> statusMap;
     private String prescription;
     private String message;
@@ -73,6 +74,14 @@ public class PharmaWorkRequest {
 
     public void setPatient(String patient) {
         this.patient = patient;
+    }
+
+    public UserAccount getCust() {
+        return cust;
+    }
+
+    public void setCust(UserAccount cust) {
+        this.cust = cust;
     }
 
 

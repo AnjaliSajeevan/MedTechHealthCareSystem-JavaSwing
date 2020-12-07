@@ -261,7 +261,6 @@ JPanel userProcessContainer;
             return;
 
         }
-        String hos = "address";
         EmergencyRequest request = new EmergencyRequest();
         request.setEnterprise(patient.getPrimaryHospital());
         request.setHospital(patient.getPrimaryHospital());

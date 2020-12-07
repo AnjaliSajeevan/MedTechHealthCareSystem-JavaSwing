@@ -57,10 +57,11 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                   }
                 } 
              Object row[] = new Object[8];
-                 row[0] = req.getReceiver();
-                 row[1] = medList;
-                 row[2] = req.getSender();
-                 row[3] = req.getMessage();
+             row[0] = req;
+                 row[1] = req.getReceiver();
+                 row[2] = medList;
+                 row[3] = req.getSender();
+                 row[4] = req.getMessage();
                  model.addRow(row); 
             }
     }
@@ -170,7 +171,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         UserAccount ua = req.getReceiver();
         req.setMessage(txtMsg.getText());
         ua.getPharmaWorkQueue().updatePharmaRequest(req, ua.getPharmaWorkQueue().getPharmaList());
-        
+        JOptionPane.showMessageDialog(null, "Message Submitted!", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnProcessActionPerformed
 
 
