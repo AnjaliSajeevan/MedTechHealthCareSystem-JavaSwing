@@ -18,7 +18,11 @@ import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
 import static java.lang.Boolean.TRUE;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -31,7 +35,7 @@ import userinterface.VaccineTestingStaffRole.ViewVaccineTestJPanel;
 
 /**
  *
- * @author Anjali
+ * @author Manasa
  */
 public class FDAWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -54,6 +58,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         populateTimeline("");
         populateAllDrugRequestTable();
         lblSuccessRate.setVisible(false);
+        valueLabel.setText(enterprise.getName());
     }
 
     /**
@@ -81,29 +86,44 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
                  row[1] = req.getVaccine();
                  row[2] = req.getVaccine().getCondition();
                  row[3] = req.getRequestDate();
-                 row[4] = req.getResolveDate();
             
             if(req.getSender() == null){
-                 row[5] = "";
+                 row[4] = "";
             }else{
-                 row[5] = req.getSender();
+                 row[4] = req.getSender();
             }
-                 row[6] = latestKey;
-                 row[7] = req.getMessage();
+                 row[5] = latestKey;
+                 row[6] = req.getMessage();
             
 
             
             model.addRow(row);          
         }
     }
-    
-      public void populateTimeline(VaccineWorkRequest vacReq){
+   private  Map<String,Date> sortByDate(Map<String, Date> map){
+        List<Map.Entry<String, Date>> tempList = new LinkedList<Map.Entry<String, Date>>(map.entrySet());
+        Collections.sort(tempList, new Comparator<Map.Entry<String, Date>>(){
+            public int compare(Map.Entry<String, Date> obj1,Map.Entry<String, Date> obj2) {
+                    return obj1.getValue().compareTo(obj2.getValue());
+            }
+        });
+
+        Map<String, Date> sortedMap = new LinkedHashMap<String, Date>();
+        for (Map.Entry<String, Date> entry : tempList){
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
+    }  
+       public void populateTimeline(VaccineWorkRequest vacReq){
        DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
         model.setRowCount(0);
-            for (Map.Entry<String,Date> mapEntry : vacReq.getStatusMap().entrySet()) {
+           Map<String,Date> map = vacReq.getStatusMap();
+           Map<String, Date> Sortedmap = sortByDate(map);
+            String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : Sortedmap.entrySet()) {
                             Object row[] = new Object[5];
-                 row[0] = mapEntry.getKey();
-                 row[1] = mapEntry.getValue();
+                 row[0] =mapEntry.getValue(); 
+                 row[1] = mapEntry.getKey();
                   model.addRow(row); 
                }
       }
@@ -127,14 +147,14 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         vaccineRequestTable = new javax.swing.JTable();
         btnTimeline = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        timelineTable = new javax.swing.JTable();
         btnVaccine = new javax.swing.JButton();
         btnLabTests = new javax.swing.JButton();
         btnSucRate = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        timelineTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        txtMessage = new javax.swing.JTextField();
         lblSuccessRate = new javax.swing.JLabel();
+        txtMessage = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         btnReject = new javax.swing.JButton();
         btnCertify = new javax.swing.JButton();
 
@@ -173,27 +193,6 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnVaccine.setText("View Vaccine contents");
-        btnVaccine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVaccineActionPerformed(evt);
-            }
-        });
-
-        btnLabTests.setText("View Lab reports");
-        btnLabTests.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLabTestsActionPerformed(evt);
-            }
-        });
-
-        btnSucRate.setText("View Success Rate ");
-        btnSucRate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSucRateActionPerformed(evt);
-            }
-        });
-
         timelineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -215,12 +214,33 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane6.setViewportView(timelineTable);
 
-        jLabel1.setText("Message:");
+        btnVaccine.setText("View Vaccine contents");
+        btnVaccine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVaccineActionPerformed(evt);
+            }
+        });
+
+        btnLabTests.setText("View Lab reports");
+        btnLabTests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLabTestsActionPerformed(evt);
+            }
+        });
+
+        btnSucRate.setText("View Success Rate ");
+        btnSucRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSucRateActionPerformed(evt);
+            }
+        });
 
         lblSuccessRate.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblSuccessRate.setForeground(new java.awt.Color(51, 102, 255));
         lblSuccessRate.setText("successRate");
         lblSuccessRate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102), 3));
+
+        jLabel1.setText("Message:");
 
         btnReject.setText("Reject Vaccine");
         btnReject.addActionListener(new java.awt.event.ActionListener() {
@@ -396,7 +416,6 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         successRate =  testDouble/totDouble;
         lblSuccessRate.setText(successRate+"%");
         lblSuccessRate.setVisible(true);
-
     }//GEN-LAST:event_btnSucRateActionPerformed
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
@@ -423,7 +442,8 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         populateTimeline("");
         populateAllDrugRequestTable();
         JOptionPane.showMessageDialog(null, "Vaccine Reject and request sent back!", "Information", JOptionPane.INFORMATION_MESSAGE);
-
+        txtMessage.setText("");
+        lblSuccessRate.setVisible(false);
     }//GEN-LAST:event_btnRejectActionPerformed
 
     private void btnCertifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCertifyActionPerformed
@@ -461,6 +481,8 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         JOptionPane.showMessageDialog(null, "Vaccine certified and request sent to pharmacy!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        txtMessage.setText("");
+        lblSuccessRate.setVisible(false);
     }//GEN-LAST:event_btnCertifyActionPerformed
 
 
