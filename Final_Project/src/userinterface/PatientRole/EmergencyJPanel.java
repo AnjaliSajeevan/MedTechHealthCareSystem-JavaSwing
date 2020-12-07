@@ -16,7 +16,9 @@ import java.util.Map;
 import javax.swing.JPanel;
   import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.stream.Stream;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,6 +27,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
+import org.jfree.util.StringUtils;
 /**
  *
  * @author sayu
@@ -170,7 +173,7 @@ JPanel userProcessContainer;
                         .addGap(39, 39, 39)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
+                        .addGap(197, 197, 197)
                         .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
@@ -186,9 +189,9 @@ JPanel userProcessContainer;
                     .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(61, 61, 61)
                 .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -209,7 +212,35 @@ JPanel userProcessContainer;
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void btnShareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShareActionPerformed
-        location = patient.getAddress();
+//       Required Format -  String address = "360+West+Boylston+Street,+Boylston,+MA+01583";
+        String address1=patient.getAddress1();
+        String address2=patient.getAddress2();
+        String address3=patient.getAddress3();
+        String combined = address1+" "+address2+" "+address3;
+        String[] split=combined.split(" ");
+       String name = "";
+       String names="";
+       String nameFinal = "";
+        int numberOfItems = split.length;
+         System.out.println(combined);
+        for (int i=numberOfItems-1; i>=0; i--)
+        { 
+            if(i>0){
+                 
+            String first =  split[i] ;
+            name =  first + "+"+ name ;
+           
+            
+        }
+            else{
+                String first =  split[i] ;
+                names = first+"+"+name;
+            }
+        }
+        names = names.substring(0, names.length()-1);
+        
+        location = name;
+        System.out.println(names);
     }//GEN-LAST:event_btnShareActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -225,6 +256,7 @@ JPanel userProcessContainer;
         request.setEnterprise(patient.getPrimaryHospital());
         request.setHospital(patient.getPrimaryHospital());
         request.setMsg(txtMsg.getText());
+        request.setLocation(location);
         request.setSender(account);
         Map<String,Date> reqMap = request.getStatusMap();
         reqMap.put("Emergency Request created!", new Date());

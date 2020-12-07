@@ -45,8 +45,7 @@ public class HospitalAppointment extends javax.swing.JPanel {
         
         
         for (Patient p : ecosystem.getPatientDirectory().getpatientlist()) {
- System.out.println(p.getUserName());
-  System.out.println(patientName);
+ 
             if (p.getUserName().equals(patientName)) {
                 patient = p;
                 System.out.println(p);
@@ -54,10 +53,7 @@ public class HospitalAppointment extends javax.swing.JPanel {
         }
 
         Insurancepolicy = patient.getInsurance();
-        System.out.println(Insurancepolicy);
-        policy = Insurancepolicy.toString();
-        
-        
+        policy=Insurancepolicy.toString();
         String from = "08:00:00", to = "20:00:00";
         LocalTime fromTime = LocalTime.parse(from), toTime = LocalTime.parse(to);
 
@@ -69,7 +65,7 @@ public class HospitalAppointment extends javax.swing.JPanel {
                     }
         populateComboBox();
     }
-   
+    
    public void populateComboBox()
    {for (InsurancePolicy a: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList())
    {    

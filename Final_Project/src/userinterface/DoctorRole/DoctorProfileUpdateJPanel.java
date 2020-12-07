@@ -44,7 +44,7 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
    public DoctorProfileUpdateJPanel(JPanel userProcessContainer,UserAccount account,Enterprise enterprise,EcoSystem business) {
         this.enterprise=enterprise;
          this.userProcessContainer = userProcessContainer;
-         System.out.println("business cons doctor"+business);
+         
         this.business=business;
         this.account=account;
          initComponents();
@@ -503,7 +503,7 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
         int comp = 0;
         
         String error = "";
-        System.out.println("Enterprise name: "+ enterprise.getName());
+      
         
         //Validation of Mandatory fields.
 //        if(txtName.getText().equalsIgnoreCase("")){
@@ -538,7 +538,7 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
 //                error+="\nFor Name - Valid name with only Alphabets and Spaces allowed!";
 //            }
             if(!txtPhone.getText().equalsIgnoreCase("")){
-                System.out.println(txtPhone.getText());
+               
                 String phone = (txtPhone.getText());
 
                 String phoneRegex = "^[0-9]{10}$";
@@ -617,7 +617,8 @@ public class DoctorProfileUpdateJPanel extends javax.swing.JPanel {
                 tester.setPhotograph(txtPhoto.getText());
                 tester.setUpdateDate();
                 tester.setHospital(enterprise.getName());
-                
+                System.out.println("tHE HOSPITAL" +tester.getHospital()); 
+               
 //                System.out.println("Business "+business );
 //                System.out.println("doct dir"+business.getDoctorDirectory());
 //                System.out.println("--"+business.getDoctorDirectory().addDoctor(tester));

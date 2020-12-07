@@ -8,7 +8,9 @@ package userinterface.LabStaffRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.LaboratoryOrganization;
+import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ClaimWorkRequest;
 import Business.WorkQueue.LabPatientWorkRequest;
 import java.awt.CardLayout;
 import java.util.Date;
@@ -29,11 +31,13 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
         private JPanel userProcessContainer;
     private EcoSystem business;  
     private UserAccount account;
+    Enterprise enterprise;
     public LabStaffWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business,UserAccount account, LaboratoryOrganization LabOrganization, Enterprise enterprise) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.account = account;
+        this.enterprise=enterprise;
         populateTestingTable();
     }
 
@@ -165,6 +169,27 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
         userProcessContainer.add("processTestJPanel", processTestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        
+        Patient patient = null;
+        String pat= labReq.getPatient();
+        for(Patient p:business.getPatientDirectory().getpatientlist())
+        {if (p.getName().equals(pat)){
+            patient=p;
+        }
+        }
+        
+        ClaimWorkRequest r = new ClaimWorkRequest();
+        r.setSender(account);
+        r.setPatient(patient);
+        r.setRequestDate(new Date());
+        r.setCost(150.00);
+        r.setStatus("Claim Requested");
+        r.setInsurancepolicy(patient.getInsurance());
+        r.setHospital(enterprise);
+        
+        business.getClaimWorkQueue().getWorkRequestList().add(r);
+        account.getClaimWorkQueue().getWorkRequestList().add(r);
+        JOptionPane.showMessageDialog(null, "Successfully Processed");
     }//GEN-LAST:event_btnProcessActionPerformed
 
 
