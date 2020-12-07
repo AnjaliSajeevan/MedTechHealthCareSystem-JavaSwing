@@ -26,7 +26,7 @@ public abstract class Enterprise extends Organization{
         VaccineCompany("VaccineCompany"),
         Laboratory("Laboratory"),
         Insurance("Insurance"),
-        FDA("Food and Drug Administration "),
+        FDA("Food and Drug Administration"),
         Pharmacy("Pharmacy");
         
         

@@ -37,8 +37,8 @@ public class ManageTestersJPanel extends javax.swing.JPanel {
         List<VaccineTester> vaccinetestList = enterprise.getVaccinetesterDirectory().getVaccineTesterList();
         for(VaccineTester tester: vaccinetestList){
             Object row[] = new Object[4];
-                 row[0] = tester.getId();
-                 row[1] = tester;
+                 row[0] = tester;
+                 row[1] = tester.getName();
                  row[2] = tester.getCondition();
                  row[3] = tester.getAge();        
                  
@@ -194,7 +194,7 @@ public class ManageTestersJPanel extends javax.swing.JPanel {
             return;
         }
 
-        VaccineTester tester= (VaccineTester)testorsTable.getValueAt(selectedRow, 1);
+        VaccineTester tester= (VaccineTester)testorsTable.getValueAt(selectedRow, 0);
         ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,true);
         userProcessContainer.add("viewTestersJPanel", viewTestersJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

@@ -37,6 +37,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private Organization organization;
     private int testerNum;
+    private VaccineWorkRequest vaccineReq = null;
     public VaccineRequestJPanel(JPanel userProcessContainer, UserAccount account,Organization organization,Enterprise enterprise,EcoSystem business ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -70,7 +71,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
                     latestKey = mapEntry.getKey();
                 }
                }
-            if(latestKey.equals("Pending Approval")){
+            if(latestKey.equals("Pending Approval") || latestKey.equals("Selecting Vaccine Testers") ){
             Object row[] = new Object[8];
                  row[0] = req;
                  row[1] = req.getVaccine().getName();
@@ -99,22 +100,13 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         List<VaccineTester> vaccinetestList = vacEnterprise.getVaccinetesterDirectory().getVaccineTesterList();
         for(VaccineTester tester: vaccinetestList){
             Object row[] = new Object[4];
-                 row[0] = tester.getId();
-                 row[1] = tester;
+                 row[0] = tester;
+                 row[1] = tester.getName();
                  row[2] = tester.getCondition();
                  row[3] = tester.getAge();        
                  
             model.addRow(row);                    
         }
-               /* if(testerNum > 0){
-               //     testorsTable.setRowSelectionAllowed(true);;
-        if(vacEnterprise.getVaccinetesterDirectory().getVaccineTesterList().size() <= testerNum){
-            testorsTable.addRowSelectionInterval(1, vacEnterprise.getVaccinetesterDirectory().getVaccineTesterList().size()-1);
-        }else{
-        testorsTable.addRowSelectionInterval(1, testerNum);
-        }
-        }*/
-        
             
     
     }
@@ -123,27 +115,31 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for(LabTestWorkRequest labTest: account.getLabTestWorkQueue().getLabRequestList()){
-            if(labTest.getResult().equals("LabTest Created")){
+                            Map<String,Date> map = labTest.getStatusMap();
+                    String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : labTest.getStatusMap().entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+               }
+            if(latestKey.equals("LabTest Created")){
             Object row[] = new Object[8];
                  row[0] = labTest;
                  row[1] = labTest.getLabTestType();
                  row[2] = labTest.getVaccine();
                  row[3] =labTest.getTester();
-                 row[4] = labTest.getLabTestType();
                  if(labTest.getReceiver() == null){
-                     row[5] = "";
+                     row[4] = "";
                  }else{
-                 row[5] = labTest.getReceiver();
+                 row[4] = labTest.getReceiver();
                  }
                  if(labTest.getResult() == null){
-                     row[6] = "";
+                     row[5] = "";
                  }else{
-                 row[6] = labTest.getResult();
-                 }
-                 if(labTest.getMessage() == null){
-                     row[7] = "";
-                 }else{
-                 row[7] = labTest.getMessage();
+                 row[5] = labTest.getResult();
                  }
                  
 
@@ -175,23 +171,23 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         vaccineRequestTable = new javax.swing.JTable();
-        btnViewVaccine = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        testerSpinner = new javax.swing.JSpinner();
         routeMessage = new javax.swing.JTextField();
         btnRouteBack = new javax.swing.JButton();
         btnDeselect = new javax.swing.JButton();
         btnSelectTester = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        testerSpinner = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        btnViewVaccine = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         testorsTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         btnViewTester = new javax.swing.JButton();
         btnStaffAsgn = new javax.swing.JButton();
-        staffComboBox = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         testRequestTable = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        staffComboBox = new javax.swing.JComboBox();
         jButton4 = new javax.swing.JButton();
 
         btnBack.setText("BACK");
@@ -228,15 +224,6 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(vaccineRequestTable);
 
-        btnViewVaccine.setText("View Vaccine");
-        btnViewVaccine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewVaccineActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Number of Patients to be Tested");
-
         btnRouteBack.setText("Route Back Request");
         btnRouteBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,8 +245,14 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel2.setText("Step 2: Choose Testers:");
+        jLabel3.setText("Number of Patients to be Tested");
+
+        btnViewVaccine.setText("View Vaccine");
+        btnViewVaccine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewVaccineActionPerformed(evt);
+            }
+        });
 
         testorsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,6 +275,9 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(testorsTable);
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel2.setText("Step 2: Choose Testers:");
+
         btnViewTester.setText("View Tester Details");
         btnViewTester.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,30 +292,19 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        staffComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                staffComboBoxActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Testing Staff:");
-
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel4.setText("Step 3:Assign to Staff for Testing:");
-
         testRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "TestID", "Type", "VaccineID", "TesterID", "TestingStaff", "Status", "Message"
+                "TestID", "Type", "VaccineID", "TesterID", "TestingStaff", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -327,6 +312,17 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane4.setViewportView(testRequestTable);
+
+        jLabel5.setText("Testing Staff:");
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel4.setText("Step 3:Assign to Staff for Testing:");
+
+        staffComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffComboBoxActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Proceed with Testing");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -447,22 +443,6 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnViewVaccineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewVaccineActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = vaccineRequestTable.getSelectedRow();
-        if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
-
-        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(userProcessContainer,account,business,vaccineReq.getVaccine(),false);
-        userProcessContainer.add("viewVaccineJPanel",viewVaccineJPanel);
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnViewVaccineActionPerformed
-
     private void btnRouteBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRouteBackActionPerformed
         // TODO add your handling code here:
         int row = vaccineRequestTable.getSelectedRow();
@@ -483,17 +463,11 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         UserAccount ua = vacReq.getSender();
         vacReq.setSender(account);
         vacReq.setReceiver(ua);
+        vacReq.setResolveDate(new Date());
+
         ua.getVaccineWorkQueue().addWorkRequest(vacReq);
         account.getVaccineWorkQueue().removeWorkRequest(vacReq);
         business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
-        /*   for (UserAccount userAccount:enterprise.getUserAccountDirectory().getUserAccountList()){
-            if(userAccount.getUsername().equals(vacReq.getSender())){
-                userAccount.getVaccineWorkQueue().addWorkRequest(vacReq);
-                account.getVaccineWorkQueue().removeWorkRequest(vacReq);
-                business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
-
-            }
-        }*/
         JOptionPane.showMessageDialog(null, "Vaccine request has been routed back to the scientist!", "Warning", JOptionPane.WARNING_MESSAGE);
         populateDrugRequestTable();
         routeMessage.setText("");
@@ -506,6 +480,33 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
 
     private void btnSelectTesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectTesterActionPerformed
         // TODO add your handling code here:
+        int rows = testRequestTable.getRowCount();
+        if(rows > 0){
+            JOptionPane.showMessageDialog(null, "There is a Vaccine Request already waiting to be sent for testing!\nPlease assign and process the active lab request.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int selectedRow = vaccineRequestTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
+        Map<String,Date> reqMap = vaccineReq.getStatusMap();
+        reqMap.put("Selecting Vaccine Testers", new Date());
+        vaccineReq.setStatusMap(reqMap);
+        business.getVaccineQueue().updateWorkRequest(vaccineReq, business.getVaccineQueue().getVaccineRequestList());
+        testerNum = (Integer)testerSpinner.getValue();
+        if(testerNum <=0){
+            JOptionPane.showMessageDialog(null, "Number of testers needs to be more than zero!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        populateTesterTable();
+        populateDrugRequestTable();
+    }//GEN-LAST:event_btnSelectTesterActionPerformed
+
+    private void btnViewVaccineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewVaccineActionPerformed
+        // TODO add your handling code here:
         int selectedRow = vaccineRequestTable.getSelectedRow();
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -513,13 +514,12 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         }
 
         VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
-        testerNum = (Integer)testerSpinner.getValue();
-        if(testerNum <=0){
-            JOptionPane.showMessageDialog(null, "Number of testers needs to be more than zero!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        populateTesterTable();
-    }//GEN-LAST:event_btnSelectTesterActionPerformed
+
+        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(userProcessContainer,account,business,vaccineReq.getVaccine(),false);
+        userProcessContainer.add("viewVaccineJPanel",viewVaccineJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewVaccineActionPerformed
 
     private void btnViewTesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewTesterActionPerformed
         // TODO add your handling code here:
@@ -529,7 +529,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             return;
         }
 
-        VaccineTester tester= (VaccineTester)testorsTable.getValueAt(selectedRow, 1);
+        VaccineTester tester= (VaccineTester)testorsTable.getValueAt(selectedRow, 0);
         ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,false);
         userProcessContainer.add("viewTestersJPanel", viewTestersJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -538,27 +538,31 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
 
     private void btnStaffAsgnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStaffAsgnActionPerformed
         // TODO add your handling code here:
-        int selectedVacRow = vaccineRequestTable.getSelectedRow();
-        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedVacRow, 0);
         int rows = testorsTable.getSelectedRowCount();
         if(rows < testerNum){
             JOptionPane.showMessageDialog(null, "Required "+testerNum+" testers!\nThe selected testers are less than required testers!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(rows > testerNum){
+            JOptionPane.showMessageDialog(null, "Required "+testerNum+" testers!\nThe selected testers are more than required testers!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         int[] selectedRow = testorsTable.getSelectedRows();
         for(int i=0;i<selectedRow.length;i++){
             LabTestWorkRequest labReq = new LabTestWorkRequest();
             labReq.setMessage("");
-            VaccineTester vacTester= (VaccineTester)testorsTable.getValueAt(selectedRow[i], 1);
+            VaccineTester vacTester= (VaccineTester)testorsTable.getValueAt(selectedRow[i], 0);
             labReq.setTester(vacTester);
             labReq.setSender(account);
-            labReq.setResult("LabTest Created");
+            Map<String,Date> labMap = labReq.getStatusMap();
+            labMap.put("LabTest Created", new Date());
+            labReq.setStatusMap(labMap);
             labReq.setComplete(false);
             labReq.setVaccine(vaccineReq.getVaccine());
             labReq.setLabTestType("Vaccine Test");
             account.getLabTestWorkQueue().addLabRequest(labReq);
             Map<String,Date> reqMap = vaccineReq.getStatusMap();
-            reqMap.put("Selecting Vaccine Testers", new Date());
+            reqMap.put("Assigning Testing Staff", new Date());
             vaccineReq.setStatusMap(reqMap);
             business.getVaccineQueue().updateWorkRequest(vaccineReq, business.getVaccineQueue().getVaccineRequestList());
 
@@ -567,6 +571,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         }
         vaccineReq.getVaccine().setTesterNum(testerNum);
         populateLabTestTable();
+        populateDrugRequestTable();
         testorsTable.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btnStaffAsgnActionPerformed
 
@@ -581,10 +586,29 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a Vaccine Testing staff!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        int selectedVacRow = vaccineRequestTable.getSelectedRow();
-        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedVacRow, 0);
+        if(vaccineReq == null){
+            Vaccine vaccine = null;
+            for(LabTestWorkRequest labReq: account.getLabTestWorkQueue().getLabRequestList()){
+                vaccine = labReq.getVaccine();
+            }
+            for(VaccineWorkRequest work : account.getVaccineWorkQueue().getVaccineRequestList()){
+                if(work.getVaccine().equals(vaccine)){
+                    vaccineReq = work;
+                }
+            }
+        }
         for(LabTestWorkRequest labReq: account.getLabTestWorkQueue().getLabRequestList()){
-            if(labReq.getResult().equals("LabTest Created")){
+            Map<String,Date> map = labReq.getStatusMap();
+            String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : labReq.getStatusMap().entrySet()) {
+                if(latestKey.equals("")){
+                    latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+            }
+            if(latestKey.equals("LabTest Created")){
                 if(labReq.getVaccine().getId() == vaccineReq.getVaccine().getId()){
                     labReq.setReceiver((UserAccount)staffComboBox.getSelectedItem());
                     labReq.setResult("Testing InProgress");

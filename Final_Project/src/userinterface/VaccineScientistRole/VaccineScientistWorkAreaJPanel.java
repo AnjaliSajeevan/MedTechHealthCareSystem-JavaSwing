@@ -15,9 +15,16 @@ import Business.WorkQueue.VaccineWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import static java.lang.Boolean.FALSE;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -174,16 +181,32 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
     }
-    
+
+  private  Map<String,Date> sortByDate(Map<String, Date> map){
+        List<Map.Entry<String, Date>> tempList = new LinkedList<Map.Entry<String, Date>>(map.entrySet());
+        Collections.sort(tempList, new Comparator<Map.Entry<String, Date>>(){
+            public int compare(Map.Entry<String, Date> obj1,Map.Entry<String, Date> obj2) {
+                    return obj1.getValue().compareTo(obj2.getValue());
+            }
+        });
+
+        Map<String, Date> sortedMap = new LinkedHashMap<String, Date>();
+        for (Map.Entry<String, Date> entry : tempList){
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
+    }
+  
       public void populateTimeline(VaccineWorkRequest vacReq){
        DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
         model.setRowCount(0);
            Map<String,Date> map = vacReq.getStatusMap();
+           Map<String, Date> Sortedmap = sortByDate(map);
             String latestKey = "";
-            for (Map.Entry<String,Date> mapEntry : vacReq.getStatusMap().entrySet()) {
+            for (Map.Entry<String,Date> mapEntry : Sortedmap.entrySet()) {
                             Object row[] = new Object[5];
-                 row[0] = mapEntry.getKey();
-                 row[1] = mapEntry.getValue();
+                 row[0] =mapEntry.getValue(); 
+                 row[1] = mapEntry.getKey();
                   model.addRow(row); 
                }
       }
@@ -192,6 +215,8 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
          
       }
+   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -204,7 +229,6 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         btnProceed = new javax.swing.JButton();
         reasonText = new javax.swing.JTextField();
-        btnRemove = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         drugRequestTable = new javax.swing.JTable();
@@ -218,6 +242,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         timelineTable = new javax.swing.JTable();
         btnTestResponses1 = new javax.swing.JButton();
+        btnRemove1 = new javax.swing.JButton();
 
         btnFormulate.setText("Formulate new Drug");
         btnFormulate.addActionListener(new java.awt.event.ActionListener() {
@@ -263,13 +288,6 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         btnProceed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProceedActionPerformed(evt);
-            }
-        });
-
-        btnRemove.setText("Remove Project");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
             }
         });
 
@@ -370,22 +388,17 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnRemove1.setText("Remove Project");
+        btnRemove1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemove1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reasonText, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnProceed)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,6 +445,21 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRemove1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(reasonText, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnProceed)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,8 +482,8 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(btnProceed)
                         .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRemove)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRemove1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -476,7 +504,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(btnTestResponses1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -521,33 +549,6 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         populateDrugProjectTable();
         populateDrugRequestTable();
     }//GEN-LAST:event_btnProceedActionPerformed
-
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        // TODO add your handling code here:
-        if(reasonText.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Please provide reason for vaccine request removal!!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        int selectedRow = drugProjectTable.getSelectedRow();
-        if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        VaccineWorkRequest vacReq= (VaccineWorkRequest)drugProjectTable.getValueAt(selectedRow, 0);
-        Map<String,Date> reqMap = vacReq.getStatusMap();
-        reqMap.put("Request Removed", new Date());
-        vacReq.setStatusMap(reqMap);
-        vacReq.setReceiver(account);
-        vacReq.setResolveDate(new Date());
-        business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
-
-        populateDrugProjectTable();
-        populateDrugRequestTable();
-        reasonText.setText("");
-        JOptionPane.showMessageDialog(null, "Request has been removed!", "Information", JOptionPane.INFORMATION_MESSAGE);
-
-    }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnProceedApprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProceedApprovalActionPerformed
         // TODO add your handling code here:
@@ -613,13 +614,39 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         populateTimeline("");
     }//GEN-LAST:event_btnTestResponses1ActionPerformed
 
+    private void btnRemove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemove1ActionPerformed
+        // TODO add your handling code here:
+        if(reasonText.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please provide reason for vaccine request removal!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int selectedRow = drugProjectTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        VaccineWorkRequest vacReq= (VaccineWorkRequest)drugProjectTable.getValueAt(selectedRow, 0);
+        Map<String,Date> reqMap = vacReq.getStatusMap();
+        reqMap.put("Request Removed: "+reasonText.getText(), new Date());
+        vacReq.setStatusMap(reqMap);
+        vacReq.setReceiver(account);
+        vacReq.setResolveDate(new Date());
+        business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
+
+        populateDrugProjectTable();
+        populateDrugRequestTable();
+        reasonText.setText("");
+        JOptionPane.showMessageDialog(null, "Request has been removed!", "Information", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnRemove1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFormulate;
     private javax.swing.JButton btnHistory1;
     private javax.swing.JButton btnProceed;
     private javax.swing.JButton btnProceedApproval;
-    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnRemove1;
     private javax.swing.JButton btnTestResponses1;
     private javax.swing.JButton btnViewVaccine1;
     private javax.swing.JTable drugProjectTable;
