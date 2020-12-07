@@ -495,6 +495,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
         PatientInsuranceWorkAreaJPanel pajp = (PatientInsuranceWorkAreaJPanel) component;
         pajp.populateTree();
+        pajp.populateComboBox();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
  

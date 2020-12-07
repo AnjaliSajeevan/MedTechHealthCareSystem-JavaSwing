@@ -681,6 +681,11 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         populatePatientRequests();
         JOptionPane.showMessageDialog(null, message+"\nMessage sent to Patient!", "Information", JOptionPane.INFORMATION_MESSAGE);
 
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed

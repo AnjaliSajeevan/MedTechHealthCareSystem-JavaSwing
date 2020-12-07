@@ -7,9 +7,14 @@ package userinterface.PatientRole;
 
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.LabPatientWorkRequest;
 import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
+import Business.WorkQueue.PharmaWorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
+
 
 /**
  *
@@ -22,9 +27,9 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
      */
     EcoSystem ecosystem;
     JPanel userProcessContainer;
-    String account;
-
-    public PatientHistoryJPanel(JPanel userProcessContainer, String account, EcoSystem ecosystem) {
+    UserAccount account;
+   
+    public PatientHistoryJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
@@ -51,6 +56,46 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         }
         
     }
+           
+           public void populateTableLab(){
+            DefaultTableModel model = (DefaultTableModel)tblpatientAppointment2.getModel();
+        model.setRowCount(0);
+            
+      for(LabPatientWorkRequest request : ecosystem.getLabPatQueue().getLabPatientRequestList()){           
+            if(request.getSender().equals(account)){
+            Object[] row = new Object[8];
+            row[0] = request;
+            row[1] = request.getEnterprise();
+            row[2] = request.getLabTestType();
+            row[3] = request.getSlotTime();
+            row[4] = request.getSlotDate();
+            row[5] = request.getVaccine();
+
+            model.addRow(row);
+        }
+        }
+        
+    }
+           
+           public void populateTablePhar(){
+            DefaultTableModel model = (DefaultTableModel)tblpatientAppointment3.getModel();
+        model.setRowCount(0);
+            
+        for(PharmaWorkRequest request : ecosystem.getPharmaQueue().getPharmaList()){           
+            if(request.getSender().equals(account)){
+            Object[] row = new Object[8];
+            row[0] = request;
+            row[1] = request.getEnterprise();
+            row[2] = request.getPrescription();
+            row[3] = request.getCondition();
+            row[4] = request.getCreateDate();
+     
+
+            model.addRow(row);
+        }
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,7 +109,14 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblpatientAppointment = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblpatientAppointment2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblpatientAppointment3 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnGeneratePdf = new javax.swing.JButton();
 
         tblpatientAppointment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,48 +144,167 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             tblpatientAppointment.getColumnModel().getColumn(2).setResizable(false);
             tblpatientAppointment.getColumnModel().getColumn(3).setResizable(false);
             tblpatientAppointment.getColumnModel().getColumn(4).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(4).setHeaderValue("Hospital");
             tblpatientAppointment.getColumnModel().getColumn(5).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(5).setHeaderValue("Doctor");
             tblpatientAppointment.getColumnModel().getColumn(6).setResizable(false);
+            tblpatientAppointment.getColumnModel().getColumn(6).setHeaderValue("Result");
         }
 
-        jLabel1.setText("Patient Hospital appointment history");
+        jLabel1.setText("Hospital appointment history");
 
-        jButton1.setText("<-Back");
+        btnBack.setText("<-Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        tblpatientAppointment2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Appointment No.", "Laboratory", "Lab Test type", "Time", "Date", "Vaccine"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblpatientAppointment2);
+        if (tblpatientAppointment2.getColumnModel().getColumnCount() > 0) {
+            tblpatientAppointment2.getColumnModel().getColumn(0).setResizable(false);
+            tblpatientAppointment2.getColumnModel().getColumn(1).setResizable(false);
+            tblpatientAppointment2.getColumnModel().getColumn(2).setResizable(false);
+            tblpatientAppointment2.getColumnModel().getColumn(3).setResizable(false);
+            tblpatientAppointment2.getColumnModel().getColumn(4).setResizable(false);
+            tblpatientAppointment2.getColumnModel().getColumn(4).setHeaderValue("Hospital");
+            tblpatientAppointment2.getColumnModel().getColumn(5).setResizable(false);
+            tblpatientAppointment2.getColumnModel().getColumn(5).setHeaderValue("Doctor");
+        }
+
+        tblpatientAppointment3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Order No.", "Pharmacy", "Prescription", "Condition", "Date"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblpatientAppointment3);
+        if (tblpatientAppointment3.getColumnModel().getColumnCount() > 0) {
+            tblpatientAppointment3.getColumnModel().getColumn(0).setResizable(false);
+            tblpatientAppointment3.getColumnModel().getColumn(1).setResizable(false);
+            tblpatientAppointment3.getColumnModel().getColumn(2).setResizable(false);
+            tblpatientAppointment3.getColumnModel().getColumn(3).setResizable(false);
+            tblpatientAppointment3.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jLabel2.setText("Laboratory appointment history");
+
+        jLabel3.setText("Pharmacy history");
+
+        btnGeneratePdf.setText("Generate pdf");
+        btnGeneratePdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeneratePdfActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGeneratePdf)
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(btnGeneratePdf)))
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(321, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnGeneratePdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePdfActionPerformed
+        // TODO add your handling code here:
+
+   
+       
+        
+
+    }//GEN-LAST:event_btnGeneratePdfActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnGeneratePdf;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblpatientAppointment;
+    private javax.swing.JTable tblpatientAppointment2;
+    private javax.swing.JTable tblpatientAppointment3;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,10 +7,16 @@ package userinterface.InsuranceClaimWorkAreaJPanel;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.InsurancePolicy.InsurancePolicy;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ClaimWorkRequest;
+import Business.WorkQueue.InsuranceWorkRequest;
+import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.InsuranceAdminWorkArea.ViewPolicyWorkAreaJPanel;
 
 /**
  *
@@ -25,6 +31,7 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
     UserAccount account;
     Enterprise enterprise;
     EcoSystem ecosystem;
+    
     public InsuranceClaimWorkAreaJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.ecosystem=business;
@@ -38,18 +45,18 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
        for(ClaimWorkRequest r : ecosystem.getClaimWorkQueue().getWorkRequestList())
        {    String enterpriseName=enterprise.toString();
            if(r.getInsuranceEnterprise().equals(enterpriseName))
-           { System.out.println(r.getPatient());
+           { 
              DefaultTableModel model = (DefaultTableModel)tblClaim.getModel();
             model.setRowCount(0);
 
             Object[] row = new Object[7];
             row[0] = r;
             row[1] = r.getHospital();
-  
             row[2] = r.getCost();
             row[3] = r.getRequestDate();
             row[4] = r.getStatus();
             row[5] = r.getPatient();
+            row[6] = r.getInsuranceNo();
             model.addRow(row);
     }
     }
@@ -66,9 +73,8 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClaim = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        viewPolicy = new javax.swing.JButton();
+        btnAccept = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         jLabel1.setText("Insurance Claim Work Area");
@@ -78,11 +84,11 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Insurance Number", "Sender", "Amount", "Date", "Status", "Patient"
+                "Claim Number", "Sender", "Amount", "Date", "Status", "Patient", "InsuranceNumber"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -97,41 +103,51 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
             tblClaim.getColumnModel().getColumn(3).setResizable(false);
             tblClaim.getColumnModel().getColumn(4).setResizable(false);
             tblClaim.getColumnModel().getColumn(5).setResizable(false);
+            tblClaim.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        jButton1.setText("View Details");
+        viewPolicy.setText("View Policy Details");
+        viewPolicy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPolicyActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("View Policy Details");
-
-        jButton3.setText("Accept");
+        btnAccept.setText("Accept");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Decline");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(214, 214, 214)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(333, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(291, 291, 291))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(291, 291, 291))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(277, 277, 277))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(viewPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111)
+                        .addComponent(btnAccept)
+                        .addGap(164, 164, 164)
+                        .addComponent(jButton4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,23 +158,83 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
-                .addGap(57, 57, 57)
-                .addComponent(jButton2)
-                .addContainerGap(127, Short.MAX_VALUE))
+                    .addComponent(btnAccept)
+                    .addComponent(jButton4)
+                    .addComponent(viewPolicy))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Successfully Accepted");
+        int selectedRow =  tblClaim.getSelectedRow();
+        if(selectedRow <0)
+        {
+            JOptionPane.showMessageDialog(null,"Pleasse select a row","Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        else
+        {
+        ClaimWorkRequest request = (ClaimWorkRequest) tblClaim.getValueAt(selectedRow, 0);
+        request.setStatus("Claim Accepted");
+        request.setResolveDate(new Date());
+        request.setMessage("Cleared and closed");
+        populate();
+    }                 
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+      JOptionPane.showMessageDialog(null,"Successfully Accepted");
+        int selectedRow =  tblClaim.getSelectedRow();
+        if(selectedRow <0)
+        {
+            JOptionPane.showMessageDialog(null,"Pleasse select a row","Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        else
+        {
+        ClaimWorkRequest request = (ClaimWorkRequest) tblClaim.getValueAt(selectedRow, 0);
+        request.setStatus("Claim Declined");
+        request.setMessage("Additional,Not covered by insurance");
+        populate();
+    }                 
+    
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void viewPolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPolicyActionPerformed
+        // TODO add your handling code here:
+         int selectedRow =  tblClaim.getSelectedRow();
+        if(selectedRow <0)
+        {
+            JOptionPane.showMessageDialog(null,"Pleasse select a row","Warning", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        else
+      
+        {
+        ClaimWorkRequest request = (ClaimWorkRequest) tblClaim.getValueAt(selectedRow, 0);
+            InsurancePolicy a=request.getInsurancepolicy();
+            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a);
+            userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+
+        }
+        
+        
+    }//GEN-LAST:event_viewPolicyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAccept;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblClaim;
+    private javax.swing.JButton viewPolicy;
     // End of variables declaration//GEN-END:variables
 }

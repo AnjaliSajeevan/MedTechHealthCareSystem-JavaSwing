@@ -6,7 +6,6 @@
 package Business;
 
 import Business.Doctor.DoctorDirectory;
-import Business.Driver.DriverDirectory;
 import Business.Essentials.ProductCatalog;
 import Business.InsurancePolicy.InsurancePolicyDirectory;
 import Business.Network.Network;
@@ -29,7 +28,6 @@ public class EcoSystem extends Organization{
     private InsurancePolicyDirectory insurancePolicyDirectory;
     private ProductCatalog productcatalog;
     private DoctorDirectory doctorDirectory;
-    private DriverDirectory driverDirectory;
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -55,7 +53,6 @@ public class EcoSystem extends Organization{
         productcatalog=new ProductCatalog();
         doctorDirectory= new DoctorDirectory();
         networkList=new ArrayList<Network>();
-        driverDirectory=new DriverDirectory();
     }
 
     public DoctorDirectory getDoctorDirectory() {
@@ -65,22 +62,6 @@ public class EcoSystem extends Organization{
 
     public void setDoctorDirectory(DoctorDirectory doctorDirectory) {
         this.doctorDirectory = doctorDirectory;
-    }
-
-    public ProductCatalog getProductcatalog() {
-        return productcatalog;
-    }
-
-    public void setProductcatalog(ProductCatalog productcatalog) {
-        this.productcatalog = productcatalog;
-    }
-
-    public DriverDirectory getDriverDirectory() {
-        return driverDirectory;
-    }
-
-    public void setDriverDirectory(DriverDirectory driverDirectory) {
-        this.driverDirectory = driverDirectory;
     }
 
     public static EcoSystem getBusiness() {

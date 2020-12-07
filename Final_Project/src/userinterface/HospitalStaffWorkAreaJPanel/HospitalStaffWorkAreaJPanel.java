@@ -256,7 +256,7 @@ public void populateEssentialTable(){
         if(selectedRow >= 0)
         {
             int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to delete the item details", "Warning", dialogButton);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to delete the car details", "Warning", dialogButton);
             if(dialogResult == JOptionPane.YES_OPTION);
             {
 //                Car car = (Car) tblCarDetails.getValueAt(selectedRow, 0);
@@ -264,8 +264,7 @@ public void populateEssentialTable(){
 //                populateTable();
                 
                 Product p=(Product)essentialTable.getValueAt(selectedRow,0);
-               //productcatalog.removeProduct(p);
-                ecosystem.getProductcatalog().removeProduct(p);
+                productcatalog.removeProduct(p);
                 
                 populateEssentialTable();
             }
