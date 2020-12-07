@@ -48,7 +48,7 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
         this.business = business;
         this.doc=doc;
         this.account=account;
-        
+       
         initializePage();
         
     }

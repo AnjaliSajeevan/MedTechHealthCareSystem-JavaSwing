@@ -5,6 +5,7 @@
 package userinterface.AdministrativeRole;
 
 import Business.Doctor.Doctor;
+import Business.Driver.Driver;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
@@ -272,6 +273,14 @@ private EcoSystem business;
             d.setName(userName);
             System.out.println("mange user acc USername"+ d.getUserName());
             business.getDoctorDirectory().addDoctor(d);
+        }
+        if(role.toString().equals("AmbulanceDriver"))
+        {
+            Driver dr= new Driver();
+            dr.setUserName(userName);
+            dr.setName(userName);
+            System.out.println("mange user acc USername"+ dr.getUserName());
+            business.getDriverDirectory().addDriver(dr);
         }
         popData();
     }//GEN-LAST:event_createUserJButtonActionPerformed
