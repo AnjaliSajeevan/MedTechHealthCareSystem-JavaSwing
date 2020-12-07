@@ -43,6 +43,10 @@
                                   <Component id="btnManageNetwork" max="32767" attributes="0"/>
                               </Group>
                               <Component id="btnManagePatient" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="btnVacLoad" min="-2" pref="195" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" pref="116" max="32767" attributes="0"/>
@@ -70,6 +74,8 @@
                           <Component id="btnManageAdmin" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnManagePatient" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btnVacLoad" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -137,6 +143,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManagePatientActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnVacLoad">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Load Vaccine+Pharma+Lab"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVacLoadActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
