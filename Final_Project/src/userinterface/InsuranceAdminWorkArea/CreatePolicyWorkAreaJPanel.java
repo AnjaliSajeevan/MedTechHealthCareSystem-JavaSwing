@@ -52,10 +52,10 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
            jComboHospital.addItem(e.getName());   
     }
     else if(e.getEnterpriseType().getValue().equals("Pharmacy"))
-            { jComboLaboratories.addItem(e.getName());   
+            {jComboPharmacy.addItem(e.getName());   
     }
     else if(e.getEnterpriseType().getValue().equals("Laboratory"))
-            {jComboPharmacy.addItem(e.getName());   
+            {jComboLaboratories.addItem(e.getName());   
         
     }
     }
@@ -346,7 +346,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 780, 180, -1));
 
         jComboBoxAgeGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18-30", "30-45", "45-60", "60-80", "80-100" }));
-        add(jComboBoxAgeGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
+        add(jComboBoxAgeGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed

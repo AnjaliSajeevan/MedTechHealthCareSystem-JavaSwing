@@ -242,7 +242,7 @@ JPanel userProcessContainer;
         }
         names = names.substring(0, names.length()-1);
         
-        location = name;
+        location = names;
         System.out.println(names);
         String url = "https://www.google.com/maps/place/"+location;
     try {

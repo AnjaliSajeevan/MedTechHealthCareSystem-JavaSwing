@@ -40,7 +40,7 @@ InsuranceAdminOrganization iOrg;
         this.iOrg=organization;
         this.account=account;
         
-        lblUsername.setText(patient);
+        lblUsername.setText(account.getEmployee().getName());
        
     }
 
@@ -170,7 +170,7 @@ InsuranceAdminOrganization iOrg;
             if(p.getUserName().equals(account.getUsername())){
                 System.out.print(p.getInsurance());
                if( p.getInsurance()==null){
-                   JOptionPane.showMessageDialog(null,"Please register with an insurance", "Warning", JOptionPane.WARNING_MESSAGE);
+                   JOptionPane.showMessageDialog(null,"Please register with an insurance first!", "Warning", JOptionPane.WARNING_MESSAGE);
                }else{
             
          HospitalAppointment seeResultJPanel=new HospitalAppointment(userProcessContainer,account, ecosystem);
@@ -184,18 +184,35 @@ InsuranceAdminOrganization iOrg;
 
     private void btnBookLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookLabActionPerformed
         // TODO add your handling code here:
+        for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
+            if(p.getUserName().equals(account.getUsername())){
+                System.out.print(p.getInsurance());
+               if( p.getInsurance()==null){
+                   JOptionPane.showMessageDialog(null,"Please register with an insurance first", "Warning", JOptionPane.WARNING_MESSAGE);
+               }else{
         BookLabJPanel bookLabJPanel=new BookLabJPanel(userProcessContainer,account, enterprise,ecosystem);
         userProcessContainer.add("bookLabJPanel",bookLabJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+               }
+            }
+        }
     }//GEN-LAST:event_btnBookLabActionPerformed
 
     private void btnMedReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedReqActionPerformed
         // TODO add your handling code here:
-        RequestMedicineJPanel reqMedJPanel=new RequestMedicineJPanel(userProcessContainer,account, enterprise,ecosystem);
+        for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
+            if(p.getUserName().equals(account.getUsername())){
+                System.out.print(p.getInsurance());
+               if( p.getInsurance()==null){
+                   JOptionPane.showMessageDialog(null,"Please register with an insurance first!", "Warning", JOptionPane.WARNING_MESSAGE);
+               }else{RequestMedicineJPanel reqMedJPanel=new RequestMedicineJPanel(userProcessContainer,account, enterprise,ecosystem);
         userProcessContainer.add("reqMedJPanel",reqMedJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+               }
+            }
+        }
     }//GEN-LAST:event_btnMedReqActionPerformed
 
     private void btnPatientHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientHistoryActionPerformed

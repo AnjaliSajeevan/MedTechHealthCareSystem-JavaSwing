@@ -8,7 +8,9 @@ package userinterface.PatientRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.LabEnterprise;
+import Business.InsurancePolicy.InsurancePolicy;
 import Business.Network.Network;
+import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
 import java.awt.CardLayout;
@@ -35,6 +37,9 @@ public class BookLabJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     EcoSystem business;
     UserAccount account;
+    Patient patient;
+    String policy;
+    InsurancePolicy Insurancepolicy;
     public BookLabJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -47,18 +52,45 @@ public class BookLabJPanel extends javax.swing.JPanel {
     }
     public void populateLabs(){
         labComboBox.removeAllItems();
-        for (Network network : business.getNetworkList()){
-        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-        String pwdRegex = ".*Laboratory.*";
-            Pattern pwdPattern = Pattern.compile(pwdRegex);
-            Matcher pwdCheck = pwdPattern.matcher(enterprise.toString());
-            boolean checkPwd = pwdCheck.matches();
-            if(checkPwd == TRUE){
-                labComboBox.addItem(enterprise.toString());      
+//        for (Network network : business.getNetworkList()){
+//        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+//        String pwdRegex = ".*Laboratory.*";
+//            Pattern pwdPattern = Pattern.compile(pwdRegex);
+//            Matcher pwdCheck = pwdPattern.matcher(enterprise.toString());
+//            boolean checkPwd = pwdCheck.matches();
+//            if(checkPwd == TRUE){
+//                labComboBox.addItem(enterprise.toString());      
+//        }
+//        }
+//        }
+    String patientName = account.getUsername();
+        for (Patient p : business.getPatientDirectory().getpatientlist()) {
+
+            if (p.getUserName().equals(patientName)) {
+                patient = p;
+            }
         }
-        }
-        }
+        
+        Insurancepolicy = patient.getInsurance();
+        System.out.print(Insurancepolicy);
+        policy = Insurancepolicy.toString();
+        
+        for (InsurancePolicy a: business.getInsurancePolicyDirectory().getInsurancePolicyList())
+   {    
+   
+       if(a.getPolicyName().equalsIgnoreCase(policy))
+       {for (int counter = 0; counter < a.getLaboratoryList().size(); counter++) {
+            
+                    labComboBox.addItem(a.getLaboratoryList().get(counter));
+                }
+       
+               }
+   }
     }
+    
+    
+    
+    
     public void populateServices(LabEnterprise e){
                 serviceComboBox.removeAllItems();
       List<String> services = e.getServices();

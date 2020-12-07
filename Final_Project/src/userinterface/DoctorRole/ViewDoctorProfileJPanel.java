@@ -573,12 +573,12 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
 
         //Validation of Personal Information and Address.
         int comp = 0;
-
+        
         String error = "";
         //Validation of Mandatory fields.
-        if(txtName.getText().equalsIgnoreCase("")){
-            error="\nName Field is mandatory!";
-        }
+//        if(txtName.getText().equalsIgnoreCase("")){
+//            error="\nName Field is mandatory!";
+//        }
         if(txtDOB.getText().equalsIgnoreCase("")){
             error+="\nDate Of Birth Field is mandatory!";
         }
@@ -606,13 +606,13 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
 
             //After Mandatory checks, Validation ifthe input record have valid datatypes.
 
-            String nameRegex = "^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$";
-            Pattern namePattern = Pattern.compile(nameRegex);
-            Matcher checkName = namePattern.matcher(txtName.getText());
-            boolean checkNameMatch = checkName.matches();
-            if(!(checkNameMatch == TRUE)){
-                error+="\nFor Name - Valid name with only Alphabets and Spaces allowed!";
-            }
+//            String nameRegex = "^[a-zA-Z][a-zA-Z ]+[a-zA-Z]$";
+//            Pattern namePattern = Pattern.compile(nameRegex);
+//            Matcher checkName = namePattern.matcher(txtName.getText());
+//            boolean checkNameMatch = checkName.matches();
+//            if(!(checkNameMatch == TRUE)){
+//                error+="\nFor Name - Valid name with only Alphabets and Spaces allowed!";
+//            }
             if(!txtPhone.getText().equalsIgnoreCase("")){
                 System.out.println(txtPhone.getText());
                 String phone = (txtPhone.getText());
@@ -740,7 +740,7 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
 
     private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
         // TODO add your handling code here:
-        txtName.setEnabled(true);
+        txtName.setEnabled(false);
         txtGeo.setEnabled(true);
         txtDOB.setEnabled(true);
         txtEmail.setEnabled(true);
