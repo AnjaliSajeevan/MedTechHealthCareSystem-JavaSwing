@@ -16,8 +16,11 @@ import java.util.Map;
 import javax.swing.JPanel;
   import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -241,6 +244,13 @@ JPanel userProcessContainer;
         
         location = name;
         System.out.println(names);
+        String url = "https://www.google.com/maps/place/"+location;
+    try {
+        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+    } catch (IOException ex) {
+        Logger.getLogger(EmergencyJPanel.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
     }//GEN-LAST:event_btnShareActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -251,7 +261,6 @@ JPanel userProcessContainer;
             return;
 
         }
-        String hos = "address";
         EmergencyRequest request = new EmergencyRequest();
         request.setEnterprise(patient.getPrimaryHospital());
         request.setHospital(patient.getPrimaryHospital());

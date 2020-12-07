@@ -726,6 +726,7 @@ public class CreateTestersJPanel extends javax.swing.JPanel {
                 tester.setPhotograph(txtPhoto.getText());
                 tester.setUpdateDate();
                 tester.setEnterprise(enterprise);
+                tester.setContact(Integer.parseInt(txtPhone.getText()));
                 enterprise.getVaccinetesterDirectory().addVaccineTester(tester);
                 JOptionPane.showMessageDialog(null,"Tester added successfully!!!");
 

@@ -6,11 +6,39 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.LabEnterprise;
+import Business.Enterprise.PharmacyEnterprise;
+import Business.Enterprise.VaccineEnterprise;
+import Business.Essentials.Medicine;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Role.AdminRole;
+import Business.Role.AmbulanceDriverRole;
+import Business.Role.DeliveryManRole;
+import Business.Role.DoctorRole;
+import Business.Role.FDARole;
+import Business.Role.LabAdminRole;
+import Business.Role.LabStaffRole;
+import Business.Role.PatientRole;
+import Business.Role.PharmacyAdminRole;
+import Business.Role.VaccineAdminRole;
+import Business.Role.VaccineScientistRole;
+import Business.Role.VaccineTestingStaffRole;
+import Business.UserAccount.UserAccount;
+import Business.Vaccine.Vaccine;
+import Business.Vaccine.VaccineTester;
+import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
+import static java.lang.Boolean.FALSE;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -92,6 +120,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree = new javax.swing.JTree();
         btnManagePatient = new javax.swing.JButton();
+        btnVacLoad = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -134,6 +163,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnVacLoad.setText("Load Vaccine+Pharma+Lab");
+        btnVacLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVacLoadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -152,9 +188,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnManagePatient))
+                            .addComponent(btnManagePatient)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnVacLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(71, 71, 71)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)))
                 .addGap(154, 154, 154))
         );
         jPanel2Layout.setVerticalGroup(
@@ -174,6 +213,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(btnManageAdmin)
                         .addGap(18, 18, 18)
                         .addComponent(btnManagePatient)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVacLoad)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
@@ -222,12 +263,442 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnManagePatientActionPerformed
 
+    private void btnVacLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacLoadActionPerformed
+        // TODO add your handling code here:
+
+        //For Testing purpose only. MUST be deleted for final push.
+
+        //Create Network
+        Network network = ecosystem.createAndAddNetwork();
+        network.setName("NewHampshire");
+
+        //Create "VaccineCompany" Enterprise in NewHampshire Network
+        Enterprise.EnterpriseType type = null;
+        for (Enterprise.EnterpriseType temp : Enterprise.EnterpriseType.values()) {
+            if(temp.toString().equals("VaccineCompany")){
+                type=temp;
+            }
+        }
+        String name = "NeoPharma";
+        name = name+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        String name2 = "GenomeTech";
+        name = name2+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        //Create "Pharmacy" Enterprise
+        for (Enterprise.EnterpriseType temp2 : Enterprise.EnterpriseType.values()) {
+            if(temp2.toString().equals("Pharmacy")){
+                type= temp2;
+            }
+        }
+        String name3 = "MediCare";
+        name = name3+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        String name4 = "YourMed";
+        name = name4+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        //Create Laboratory Enterprise
+        for (Enterprise.EnterpriseType temp3 : Enterprise.EnterpriseType.values()) {
+            if(temp3.toString().equals("Laboratory")){
+                type = temp3;
+            }
+        }
+        String name5 = "HighTech";
+        name = name5+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        String name6 = "LabWorks";
+        name = name6+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        //Create FDA Enterprise
+        for (Enterprise.EnterpriseType temp4 : Enterprise.EnterpriseType.values()) {
+            if(temp4.toString().equals("Food and Drug Administration")){
+                type = temp4;
+            }
+        }
+        String name7 = "GeoResearch";
+        name = name7+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        String name8 = "BioHealthCare";
+        name = name8+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        //Create Hospital
+        for (Enterprise.EnterpriseType temp5 : Enterprise.EnterpriseType.values()) {
+            if(temp5.toString().equals("Hospital")){
+                type = temp5;
+            }
+        }
+        String name9 = "NH";
+        name = name9+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        //Load Admins
+        for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
+            Organization org = null;
+            Organization org2 = null;
+            Employee employee= null;
+            if(e.getName().equals("NeoPharma VaccineCompany")){
+                employee =e.getEmployeeDirectory().createEmployee("vacEmp1");
+                e.getUserAccountDirectory().createUserAccount("vac1", "vac1", employee, new  VaccineAdminRole());
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.ResearchScientists);
+                employee =org.getEmployeeDirectory().createEmployee("scientistEmp");
+                UserAccount r1 =org.getUserAccountDirectory().createUserAccount("r1", "r1", employee, new VaccineScientistRole());
+                org2 = e.getOrganizationDirectory().createOrganization(Organization.Type.VaccineTestingStaff);
+                employee =org2.getEmployeeDirectory().createEmployee("testStaff1");
+                org2.getUserAccountDirectory().createUserAccount("s1", "s1", employee, new VaccineTestingStaffRole());
+                VaccineTester tester = new VaccineTester();
+                tester.setName("Manny");
+                tester.setCondition("Covid");
+                tester.setDOB("12/12/2000");
+                tester.setUpdateDate();
+                tester.setPhotograph("fdgfdbdsfds");
+                tester.setGender("Male");
+                tester.setEnterprise(e);
+                VaccineEnterprise enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester);
+                VaccineTester tester2 = new VaccineTester();
+                tester2.setName("Dia");
+                tester2.setCondition("Diabetes");
+                tester2.setDOB("12/12/1987");
+                tester2.setUpdateDate();
+                tester2.setPhotograph("fdgfdbdsfds");
+                tester2.setGender("Male");
+                tester2.setEnterprise(e);
+                enter.getVaccinetesterDirectory().addVaccineTester(tester2);
+                VaccineTester tester3 = new VaccineTester();
+                tester3.setName("Nuthan");
+                tester3.setCondition("Healthy");
+                tester3.setDOB("12/12/1994");
+                tester3.setUpdateDate();
+                tester3.setPhotograph("fdgfdbdsfds");
+                tester3.setGender("Male");
+                tester3.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester3);
+
+                //Creating Vaccine Requests
+
+                Vaccine vaccine = new Vaccine(1);
+                vaccine.setName("Vaccine1");
+                vaccine.setDescription("Used for Resp");
+                vaccine.setCoreComponents("Mol");
+                vaccine.setAllergens("antihistamines");
+                vaccine.setMinAgeGroup(10);
+                vaccine.setMaxAgeGroup(40);
+                vaccine.setAdministration("Pills");
+                vaccine.setCondition("Heart Disease");
+                Map<String,Integer> doseMap = vaccine.getDosage();
+                doseMap.put("Night", 100);
+                doseMap.put("Afternoon", 0);
+                doseMap.put("Morning", 100);
+                vaccine.setDosage(doseMap);
+                vaccine.setPreservations("NA");
+                vaccine.setSideeffects("Nausea");
+                vaccine.setOther("NA");
+                vaccine.setUpdateDate();
+                vaccine.setUsername(r1);
+                vaccine.setEnterpriseName(enter.getName());
+                vaccine.setEnterprise(enter);
+
+                enter.getVaccineDirectory().addVaccine(vaccine);
+
+                VaccineWorkRequest vaccineReq = new VaccineWorkRequest();
+                vaccineReq.setEnterprise(enter.getName());
+                vaccineReq.setSender(r1);
+                vaccineReq.setVaccine(vaccine);
+                vaccineReq.setRequestDate(new Date());
+                Map<String,Date> statusMap = vaccineReq.getStatusMap();
+                statusMap.put("Formulation Phase", new Date());
+                vaccineReq.setStatusMap(statusMap);
+                r1.getVaccineWorkQueue().addWorkRequest(vaccineReq);
+                ecosystem.getVaccineQueue().addWorkRequest(vaccineReq);
+
+                Vaccine vaccine2 = new Vaccine(2);
+                vaccine2.setName("Vaccine2");
+                vaccine2.setDescription("Used for Covid");
+                vaccine2.setCoreComponents("Mol");
+                vaccine2.setAllergens("antihistamines");
+                vaccine2.setMinAgeGroup(10);
+                vaccine2.setMaxAgeGroup(40);
+                vaccine2.setAdministration("Pills");
+                vaccine2.setCondition("Covid");
+                vaccine2.setDosage(doseMap);
+                vaccine2.setPreservations("NA");
+                vaccine2.setSideeffects("Nausea");
+                vaccine2.setOther("NA");
+                vaccine2.setUpdateDate();
+                vaccine2.setUsername(r1);
+                vaccine2.setEnterpriseName(enter.getName());
+                vaccine2.setEnterprise(enter);
+
+                enter.getVaccineDirectory().addVaccine(vaccine2);
+
+                VaccineWorkRequest vaccineReq2 = new VaccineWorkRequest();
+                vaccineReq2.setEnterprise(enter.getName());
+                vaccineReq2.setSender(r1);
+                vaccineReq2.setVaccine(vaccine2);
+                vaccineReq2.setRequestDate(new Date());
+                Map<String,Date> statusMap2 = vaccineReq2.getStatusMap();
+                statusMap2.put("Formulation Phase", new Date());
+                vaccineReq2.setStatusMap(statusMap2);
+                r1.getVaccineWorkQueue().addWorkRequest(vaccineReq2);
+                ecosystem.getVaccineQueue().addWorkRequest(vaccineReq2);
+
+                Vaccine vaccine3 = new Vaccine(3);
+                vaccine3.setName("Vaccine3");
+                vaccine3.setDescription("Used for Diab");
+                vaccine3.setCoreComponents("Mol");
+                vaccine3.setAllergens("antihistamines");
+                vaccine3.setMinAgeGroup(10);
+                vaccine3.setMaxAgeGroup(40);
+                vaccine3.setAdministration("Pills");
+                vaccine3.setCondition("Diabetes");
+                vaccine3.setDosage(doseMap);
+                vaccine3.setPreservations("NA");
+                vaccine3.setSideeffects("Nausea");
+                vaccine3.setOther("NA");
+                vaccine3.setUpdateDate();
+                vaccine3.setUsername(r1);
+                vaccine3.setEnterpriseName(enter.getName());
+                vaccine3.setEnterprise(enter);
+
+                enter.getVaccineDirectory().addVaccine(vaccine3);
+
+                VaccineWorkRequest vaccineReq3 = new VaccineWorkRequest();
+                vaccineReq3.setEnterprise(enter.getName());
+                vaccineReq3.setSender(r1);
+                vaccineReq3.setVaccine(vaccine3);
+                vaccineReq3.setRequestDate(new Date());
+                Map<String,Date> statusMap3 = vaccineReq3.getStatusMap();
+                statusMap3.put("Formulation Phase", new Date());
+                vaccineReq3.setStatusMap(statusMap3);
+                r1.getVaccineWorkQueue().addWorkRequest(vaccineReq3);
+                ecosystem.getVaccineQueue().addWorkRequest(vaccineReq3);
+
+                Vaccine vaccine4 = new Vaccine(4);
+                vaccine4.setName("Vaccine4");
+                vaccine4.setDescription("Used for Resp");
+                vaccine4.setCoreComponents("Mol");
+                vaccine4.setAllergens("antihistamines");
+                vaccine4.setMinAgeGroup(10);
+                vaccine4.setMaxAgeGroup(40);
+                vaccine4.setAdministration("Pills");
+                vaccine4.setCondition("Heart Disease");
+                vaccine4.setDosage(doseMap);
+                vaccine4.setPreservations("NA");
+                vaccine4.setSideeffects("Nausea");
+                vaccine4.setOther("NA");
+                vaccine4.setUpdateDate();
+                vaccine4.setUsername(r1);
+                vaccine4.setEnterpriseName(enter.getName());
+                vaccine4.setEnterprise(enter);
+
+                enter.getVaccineDirectory().addVaccine(vaccine4);
+
+                VaccineWorkRequest vaccineReq4 = new VaccineWorkRequest();
+                vaccineReq4.setEnterprise(enter.getName());
+                vaccineReq4.setSender(r1);
+                vaccineReq4.setVaccine(vaccine4);
+                vaccineReq4.setRequestDate(new Date());
+                Map<String,Date> statusMap4 = vaccineReq4.getStatusMap();
+                statusMap4.put("Formulation Phase", new Date());
+                vaccineReq4.setStatusMap(statusMap4);
+                r1.getVaccineWorkQueue().addWorkRequest(vaccineReq4);
+                ecosystem.getVaccineQueue().addWorkRequest(vaccineReq4);
+
+                Vaccine vaccine5 = new Vaccine(5);
+                vaccine5.setName("Vaccine5");
+                vaccine5.setDescription("Used for Resp");
+                vaccine5.setCoreComponents("Mol");
+                vaccine5.setAllergens("antihistamines");
+                vaccine5.setMinAgeGroup(10);
+                vaccine5.setMaxAgeGroup(40);
+                vaccine5.setAdministration("Pills");
+                vaccine5.setCondition("Covid");
+                vaccine5.setDosage(doseMap);
+                vaccine5.setPreservations("NA");
+                vaccine5.setSideeffects("Nausea");
+                vaccine5.setOther("NA");
+                vaccine5.setUpdateDate();
+                vaccine5.setUsername(r1);
+                vaccine5.setEnterpriseName(enter.getName());
+                vaccine5.setEnterprise(enter);
+
+                enter.getVaccineDirectory().addVaccine(vaccine5);
+
+                VaccineWorkRequest vaccineReq5 = new VaccineWorkRequest();
+                vaccineReq5.setEnterprise(enter.getName());
+                vaccineReq5.setSender(r1);
+                vaccineReq5.setVaccine(vaccine5);
+                vaccineReq5.setRequestDate(new Date());
+                Map<String,Date> statusMap5 = vaccineReq5.getStatusMap();
+                statusMap5.put("Formulation Phase", new Date());
+                vaccineReq5.setStatusMap(statusMap5);
+                r1.getVaccineWorkQueue().addWorkRequest(vaccineReq5);
+                ecosystem.getVaccineQueue().addWorkRequest(vaccineReq5);
+            }
+            if(e.getName().equals("GenomeTech VaccineCompany")){
+                employee =e.getEmployeeDirectory().createEmployee("vacEmp2");
+                e.getUserAccountDirectory().createUserAccount("vac2", "vac2", employee, new  VaccineAdminRole());
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.ResearchScientists);
+
+                employee =org.getEmployeeDirectory().createEmployee("scientistEmp3");
+                org.getUserAccountDirectory().createUserAccount("r2", "r2", employee, new VaccineScientistRole());
+                org2 = e.getOrganizationDirectory().createOrganization(Organization.Type.VaccineTestingStaff);
+                employee =org2.getEmployeeDirectory().createEmployee("testStaff2");
+                org2.getUserAccountDirectory().createUserAccount("s2", "s2", employee, new VaccineTestingStaffRole());
+
+                //Creating Vaccine Tester
+
+                VaccineTester tester = new VaccineTester();
+                tester.setName("Marie");
+                tester.setCondition("Covid");
+                tester.setDOB("12/12/2000");
+                tester.setUpdateDate();
+                tester.setPhotograph("fdgfdbdsfds");
+                tester.setGender("Other");
+                tester.setEnterprise(e);
+                VaccineEnterprise enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester);
+                VaccineTester tester2 = new VaccineTester();
+                tester2.setName("Vij");
+                tester2.setCondition("Diabetes");
+                tester2.setDOB("12/12/1987");
+                tester.setUpdateDate();
+                tester.setPhotograph("fdgfdbdsfds");
+                tester.setGender("Female");
+                tester.setEnterprise(e);
+                enter.getVaccinetesterDirectory().addVaccineTester(tester2);
+                VaccineTester tester3 = new VaccineTester();
+                tester3.setName("Nisha");
+                tester3.setCondition("Healthy");
+                tester3.setDOB("12/12/1994");
+                tester.setUpdateDate();
+                tester.setPhotograph("fdgfdbdsfds");
+                tester.setGender("Male");
+                tester.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester3);
+
+            }
+            if(e.getName().equals("MediCare Pharmacy")){
+                Employee pharmae1 = e.getEmployeeDirectory().createEmployee("pharmaEmp1");
+                e.getUserAccountDirectory().createUserAccount("ph1", "ph1", pharmae1, new PharmacyAdminRole());
+                org =e.getOrganizationDirectory().createOrganization(Organization.Type.DeliveryMan);
+                employee =org.getEmployeeDirectory().createEmployee("delivEmp");
+                org.getUserAccountDirectory().createUserAccount("deliv1", "deliv1", employee, new DeliveryManRole());
+                PharmacyEnterprise enter = (PharmacyEnterprise) e;
+                Medicine med = new Medicine("ParaMed",12.00,12,100);
+                med.setCondition("Diabetes");
+                med.setDemand(0);
+                enter.getMedicineCatalog().addMedicine(med);
+                med = new Medicine("Inhaler",50.00,12,100);
+                med.setCondition("Respiratory Problems");
+                med.setDemand(0);
+                enter.getMedicineCatalog().addMedicine(med);
+                med = new Medicine("CovVac",12.00,12,100);
+                med.setCondition("Covid");
+                med.setDemand(0);
+                enter.getMedicineCatalog().addMedicine(med);
+                med= new Medicine("EasyHale",90.00,12,100);
+                med.setCondition("Covid");
+                med.setDemand(0);
+                enter.getMedicineCatalog().addMedicine(med);
+            }
+            if(e.getName().equals("YourMed Pharmacy")){
+                Employee pharmae2 = e.getEmployeeDirectory().createEmployee("pharmaEmp2");
+                e.getUserAccountDirectory().createUserAccount("ph2", "ph2", pharmae2, new PharmacyAdminRole());
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.DeliveryMan);
+                employee =org.getEmployeeDirectory().createEmployee("delivEmp2");
+                org.getUserAccountDirectory().createUserAccount("deliv2", "deliv2", employee, new DeliveryManRole());
+                PharmacyEnterprise enter = (PharmacyEnterprise) e;
+                Medicine med = new Medicine("Med2",10.00,12,100);
+                med.setCondition("Diabetes");
+                med.setDemand(0);
+                enter.getMedicineCatalog().addMedicine(med);
+                med = new Medicine("Paracetemol",15.00,12,100);
+                med.setCondition("Respiratory Problems");
+                med.setDemand(0);
+                enter.getMedicineCatalog().addMedicine(med);
+                med = new Medicine("Medicin4",12.00,12,100);
+                med.setCondition("Covid");
+                med.setDemand(0);
+                enter.getMedicineCatalog().addMedicine(med);
+                med= new Medicine("VitaPlus",18.00,12,100);
+                med.setCondition("Covid");
+                med.setDemand(0);
+                enter.getMedicineCatalog().addMedicine(med);
+            }
+            if(e.getName().equals("HighTech Laboratory")){
+                Employee labe1 = e.getEmployeeDirectory().createEmployee("labEmp1");
+                e.getUserAccountDirectory().createUserAccount("lab1", "lab1", labe1, new LabAdminRole());
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.LabStaff);
+                employee =org.getEmployeeDirectory().createEmployee("labStaffEmp1");
+                org.getUserAccountDirectory().createUserAccount("labstaff1", "labstaff1", employee, new LabStaffRole());
+
+                LabEnterprise labEnterprise = (LabEnterprise) e;
+                List<String> sList = labEnterprise.getServices();
+                sList.add("X-Ray");
+                sList.add("Blood-Test");
+                sList.add("Covid-Test");
+                sList.add("General-Checkup");
+
+                labEnterprise.setServices(sList);
+            }
+            if(e.getName().equals("LabWorks Laboratory")){
+                Employee labe2 = e.getEmployeeDirectory().createEmployee("labEmp2");
+                e.getUserAccountDirectory().createUserAccount("lab2", "lab2", labe2, new LabAdminRole());
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.LabStaff);
+                employee =org.getEmployeeDirectory().createEmployee("labStaffEmp2");
+                org.getUserAccountDirectory().createUserAccount("labstaff2", "labstaff2", employee, new LabStaffRole());
+                LabEnterprise labEnterprise = (LabEnterprise) e;
+                List<String> sList = labEnterprise.getServices();
+                sList.add("Cholesterol-Checkup");
+                sList.add("Blood-Test");
+                sList.add("Covid-Test");
+                sList.add("CT-Scan");
+
+                labEnterprise.setServices(sList);
+            }
+            if(e.getName().equals("GeoResearch Food and Drug Administration")){
+                Employee fdaEmp1 = e.getEmployeeDirectory().createEmployee("fdaEmp1");
+                e.getUserAccountDirectory().createUserAccount("fda1", "fda1", fdaEmp1, new FDARole());
+
+            }
+            if(e.getName().equals("BioHealthCare Food and Drug Administration")){
+                Employee fdaEmp2 = e.getEmployeeDirectory().createEmployee("fdaEmp2");
+                e.getUserAccountDirectory().createUserAccount("fda2", "fda2", fdaEmp2, new FDARole());
+            }
+            if(e.getName().equals("NH Hospital")){
+                Employee hospE = e.getEmployeeDirectory().createEmployee("hospE");
+                Employee patE = e.getEmployeeDirectory().createEmployee("patE");
+                e.getUserAccountDirectory().createUserAccount("h1", "h1", hospE, new DoctorRole());
+                e.getUserAccountDirectory().createUserAccount("pat1", "pat1", patE, new PatientRole());
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.AmbulanceDriver);
+                employee =org.getEmployeeDirectory().createEmployee("ambuEmp1");
+                org.getUserAccountDirectory().createUserAccount("amb1", "amb1", employee, new AmbulanceDriverRole());
+                employee =org.getEmployeeDirectory().createEmployee("ambuEmp2");
+                org.getUserAccountDirectory().createUserAccount("amb2", "amb2", employee, new AmbulanceDriverRole());
+            }
+        }
+
+        JOptionPane.showMessageDialog(null,"Load Complete!");
+
+    }//GEN-LAST:event_btnVacLoadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageAdmin;
     private javax.swing.JButton btnManageEnterprise;
     private javax.swing.JButton btnManageNetwork;
     private javax.swing.JButton btnManagePatient;
+    private javax.swing.JButton btnVacLoad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

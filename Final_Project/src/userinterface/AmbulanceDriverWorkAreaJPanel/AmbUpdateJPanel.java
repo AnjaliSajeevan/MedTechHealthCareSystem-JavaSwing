@@ -78,7 +78,7 @@ public class AmbUpdateJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        System.out.println(ecosystem.getDriverDirectory().getDriverlist());
+   /*     System.out.println(ecosystem.getDriverDirectory().getDriverlist());
          for(Driver dri:ecosystem.getDriverDirectory().getDriverlist())
         { System.out.println("for loop update profile"+dri.getUserName());
         System.out.println("for loop update profile"+account.getUsername());
@@ -89,7 +89,7 @@ public class AmbUpdateJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
                 }
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
