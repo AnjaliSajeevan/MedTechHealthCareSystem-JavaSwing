@@ -151,13 +151,13 @@ String patientName = account.getUsername();
              Object row[] = new Object[8];
                  row[0] = req;
                  row[1] = medList1;   
-                 row[2] = latestKey;
-                 row[3] = req.getMessage();
                  if(req.getSender() == null){
-                 row[4] = account;    
+                 row[2] = "In-Person";  
                  }else{
-                 row[4] = req.getSender();
+                 row[2] = req.getSender();
                  }
+                 row[3] = latestKey;
+                 row[4] = req.getMessage();
                  model.addRow(row); 
             }
         }
@@ -295,17 +295,17 @@ String patientName = account.getUsername();
 
         respTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "PharmacyID", "Medicine", "Message", "DeliveryStaff"
+                "PharmacyID", "Medicine", "DeliveryStaff", "Status", "Message"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -519,7 +519,7 @@ String patientName = account.getUsername();
         pharmaReq.setCust(account);
         pharmaReq.setSender(account);
         Map<String,Date> reqMap = pharmaReq.getStatusMap();
-        reqMap.put("Medicine Request Created", new Date());
+        reqMap.put("New Medicine Request to "+pharmaReq.getEnterprise(), new Date());
         pharmaReq.setStatusMap(reqMap);
         boolean covidCond = false;
         for (Map.Entry<Medicine,Integer> medicine : medList.entrySet()) {
@@ -540,7 +540,7 @@ String patientName = account.getUsername();
                 if(enterpriseCheck.getName().equals(pharmacyComboBox.getSelectedItem().toString())){
                     for (UserAccount ua : enterpriseCheck.getUserAccountDirectory().getUserAccountList()) {
                         if(ua.getRole().toString().equals("PharmacyAdmin")){
-                            reqMap.put("Request Sent to Admin", new Date());
+                            reqMap.put("Request Sent to Admin: "+ua, new Date());
                             pharmaReq.setStatusMap(reqMap);
                             ua.getPharmaWorkQueue().addPharmaRequest(pharmaReq);
                             business.getPharmaQueue().addPharmaRequest(pharmaReq);
@@ -550,11 +550,12 @@ String patientName = account.getUsername();
                 }
             }
         }
-
+        account.getPharmaWorkQueue().addPharmaRequest(pharmaReq);
         medList.clear();
         requestInprog = "";
         populateMedReqTable();
         lblTot.setVisible(false);
+        txtPres.setText("");
         JOptionPane.showMessageDialog(null,"Pharmacy Request successuly submitted!", "Warning", JOptionPane.WARNING_MESSAGE);
 
         Patient patient1 = null;

@@ -117,13 +117,24 @@ public class BookLabJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)labTestingTable.getModel();
         model.setRowCount(0);
         for(LabPatientWorkRequest work : account.getLabPatientWorkQueue().getLabPatientRequestList()){
+                 Map<String,Date> map = work.getStatusMap();
+                String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : map.entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                latestKey = mapEntry.getKey();
+                }
+                }
                     Object[] row = new Object[8];
                     row[0] = work;
                     row[1] = work.getLabTestType();
                     row[2] = work.getPatient();
                      row[3] = work.getSlotDate();
                     row[4] = work.getSlotTime();
-                    row[5] = work.getMessage();
+                    row[5] = latestKey;
+                    row[6] = work.getMessage();
 
                     model.addRow(row);  
         }
@@ -211,17 +222,17 @@ public class BookLabJPanel extends javax.swing.JPanel {
 
         labTestingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "LabID", "TestName", "PatientName", "Date", "Time", "Message"
+                "LabID", "TestName", "PatientName", "Date", "Time", "Status", "Message"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -358,13 +369,13 @@ public class BookLabJPanel extends javax.swing.JPanel {
         String slotTime = (String) slotTable.getValueAt(rows, 1);
         LabPatientWorkRequest request = new LabPatientWorkRequest();
         request.setEnterprise(labComboBox.getSelectedItem().toString());
-        request.setPatient(account.getEmployee().getName());
+        request.setPatient(account);
         request.setSender(account);
         request.setLabTestType(serviceComboBox.getSelectedItem().toString());
         request.setSlotDate(slotDate);
         request.setSlotTime(slotTime);
         Map<String,Date> reqMap = request.getStatusMap();
-        reqMap.put("Lab Appointment Created", new Date());
+        reqMap.put("Appointment for "+serviceComboBox.getSelectedItem().toString()+"in "+labComboBox.getSelectedItem().toString()+" created!", new Date());
         request.setStatusMap(reqMap);
         for (Network network : business.getNetworkList()){
             for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
@@ -375,7 +386,7 @@ public class BookLabJPanel extends javax.swing.JPanel {
                     e.setTimeSlot(slots);
                     for (UserAccount ua : e.getUserAccountDirectory().getUserAccountList()) {
                         if(ua.getRole().toString().equals("LabAdmin")){
-                            reqMap.put("Request Sent to Laboratory", new Date());
+                            reqMap.put("Request Sent to Laboratory Admin:"+ua, new Date());
                             request.setStatusMap(reqMap);
                             ua.getLabPatientWorkQueue().addLabPatientRequest(request);
                             business.getLabPatQueue().addLabPatientRequest(request);
@@ -384,7 +395,7 @@ public class BookLabJPanel extends javax.swing.JPanel {
                 }
             }
         }
-
+    account.getLabPatientWorkQueue().addLabPatientRequest(request);
         JOptionPane.showMessageDialog(null,"Booked Lab appointment successfully!", "Warning", JOptionPane.WARNING_MESSAGE);
         LabEnterprise labEnterpise = null;
         for (Network network : business.getNetworkList()){

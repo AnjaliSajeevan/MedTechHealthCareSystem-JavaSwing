@@ -90,6 +90,7 @@ public abstract class Organization {
     public abstract ArrayList<Role> getSupportedRole();
     
     public UserAccountDirectory getUserAccountDirectory() {
+        System.out.println("dir="+userAccountDirectory);
         return userAccountDirectory;
     }
 

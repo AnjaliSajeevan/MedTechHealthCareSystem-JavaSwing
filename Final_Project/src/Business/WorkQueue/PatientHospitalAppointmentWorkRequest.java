@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ public class PatientHospitalAppointmentWorkRequest {
     private String doctor;
     private String result;
     private double cost;
+    private Map<String,Date> statusMap;
     private InsurancePolicy Insurance;
 
     public InsurancePolicy getInsurance() {
@@ -154,6 +156,7 @@ public class PatientHospitalAppointmentWorkRequest {
     }
       public PatientHospitalAppointmentWorkRequest(){
         requestDate = new Date();
+        statusMap = new HashMap<String,Date>();
         List<Integer> numbers = new ArrayList();
         for(int i = 0; i < 10; i++){
         numbers.add(i);
@@ -167,6 +170,13 @@ public class PatientHospitalAppointmentWorkRequest {
         requestNo="A"+result;
 
     }
+    }
+          public Map<String, Date> getStatusMap() {
+        return statusMap;
+    }
+
+    public void setStatusMap(Map<String, Date> statusMap) {
+        this.statusMap = statusMap;
     }
       @Override
     public String toString() {

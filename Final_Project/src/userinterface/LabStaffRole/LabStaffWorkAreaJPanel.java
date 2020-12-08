@@ -51,13 +51,24 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)labTestingTable.getModel();
         model.setRowCount(0);
         for(LabPatientWorkRequest work : account.getLabPatientWorkQueue().getLabPatientRequestList()){
+                                Map<String,Date> map = work.getStatusMap();
+                    String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : work.getStatusMap().entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+               }
                             Object[] row = new Object[8];
                     row[0] = work;
                     row[1] = work.getLabTestType();
                     row[2] = work.getPatient();
                      row[3] = work.getSlotDate();
                     row[4] = work.getSlotTime();
-                    row[5] = work.getMessage();
+                    row[5] = latestKey;
+                    row[6] = work.getMessage();
 
                     model.addRow(row);  
         }
@@ -81,17 +92,17 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
 
         labTestingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "LabID", "TestName", "PatientName", "Date", "Time", "Message"
+                "LabID", "TestName", "PatientName", "Date", "Time", "Status", "Message"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -152,9 +163,12 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
         }
         LabPatientWorkRequest labReq= (LabPatientWorkRequest)labTestingTable.getValueAt(selectedRow, 0);
         Map<String,Date> reqMap = labReq.getStatusMap();
-        reqMap.put("LabTest Assigned-"+account, new Date());
+        reqMap.put("LabTesting InProgress-"+labReq.getLabTestType(), new Date());
         labReq.setStatusMap(reqMap);
+        UserAccount pat = labReq.getPatient();
+        pat.getLabPatientWorkQueue().updateLabPatientRequest(labReq, pat.getLabPatientWorkQueue().getLabPatientRequestList());
         business.getLabPatQueue().updateLabPatientRequest(labReq, business.getLabPatQueue().getLabPatientRequestList());
+        populateTestingTable();
     }//GEN-LAST:event_btnAssignActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
@@ -165,6 +179,12 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         LabPatientWorkRequest labReq= (LabPatientWorkRequest)labTestingTable.getValueAt(selectedRow, 0);
+        Map<String,Date> reqMap = labReq.getStatusMap();
+        reqMap.put("Test Complete-Submitting Results-"+account, new Date());
+        labReq.setStatusMap(reqMap);
+        UserAccount pat1 = labReq.getPatient();
+        pat1.getLabPatientWorkQueue().updateLabPatientRequest(labReq, pat1.getLabPatientWorkQueue().getLabPatientRequestList());
+        business.getLabPatQueue().updateLabPatientRequest(labReq, business.getLabPatQueue().getLabPatientRequestList());
         ProcessTestJPanel processTestJPanel = new ProcessTestJPanel(userProcessContainer, account,business,labReq);
         userProcessContainer.add("processTestJPanel", processTestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
