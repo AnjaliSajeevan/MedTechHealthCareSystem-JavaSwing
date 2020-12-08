@@ -8,6 +8,7 @@ package Business.WorkQueue;
 import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,4 +28,11 @@ public class PatientHospitalAppointmentWorkQueue {
     public void addhospitalRequestListWorkRequest(PatientHospitalAppointmentWorkRequest w) {
         hospitalAppointmentworkRequestList.add(w);
     }
+    public void updateHospitalRequest(PatientHospitalAppointmentWorkRequest w,List<PatientHospitalAppointmentWorkRequest> HosRequestList){
+            for(PatientHospitalAppointmentWorkRequest work: HosRequestList){
+                if(work.getRequestNo().equals(w.getRequestNo())){
+                   work=w;
+                }
+            }
+        }
 }

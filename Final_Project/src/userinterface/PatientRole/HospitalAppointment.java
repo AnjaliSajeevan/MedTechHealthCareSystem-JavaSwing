@@ -273,7 +273,9 @@ public class HospitalAppointment extends javax.swing.JPanel {
         r.setTime(selected);
         r.setStatus("Appointment requested");
         r.setInsurance(Insurancepolicy);
-       
+        Map<String,Date> reqMap = r.getStatusMap();
+        reqMap.put("New Appointment Request: "+hospital, new Date());
+        r.setStatusMap(reqMap); 
         r.setRequestDate(new Date());
         ecosystem.getHospitalQueue().hospitalRequestList().add(r);
         account.getHospitalWorkQueue().hospitalRequestList().add(r);

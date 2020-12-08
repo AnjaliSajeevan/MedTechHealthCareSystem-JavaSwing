@@ -16,7 +16,11 @@ import Business.Vaccine.Vaccine;
 import Business.WorkQueue.PharmaWorkRequest;
 import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -71,6 +75,20 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         
     
     }
+ private  Map<String,Date> sortByDate(Map<String, Date> map){
+        List<Map.Entry<String, Date>> tempList = new LinkedList<Map.Entry<String, Date>>(map.entrySet());
+        Collections.sort(tempList, new Comparator<Map.Entry<String, Date>>(){
+            public int compare(Map.Entry<String, Date> obj1,Map.Entry<String, Date> obj2) {
+                    return obj1.getValue().compareTo(obj2.getValue());
+            }
+        });
+
+        Map<String, Date> sortedMap = new LinkedHashMap<String, Date>();
+        for (Map.Entry<String, Date> entry : tempList){
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
+    }
     public void populatePatientRequests(){
                       DefaultTableModel model = (DefaultTableModel)medicineTable1.getModel();
         model.setRowCount(0);
@@ -96,6 +114,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
     public void populateDeliv(){
         delivComboBox.removeAllItems();
+        delivComboBox.addItem("");
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
                 if(ua.getRole().toString().equals("DeliveryMan")){
@@ -148,33 +167,22 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
     }
-    public void populateTimeline(String pharma){
-        if(pharma.isEmpty()){
-          DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
-        model.setRowCount(0);         
-        }else{
-            PharmaWorkRequest p = null;
-                  List<PharmaWorkRequest> requestList = business.getPharmaQueue().getPharmaList();
-        for(PharmaWorkRequest req: requestList){
-            if(req.toString().equals(pharma)){
-                p = req;
-            }
-        }  
-        if(p!=null){
-           DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
+       public void populateTimeline(PharmaWorkRequest req){
+       DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
         model.setRowCount(0);
-           Map<String,Date> map = p.getStatusMap();
-            String latestKey = "";
-            for (Map.Entry<String,Date> mapEntry : p.getStatusMap().entrySet()) {
+           Map<String,Date> map = req.getStatusMap();
+           Map<String, Date> Sortedmap = sortByDate(map);
+            for (Map.Entry<String,Date> mapEntry : Sortedmap.entrySet()) {
                             Object row[] = new Object[5];
-                 row[0] = mapEntry.getKey();
-                 row[1] = mapEntry.getValue();
+                 row[0] =mapEntry.getValue(); 
+                 row[1] = mapEntry.getKey();
                   model.addRow(row); 
                }
       }
-        }
-           
-    }
+              public void populateTimeline(String req){
+       DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
+        model.setRowCount(0);
+              }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -696,6 +704,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
         // TODO add your handling code here:
+        
         String stockOutMed = "";
         int selectedRow = medicineTable1.getSelectedRow();
         if(selectedRow<0){
@@ -704,6 +713,9 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
         PharmacyEnterprise pharma = (PharmacyEnterprise) enterprise;
         PharmaWorkRequest pharmaRequest= (PharmaWorkRequest)medicineTable1.getValueAt(selectedRow, 0);
+        Map<String,Date> reqMap = pharmaRequest.getStatusMap();
+        reqMap.put("Checking Medicine Availability", new Date());
+        pharmaRequest.setStatusMap(reqMap);
         Map<Medicine,Integer> medMap = pharmaRequest.getMedList();
 
         for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {
@@ -719,12 +731,21 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
+        String msg ="";
         if(stockOutMed.equals("")){
             JOptionPane.showMessageDialog(null, "All Medicines are in Stock!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            msg = "Pharmacy:All Medicines are in Stock!";
         }else{
             JOptionPane.showMessageDialog(null, "Please fill up Medicines - OutOfStock -"+stockOutMed, "Information", JOptionPane.INFORMATION_MESSAGE);
-
+            msg = "Pharmacy:Please fill up Medicines - OutOfStock -"+stockOutMed;
         }
+        reqMap.put(msg, new Date());
+        pharmaRequest.setStatusMap(reqMap);
+        
+        //patient.getPharmaWorkQueue().addPharmaRequest(pharmaRequest);
+        //account.getPharmaWorkQueue().removePharmaRequest(pharmaRequest);
+        business.getPharmaQueue().updatePharmaRequest(pharmaRequest, business.getPharmaQueue().getPharmaList());
+
     }//GEN-LAST:event_btnCheckActionPerformed
 
     private void delivComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delivComboBoxActionPerformed
@@ -741,7 +762,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         PharmaWorkRequest pharma= (PharmaWorkRequest)respTable.getValueAt(selectedRow, 0);
 
-        populateTimeline(pharma.toString());
+        populateTimeline(pharma);
     }//GEN-LAST:event_btnTimeActionPerformed
 
     private void btnRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecordActionPerformed

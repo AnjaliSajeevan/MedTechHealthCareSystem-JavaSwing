@@ -11,6 +11,7 @@ import Business.Organization.LaboratoryOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.Date;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -52,7 +53,7 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btnCovid1 = new javax.swing.JButton();
         btnBack1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
 
         jLabel4.setText("Write Result:");
 
@@ -76,10 +77,10 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("SUBMIT RESULT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setText("SUBMIT RESULT");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
 
@@ -109,7 +110,7 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
                 .addContainerGap(70, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(176, 176, 176))
         );
         layout.setVerticalGroup(
@@ -127,7 +128,7 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtResult, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -140,35 +141,44 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCovid1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        
         if(txtResult.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Result is mandatory to submit the request!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
+
         UserAccount ua = request.getSender();
         Map<String,Date> reqMap = request.getStatusMap();
-        reqMap.put("LabTest Complete-", new Date());
+        reqMap.put("LabTest Complete,Results Submitted", new Date());
         request.setStatusMap(reqMap);
         request.setSender(account);
         request.setMessage(txtResult.getText());
+        UserAccount pat1 = request.getPatient();
+        pat1.getLabPatientWorkQueue().updateLabPatientRequest(request, pat1.getLabPatientWorkQueue().getLabPatientRequestList());
         business.getLabPatQueue().updateLabPatientRequest(request, business.getLabPatQueue().getLabPatientRequestList());
-        ua.getLabPatientWorkQueue().addLabPatientRequest(request);
-        JOptionPane.showMessageDialog(null, "Result Submitted successfuly!", "Warning", JOptionPane.WARNING_MESSAGE);
-    }//GEN-LAST:event_jButton1ActionPerformed
+     //   ua.getLabPatientWorkQueue().addLabPatientRequest(request);
+     txtResult.setText("");
+        JOptionPane.showMessageDialog(null, "Result Submitted successfuly!", "Information", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         // TODO add your handling code here:
-                userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+                    userProcessContainer.remove(this);
+            Component[] componentArray = userProcessContainer.getComponents();
+            Component component = componentArray[componentArray.length - 1];
+            LabStaffWorkAreaJPanel sysAdminwjp = (LabStaffWorkAreaJPanel) component;
+            sysAdminwjp.populateTestingTable();
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBack1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnCovid1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
