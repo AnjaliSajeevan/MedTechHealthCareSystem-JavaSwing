@@ -143,7 +143,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         r.setStatus("Claim Requested");
         r.setInsurancepolicy(request.getInsurance());
         r.setInsuranceEnterprise(insuranceCompany);
-        r.setHospital(enterprise);
+        r.setHospital(enterprise.toString());
         r.setInsuranceNo(request.getRequestNo());
         
          ecosystem.getClaimWorkQueue().getWorkRequestList().add(r);

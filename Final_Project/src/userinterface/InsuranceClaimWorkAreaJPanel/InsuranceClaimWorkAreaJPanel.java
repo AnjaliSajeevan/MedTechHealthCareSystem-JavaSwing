@@ -42,12 +42,17 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public void populate(){
+        DefaultTableModel model = (DefaultTableModel)tblClaim.getModel();
+            model.setRowCount(0);
        for(ClaimWorkRequest r : ecosystem.getClaimWorkQueue().getWorkRequestList())
-       {    String enterpriseName=enterprise.toString();
+       {   if(r.getInsuranceEnterprise()==null){
+       
+       } 
+       else{
+           String enterpriseName=enterprise.toString();
            if(r.getInsuranceEnterprise().equals(enterpriseName))
            { 
-             DefaultTableModel model = (DefaultTableModel)tblClaim.getModel();
-            model.setRowCount(0);
+             
 
             Object[] row = new Object[7];
             row[0] = r;
@@ -60,6 +65,7 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
     }
     }
+       }
     }
     /**
      * This method is called from within the constructor to initialize the form.

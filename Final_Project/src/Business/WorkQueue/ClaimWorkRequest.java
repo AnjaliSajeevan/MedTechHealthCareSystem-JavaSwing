@@ -31,7 +31,7 @@ public class ClaimWorkRequest {
     private double cost;
     private String message;
     private Patient patient;
-    private Enterprise hospital;
+    private String hospital;
     private String insuranceNo;
 
     public String getInsuranceNo() {
@@ -42,11 +42,11 @@ public class ClaimWorkRequest {
         this.insuranceNo = insuranceNo;
     }
 
-    public Enterprise getHospital() {
+    public String getHospital() {
         return hospital;
     }
 
-    public void setHospital(Enterprise hospital) {
+    public void setHospital(String hospital) {
         this.hospital = hospital;
     }
     

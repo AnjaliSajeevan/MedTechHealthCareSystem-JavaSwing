@@ -171,9 +171,9 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
         
         Patient patient = null;
-        String pat= labReq.getPatient();
+        String pat= labReq.getSender().getUsername();
         for(Patient p:business.getPatientDirectory().getpatientlist())
-        {if (p.getName().equals(pat)){
+        {if (p.getUserName().equals(pat)){
             patient=p;
         }
         }
@@ -185,11 +185,15 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
         r.setCost(150.00);
         r.setStatus("Claim Requested");
         r.setInsurancepolicy(patient.getInsurance());
-        r.setHospital(enterprise);
+        r.setHospital(enterprise.toString());
+        r.setInsuranceEnterprise(patient.getInsurance().getEnterprise());
+        r.setInsuranceNo(patient.getInsuranceOrderNo());
+       
+       
         
         business.getClaimWorkQueue().getWorkRequestList().add(r);
         account.getClaimWorkQueue().getWorkRequestList().add(r);
-        JOptionPane.showMessageDialog(null, "Successfully Processed");
+        
     }//GEN-LAST:event_btnProcessActionPerformed
 
 

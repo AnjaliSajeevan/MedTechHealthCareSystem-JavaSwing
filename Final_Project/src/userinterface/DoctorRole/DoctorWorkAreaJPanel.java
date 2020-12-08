@@ -48,6 +48,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (PatientHospitalAppointmentWorkRequest request : ecosystem.getHospitalQueue().hospitalRequestList()) {
+          if(request.getDoctor()==null)
+          {System.out.println(account.getEmployee().getName());
+          }else{
+          
+          System.out.println(account.getEmployee().getName());
             if (request.getDoctor().equals(account.getEmployee().getName())) {
                 String message;
                 if (request.getResult() == null) {
@@ -68,6 +73,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             patient = request.getSender();
         }
     
+        }
         }
 }
 

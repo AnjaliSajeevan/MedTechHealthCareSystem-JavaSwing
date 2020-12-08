@@ -63,44 +63,44 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
     
     public void populateTree(){
-        DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
-        ArrayList<Network> networkList=ecosystem.getNetworkList();
-        ArrayList<Enterprise> enterpriseList;
-        ArrayList<Organization> organizationList;
-        
-        Network network;
-        Enterprise enterprise;
-        Organization organization;
-        
-        DefaultMutableTreeNode networks=new DefaultMutableTreeNode("Networks");
-        DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
-        root.removeAllChildren();
-        root.insert(networks, 0);
-        
-        DefaultMutableTreeNode networkNode;
-        DefaultMutableTreeNode enterpriseNode;
-        DefaultMutableTreeNode organizationNode;
-        
-        for(int i=0;i<networkList.size();i++){
-            network=networkList.get(i);
-            networkNode=new DefaultMutableTreeNode(network.getName());
-            networks.insert(networkNode, i);
-            
-            enterpriseList=network.getEnterpriseDirectory().getEnterpriseList();
-            for(int j=0; j<enterpriseList.size();j++){
-                enterprise=enterpriseList.get(j);
-                enterpriseNode=new DefaultMutableTreeNode(enterprise.getName());
-                networkNode.insert(enterpriseNode, j);
-                
-                organizationList=enterprise.getOrganizationDirectory().getOrganizationList();
-                for(int k=0;k<organizationList.size();k++){
-                    organization=organizationList.get(i);
-                    organizationNode=new DefaultMutableTreeNode(organization.getName());
-                    enterpriseNode.insert(organizationNode, k);
-                }
-            }
-        }
-        model.reload();
+//        DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
+//        ArrayList<Network> networkList=ecosystem.getNetworkList();
+//        ArrayList<Enterprise> enterpriseList;
+//        ArrayList<Organization> organizationList;
+//        
+//        Network network;
+//        Enterprise enterprise;
+//        Organization organization;
+//        
+//        DefaultMutableTreeNode networks=new DefaultMutableTreeNode("Networks");
+//        DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
+//        root.removeAllChildren();
+//        root.insert(networks, 0);
+//        
+//        DefaultMutableTreeNode networkNode;
+//        DefaultMutableTreeNode enterpriseNode;
+//        DefaultMutableTreeNode organizationNode;
+//        
+//        for(int i=0;i<networkList.size();i++){
+//            network=networkList.get(i);
+//            networkNode=new DefaultMutableTreeNode(network.getName());
+//            networks.insert(networkNode, i);
+//            
+//            enterpriseList=network.getEnterpriseDirectory().getEnterpriseList();
+//            for(int j=0; j<enterpriseList.size();j++){
+//                enterprise=enterpriseList.get(j);
+//                enterpriseNode=new DefaultMutableTreeNode(enterprise.getName());
+//                networkNode.insert(enterpriseNode, j);
+//                
+//                organizationList=enterprise.getOrganizationDirectory().getOrganizationList();
+//                for(int k=0;k<organizationList.size();k++){
+//                    organization=organizationList.get(i);
+//                    organizationNode=new DefaultMutableTreeNode(organization.getName());
+//                    enterpriseNode.insert(organizationNode, k);
+//                }
+//            }
+//        }
+//        model.reload();
     }
     /**
      * This method is called from within the constructor to initialize the form.

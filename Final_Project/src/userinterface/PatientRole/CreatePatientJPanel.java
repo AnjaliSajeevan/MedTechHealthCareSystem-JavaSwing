@@ -728,7 +728,7 @@ String toemail;
                 }
                 JOptionPane.showMessageDialog(null,"Patient added successfully!!!");
                 sendFromGMail("sayali98365", "#Vu4f1314020", new String[]{toemail},"patient ceated","body");
-                SmsSender.sendSms(txtPhone.getText(), "Hi u r registered");
+              //  SmsSender.sendSms(txtPhone.getText(), "Hi u r registered");
                 System.out.println("email bbcm");
 //String from, String pass, String[] to, String subject, String body
                 txtName.setText("");
@@ -790,7 +790,6 @@ String toemail;
         Component component = componentArray[componentArray.length - 1];
         ManagePateintJPanel sysAdminwjp = (ManagePateintJPanel) component;
         sysAdminwjp.populatePatientTable();
-
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
