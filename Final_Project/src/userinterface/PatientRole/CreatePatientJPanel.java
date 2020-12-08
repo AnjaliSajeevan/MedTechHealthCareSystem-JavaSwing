@@ -583,11 +583,18 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 String toemail;
-        //Validation of Personal Information and Address.
-        int comp = 0;
+ int comp = 0;
         String username=txtUsername.getText();
         String password=txtPassword.getText();
         String error = "";
+        //Validation of Personal Information and Address.
+            for(Employee ua : business.getEmployeeDirectory().getEmployeeList()){
+            if(ua.getName().equals(username)){
+                 JOptionPane.showMessageDialog(null, " UserName already exists.");
+    return;
+            }
+        }
+       
         //Validation of Mandatory fields.
         
         if(txtName.getText().equalsIgnoreCase("")){
@@ -727,8 +734,8 @@ String toemail;
                     }
                 }
                 JOptionPane.showMessageDialog(null,"Patient added successfully!!!");
-                sendFromGMail("sayali98365", "#Vu4f1314020", new String[]{toemail},"patient ceated","body");
-              //  SmsSender.sendSms(txtPhone.getText(), "Hi u r registered");
+                sendFromGMail("medtech2254", "AedGroup@9", new String[]{toemail},"Thank you for Registaring with MedTech health care, We are here to help you!!","Registration Confirmation");
+              SmsSender.sendSms(txtPhone.getText(), "Thank you for Registaring with MedTech health care, your mobile number is registered!!");
                 System.out.println("email bbcm");
 //String from, String pass, String[] to, String subject, String body
                 txtName.setText("");
