@@ -582,19 +582,12 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String toemail;
+String toemail;
+        //Validation of Personal Information and Address.
         int comp = 0;
         String username=txtUsername.getText();
         String password=txtPassword.getText();
         String error = "";
-        //Validation of Personal Information and Address.
-        for(Employee ua : business.getEmployeeDirectory().getEmployeeList()){   
-        if(ua.getName().equals(username)){
-                 JOptionPane.showMessageDialog(null, "UserName already exists.");
-    return;
-            }
-        }
-        
         //Validation of Mandatory fields.
         
         if(txtName.getText().equalsIgnoreCase("")){
@@ -734,8 +727,8 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                     }
                 }
                 JOptionPane.showMessageDialog(null,"Patient added successfully!!!");
-                sendFromGMail("medtech2254", "AedGroup@9", new String[]{toemail},"Email Confirmation","Welcome to MedTech, Thank you for registaring with us!! We are Happy to help you!!");
-                SmsSender.sendSms(txtPhone.getText(), "Thank you for registaring with MedTech, your mobile number is linked!!");
+                sendFromGMail("sayali98365", "#Vu4f1314020", new String[]{toemail},"patient ceated","body");
+              //  SmsSender.sendSms(txtPhone.getText(), "Hi u r registered");
                 System.out.println("email bbcm");
 //String from, String pass, String[] to, String subject, String body
                 txtName.setText("");

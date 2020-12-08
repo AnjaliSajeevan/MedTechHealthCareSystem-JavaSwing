@@ -14,11 +14,14 @@ import Business.Enterprise.VaccineEnterprise;
 import Business.Essentials.Medicine;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Patient.Patient;
 import Business.Role.AdminRole;
 import Business.Role.AmbulanceDriverRole;
 import Business.Role.DeliveryManRole;
 import Business.Role.DoctorRole;
 import Business.Role.FDARole;
+import Business.Role.InsuranceAdminRole;
+import Business.Role.InsuranceClaimRole;
 import Business.Role.LabAdminRole;
 import Business.Role.LabStaffRole;
 import Business.Role.PatientRole;
@@ -42,6 +45,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
 //import userinterface.SystemAdminWorkArea.
 /**
  *
@@ -163,7 +167,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnVacLoad.setText("Load Vaccine+Pharma+Lab");
+        btnVacLoad.setText("Load Data");
         btnVacLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVacLoadActionPerformed(evt);
@@ -267,7 +271,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         //For Testing purpose only. MUST be deleted for final push.
-
+        for(Network n: ecosystem.getNetworkList()){
+            if(n.getName().equals("NewHampshire")){
+                 JOptionPane.showMessageDialog(null,"Network already Loaded!");
+                return;
+            }
+        }
         //Create Network
         Network network = ecosystem.createAndAddNetwork();
         network.setName("NewHampshire");
@@ -334,9 +343,28 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 type = temp5;
             }
         }
-        String name9 = "NH";
+        String name9 = "NewHampshire";
         name = name9+" "+type;
         network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        
+        String name10 = "Excellence";
+        name = name10+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        
+        //Create Insurance Company
+        for (Enterprise.EnterpriseType temp6 : Enterprise.EnterpriseType.values()) {
+            if(temp6.toString().equals("Insurance")){
+                type = temp6;
+            }
+        }
+        String name11 = "NHLife";
+        name = name11+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        
+        String name12 = "Sunshine";
+        name = name12+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        
 
         //Load Admins
         for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
@@ -346,7 +374,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             if(e.getName().equals("NeoPharma VaccineCompany")){
                 employee =e.getEmployeeDirectory().createEmployee("vacEmp1");
                 e.getUserAccountDirectory().createUserAccount("vac1", "vac1", employee, new  VaccineAdminRole());
-                org = e.getOrganizationDirectory().createOrganization(Organization.Type.ResearchScientists);
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.VaccineScientist);
                 employee =org.getEmployeeDirectory().createEmployee("scientistEmp");
                 UserAccount r1 =org.getUserAccountDirectory().createUserAccount("r1", "r1", employee, new VaccineScientistRole());
                 org2 = e.getOrganizationDirectory().createOrganization(Organization.Type.VaccineTestingStaff);
@@ -359,6 +387,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 tester.setUpdateDate();
                 tester.setPhotograph("fdgfdbdsfds");
                 tester.setGender("Male");
+                tester.setAge(20);
                 tester.setEnterprise(e);
                 VaccineEnterprise enter = (VaccineEnterprise) e;
                 enter.getVaccinetesterDirectory().addVaccineTester(tester);
@@ -366,6 +395,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 tester2.setName("Dia");
                 tester2.setCondition("Diabetes");
                 tester2.setDOB("12/12/1987");
+                tester2.setAge(33);
                 tester2.setUpdateDate();
                 tester2.setPhotograph("fdgfdbdsfds");
                 tester2.setGender("Male");
@@ -375,12 +405,91 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 tester3.setName("Nuthan");
                 tester3.setCondition("Healthy");
                 tester3.setDOB("12/12/1994");
+                tester3.setAge(26);
                 tester3.setUpdateDate();
                 tester3.setPhotograph("fdgfdbdsfds");
                 tester3.setGender("Male");
                 tester3.setEnterprise(e);
                 enter = (VaccineEnterprise) e;
                 enter.getVaccinetesterDirectory().addVaccineTester(tester3);
+                VaccineTester tester4 = new VaccineTester();
+                tester4.setName("Freya");
+                tester4.setCondition("Healthy");
+                tester4.setDOB("12/12/1994");
+                tester4.setAge(26);
+                tester4.setUpdateDate();
+                tester4.setPhotograph("fdgfdbdsfds");
+                tester4.setGender("Female");
+                tester4.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester4);
+                VaccineTester tester5 = new VaccineTester();
+                tester5.setName("Heeta");
+                tester5.setCondition("Covid");
+                tester5.setDOB("12/12/1990");
+                tester5.setAge(30);
+                tester5.setUpdateDate();
+                tester5.setPhotograph("fdgfdbdsfds");
+                tester5.setGender("Male");
+                tester5.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester5);
+                VaccineTester tester6 = new VaccineTester();
+                tester6.setName("Anam");
+                tester6.setCondition("Diabetes");
+                tester6.setDOB("12/12/1997");
+                tester6.setAge(23);
+                tester6.setUpdateDate();
+                tester6.setPhotograph("fdgfdbdsfds");
+                tester6.setGender("Female");
+                tester6.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester6);
+                VaccineTester tester7 = new VaccineTester();
+                tester7.setName("Noor");
+                tester7.setCondition("Covid");
+                tester7.setDOB("12/12/1990");
+                tester7.setAge(30);
+                tester7.setUpdateDate();
+                tester7.setPhotograph("fdgfdbdsfds");
+                tester7.setGender("Female");
+                tester7.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester7);
+                VaccineTester tester8 = new VaccineTester();
+                tester8.setName("Tarun");
+                tester8.setCondition("Diabetes");
+                tester8.setDOB("12/12/1994");
+                tester8.setAge(26);
+                tester8.setUpdateDate();
+                tester8.setPhotograph("fdgfdbdsfds");
+                tester8.setGender("Male");
+                tester8.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester8);
+                VaccineTester tester9 = new VaccineTester();
+                tester9.setName("Adam");
+                tester9.setCondition("Heart Problems");
+                tester9.setDOB("12/12/1980");
+                tester9.setAge(40);
+                tester9.setUpdateDate();
+                tester9.setPhotograph("fdgfdbdsfds");
+                tester9.setGender("Male");
+                tester9.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester9);
+                
+                VaccineTester tester10 = new VaccineTester();
+                tester10.setName("Danny");
+                tester10.setCondition("Respiratory Problems");
+                tester10.setDOB("12/12/1960");
+                tester10.setAge(60);
+                tester10.setUpdateDate();
+                tester10.setPhotograph("fdgfdbdsfds");
+                tester10.setGender("Other");
+                tester10.setEnterprise(e);
+                enter = (VaccineEnterprise) e;
+                enter.getVaccinetesterDirectory().addVaccineTester(tester10);
 
                 //Creating Vaccine Requests
 
@@ -546,7 +655,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             if(e.getName().equals("GenomeTech VaccineCompany")){
                 employee =e.getEmployeeDirectory().createEmployee("vacEmp2");
                 e.getUserAccountDirectory().createUserAccount("vac2", "vac2", employee, new  VaccineAdminRole());
-                org = e.getOrganizationDirectory().createOrganization(Organization.Type.ResearchScientists);
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.VaccineScientist);
 
                 employee =org.getEmployeeDirectory().createEmployee("scientistEmp3");
                 org.getUserAccountDirectory().createUserAccount("r2", "r2", employee, new VaccineScientistRole());
@@ -561,6 +670,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 tester.setCondition("Covid");
                 tester.setDOB("12/12/2000");
                 tester.setUpdateDate();
+                tester.setAge(20);
                 tester.setPhotograph("fdgfdbdsfds");
                 tester.setGender("Other");
                 tester.setEnterprise(e);
@@ -570,6 +680,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 tester2.setName("Vij");
                 tester2.setCondition("Diabetes");
                 tester2.setDOB("12/12/1987");
+                tester2.setAge(43);
                 tester.setUpdateDate();
                 tester.setPhotograph("fdgfdbdsfds");
                 tester.setGender("Female");
@@ -579,6 +690,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 tester3.setName("Nisha");
                 tester3.setCondition("Healthy");
                 tester3.setDOB("12/12/1994");
+                tester3.setAge(26);
                 tester.setUpdateDate();
                 tester.setPhotograph("fdgfdbdsfds");
                 tester.setGender("Male");
@@ -675,17 +787,135 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 Employee fdaEmp2 = e.getEmployeeDirectory().createEmployee("fdaEmp2");
                 e.getUserAccountDirectory().createUserAccount("fda2", "fda2", fdaEmp2, new FDARole());
             }
-            if(e.getName().equals("NH Hospital")){
+             if(e.getName().equals("Sunshine Insurance")){
+                Employee insEmp = e.getEmployeeDirectory().createEmployee("insureEmp1");
+                e.getUserAccountDirectory().createUserAccount("in1", "in1", insEmp, new InsuranceAdminRole());
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.InsuranceStaff);
+                employee =org.getEmployeeDirectory().createEmployee("isStaff1");
+                org.getUserAccountDirectory().createUserAccount("inStaff1", "instaff1", employee, new InsuranceClaimRole());
+                employee =org.getEmployeeDirectory().createEmployee("isStaff2");
+                org.getUserAccountDirectory().createUserAccount("inStaff2", "instaff2", employee, new InsuranceClaimRole());
+            }
+            if(e.getName().equals("NHLife Insurance")){
+                Employee insEmp = e.getEmployeeDirectory().createEmployee("insureEmp2");
+                e.getUserAccountDirectory().createUserAccount("in2", "in2", insEmp, new InsuranceAdminRole());
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.InsuranceStaff);
+                employee =org.getEmployeeDirectory().createEmployee("isStaff3");
+                org.getUserAccountDirectory().createUserAccount("inStaff3", "instaff3", employee, new InsuranceClaimRole());
+                employee =org.getEmployeeDirectory().createEmployee("isStaff4");
+                org.getUserAccountDirectory().createUserAccount("inStaff4", "instaff4", employee, new InsuranceClaimRole());
+            }
+            if(e.getName().equals("NewHampshire Hospital")){
                 Employee hospE = e.getEmployeeDirectory().createEmployee("hospE");
                 Employee patE = e.getEmployeeDirectory().createEmployee("patE");
-                e.getUserAccountDirectory().createUserAccount("h1", "h1", hospE, new DoctorRole());
-                e.getUserAccountDirectory().createUserAccount("pat1", "pat1", patE, new PatientRole());
+                e.getUserAccountDirectory().createUserAccount("h1", "h1", hospE, new AdminRole());   
                 org = e.getOrganizationDirectory().createOrganization(Organization.Type.AmbulanceDriver);
                 employee =org.getEmployeeDirectory().createEmployee("ambuEmp1");
                 org.getUserAccountDirectory().createUserAccount("amb1", "amb1", employee, new AmbulanceDriverRole());
                 employee =org.getEmployeeDirectory().createEmployee("ambuEmp2");
                 org.getUserAccountDirectory().createUserAccount("amb2", "amb2", employee, new AmbulanceDriverRole());
+                
+                //Creating patients
+                Patient patient1 = new Patient();
+                patient1.setPatientname("Kari");               
+                    patient1.setAddress1("252 Kennedy Drive");
+                patient1.setAddress2("Malden");
+                patient1.setAddress3("Ma-02148");
+                patient1.setContact(String.valueOf(1234567890));
+                patient1.setGender("Female");
+                patient1.setDOB("12/12/2000");
+                patient1.setAge(20);
+                patient1.setEmail("sdfgds@gfds.gfds");
+                patient1.setSsn("");
+                patient1.setAllergy("");
+                patient1.setHealthOther("");
+                patient1.setCondition("Diabetes");
+                patient1.setPhotograph("sdfgf");
+                patient1.setUpdateDate();
+                patient1.setUserAccount("pat1");
+
+                ecosystem.getPatientDirectory().addPatient(patient1);
+                Employee ePat=ecosystem.getEmployeeDirectory().createEmployee("pat1");
+                e.getUserAccountDirectory().createUserAccount("pat1", "pat1", ePat, new PatientRole());
+                
+                Patient patient2 = new Patient();
+                patient2.setPatientname("Mark");               
+                    patient2.setAddress1("252 Kennedy Drive");
+                patient2.setAddress2("Malden");
+                patient2.setAddress3("Ma-02148");
+                patient2.setContact(String.valueOf(1234567890));
+                patient2.setGender("Male");
+                patient2.setDOB("12/12/1980");
+                patient2.setAge(40);
+                patient2.setEmail("sdfgds@gfds.gfds");
+                patient2.setSsn("");
+                patient2.setAllergy("");
+                patient2.setHealthOther("");
+                patient2.setCondition("Covid");
+                patient2.setPhotograph("sdfgf");
+                patient2.setUpdateDate();
+                patient2.setUserAccount("pat1");
+
+                ecosystem.getPatientDirectory().addPatient(patient2);
+                Employee ePat2=ecosystem.getEmployeeDirectory().createEmployee("pat2");
+                e.getUserAccountDirectory().createUserAccount("pat2", "pat2", ePat2, new PatientRole());
+
             }
+              if(e.getName().equals("Excellence Hospital")){
+                Employee hospE = e.getEmployeeDirectory().createEmployee("hospE2");
+                e.getUserAccountDirectory().createUserAccount("h2", "h2", hospE, new AdminRole());             
+                org = e.getOrganizationDirectory().createOrganization(Organization.Type.AmbulanceDriver);
+                employee =org.getEmployeeDirectory().createEmployee("ambuEmp2");
+                org.getUserAccountDirectory().createUserAccount("amb3", "amb3", employee, new AmbulanceDriverRole());
+                employee =org.getEmployeeDirectory().createEmployee("ambuEmp2");
+                org.getUserAccountDirectory().createUserAccount("amb4", "amb4", employee, new AmbulanceDriverRole());
+                
+                //Creating patients
+                Patient patient1 = new Patient();
+                patient1.setPatientname("Ray");               
+                    patient1.setAddress1("252 Kennedy Drive");
+                patient1.setAddress2("Malden");
+                patient1.setAddress3("Ma-02148");
+                patient1.setContact(String.valueOf(1234567890));
+                patient1.setGender("Female");
+                patient1.setDOB("10/12/2001");
+                patient1.setAge(19);
+                patient1.setEmail("sdfgds@gfds.gfds");
+                patient1.setSsn("");
+                patient1.setAllergy("");
+                patient1.setHealthOther("");
+                patient1.setCondition("Covid");
+                patient1.setPhotograph("sdfgf");
+                patient1.setUpdateDate();
+                patient1.setUserAccount("pat3");
+
+                ecosystem.getPatientDirectory().addPatient(patient1);
+                Employee ePat=ecosystem.getEmployeeDirectory().createEmployee("pat3");
+                e.getUserAccountDirectory().createUserAccount("pat3", "pat3", ePat, new PatientRole());
+                
+                Patient patient2 = new Patient();
+                patient2.setPatientname("Kevin");               
+                    patient2.setAddress1("252 Kennedy Drive");
+                patient2.setAddress2("Malden");
+                patient2.setAddress3("Ma-02148");
+                patient2.setContact(String.valueOf(1234567890));
+                patient2.setGender("Male");
+                patient2.setDOB("12/12/1980");
+                patient2.setAge(40);
+                patient2.setEmail("sdfgds@gfds.gfds");
+                patient2.setSsn("");
+                patient2.setAllergy("");
+                patient2.setHealthOther("");
+                patient2.setCondition("Covid");
+                patient2.setPhotograph("sdfgf");
+                patient2.setUpdateDate();
+                patient2.setUserAccount("pat4");
+
+                ecosystem.getPatientDirectory().addPatient(patient2);
+                Employee ePat2=ecosystem.getEmployeeDirectory().createEmployee("pat4");
+                e.getUserAccountDirectory().createUserAccount("pat4", "pat4", ePat2, new PatientRole());
+
+            }           
         }
 
         JOptionPane.showMessageDialog(null,"Load Complete!");

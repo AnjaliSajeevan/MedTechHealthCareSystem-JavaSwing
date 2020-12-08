@@ -23,7 +23,7 @@ public class Doctor extends Employee {
     private static int count = 1;
     private String DOB;
     private int age;
-    private String contact;
+    private int contact;
     private String email;
     private String gender;
     private Date createDate;
@@ -165,11 +165,11 @@ public class Doctor extends Employee {
         this.age = age;
     }
 
-    public String getContact() {
+    public int getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public void setContact(int contact) {
         this.contact = contact;
     }
 

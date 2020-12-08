@@ -8,6 +8,7 @@ import Business.EcoSystem;
 import Business.Network.Network;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -145,9 +146,20 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
         String name = nameJTextField.getText();
+        if(nameJTextField.getText().equals("")){
+           JOptionPane.showMessageDialog(null,"Name is Mandatory!");
+                return;
+        }
+        for(Network n: system.getNetworkList()){
+            if(n.getName().equals(nameJTextField.getText())){
+                JOptionPane.showMessageDialog(null,"Network aleady exists for given name!");
+                return;   
+            }
+        }
         Network network = system.createAndAddNetwork();
         network.setName(name);
-
+        JOptionPane.showMessageDialog(null,"Network added successfully!");
+        nameJTextField.setText("");
         populateNetworkTable();
     }//GEN-LAST:event_submitJButtonActionPerformed
 
