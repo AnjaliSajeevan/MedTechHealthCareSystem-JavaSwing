@@ -40,7 +40,7 @@ public abstract class Organization {
     public enum Type{
         HospitalAdmin("Hospiatal Organization"), Doctor("Hospiatal Organization"),HospitalStaff("Hospiatal Organization"),AmbulanceDriver("Hospiatal Organization"),
         PharmacyAdmin("Pharmacy Organization"),DeliveryMan("Pharmacy Organization"),
-        VaccineCompanyAdmin("Vaccine Organization"),ResearchScientists("Vaccine Organization"),VaccineTestingStaff("Vaccine Organization"),
+        VaccineCompanyAdmin("Vaccine Organization"),VaccineScientist("Vaccine Organization"),VaccineTestingStaff("Vaccine Organization"),
         LabAdmin("Laboratory Organization"),LabStaff("Laboratory Organization"),
         InsuranceAdmin("Insurance Organization"), InsuranceStaff("Insurance Organization"),
         FDAAdmin("FDA Organization");
