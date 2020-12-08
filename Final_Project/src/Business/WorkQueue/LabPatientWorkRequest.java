@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class LabPatientWorkRequest {
        private Vaccine vaccine;
-    private String patient;
+    private UserAccount patient;
     private int id;
     private String message;
     private String slotDate;
@@ -47,11 +47,11 @@ public class LabPatientWorkRequest {
         this.vaccine = vaccine;
     }
 
-    public String getPatient() {
+    public UserAccount getPatient() {
         return patient;
     }
 
-    public void setPatient(String patient) {
+    public void setPatient(UserAccount patient) {
         this.patient = patient;
     }
 

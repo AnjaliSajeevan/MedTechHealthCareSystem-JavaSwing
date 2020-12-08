@@ -14,6 +14,8 @@ import static Business.Organization.Organization.Type.Doctor;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 import java.awt.CardLayout;
+import java.util.Date;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -241,6 +243,26 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnCheckPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckPatientActionPerformed
         // TODO add your handling code here:
+        boolean patientActive = false;
+       for(PatientHospitalAppointmentWorkRequest w:ecosystem.getHospitalQueue().hospitalRequestList()){
+                               Map<String,Date> map = w.getStatusMap();
+                    String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : w.getStatusMap().entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+               }
+            if(latestKey.equals("Handling Patient")){
+                patientActive = true;
+            }
+       }
+       
+       if(patientActive == true){
+               JOptionPane.showMessageDialog(null, "Already one patient being handled!\nPlease complete the appointment with existing patient to handle next patient", "Warning", JOptionPane.WARNING_MESSAGE);        
+       }
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow < 0) {
@@ -248,6 +270,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         } else {
             PatientHospitalAppointmentWorkRequest request = (PatientHospitalAppointmentWorkRequest) jTable1.getValueAt(selectedRow, 0);
+            
+            Map<String,Date> reqMap = request.getStatusMap();
+            reqMap.put("Handling Patient", new Date());
+        request.setStatusMap(reqMap); 
+             ecosystem.getHospitalQueue().updateHospitalRequest(request, ecosystem.getHospitalQueue().hospitalRequestList());    
         RequestLabTestJPanel ppanel = new RequestLabTestJPanel(userProcessContainer,account,enterprise,ecosystem,request);
         userProcessContainer.add("RequestLabTestJPanel", ppanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

@@ -13,6 +13,7 @@ import Business.Organization.PharmacyOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
 import Business.WorkQueue.PharmaWorkRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -168,10 +169,21 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         PharmaWorkRequest req= (PharmaWorkRequest)medicineTable.getValueAt(selectedRow, 0);
+        
         UserAccount ua = req.getReceiver();
         req.setMessage(txtMsg.getText());
         ua.getPharmaWorkQueue().updatePharmaRequest(req, ua.getPharmaWorkQueue().getPharmaList());
+        account.getPharmaWorkQueue().removePharmaRequest(req);
+                
+        Map<String,Date> reqMap = req.getStatusMap();
+        reqMap.put(account+" Update:"+txtMsg.getText(), new Date());
+        reqMap.put("Request Completed by-"+account, new Date());
+        req.setStatusMap(reqMap);
+        //    pharmaRequest.setSender(account);
+        account.getPharmaWorkQueue().removePharmaRequest(req);
+        business.getPharmaQueue().updatePharmaRequest(req, business.getPharmaQueue().getPharmaList());
         JOptionPane.showMessageDialog(null, "Message Submitted!", "Information", JOptionPane.INFORMATION_MESSAGE);
+        populatePatientRequests();
     }//GEN-LAST:event_btnProcessActionPerformed
 
 

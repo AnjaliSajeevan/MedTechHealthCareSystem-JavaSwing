@@ -17,6 +17,7 @@ import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Date;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -126,7 +127,15 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             }
                     
                 }
+           Map<String,Date> reqMap = request.getStatusMap();
+            reqMap.put("Room Admitted:"+room, new Date());
+        request.setStatusMap(reqMap); 
+             ecosystem.getHospitalQueue().updateHospitalRequest(request, ecosystem.getHospitalQueue().hospitalRequestList()); 
                 }
+                   Map<String,Date> reqMap = request.getStatusMap();
+            reqMap.put("Consultation Complete:"+txtResult.getText(), new Date());
+        request.setStatusMap(reqMap); 
+             ecosystem.getHospitalQueue().updateHospitalRequest(request, ecosystem.getHospitalQueue().hospitalRequestList());
         String insuranceCompany = request.getInsurance().getEnterprise();
         for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
             System.out.println(p.getUserName());
@@ -145,7 +154,10 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         r.setInsuranceEnterprise(insuranceCompany);
         r.setHospital(enterprise.toString());
         r.setInsuranceNo(request.getRequestNo());
-        
+         Map<String,Date> reqMap2 = request.getStatusMap();
+            reqMap2.put("Claim Requested:"+request.getInsurance(), new Date());
+        request.setStatusMap(reqMap2); 
+             ecosystem.getHospitalQueue().updateHospitalRequest(request, ecosystem.getHospitalQueue().hospitalRequestList());
          ecosystem.getClaimWorkQueue().getWorkRequestList().add(r);
         userAccount.getClaimWorkQueue().getWorkRequestList().add(r);
         JOptionPane.showMessageDialog(null, "Successfully Submitted");
