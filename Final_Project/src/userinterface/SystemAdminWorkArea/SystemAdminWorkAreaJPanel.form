@@ -147,7 +147,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnVacLoad">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Load Vaccine+Pharma+Lab"/>
+            <Property name="text" type="java.lang.String" value="Load Data"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVacLoadActionPerformed"/>

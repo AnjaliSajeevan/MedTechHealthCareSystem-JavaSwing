@@ -51,8 +51,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[3];
-                    row[0] = enterprise.getName();
-                    row[1] = network.getName();
+                    row[0] = enterprise;
+                    row[1] = network;
                     row[2] = userAccount.getUsername();
 
                     model.addRow(row);
@@ -63,7 +63,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void populateNetworkComboBox(){
         networkJComboBox.removeAllItems();
-        
+         networkJComboBox.addItem("");
         for (Network network : system.getNetworkList()){
             networkJComboBox.addItem(network);
         }
@@ -71,10 +71,14 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     
     private void populateEnterpriseComboBox(Network network){
         enterpriseJComboBox.removeAllItems();
-        
+         enterpriseJComboBox.addItem("");
         for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
             enterpriseJComboBox.addItem(enterprise);
         }
+        
+    }
+        private void populateEnterpriseComboBox(String net){
+        enterpriseJComboBox.removeAllItems();
         
     }
     
@@ -101,7 +105,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         passwordJPasswordField = new javax.swing.JPasswordField();
         backJButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnRem = new javax.swing.JButton();
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,6 +142,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel3.setText("Enterprise");
 
         enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseJComboBoxActionPerformed(evt);
+            }
+        });
 
         submitJButton.setText("Submit");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -157,10 +166,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Remove User");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRem.setText("Remove User");
+        btnRem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRemActionPerformed(evt);
             }
         });
 
@@ -209,7 +218,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGap(154, 154, 154))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnRem)
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -218,7 +227,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnRem)
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -251,28 +260,46 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
-
+        try{
         Network network = (Network) networkJComboBox.getSelectedItem();
         if (network != null){
             populateEnterpriseComboBox(network);
+        }
+        }catch(ClassCastException e){
+           populateEnterpriseComboBox(""); 
+        }catch(Exception e){
+            populateEnterpriseComboBox("");  
         }
         
         
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        
+        if(networkJComboBox.getSelectedItem().toString().equals("")){
+           JOptionPane.showMessageDialog(null, "Please select Network!");
+            return;              
+        }
+        if(enterpriseJComboBox.getSelectedItem().toString().equals("")){
+           JOptionPane.showMessageDialog(null, "Please select Enterprise!");
+            return;              
+        }
         Network network = (Network) networkJComboBox.getSelectedItem();
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         
         String username = usernameJTextField.getText();
-        for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
+        if(usernameJTextField.getText().equals("") || passwordJPasswordField.getPassword().equals("") || nameJTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Username, Password and Name is Mandatory to create Admin account!");
+            return;             
+        }
+        for(Network n: system.getNetworkList()){
+        for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
            for(UserAccount ua:e.getUserAccountDirectory().getUserAccountList()){
             if(ua.getUsername().equals(username)){
           JOptionPane.showMessageDialog(null, "Username already exists!");
             return;    
             }
         } 
+        }
         }
         
         String password = String.valueOf(passwordJPasswordField.getPassword());
@@ -299,7 +326,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
          UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());  
          
         }
-        
+         JOptionPane.showMessageDialog(null, "Admin account added successfully!");
         populateTable();
         usernameJTextField.setText("");
         passwordJPasswordField.setText("");
@@ -317,16 +344,32 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemActionPerformed
         // TODO add your handling code here:
-       system.getUserAccountDirectory().getUserAccountList().clear();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int selectedRow = enterpriseJTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select an admin row to remove!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        int confirmed = JOptionPane.showConfirmDialog(null, "Are you Sure you want to delete the admin account?","Confirm Delete",JOptionPane.YES_NO_OPTION);
+            if(confirmed == JOptionPane.YES_OPTION){
+                Enterprise enterprise= (Enterprise)enterpriseJTable.getValueAt(selectedRow, 0);
+                Network networkName = (Network)enterpriseJTable.getValueAt(selectedRow, 1);
+                        networkName.getEnterpriseDirectory().removeEnterprise(enterprise);
+                        JOptionPane.showMessageDialog(null, "Enterprise removed successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+    }//GEN-LAST:event_btnRemActionPerformed
+
+    private void enterpriseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton btnRem;
     private javax.swing.JComboBox enterpriseJComboBox;
     private javax.swing.JTable enterpriseJTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
