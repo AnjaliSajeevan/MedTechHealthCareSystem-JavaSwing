@@ -696,7 +696,7 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
                 }else{
                     doc.setHealthOther("");
                 }
-                doc.setContact(Integer.parseInt(txtPhone.getText()));
+                doc.setContact(txtPhone.getText());
                 doc.setGender(gender);
                 doc.setSpecialization(txtSplcialization.getText());
                 doc.setPhotograph(txtPhoto.getText());
