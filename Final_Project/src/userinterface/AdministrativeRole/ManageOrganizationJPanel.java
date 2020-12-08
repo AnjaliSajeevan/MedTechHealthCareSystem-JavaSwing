@@ -11,6 +11,7 @@ import java.awt.CardLayout;
 import static java.lang.Boolean.FALSE;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,6 +39,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     
     private void populateCombo(){
         organizationJComboBox.removeAllItems();
+        organizationJComboBox.addItem("");
         for (Type type : Organization.Type.values()){
             String pwdRegex = ".*Admin.*";
             Pattern pwdPattern = Pattern.compile(pwdRegex);
@@ -171,10 +173,20 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-
+       if(organizationJComboBox.getSelectedItem().toString().equals("")){
+                 JOptionPane.showMessageDialog(null,"Please select an Organization to add!");
+                 return;           
+       }
+        for(Organization org : directory.getOrganizationList()){
+            if(org.getOrganizationType().equals(organizationJComboBox.getSelectedItem().toString())){
+                 JOptionPane.showMessageDialog(null,"Organization Already exists!");
+                 return;
+            }
+        }
         Type type = (Type) organizationJComboBox.getSelectedItem();
         directory.createOrganization(type);
         populateTable();
+                         JOptionPane.showMessageDialog(null,"Organization Added Succesfully!");
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
