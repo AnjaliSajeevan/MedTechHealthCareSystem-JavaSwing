@@ -45,6 +45,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.ecosystem=ecosystem;
         this.insuranceOrganization = insuranceOrganization;
         valueLabel.setText(enterprise.getName());
+        
         populateTree();
         populateTable();
 
@@ -176,7 +177,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnViewPolicyActionPerformed(evt);
             }
         });
-        add(btnViewPolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 750, -1, -1));
+        add(btnViewPolicy, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 740, -1, -1));
 
         btnDeletePolicy.setText("Delete Policy");
         btnDeletePolicy.addActionListener(new java.awt.event.ActionListener() {
@@ -297,6 +298,9 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null,"Successfully Accepted");
         populateRequest();
         populateTable();
+        
+       
+        
     }
     
     public void populateRequest(){
@@ -318,10 +322,8 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             r.addPatient(request.getSender().toString());
         
             }
-                }
-        }
-              
-               
+                }      
+        }          
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void btnCreatePolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePolicyActionPerformed
@@ -348,6 +350,8 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
+            
+           
 
         }
         

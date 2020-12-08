@@ -55,7 +55,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        requestTestJButton = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
         txtResult = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
@@ -66,13 +66,13 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        requestTestJButton.setText("Submit");
-        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestTestJButtonActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
-        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 200, 40));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 200, 40));
         add(txtResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 260, -1));
 
         backJButton.setText("<<Back");
@@ -100,7 +100,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         Patient patient = null;
         String result = txtResult.getText();
         request.setResult(result);
@@ -143,21 +143,22 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         r.setStatus("Claim Requested");
         r.setInsurancepolicy(request.getInsurance());
         r.setInsuranceEnterprise(insuranceCompany);
-        r.setHospital(enterprise);
+        r.setHospital(enterprise.toString());
+        r.setInsuranceNo(request.getRequestNo());
         
          ecosystem.getClaimWorkQueue().getWorkRequestList().add(r);
         userAccount.getClaimWorkQueue().getWorkRequestList().add(r);
         JOptionPane.showMessageDialog(null, "Successfully Submitted");
         
-    }//GEN-LAST:event_requestTestJButtonActionPerformed
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-       // CustomerAreaJPanel dwjp = (CustomerAreaJPanel) component;
-  //      dwjp.populateRequestTable();
+        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
+        dwjp.populateTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
         
@@ -165,12 +166,12 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JButton requestTestJButton;
     private javax.swing.JTextField txtResult;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,11 +8,13 @@ import Business.Enterprise.Enterprise;
 import static Business.Organization.Organization.Type.Doctor;
 import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 import java.awt.CardLayout;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.logging.Level;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -89,17 +91,12 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnAccept = new javax.swing.JButton();
         availableDoctor = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        emergencyRequestTable = new javax.swing.JTable();
-        btnAcceptAmbulance = new javax.swing.JButton();
-        btnAssignAmbulanceDriver = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         jComboBoxTimeSlot = new javax.swing.JComboBox<>();
         btnSubmit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnDecline = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        btnPatientLocation = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -175,49 +172,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnAcceptActionPerformed(evt);
             }
         });
-        add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
+        add(btnAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, -1, -1));
 
-        add(availableDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 80, -1));
+        add(availableDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 80, -1));
 
-        emergencyRequestTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Patient Name", "Address", "Desciption"
-            }
-        ));
-        jScrollPane2.setViewportView(emergencyRequestTable);
-
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, 370, 90));
-
-        btnAcceptAmbulance.setText("Accept Request");
-        btnAcceptAmbulance.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAcceptAmbulanceActionPerformed(evt);
-            }
-        });
-        add(btnAcceptAmbulance, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, -1, -1));
-
-        btnAssignAmbulanceDriver.setText("Assign Ambulance");
-        btnAssignAmbulanceDriver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignAmbulanceDriverActionPerformed(evt);
-            }
-        });
-        add(btnAssignAmbulanceDriver, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 610, -1, -1));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 610, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jLabel3.setText("Emergency Request");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 170, -1));
-
-        add(jComboBoxTimeSlot, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 70, -1));
+        add(jComboBoxTimeSlot, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 70, -1));
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -225,16 +184,29 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 btnSubmitActionPerformed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, -1, -1));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, -1, -1));
 
         jLabel4.setText("Time slot available:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
 
         btnDecline.setText("Decline Appointment");
-        add(btnDecline, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, -1, -1));
+        btnDecline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeclineActionPerformed(evt);
+            }
+        });
+        add(btnDecline, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, -1, -1));
 
         jLabel5.setText("Assign Doctor:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, -1, -1));
+
+        btnPatientLocation.setText("Check patient location");
+        btnPatientLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPatientLocationActionPerformed(evt);
+            }
+        });
+        add(btnPatientLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 600, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -264,19 +236,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
 
-    private void btnAssignAmbulanceDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignAmbulanceDriverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAssignAmbulanceDriverActionPerformed
-
-    private void btnAcceptAmbulanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptAmbulanceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAcceptAmbulanceActionPerformed
-
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         availableDoctor.removeAllItems();
         
-
+       
         String y = null;
         String doctor;
         int selectedRow = tblpatientAppointment.getSelectedRow();
@@ -285,18 +249,24 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else {
+            System.out.println(business.getDoctorDirectory().getdoctorlist());
             for (Doctor n : business.getDoctorDirectory().getdoctorlist()) {
+                
+                if(n.getHospital().equals(enterprise.getName()))
+                {
                 appointment = n.getAppointment();
-                System.out.println(appointment);
+                System.out.println(n);
                 for (LocalDate dates : appointment.keySet()) {
 
                     if (dates.equals(d)) {
-
-                        for (Map.Entry<LocalDate, ArrayList<String>> appointment : appointment.entrySet()) {
-                            for (String timess : appointment.getValue()) {
+          
+                        {                            
+                            for (String timess : appointment.get(dates)) {
                                 if (timess.equals(time)) {
                                     doctor = n.toString();
+                                    System.out.println(doctor);
                                     availableDoctor.addItem(doctor);
+                                   System.out.println("END");
                                 }
 
                             }
@@ -305,6 +275,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                     }
                 }
 
+            }
             }
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
@@ -343,25 +314,43 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
    
     }//GEN-LAST:event_btnAcceptActionPerformed
 
+    private void btnPatientLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientLocationActionPerformed
+        // TODO add your handling code here:
+                try{String address = "360+West+Boylston+Street,+Boylston,+MA+01583";
+            String url = "https://www.google.com/maps/place/"+address;
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(AdminWorkAreaJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnPatientLocationActionPerformed
+
+    private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblpatientAppointment.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            PatientHospitalAppointmentWorkRequest request = (PatientHospitalAppointmentWorkRequest) tblpatientAppointment.getValueAt(selectedRow, 0);
+        request.setStatus("Appointment confirmed");
+        }
+    }//GEN-LAST:event_btnDeclineActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> availableDoctor;
     private javax.swing.JButton btnAccept;
-    private javax.swing.JButton btnAcceptAmbulance;
-    private javax.swing.JButton btnAssignAmbulanceDriver;
     private javax.swing.JButton btnDecline;
+    private javax.swing.JButton btnPatientLocation;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JTable emergencyRequestTable;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxTimeSlot;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;
     private javax.swing.JTable tblpatientAppointment;

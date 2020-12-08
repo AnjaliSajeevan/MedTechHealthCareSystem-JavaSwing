@@ -8,8 +8,10 @@ package userinterface.PatientRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.InsuranceAdminOrganization;
+import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -37,8 +39,8 @@ InsuranceAdminOrganization iOrg;
         this.enterprise = enterprise;
         this.iOrg=organization;
         this.account=account;
-        patient=account.getUsername();
-        lblUsername.setText(patient);
+        
+        lblUsername.setText(account.getEmployee().getName());
        
     }
 
@@ -164,31 +166,58 @@ InsuranceAdminOrganization iOrg;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
+            if(p.getUserName().equals(account.getUsername())){
+                System.out.print(p.getInsurance());
+               if( p.getInsurance()==null){
+                   JOptionPane.showMessageDialog(null,"Please register with an insurance first!", "Warning", JOptionPane.WARNING_MESSAGE);
+               }else{
+            
          HospitalAppointment seeResultJPanel=new HospitalAppointment(userProcessContainer,account, ecosystem);
         userProcessContainer.add("HospitalAppointment",seeResultJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+               }
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnBookLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookLabActionPerformed
         // TODO add your handling code here:
+        for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
+            if(p.getUserName().equals(account.getUsername())){
+                System.out.print(p.getInsurance());
+               if( p.getInsurance()==null){
+                   JOptionPane.showMessageDialog(null,"Please register with an insurance first", "Warning", JOptionPane.WARNING_MESSAGE);
+               }else{
         BookLabJPanel bookLabJPanel=new BookLabJPanel(userProcessContainer,account, enterprise,ecosystem);
         userProcessContainer.add("bookLabJPanel",bookLabJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+               }
+            }
+        }
     }//GEN-LAST:event_btnBookLabActionPerformed
 
     private void btnMedReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedReqActionPerformed
         // TODO add your handling code here:
-        RequestMedicineJPanel reqMedJPanel=new RequestMedicineJPanel(userProcessContainer,account, enterprise,ecosystem);
+        for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
+            if(p.getUserName().equals(account.getUsername())){
+                System.out.print(p.getInsurance());
+               if( p.getInsurance()==null){
+                   JOptionPane.showMessageDialog(null,"Please register with an insurance first!", "Warning", JOptionPane.WARNING_MESSAGE);
+               }else{RequestMedicineJPanel reqMedJPanel=new RequestMedicineJPanel(userProcessContainer,account, enterprise,ecosystem);
         userProcessContainer.add("reqMedJPanel",reqMedJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+               }
+            }
+        }
     }//GEN-LAST:event_btnMedReqActionPerformed
 
     private void btnPatientHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientHistoryActionPerformed
         // TODO add your handling code here:
-        PatientHistoryJPanel phjp = new PatientHistoryJPanel(userProcessContainer,patient,ecosystem);
+        PatientHistoryJPanel phjp = new PatientHistoryJPanel(userProcessContainer,account,ecosystem);
         userProcessContainer.add("reqMedJPanel",phjp);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

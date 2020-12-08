@@ -453,14 +453,15 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         else
         {
         
+
+        InsurancePolicy insurance = (InsurancePolicy) tblConfirmedPolicy.getValueAt(selectedRow, 0);
         WorkRequest request = new InsuranceWorkRequest();
         request.setSender(userAccount);
         request.setStatus("Insurance Requested");
         
-        InsurancePolicy insurance = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
-        
         request.setEnterprise(insurance.getEnterprise());
         request.setInsurancepolicy(insurance.getPolicyName());
+        
         request.setRequestDate(new Date());
         ecosystem.getWorkQueue().getWorkRequestList().add(request);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
@@ -495,6 +496,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
         PatientInsuranceWorkAreaJPanel pajp = (PatientInsuranceWorkAreaJPanel) component;
         pajp.populateTree();
+        pajp.populateComboBox();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
  

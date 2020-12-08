@@ -60,7 +60,17 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
        int testCount =0;
         for(LabTestWorkRequest labTest: account.getLabTestWorkQueue().getLabRequestList()){
             if(!labTest.isComplete()){
-            if((labTest.getResult().equals("Success!") || (labTest.getResult().equals("Failure!")))){
+                                        Map<String,Date> map = labTest.getStatusMap();
+                    String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : labTest.getStatusMap().entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+               }
+            if((latestKey.equals("Success!") || (labTest.getResult().equals("Failure!")))){
                 if(!vac.equals("")){
                     if(!labTest.getVaccine().toString().equals(vac)){
                         continue;                       
@@ -117,6 +127,7 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
         public void populateVaccines(){   
             List<Vaccine> vacList = new ArrayList<Vaccine>();
         vaccinecomboBox.removeAllItems();
+        vaccinecomboBox.addItem("");
         for(LabTestWorkRequest labReq:business.getLabQueue().getLabRequestList()){
             if(!labReq.getVaccine().isTested()){
                 if(!vacList.contains(labReq.getVaccine())){
@@ -130,6 +141,7 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
     }
         public void populateFDAEnterprises(){
                     fdaBox.removeAllItems();
+                    fdaBox.addItem("");
           for (Network network : business.getNetworkList()){
         for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
             String fdaReg = ".*Food and Drug Administration.*";
@@ -155,23 +167,20 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         testRequestTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         btnSearchByVaccine = new javax.swing.JButton();
-        txtResult = new javax.swing.JTextField();
         vaccinecomboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         fdaBox = new javax.swing.JComboBox<>();
-        btnFDA = new javax.swing.JButton();
-        btnRoute = new javax.swing.JButton();
+        txtResult = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel6.setText("Tested Vaccine Requests");
+        btnRoute = new javax.swing.JButton();
+        btnFDA = new javax.swing.JButton();
 
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +188,16 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+
+        jButton1.setText("Display All Results");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel6.setText("Tested Vaccine Requests");
 
         testRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -201,13 +220,6 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(testRequestTable);
 
-        jButton1.setText("Display All Results");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         btnSearchByVaccine.setText("Search All Results By VaccineID");
         btnSearchByVaccine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,12 +239,7 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
 
         fdaBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnFDA.setText("Send for FDA Approval");
-        btnFDA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFDAActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Message:");
 
         btnRoute.setText("Route Back to Scientist");
         btnRoute.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +248,12 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Message:");
+        btnFDA.setText("Send for FDA Approval");
+        btnFDA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFDAActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -352,6 +364,53 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_vaccinecomboBoxActionPerformed
 
+    private void btnRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRouteActionPerformed
+        // TODO add your handling code here:
+        if(txtResult.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Message is mandatory for routing!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(vaccinecomboBox.getSelectedItem().equals("")){
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine ID!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        VaccineWorkRequest request = null;
+        for(VaccineWorkRequest vacReq: business.getVaccineQueue().getVaccineRequestList()){
+            if(vacReq.getVaccine().toString().equals(vaccinecomboBox.getSelectedItem().toString())){
+                Map<String,Date> reqMap = vacReq.getStatusMap();
+                reqMap.put("TestComplete: "+txtResult.getText(), new Date());
+                reqMap.put("Vaccine Work finished", new Date());
+                vacReq.setStatusMap(reqMap);
+                vacReq.setSender(account);
+                vacReq.setReceiver(vacReq.getVaccine().getUsername());
+                vacReq.setResolveDate(new Date());
+                vacReq.setMessage(txtResult.getText());
+                request = vacReq;
+            }
+        }
+
+        if(request!=null){
+            LabTestWorkRequest removeWork = null;
+            for(LabTestWorkRequest work:account.getLabTestWorkQueue().getLabRequestList()){
+                if(work.getVaccine().toString().equals(vaccinecomboBox.getSelectedItem().toString())){
+                    removeWork = work;
+                    work.setComplete(true);
+                    work.getVaccine().setTested(true);
+                    business.getLabQueue().updateLabRequest(work, business.getLabQueue().getLabRequestList());
+
+                }
+            }
+            account.getLabTestWorkQueue().removeLabRequest(removeWork);
+            business.getVaccineQueue().updateWorkRequest(request, business.getVaccineQueue().getVaccineRequestList());
+        }
+        JOptionPane.showMessageDialog(null, "Request Sent back to Research Scientist!!", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+        populateTestedTable("");
+        populateVaccines();
+        populateFDAEnterprises();
+        txtResult.setText("");
+    }//GEN-LAST:event_btnRouteActionPerformed
+
     private void btnFDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFDAActionPerformed
         // TODO add your handling code here:
         if(txtResult.getText().equals("")){
@@ -409,51 +468,8 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
         populateTestedTable("");
         populateVaccines();
         populateFDAEnterprises();
+        txtResult.setText("");
     }//GEN-LAST:event_btnFDAActionPerformed
-
-    private void btnRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRouteActionPerformed
-        // TODO add your handling code here:
-        if(txtResult.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Message is mandatory for routing!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        if(vaccinecomboBox.getSelectedItem().equals("")){
-            JOptionPane.showMessageDialog(null, "Please select a Vaccine ID!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        VaccineWorkRequest request = null;
-        for(VaccineWorkRequest vacReq: business.getVaccineQueue().getVaccineRequestList()){
-            if(vacReq.getVaccine().toString().equals(vaccinecomboBox.getSelectedItem().toString())){
-                Map<String,Date> reqMap = vacReq.getStatusMap();
-                reqMap.put("TestComplete: "+txtResult.getText(), new Date());
-                vacReq.setStatusMap(reqMap);
-                vacReq.setSender(account);
-                vacReq.setReceiver(vacReq.getVaccine().getUsername());
-                vacReq.setResolveDate(new Date());
-                vacReq.setMessage(txtResult.getText());
-                request = vacReq;
-            }
-        }
-        if(request!=null){
-            LabTestWorkRequest removeWork = null;
-            for(LabTestWorkRequest work:account.getLabTestWorkQueue().getLabRequestList()){
-                if(work.getVaccine().toString().equals(vaccinecomboBox.getSelectedItem().toString())){
-                    removeWork = work;
-                    work.setComplete(true);
-                    work.getVaccine().setTested(true);
-                    business.getLabQueue().updateLabRequest(work, business.getLabQueue().getLabRequestList());
-
-                }
-            }
-            account.getLabTestWorkQueue().removeLabRequest(removeWork);
-            business.getVaccineQueue().updateWorkRequest(request, business.getVaccineQueue().getVaccineRequestList());
-        }
-        JOptionPane.showMessageDialog(null, "Request Sent back to Research Scientist!!", "Information", JOptionPane.INFORMATION_MESSAGE);
-
-        populateTestedTable("");
-        populateVaccines();
-        populateFDAEnterprises();
-    }//GEN-LAST:event_btnRouteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

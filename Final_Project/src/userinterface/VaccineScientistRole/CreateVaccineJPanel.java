@@ -96,7 +96,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         btnCovid = new javax.swing.JRadioButton();
         btnResp = new javax.swing.JRadioButton();
         backJButton = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
+        btnCreate = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("Create Vaccine");
@@ -223,10 +223,10 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnUpdate.setText("CREATE VACCINE");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnCreate.setText("CREATE VACCINE");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnCreateActionPerformed(evt);
             }
         });
 
@@ -313,23 +313,24 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPreservation)
-                                            .addComponent(lblSide))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtPreservations)
-                                            .addComponent(txtSide, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblOther)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPreservation)
+                                    .addComponent(lblSide))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPreservations)
+                                    .addComponent(txtSide, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblOther)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(67, Short.MAX_VALUE))
                     .addComponent(jSeparator3)
                     .addComponent(jSeparator1)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(235, 235, 235)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,9 +426,9 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                         .addComponent(txtPreservations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -491,7 +492,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         lblName.setForeground(Color.black);
         lblDesc.setForeground(Color.black);
@@ -572,7 +573,13 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                 return;
             }
             if((minAge > 100) || (minAge < 1) ||(maxAge > 100) || (maxAge < 1)){
-                JOptionPane.showMessageDialog(null, "Minimum and Maximum Age for Vaccine needs to be of range 1 to 100 years only!", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Vaccine age group needs to be of range 1 to 100 years only!", "Warning", JOptionPane.WARNING_MESSAGE);
+                lblMin.setForeground(Color.red);
+                lblMax.setForeground(Color.red);
+                return;
+            }
+            if((minAge>maxAge)){
+                JOptionPane.showMessageDialog(null, "Minimum age cannot be more than maximum age!", "Warning", JOptionPane.WARNING_MESSAGE);
                 lblMin.setForeground(Color.red);
                 lblMax.setForeground(Color.red);
                 return;
@@ -606,7 +613,13 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         if(!error.equals("")){
             JOptionPane.showMessageDialog(null,error);
         }else{
-            Vaccine vaccine = new Vaccine();
+            VaccineEnterprise enterPrise = (VaccineEnterprise)enterprise;
+            int lastId = 0;
+            for(Vaccine v : enterPrise.getVaccineDirectory().getVaccineList()){
+                lastId = v.getId();
+            }
+            lastId = lastId+1;
+            Vaccine vaccine = new Vaccine(lastId);
             vaccine.setName(txtName.getText());
             vaccine.setDescription(txtDesc.getText());
             vaccine.setCoreComponents(txtCore.getText());
@@ -654,7 +667,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             vaccine.setUsername(account);
             vaccine.setEnterpriseName(enterprise.getName());
             vaccine.setEnterprise(enterprise);
-            VaccineEnterprise enterPrise = (VaccineEnterprise)enterprise;
+
             enterPrise.getVaccineDirectory().addVaccine(vaccine);
 
             VaccineWorkRequest vaccineReq = new VaccineWorkRequest();
@@ -669,9 +682,8 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             business.getVaccineQueue().addWorkRequest(vaccineReq);
 
             JOptionPane.showMessageDialog(null,"Vaccine Added Successfully!!!");
-            btnUpdate.setEnabled(true);
         }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }//GEN-LAST:event_btnCreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -679,6 +691,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backJButton;
     private javax.swing.JRadioButton btnAfternoon;
     private javax.swing.JRadioButton btnCovid;
+    private javax.swing.JButton btnCreate;
     private javax.swing.JRadioButton btnDiabetes;
     private javax.swing.JRadioButton btnHeart;
     private javax.swing.JRadioButton btnIntra;
@@ -686,7 +699,6 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton btnNight;
     private javax.swing.JRadioButton btnPills;
     private javax.swing.JRadioButton btnResp;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;

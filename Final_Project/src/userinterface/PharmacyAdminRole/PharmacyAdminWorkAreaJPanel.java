@@ -131,7 +131,11 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
                }
             Object row[] = new Object[9];
                          row[0] = req;
-                 row[1] = req.getSender().getUsername();              
+                         if(req.getSender() == null){
+                             row[1] = "";
+                         }else{
+                 row[1] = req.getSender();  
+                         }
                  row[2] = medList;
                  row[3] = req.getCreateDate();
                  row[4] = req.getCondition();
@@ -640,23 +644,10 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         String message = "";
         if(stockOutMed.equals("")){
 
-            JOptionPane.showMessageDialog(null, "All Medicines are in Stock!", "Information", JOptionPane.INFORMATION_MESSAGE);
+           // JOptionPane.showMessageDialog(null, "All Medicines are in Stock!", "Information", JOptionPane.INFORMATION_MESSAGE);
             if(pharmaRequest.getCondition().equals("Covid")){
                 message = "Medicines in stock and reserved.\n DeliveryStaff: "+delivComboBox.getSelectedItem().toString()+" will deliver at the earliest" ;
-            }else{
-                message = "Medicines in stock and reserved.\n Please pickup from pharmacy at the earliest!" ;
-            }
-            pharmaRequest.setSender(null);
-        }else{
-            JOptionPane.showMessageDialog(null, "Please fill up Medicines - OutOfStock -"+stockOutMed, "Information", JOptionPane.INFORMATION_MESSAGE);
-            Date future = new Date();
-            future.setDate(future.getDate()+10);
-            if(pharmaRequest.getCondition().equals("Covid")){
-                message = "Medicines currently OutOfStock.\n DeliveryStaff: "+delivComboBox.getSelectedItem().toString()+" will deliver anyday after"+future ;
-            }else{
-                message = "Medicines currently OutOfStock.\nPlease pickup from pharmacy anyday after"+future ;
-            }
-            for (Organization organization1 : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                        for (Organization organization1 : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 for (UserAccount ua1 : organization1.getUserAccountDirectory().getUserAccountList()) {
                     if(ua1.getUsername().equals(delivComboBox.getSelectedItem().toString())){
                         pharmaRequest.setSender(ua1);
@@ -664,8 +655,27 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-
-        }
+            }else{
+                message = "Medicines in stock and reserved.\n Please pickup from pharmacy at the earliest!" ;
+            }           
+        }else{
+            JOptionPane.showMessageDialog(null, "Please fill up Medicines - OutOfStock -"+stockOutMed, "Information", JOptionPane.INFORMATION_MESSAGE);
+            Date future = new Date();
+            future.setDate(future.getDate()+10);
+            if(pharmaRequest.getCondition().equals("Covid")){
+                        for (Organization organization1 : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua1 : organization1.getUserAccountDirectory().getUserAccountList()) {
+                    if(ua1.getUsername().equals(delivComboBox.getSelectedItem().toString())){
+                        pharmaRequest.setSender(ua1);
+                        deliv = ua1;
+                    }
+                }
+            }
+          message = "Medicines currently OutOfStock.\n DeliveryStaff: "+delivComboBox.getSelectedItem().toString()+" will deliver anyday after"+future ;
+            }else{
+                message = "Medicines currently OutOfStock.\nPlease pickup from pharmacy anyday after"+future ;
+            }
+        }     
         Map<String,Date> reqMap = pharmaRequest.getStatusMap();
         reqMap.put(message, new Date());
         pharmaRequest.setStatusMap(reqMap);
@@ -673,14 +683,15 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         //    pharmaRequest.setSender(account);
         pharmaRequest.setMessage(message);
         if(deliv!=null){
-            deliv.getPharmaWorkQueue().removePharmaRequest(pharmaRequest);
+            deliv.getPharmaWorkQueue().addPharmaRequest(pharmaRequest);
+            pharmaRequest.setSender(deliv);
         }
         patient.getPharmaWorkQueue().addPharmaRequest(pharmaRequest);
         account.getPharmaWorkQueue().removePharmaRequest(pharmaRequest);
         business.getPharmaQueue().updatePharmaRequest(pharmaRequest, business.getPharmaQueue().getPharmaList());
         populatePatientRequests();
-        JOptionPane.showMessageDialog(null, message+"\nMessage sent to Patient!", "Information", JOptionPane.INFORMATION_MESSAGE);
-
+        JOptionPane.showMessageDialog(null, message+"\nMessage sent to Patient!", "Information", JOptionPane.INFORMATION_MESSAGE); 
+        
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed

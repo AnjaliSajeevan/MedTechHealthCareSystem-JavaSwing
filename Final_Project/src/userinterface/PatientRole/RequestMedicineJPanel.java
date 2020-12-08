@@ -9,9 +9,12 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.PharmacyEnterprise;
 import Business.Essentials.Medicine;
+import Business.InsurancePolicy.InsurancePolicy;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ClaimWorkRequest;
 import Business.WorkQueue.PharmaWorkRequest;
 import java.awt.CardLayout;
 import java.io.File;
@@ -44,6 +47,10 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     UserAccount account;
     String requestInprog;
     Map<Medicine,Integer> medList;
+    Double costClaim;
+    Patient patient;
+    String policy;
+    InsurancePolicy Insurancepolicy;
     public RequestMedicineJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -57,17 +64,44 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     }
     public void populatePharmacies(){
         pharmacyComboBox.removeAllItems();
-        for (Network network : business.getNetworkList()){
-        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-        String pwdRegex = ".*Pharmacy.*";
-            Pattern pwdPattern = Pattern.compile(pwdRegex);
-            Matcher pwdCheck = pwdPattern.matcher(enterprise.toString());
-            boolean checkPwd = pwdCheck.matches();
-            if(checkPwd == TRUE){
-                pharmacyComboBox.addItem(enterprise.toString());      
+//        for (Network network : business.getNetworkList()){
+//        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+//        String pwdRegex = ".*Pharmacy.*";
+//            Pattern pwdPattern = Pattern.compile(pwdRegex);
+//            Matcher pwdCheck = pwdPattern.matcher(enterprise.toString());
+//            boolean checkPwd = pwdCheck.matches();
+//            if(checkPwd == TRUE){
+//                pharmacyComboBox.addItem(enterprise.toString());      
+//        }
+//        }
+//        }
+String patientName = account.getUsername();
+        for (Patient p : business.getPatientDirectory().getpatientlist()) {
+
+            if (p.getUserName().equals(patientName)) {
+                patient = p;
+            }
         }
-        }
-        }
+        
+        Insurancepolicy = patient.getInsurance();
+        System.out.print(Insurancepolicy);
+        policy = Insurancepolicy.toString();
+        
+        for (InsurancePolicy a: business.getInsurancePolicyDirectory().getInsurancePolicyList())
+   {    
+   
+       if(a.getPolicyName().equalsIgnoreCase(policy))
+       {for (int counter = 0; counter < a.getPharmacyList().size(); counter++) {
+            
+                    pharmacyComboBox.addItem(a.getPharmacyList().get(counter));
+                }
+       
+               }
+   }
+    
+
+
+
     }
     public void populateMedReqTable(){
                  DefaultTableModel model = (DefaultTableModel)medReqTable.getModel();
@@ -86,13 +120,15 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
     
       }
       lblTot.setText("Total Price :"+sum);
+      costClaim=Double.valueOf(sum);
       lblTot.setVisible(true);
     }
    public void populatePatientRequests(){
         DefaultTableModel model = (DefaultTableModel)respTable.getModel();
         model.setRowCount(0);
-        List<PharmaWorkRequest> requestList = account.getPharmaWorkQueue().getPharmaList();
+        List<PharmaWorkRequest> requestList = business.getPharmaQueue().getPharmaList();
         for(PharmaWorkRequest req: requestList){
+            if(req.getCust().equals(account)){
             String medList1 = "";
                 Map<Medicine,Integer> medMap= req.getMedList();
                 for (Map.Entry<Medicine,Integer> medicine : medMap.entrySet()) {  
@@ -102,17 +138,29 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
                         medList1+=","+medicine.getKey();
                   }
                 } 
+                    Map<String,Date> map = req.getStatusMap();
+                    String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : req.getStatusMap().entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+               }
              Object row[] = new Object[8];
                  row[0] = req;
-                 row[1] = medList1;             
-                 row[2] = req.getMessage();
+                 row[1] = medList1;   
+                 row[2] = latestKey;
+                 row[3] = req.getMessage();
                  if(req.getSender() == null){
-                 row[3] = account;    
+                 row[4] = account;    
                  }else{
-                 row[3] = req.getSender();
+                 row[4] = req.getSender();
                  }
                  model.addRow(row); 
             }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -468,6 +516,7 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         PharmaWorkRequest pharmaReq = new PharmaWorkRequest();
         pharmaReq.setEnterprise(pharmacyComboBox.getSelectedItem().toString());
         pharmaReq.setPatient(account.getEmployee().getName());
+        pharmaReq.setCust(account);
         pharmaReq.setSender(account);
         Map<String,Date> reqMap = pharmaReq.getStatusMap();
         reqMap.put("Medicine Request Created", new Date());
@@ -508,6 +557,32 @@ public class RequestMedicineJPanel extends javax.swing.JPanel {
         lblTot.setVisible(false);
         JOptionPane.showMessageDialog(null,"Pharmacy Request successuly submitted!", "Warning", JOptionPane.WARNING_MESSAGE);
 
+        Patient patient1 = null;
+        String pat= account.getUsername();
+        for(Patient p:business.getPatientDirectory().getpatientlist())
+        {if (p.getUserName().equals(pat)){
+            patient1=p;
+        }
+        }
+        String s=(String) pharmacyComboBox.getSelectedItem();
+        
+       
+        ClaimWorkRequest r = new ClaimWorkRequest();
+        System.out.println(account);
+        
+        r.setPatient(patient1);
+        r.setRequestDate(new Date());
+        r.setCost(150.00);
+        r.setStatus("Claim Requested");
+        r.setInsurancepolicy(patient1.getInsurance());
+        r.setHospital(s);
+        r.setInsuranceEnterprise(patient1.getInsurance().getEnterprise());
+        r.setInsuranceNo(patient1.getInsuranceOrderNo());
+      
+       
+        
+        business.getClaimWorkQueue().getWorkRequestList().add(r);
+        account.getClaimWorkQueue().getWorkRequestList().add(r);
     }//GEN-LAST:event_btnSendMedActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed

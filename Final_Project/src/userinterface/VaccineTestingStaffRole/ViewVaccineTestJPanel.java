@@ -12,6 +12,8 @@ import Business.Vaccine.Vaccine;
 import Business.Vaccine.VaccineTester;
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
+import java.util.Date;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -50,6 +52,16 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
            if(!labTest.getVaccine().toString().equals(vaccine.toString())){
                         continue;                       
             }
+                                       Map<String,Date> map = labTest.getStatusMap();
+                    String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : labTest.getStatusMap().entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+               }
             Object row[] = new Object[8];
                  row[0] = labTest;
                  row[1] = labTest.getLabTestType();
@@ -60,11 +72,7 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
                  }else{
                  row[4] = labTest.getReceiver();
                  }
-                 if(labTest.getResult() == null){
-                     row[5] = "";
-                 }else{
-                 row[5] = labTest.getResult();
-                 }
+                 row[5] = latestKey;
                  if(labTest.getMessage() == null){
                      row[6] = "";
                  }else{

@@ -38,7 +38,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             txtPolicyMax.setEnabled(false);
             txtPolicyName.setEnabled(false);
             txtMonthly.setEnabled(false); 
-            txtDeductible1.setEnabled(false);
+            txtMin.setEnabled(false);
             txtPrimaryCare.setEnabled(false);
             txtAnnualOut.setEnabled(false);
             txtSpecialistCare.setEnabled(false); 
@@ -58,7 +58,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             txtPolicyMax.setText(i.getPolicyMax());
             txtPolicyName.setText(i.getPolicyName());
             txtMonthly.setText(String.valueOf(i.getMonthlyPremium())); 
-            txtDeductible1.setText(String.valueOf(i.getDeductable()));
+            txtMin.setText(String.valueOf(i.getDeductable()));
             txtPrimaryCare.setText(String.valueOf(i.getPrimaryCare()));
             txtAnnualOut.setText(i.getOutOfPocket());
             txtSpecialistCare.setText(String.valueOf(i.getSpecialist())); 
@@ -73,6 +73,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             populatePharmacy();
             populateLaboratory();
             populateHospitals();
+            populatePatients();
           
     }
     
@@ -125,24 +126,27 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         txtPolicyType = new javax.swing.JTextField();
         saveUpdateBtn = new javax.swing.JButton();
         viewUpdateBtn = new javax.swing.JButton();
-        txtMin = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         txtAnnualOut = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        txtDeductible1 = new javax.swing.JTextField();
+        txtMin = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         txtInpatients = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        LaboratoryList = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        HospitalList = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         txtZipCode = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        PharmacyList = new javax.swing.JList<>();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        PatientList = new javax.swing.JList<>();
+        jComboBoxAgeGroup = new javax.swing.JComboBox<>();
+        txtDeductible2 = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -216,7 +220,6 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(viewUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 710, 139, 54));
-        add(txtMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 130, 130, -1));
 
         jLabel39.setText("Annual Out-of Pocket:");
         add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
@@ -224,19 +227,19 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel18.setText("Annual Deductible :");
         add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
-        add(txtDeductible1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 100, -1));
+        add(txtMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 100, -1));
 
         jLabel40.setText("Inpatient Admissions:");
         add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 160, -1));
         add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, 50, -1));
 
-        jList2.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratories included"));
-        jScrollPane2.setViewportView(jList2);
+        LaboratoryList.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratories included"));
+        jScrollPane2.setViewportView(LaboratoryList);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 540, 180, 140));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, 180, 140));
 
-        jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("Hospitals included"));
-        jScrollPane3.setViewportView(jList3);
+        HospitalList.setBorder(javax.swing.BorderFactory.createTitledBorder("Hospitals included"));
+        jScrollPane3.setViewportView(HospitalList);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 160, 140));
 
@@ -277,10 +280,19 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel21.setText("ZipCode:");
         add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacy included"));
-        jScrollPane4.setViewportView(jList1);
+        PharmacyList.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacy included"));
+        jScrollPane4.setViewportView(PharmacyList);
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 540, 160, 140));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 540, 160, 140));
+
+        PatientList.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients in this Policy"));
+        jScrollPane6.setViewportView(PatientList);
+
+        add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 540, 190, 140));
+
+        jComboBoxAgeGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18-30", "30-45", "45-60", "60-80", "80-100" }));
+        add(jComboBoxAgeGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+        add(txtDeductible2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
@@ -288,7 +300,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         txtPolicyMax.setEnabled(false);
             txtPolicyName.setEnabled(false);
             txtMonthly.setEnabled(false); 
-            txtDeductible1.setEnabled(false);
+            txtMin.setEnabled(false);
             txtPrimaryCare.setEnabled(false);
             txtAnnualOut.setEnabled(false);
             txtSpecialistCare.setEnabled(false); 
@@ -309,7 +321,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             txtPolicyMax.setEnabled(true);
             txtPolicyName.setEnabled(true);
             txtMonthly.setEnabled(true); 
-            txtDeductible1.setEnabled(true);
+            txtMin.setEnabled(false);
             txtPrimaryCare.setEnabled(true);
             txtAnnualOut.setEnabled(true);
             txtSpecialistCare.setEnabled(true); 
@@ -321,9 +333,10 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             txtMin.setEnabled(true);
             txtPolicyType.setEnabled(true);
         
+           String age= (String) jComboBoxAgeGroup.getSelectedItem();
         
 
-            i.setAgeGroup(txtMin.getText());
+            i.setAgeGroup(age);
             i.setMonthlyPremium(Double.parseDouble(txtMonthly.getText()));
             i.setOutOfPocket((txtAnnualOut.getText()));         
             i.setPolicyMax(txtPolicyMax.getText());
@@ -332,7 +345,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             i.setPrimaryCare(Integer.parseInt(txtPrimaryCare.getText()));
             i.setPolicyType(txtPolicyType.getText());
             i.setLaboratoryservices(Integer.parseInt(txtLabServices.getText())); 
-            i.setDeductable(Integer.parseInt(txtDeductible1.getText()));
+            i.setDeductable(Integer.parseInt(txtMin.getText()));
             i.setZipCode(txtZipCode.getText());
             i.setEmergency(Integer.parseInt(txtEmergencyRoomCare.getText()));
             i.setSurgery(Integer.parseInt(txtSurgery.getText()));
@@ -358,7 +371,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
                 for (int counter = 0; counter < i.getHospitalList().size(); counter++) {
                     DLM.addElement(i.getHospitalList().get(counter));
                 }
-                jList3.setModel(DLM);
+                HospitalList.setModel(DLM);
     }
     
     public void populateLaboratory()
@@ -367,7 +380,7 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
                 for (int counter = 0; counter < i.getLaboratoryList().size(); counter++) {
                     DLM.addElement(i.getLaboratoryList().get(counter));
                 }
-                jList2.setModel(DLM);
+                LaboratoryList.setModel(DLM);
     }
      public void populatePharmacy()
     {DefaultListModel DLM = new DefaultListModel();
@@ -375,12 +388,26 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
                 for (int counter = 0; counter < i.getPharmacyList().size(); counter++) {
                     DLM.addElement(i.getPharmacyList().get(counter));
                 }
-                jList1.setModel(DLM);
+                PharmacyList.setModel(DLM);
+    }
+     
+     public void populatePatients()
+    {DefaultListModel DLM = new DefaultListModel();
+            
+                for (int counter = 0; counter < i.getUserAccountList().size(); counter++) {
+                    DLM.addElement(i.getUserAccountList().get(counter));
+                }
+                PatientList.setModel(DLM);
     }
      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> HospitalList;
+    private javax.swing.JList<String> LaboratoryList;
+    private javax.swing.JList<String> PatientList;
+    private javax.swing.JList<String> PharmacyList;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBoxAgeGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -398,17 +425,15 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton saveUpdateBtn;
     private javax.swing.JTextField txtAnnualOut;
-    private javax.swing.JTextField txtDeductible1;
+    private javax.swing.JTextField txtDeductible2;
     private javax.swing.JTextField txtEmergencyRoomCare;
     private javax.swing.JTextField txtInpatients;
     private javax.swing.JTextField txtLabServices;

@@ -10,6 +10,7 @@ import Business.InsurancePolicy.InsurancePolicy;
 import Business.Organization.InsuranceAdminOrganization;
 import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ClaimWorkRequest;
 import Business.WorkQueue.InsuranceWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -40,43 +41,84 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         this.ecosystem=ecosystem;
         this.iOrg=organization;
         this.account=account;
+        System.out.println(ecosystem.getWorkQueue().getWorkRequestList());
         populateTree();
+        populate();
+        populateComboBox();
+        
+        
     }
 
     public void populateTree()
-    {   jComboBoxHospitalList.removeAllItems();
+    {  for (Patient p : ecosystem.getPatientDirectory().getpatientlist()) {
+                    if (p.getUserName().equals(account.getEmployee().getName())) {
+        txtPrimaryDoctor.setText(p.getPrimaryHospital());
+        
+    }
+        }
+        
+        
+        jComboBoxHospitalList.removeAllItems();
         String s;
-        for (WorkRequest request:ecosystem.getWorkQueue().getWorkRequestList())
-         {   System.out.println(account.getUsername());
-          System.out.println(request.getSender().getUsername());
-        if(account.getUsername().equals(request.getSender().getUsername())){
         DefaultTableModel model = (DefaultTableModel) tblStatus.getModel();
         model.setRowCount(0);
-        if (request.getReceiver() == null) {
-            s = "Not Assigned";
-        } else {
-            s = request.getReceiver().getEmployee().getName();
+        for (WorkRequest request : ecosystem.getWorkQueue().getWorkRequestList()) {
+            if (account.getUsername().equals(request.getSender().getUsername())) {
 
-        }
-        Object[] row = new Object[4];
-        row[0] = request;
-        row[1] = request.getInsurancepolicy();
-        row[2] = request.getRequestDate();
-        row[3] = request.getStatus();
-        model.addRow(row);
-        jComboBoxHospitalList.removeAll();
-        i=request.getInsurancepolicy();
-        for(InsurancePolicy insurance:ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList())
-        {if(insurance.getPolicyName().equals(i))
-        {
+                Object[] row = new Object[4];
+                row[0] = request;
+                row[1] = request.getInsurancepolicy();
+                row[2] = request.getRequestDate();
+                row[3] = request.getStatus();
+                model.addRow(row);
+                    
+                if(request.getStatus().equals("Accepted")){
+                    i=request.getInsurancepolicy();
+                   
+                    
+                }
+                
+                        }
+                    }
+                }
             
-            for (int counter = 0; counter < insurance.getHospitalList().size(); counter++) {
-            jComboBoxHospitalList.addItem(insurance.getHospitalList().get(counter));
-        }
-        }
-        }
-        }
 
+    
+    public void populateComboBox() {
+        
+            for (InsurancePolicy insurance : ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
+                if (insurance.getPolicyName().equals(i)) {
+
+                    for (int counter = 0; counter < insurance.getHospitalList().size(); counter++) {
+                        jComboBoxHospitalList.addItem(insurance.getHospitalList().get(counter));
+                    }
+                }
+            }
+        }
+    
+
+     public void populate(){
+      
+         DefaultTableModel model = (DefaultTableModel)tblClaim.getModel();
+            model.setRowCount(0);
+         
+         for(ClaimWorkRequest r : ecosystem.getClaimWorkQueue().getWorkRequestList())
+       {   InsurancePolicy s=r.getInsurancepolicy();
+            String insur=s.toString();
+            Patient name=r.getPatient();
+           if(account.getUsername().equals(name.getUserName()))
+           { 
+             
+
+            Object[] row = new Object[7];
+            row[0] = r;
+            row[1] = r.getHospital();
+            row[2] = r.getCost();
+            row[3] = r.getRequestDate();
+            row[4] = r.getStatus();
+//            row[5] = r.getMessage();
+            model.addRow(row);
+    }
     }
     }
         
@@ -99,6 +141,12 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         btnView = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblClaim = new javax.swing.JTable();
+        btnCancelInsurance = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtPrimaryDoctor = new javax.swing.JLabel();
 
         tblStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,7 +175,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
             tblStatus.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jLabel1.setText("If already registered, please find the insurance poliy status below:");
+        jLabel1.setText("If registered, please find the insurance poliy status below:");
 
         btnRegisterForInsurance.setText("Register for Insurance");
         btnRegisterForInsurance.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +184,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("If accepted, please choose a primary hospital:");
+        jLabel2.setText("If Insurance accepted and primary doctor not choosen, please choose a primary hospital:");
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -166,82 +214,141 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setText("Insurance Claim Staus");
+
+        tblClaim.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Insur.Claim No.", "Sender", "Amount", "Date", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblClaim);
+        if (tblClaim.getColumnModel().getColumnCount() > 0) {
+            tblClaim.getColumnModel().getColumn(0).setResizable(false);
+            tblClaim.getColumnModel().getColumn(1).setResizable(false);
+            tblClaim.getColumnModel().getColumn(2).setResizable(false);
+            tblClaim.getColumnModel().getColumn(3).setResizable(false);
+            tblClaim.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        btnCancelInsurance.setText("Cancel the registered insurance policy");
+        btnCancelInsurance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelInsuranceActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Primary Hospital:");
+
+        txtPrimaryDoctor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPrimaryDoctor.setText("<>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRegisterForInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(173, 173, 173))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxHospitalList, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 78, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnView))
+                        .addComponent(btnBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegisterForInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1))))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnCancelInsurance)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnView))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(183, 183, 183)
+                                .addComponent(jComboBoxHospitalList, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 132, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(243, 243, 243)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPrimaryDoctor)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(15, 15, 15)
-                .addComponent(btnRegisterForInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnRegisterForInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnView)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(btnView)
+                    .addComponent(btnCancelInsurance))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtPrimaryDoctor))
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxHospitalList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterForInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterForInsuranceActionPerformed
         // TODO add your handling code here:
+         for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
+            if(p.getUserName().equals(account.getUsername())){
+               if( !(p.getInsurance()==null)){
+                   JOptionPane.showMessageDialog(null,"Already registered with the insurance, cancel the existing insurance to proceed", "Warning", JOptionPane.WARNING_MESSAGE);
+               }else{
         RegisterForInsurance rfi=new RegisterForInsurance(userProcessContainer,account, ecosystem,iOrg);
         userProcessContainer.add("RegisterForInsuranceJPanel",rfi);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+               }
+            }
+         }
     }//GEN-LAST:event_btnRegisterForInsuranceActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-         
+         String e="";
         int selectedRow = tblStatus.getSelectedRow();
         InsurancePolicy insurance = null;
         String primaryHospital = (String) jComboBoxHospitalList.getSelectedItem();
@@ -251,7 +358,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
                 insurance = ins;
             }
             if (selectedRow < 0) {
-                JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+                e="Please select a row!";
 
             } else {
 
@@ -260,48 +367,49 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
                 if(a.getStatus().equals("Accepted")){
                 for (Patient p : ecosystem.getPatientDirectory().getpatientlist()) {
                     if (p.getUserName().equals(account.getEmployee().getName())) {
-                       
                         p.setPrimaryHospital(primaryHospital);
                         p.setInsurance(insurance);
                         p.setInsuranceOrderNo(a.getRequestNo());
-                        System.out.println(insurance);
-                        System.out.println(p);
 
                     }
                 }
-                JOptionPane.showMessageDialog(null, "Successfully assigned primary doctor");
+                e= "Successfully assigned primary doctor!";
 
             }else{
-                     JOptionPane.showMessageDialog(null, "Please wait for the insurance request to be accepted by the insurance company ");
+                     e= "Please wait for the insurance request to be accepted by the insurance company!";
                 }
         }
         }
+        JOptionPane.showMessageDialog(null, e);
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-        int selectedRow =  tblStatus.getSelectedRow();
-        if(selectedRow <0)
-        {
-            JOptionPane.showMessageDialog(null,"Please select a row","Warning", JOptionPane.WARNING_MESSAGE);
+        int selectedRow = tblStatus.getSelectedRow();
 
-        }
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
 
-        else
-        {
-            InsurancePolicy a = (InsurancePolicy) tblStatus.getValueAt(selectedRow, 0);
-            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a);
-            userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+        } else {
+            WorkRequest work = (WorkRequest) tblStatus.getValueAt(selectedRow, 0);
+            String inspolicy = work.getInsurancepolicy();
 
+            for (InsurancePolicy a : ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
+                if (a.getPolicyName().equals(inspolicy)) {
+                    ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a);
+                    userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
+                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                    layout.next(userProcessContainer);
+
+                }
+            }
         }
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
+         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
@@ -311,9 +419,45 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         populateTree();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnCancelInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelInsuranceActionPerformed
+        // TODO add your handling code here:
+        String e="";
+        int selectedRow = tblStatus.getSelectedRow();
+        InsurancePolicy insurance = null;
+       
+            if (selectedRow < 0) {
+                JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+                WorkRequest a = (WorkRequest) tblStatus.getValueAt(selectedRow, 0);
+            String inspolicy = a.getInsurancepolicy();
+
+            for (InsurancePolicy ins : ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
+                if (ins.getPolicyName().equals(inspolicy)) {
+                ins.deletePatient(account.getUsername());
+                }
+            }
+               
+                a.setStatus("Insurance policy Cancelled");
+                for (Patient p : ecosystem.getPatientDirectory().getpatientlist()) {
+                    if (p.getUserName().equals(account.getEmployee().getName())) {
+                       
+                        p.setPrimaryHospital(null);
+                        p.setInsurance(null);
+                        p.setInsuranceOrderNo(null);
+                        
+                    }
+                }
+                   JOptionPane.showMessageDialog(null,"Cancelled the insurance policy"); 
+                }
+                
+        populateTree();
+    }//GEN-LAST:event_btnCancelInsuranceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCancelInsurance;
     private javax.swing.JButton btnRegisterForInsurance;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnView;
@@ -321,7 +465,12 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBoxHospitalList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tblClaim;
     private javax.swing.JTable tblStatus;
+    private javax.swing.JLabel txtPrimaryDoctor;
     // End of variables declaration//GEN-END:variables
 }
