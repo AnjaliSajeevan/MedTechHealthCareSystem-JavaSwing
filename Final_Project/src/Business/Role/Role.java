@@ -28,7 +28,7 @@ public abstract class Role {
         VaccineAdmin("VaccineAdmin"),
         VaccineScientists("VaccineScientists"),
         InsuranceAdmin("InsuranceAdmin"),
-        InsuranceClaim("InsuranceClaim"),
+        InsuranceStaff("InsuranceStaff"),
         FDAAdmin("FDAAdmin");
         
         private String value;
