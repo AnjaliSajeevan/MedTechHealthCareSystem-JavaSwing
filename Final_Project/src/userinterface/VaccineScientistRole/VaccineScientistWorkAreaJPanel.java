@@ -544,6 +544,8 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         Map<String,Date> reqMap = vaccineReq.getStatusMap();
         reqMap.put("Vaccine Request Created", new Date());
         vaccineReq.setStatusMap(reqMap);
+        vaccineReq.setSuccess("ongoing");
+        vaccineReq.setPhase("development");
         business.getVaccineQueue().updateWorkRequest(vaccineReq, business.getVaccineQueue().getVaccineRequestList());
 
         populateDrugProjectTable();
@@ -560,6 +562,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         VaccineWorkRequest vacReq= (VaccineWorkRequest)drugRequestTable.getValueAt(row, 0);
         Map<String,Date> reqMap = vacReq.getStatusMap();
         reqMap.put("Pending Approval", new Date());
+        vacReq.setPhase("test");
         vacReq.setStatusMap(reqMap);
         business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());
 
@@ -630,6 +633,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
         Map<String,Date> reqMap = vacReq.getStatusMap();
         reqMap.put("Request Removed: "+reasonText.getText(), new Date());
         vacReq.setStatusMap(reqMap);
+        vacReq.setSuccess("drop");
         vacReq.setReceiver(account);
         vacReq.setResolveDate(new Date());
         business.getVaccineQueue().updateWorkRequest(vacReq, business.getVaccineQueue().getVaccineRequestList());

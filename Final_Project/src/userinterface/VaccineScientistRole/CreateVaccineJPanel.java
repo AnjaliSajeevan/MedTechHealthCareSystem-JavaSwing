@@ -675,6 +675,8 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             vaccineReq.setSender(account);
             vaccineReq.setVaccine(vaccine);
             vaccineReq.setRequestDate(new Date());
+            vaccineReq.setSuccess("ongoing");
+            vaccineReq.setPhase("development");
             Map<String,Date> statusMap = vaccineReq.getStatusMap();
             statusMap.put("Formulation Phase", new Date());
             vaccineReq.setStatusMap(statusMap);
