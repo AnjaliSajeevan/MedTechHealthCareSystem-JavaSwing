@@ -5,21 +5,14 @@
  */
 package userinterface.PatientRole;
 
-import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Organization.Organization;
 import Business.Patient.Patient;
 import Business.Role.PatientRole;
-import Business.Role.VaccineAdminRole;
-import Business.UserAccount.UserAccount;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JPanel;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.Utility.SmsSender;
-import Business.Vaccine.VaccineTester;
 import java.awt.CardLayout;
 import java.awt.Component;
 import static java.lang.Boolean.TRUE;
@@ -722,17 +715,18 @@ String toemail;
                 business.getPatientDirectory().addPatient(tester);
                 Employee employee=business.getEmployeeDirectory().createEmployee(username);
 
-                for(Network n : business.getNetworkList())
-                {
-
-                    for(Enterprise e:n.getEnterpriseDirectory().getEnterpriseList())
-                    {
-                        
-                        if(e.getEnterpriseType().getValue().equals("Hospital"))
-                        {UserAccount account = e.getUserAccountDirectory().createUserAccount(username, password, employee, new PatientRole());
-                        }
-                    }
-                }
+//                for(Network n : business.getNetworkList())
+//                {
+//
+//                    for(Enterprise e:n.getEnterpriseDirectory().getEnterpriseList())
+//                    {
+//                        
+//                        if(e.getEnterpriseType().getValue().equals("Hospital"))
+//                        {
+                UserAccount account = business.getUserAccountDirectory().createUserAccount(username, password, employee, new PatientRole());
+//                        }
+//                    }
+//                }
                 JOptionPane.showMessageDialog(null,"Patient added successfully!!!");
                 sendFromGMail("medtech2254", "AedGroup@9", new String[]{toemail},"Thank you for Registaring with MedTech health care, We are here to help you!!","Registration Confirmation");
               SmsSender.sendSms(txtPhone.getText(), "Thank you for Registaring with MedTech health care, your mobile number is registered!!");

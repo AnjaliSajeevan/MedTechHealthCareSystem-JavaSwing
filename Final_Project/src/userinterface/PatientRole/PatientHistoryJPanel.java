@@ -11,7 +11,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
 import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
 import Business.WorkQueue.PharmaWorkRequest;
-import com.lowagie.text.BadElementException;
+import com.lowagie.text.Chunk;
 
 
 import java.awt.CardLayout;
@@ -25,12 +25,12 @@ import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.Image;
 import com.lowagie.text.Paragraph;
+import com.lowagie.text.Phrase;
 
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import java.awt.Color;
-import java.awt.image.BufferedImage;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -60,6 +60,10 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount account;
    String patient;
+   String timeLineHospital;
+   String timeLineLaboratory;
+   String timeLinePharmacy;
+   
     public PatientHistoryJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -71,62 +75,63 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         patient = account.getEmployee().getName();
         jLabel5.setText(patient);
     }
-           public void populateTable(){
-            DefaultTableModel model = (DefaultTableModel)tblpatientAppointment.getModel();
+     public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblpatientAppointment.getModel();
         model.setRowCount(0);
-            
-        for(PatientHospitalAppointmentWorkRequest request : ecosystem.getHospitalQueue().hospitalRequestList()){           
-            if(request.getSender().equals(account)){
-                              Map<String,Date> map = request.getStatusMap();
-                    String latestKey = "";
-            for (Map.Entry<String,Date> mapEntry : request.getStatusMap().entrySet()) {  
-                if(latestKey.equals("")){
-            latestKey = mapEntry.getKey();
-                }
-            Object[] row = new Object[8];
-            row[0] = request;
-            row[1] = request.getAppDate();
-            row[2] = request.getTime();
-            row[3] = latestKey;
-            row[4] = request.getHospital();
-            row[5] = request.getDoctor();
-            row[6] = request.getResult();
-            
-            model.addRow(row);
-        }
-        }
-        
-    }
-           }
-           
-           public void populateTableLab(){
-            DefaultTableModel model = (DefaultTableModel)labTestingTable.getModel();
-        model.setRowCount(0);
-            
-      for(LabPatientWorkRequest request : ecosystem.getLabPatQueue().getLabPatientRequestList()){           
-            if(request.getPatient().equals(account)){
-              Map<String,Date> map = request.getStatusMap();
-                    String latestKey = "";
-            for (Map.Entry<String,Date> mapEntry : request.getStatusMap().entrySet()) {  
-                if(latestKey.equals("")){
-            latestKey = mapEntry.getKey();
-                }
-                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
-                    latestKey = mapEntry.getKey();
-                }
-               }
-            Object[] row = new Object[8];
-            row[0] = request;
-            row[1] = request.getEnterprise();
-            row[2] = request.getLabTestType();
-            row[3] = request.getPatient();
-            row[4] = latestKey;
-            row[5] = request.getMessage();
 
-            model.addRow(row);
+        for (PatientHospitalAppointmentWorkRequest request : ecosystem.getHospitalQueue().hospitalRequestList()) {
+            if (request.getSender().equals(account)) {
+                System.out.println("Hi");
+                Map<String, Date> map = request.getStatusMap();
+                String latestKey = "";
+                for (Map.Entry<String, Date> mapEntry : request.getStatusMap().entrySet()) {
+                    if (latestKey.equals("")) {
+                        latestKey = mapEntry.getKey();
+                    }
+                }
+                    Object[] row = new Object[7];
+                    row[0] = request;
+                    row[1] = request.getAppDate();
+                    row[2] = request.getTime();
+                    row[3] = latestKey;
+                    row[4] = request.getHospital();
+                    row[5] = request.getDoctor();
+                    row[6] = request.getResult();
+
+                    model.addRow(row);
+                }
+
         }
+    }
+
+    public void populateTableLab() {
+        DefaultTableModel model = (DefaultTableModel) labTestingTable.getModel();
+        model.setRowCount(0);
+
+        for (LabPatientWorkRequest request : ecosystem.getLabPatQueue().getLabPatientRequestList()) {
+            if (request.getPatient().equals(account)) {
+                Map<String, Date> map = request.getStatusMap();
+                String latestKey = "";
+                for (Map.Entry<String, Date> mapEntry : request.getStatusMap().entrySet()) {
+                    if (latestKey.equals("")) {
+                        latestKey = mapEntry.getKey();
+                    }
+                    if ((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0) {
+                        latestKey = mapEntry.getKey();
+                    }
+                }
+                Object[] row = new Object[8];
+                row[0] = request;
+                row[1] = request.getEnterprise();
+                row[2] = request.getLabTestType();
+                row[3] = request.getPatient();
+                row[4] = latestKey;
+                row[5] = request.getMessage();
+
+                model.addRow(row);
+            }
         }
-        
+
     }
            
            public void populateTablePhar(){
@@ -353,15 +358,16 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnHosTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124))))
+                        .addContainerGap(434, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,6 +455,14 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(labTestingTable);
+        if (labTestingTable.getColumnModel().getColumnCount() > 0) {
+            labTestingTable.getColumnModel().getColumn(0).setResizable(false);
+            labTestingTable.getColumnModel().getColumn(1).setResizable(false);
+            labTestingTable.getColumnModel().getColumn(2).setResizable(false);
+            labTestingTable.getColumnModel().getColumn(3).setResizable(false);
+            labTestingTable.getColumnModel().getColumn(4).setResizable(false);
+            labTestingTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -461,7 +475,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -572,7 +586,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pharTimeline)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -625,12 +639,12 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         }
 
         PatientHospitalAppointmentWorkRequest req= (PatientHospitalAppointmentWorkRequest)tblpatientAppointment.getValueAt(selectedRow, 0);
-        populateTimeline(req);    
+        populateTimeline(req);   
+        timeLineHospital=req.getRequestNo();
     }//GEN-LAST:event_btnHosTimelineActionPerformed
 
     private void btnGeneratePdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePdfActionPerformed
-        // TODO add your handling code here:
-        String path = "";
+         String path = "";
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int x = j.showSaveDialog(this);
@@ -643,20 +657,35 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             try {
                 PdfWriter.getInstance(doc, new FileOutputStream(path+"PatientHistory.pdf"));
                 doc.open();
-                // load image
-
-                //Image image =Image.getInstance("MedTech.PNG");
-
-                // doc.add(image);
+                          
+                Image image =Image.getInstance("MedTech.PNG");
+                image.scaleAbsolute(80, 80);
+                image.setAbsolutePosition(490f, 750f);
+                doc.add(image);
                 doc.add(new Paragraph((patient+"'s MedTech History"),FontFactory.getFont(FontFactory.TIMES_BOLD, 18,Font.BOLD, Color.black)));
                 doc.add(new Paragraph(new Date().toString()));
+                doc.add( Chunk.NEWLINE );
                 doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------"));
+                doc.add( Chunk.NEWLINE );
+                doc.add( Chunk.NEWLINE );
+                
                 PdfPTable tbl = new PdfPTable(7);
-                PdfPCell cell=new PdfPCell(new Paragraph("                            Patient Hospital History                                                "));
-                cell.setColspan(4);
+                tbl.setTotalWidth(600f);
+                tbl.setHorizontalAlignment(1);
+                tbl.setWidths(new int[]{4, 3, 2,3,3,2,2});
+                tbl.setHeaderRows(2);
+               
+                PdfPCell cell=new PdfPCell(new Phrase("Patient Hospital History "));
+                cell.setColspan(7);
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(Color.lightGray);
+                cell.setBackgroundColor(Color.cyan);
                 tbl.addCell(cell);
+                
+                PdfPCell cell0=new PdfPCell(new Phrase(" "));
+                cell0.setColspan(7);
+                cell0.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell0.setBackgroundColor(Color.white);
+                tbl.addCell(cell0);
 
                 tbl.addCell("Appointment ID");
                 tbl.addCell("Date");
@@ -665,6 +694,12 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 tbl.addCell("Hospital");
                 tbl.addCell("Doctor");
                 tbl.addCell("Result");
+                
+                PdfPCell cell1=new PdfPCell(new Phrase(" "));
+                cell1.setColspan(7);
+                cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell1.setBackgroundColor(Color.white);
+                tbl.addCell(cell1);
 
                 for (int i = 0; i < tblpatientAppointment.getRowCount(); i++) {
                     String appointmentID = tblpatientAppointment.getValueAt(i, 0).toString();
@@ -686,78 +721,257 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
                 doc.add(tbl);
 
-                PdfPCell blankRow = new PdfPCell(new Paragraph("\n"));
-                blankRow.setFixedHeight(5f);
-                blankRow.setColspan(4);
+                PdfPCell blankRow1 = new PdfPCell(new Paragraph("\n"));
+                blankRow1.setFixedHeight(5f);
+                blankRow1.setColspan(7);
+                doc.add( Chunk.NEWLINE );
+             
+                PdfPTable tb4 = new PdfPTable(2);
+                tb4.setTotalWidth(600f);
+                tb4.setHorizontalAlignment(1);
+                tb4.setWidths(new int[]{4, 3});
+                tb4.setHeaderRows(2);
+               
+                PdfPCell cell9=new PdfPCell(new Phrase("Patient Hospital Timeline for Appointment No:"+timeLineHospital));
+                cell9.setColspan(7);
+                cell9.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell9.setBackgroundColor(Color.cyan);
+                tb4.addCell(cell9);
+                
+                PdfPCell cell10=new PdfPCell(new Phrase(" "));
+                cell10.setColspan(7);
+                cell10.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell10.setBackgroundColor(Color.white);
+                tb4.addCell(cell10);
 
+                tb4.addCell("Date");
+                tb4.addCell("Status");
+
+                
+                PdfPCell cell11=new PdfPCell(new Phrase(" "));
+                cell11.setColspan(7);
+                cell11.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell11.setBackgroundColor(Color.white);
+                tb4.addCell(cell11);
+
+                for (int i = 0; i < hospTimeline.getRowCount(); i++) {
+                    String datesss = hospTimeline.getValueAt(i, 0).toString();
+                    String status2 = hospTimeline.getValueAt(i, 1).toString();
+
+
+                    tb4.addCell(datesss);
+                    tb4.addCell(status2);
+             
+                }
+
+                doc.add(tb4);
+
+                PdfPCell blankRow5 = new PdfPCell(new Paragraph("\n"));
+                blankRow5.setFixedHeight(5f);
+                blankRow5.setColspan(7);
+                doc.add( Chunk.NEWLINE );
+           
+                
+                
+                
                 PdfPTable tbl2 = new PdfPTable(6);
-                PdfPCell cell2=new PdfPCell(new Paragraph("                            Patient Laboratory History"                                                 ));
-                cell2.setColspan(4);
+                tbl2.setWidths(new int[]{3, 3, 2,3,2,2});
+                PdfPCell cell2=new PdfPCell(new Phrase("Patient Laboratory History") );
+                cell2.setColspan(7);
                 cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell2.setBackgroundColor(Color.lightGray);
-                tbl2.addCell(cell);
-
-                tbl2.addCell("Appointment ID");
+                cell2.setBackgroundColor(Color.cyan);
+                tbl2.addCell(cell2);
+                
+                 PdfPCell cell4=new PdfPCell(new Phrase(" "));
+                cell4.setColspan(7);
+                cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell4.setBackgroundColor(Color.white);
+                tbl2.addCell(cell4);
+                
+                tbl2.addCell("Lab ID");
                 tbl2.addCell("Laboratory");
-                tbl2.addCell("Lab test type");
+                tbl2.addCell("Test Name");
+                tbl2.addCell("Patient Name");
                 tbl2.addCell("Status");
-                tbl2.addCell("Result");
-           //     tbl2.addCell("Status");
+                tbl2.addCell("Message");
 
+                PdfPCell cell5=new PdfPCell(new Phrase(" "));
+                cell5.setColspan(7);
+                cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell5.setBackgroundColor(Color.white);
+                tbl2.addCell(cell5);
+               
+               
                 for (int i = 0; i < labTestingTable.getRowCount(); i++) {
-                    String appointment = labTestingTable.getValueAt(i, 0).toString();
+                    String labID = labTestingTable.getValueAt(i, 0).toString();
                     String laboratory = labTestingTable.getValueAt(i, 1).toString();
                     String labTest = labTestingTable.getValueAt(i, 2).toString();
-                    String status = labTestingTable.getValueAt(i, 3).toString();
-                    String result = labTestingTable.getValueAt(i, 4).toString();
+                    String PatientName = labTestingTable.getValueAt(i, 3).toString();
+                    String status = labTestingTable.getValueAt(i, 4).toString();
+                    String message = labTestingTable.getValueAt(i, 5).toString();
+                    
 
-                    tbl2.addCell(appointment);
+
+                    tbl2.addCell(labID);
                     tbl2.addCell(laboratory);
                     tbl2.addCell(labTest);
+                    tbl2.addCell(PatientName);
                     tbl2.addCell(status);
-                    tbl2.addCell(result);
-                    //    tbl2.addCell(statuss);
+                    tbl2.addCell(message);
 
                 }
 
                 doc.add(tbl2);
-
+                
                 PdfPCell blankRow2 = new PdfPCell(new Paragraph("\n"));
                 blankRow2.setFixedHeight(5f);
-                blankRow2.setColspan(4);
+                blankRow2.setColspan(7);
+                doc.add( Chunk.NEWLINE );
+ 
+                
+                PdfPTable tbl5 = new PdfPTable(2);
+                
+                tbl5.setTotalWidth(600f);
+                tbl5.setHorizontalAlignment(1);
+                tbl5.setWidths(new int[]{4, 3});
+                tbl5.setHeaderRows(2);
+               
+                PdfPCell cell19=new PdfPCell(new Phrase("Patient Laboratory Timeline for LabID No:"+timeLineLaboratory));
+                cell19.setColspan(7);
+                cell19.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell19.setBackgroundColor(Color.cyan);
+                tbl5.addCell(cell19);
+                
+                PdfPCell cell14=new PdfPCell(new Phrase(" "));
+                cell14.setColspan(7);
+                cell14.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell14.setBackgroundColor(Color.white);
+                tbl5.addCell(cell14);
 
-                PdfPTable tbl3 = new PdfPTable(6);
-                PdfPCell cell3=new PdfPCell(new Paragraph("                                       Patient Pharmacy History"                                                  ));
-                cell3.setColspan(4);
+                tb4.addCell("Date");
+                tb4.addCell("Status");
+
+                
+                PdfPCell cell15=new PdfPCell(new Phrase(" "));
+                cell15.setColspan(7);
+                cell15.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell15.setBackgroundColor(Color.white);
+                tbl5.addCell(cell15);
+
+                for (int i = 0; i < labTimeline.getRowCount(); i++) {
+                    String datesss1 = labTimeline.getValueAt(i, 0).toString();
+                    String status3 = labTimeline.getValueAt(i, 1).toString();
+
+
+                    tbl5.addCell(datesss1);
+                    tbl5.addCell(status3);
+             
+                }
+
+                doc.add(tbl5);
+
+                PdfPCell blankRow9 = new PdfPCell(new Paragraph("\n"));
+                blankRow9.setFixedHeight(5f);
+                blankRow9.setColspan(7);
+                doc.add( Chunk.NEWLINE );
+              
+                
+                              
+                PdfPTable tbl3 = new PdfPTable(5);
+                tbl3.setWidths(new int[]{2, 2, 2,2,2});
+                PdfPCell cell3=new PdfPCell(new Phrase("Patient Pharmacy History"));
+                cell3.setColspan(7);
                 cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell3.setBackgroundColor(Color.lightGray);
-                tbl3.addCell(cell);
-
-                tbl3.addCell("Order No");
-                tbl3.addCell("MedicineList");
-                tbl3.addCell("Delivery");
+                cell3.setBackgroundColor(Color.cyan);
+                tbl3.addCell(cell3);
+                
+                 PdfPCell cell6=new PdfPCell(new Phrase(" "));
+                cell6.setColspan(7);
+                cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell6.setBackgroundColor(Color.white);
+                tbl3.addCell(cell6);
+                
+                
+                
+                tbl3.addCell("PharmacyID");
+                tbl3.addCell("Medicine");
+               tbl3.addCell("Delivery Status");
                 tbl3.addCell("Status");
                 tbl3.addCell("Message");
 
-                for (int i = 0; i < pharmaTable.getRowCount(); i++) {
-                    String orderNo = pharmaTable.getValueAt(i, 0).toString();
-                    String medcineList = pharmaTable.getValueAt(i, 1).toString();
-                    // String Statusss = tblpatientAppointment3.getValueAt(i, 2).toString();
-                    String staff = pharmaTable.getValueAt(i, 3).toString();
-                    String status = pharmaTable.getValueAt(i, 4).toString();
-                    String message = pharmaTable.getValueAt(i, 4).toString();
+                 PdfPCell cell7=new PdfPCell(new Phrase(" "));
+                cell7.setColspan(7);
+                cell7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell7.setBackgroundColor(Color.white);
+                tbl3.addCell(cell7);
 
-                    tbl3.addCell(orderNo);
-                    tbl3.addCell(medcineList);
-                    // tbl3.addCell(Statusss);
-                    tbl3.addCell(staff);
-                    tbl3.addCell(status);
-                    tbl3.addCell(message);
+                for (int i = 0; i < pharmaTable.getRowCount(); i++) {
+                    String pharmacyID = pharmaTable.getValueAt(i, 0).toString();
+                    String medicine = pharmaTable.getValueAt(i, 1).toString();
+                   String delivaryStatus = pharmaTable.getValueAt(i, 2).toString();
+                    String statusss = pharmaTable.getValueAt(i, 3).toString();
+                    String messages = pharmaTable.getValueAt(i, 4).toString();
+                 
+
+
+                    tbl3.addCell(pharmacyID);
+                    tbl3.addCell(medicine);
+                   tbl3.addCell(delivaryStatus);
+                    tbl3.addCell(statusss);
+                    tbl3.addCell(messages);
 
                 }
 
                 doc.add(tbl3);
+                
+                doc.add( Chunk.NEWLINE );
+                
+                PdfPTable tbl6 = new PdfPTable(2);
+                
+                tbl6.setTotalWidth(600f);
+                tbl6.setHorizontalAlignment(1);
+                tbl6.setWidths(new int[]{4, 3});
+                tbl6.setHeaderRows(2);
+               
+                PdfPCell cell199=new PdfPCell(new Phrase("Patient Pharmacy Timeline for PharmacyID No:"+timeLinePharmacy));
+                cell199.setColspan(7);
+                cell199.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell199.setBackgroundColor(Color.cyan);
+                tbl6.addCell(cell199);
+                
+                PdfPCell cell16=new PdfPCell(new Phrase(" "));
+                cell16.setColspan(7);
+                cell16.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell16.setBackgroundColor(Color.white);
+                tbl6.addCell(cell16);
 
+                tbl6.addCell("Date");
+                tbl6.addCell("Status");
+
+                
+                PdfPCell cell17=new PdfPCell(new Phrase(" "));
+                cell17.setColspan(7);
+                cell17.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell17.setBackgroundColor(Color.white);
+                tbl6.addCell(cell17);
+
+                for (int i = 0; i < pharmaTimeline.getRowCount(); i++) {
+                    String datesss2 = pharmaTimeline.getValueAt(i, 0).toString();
+                    String status4 = pharmaTimeline.getValueAt(i, 1).toString();
+
+
+                    tbl6.addCell(datesss2);
+                    tbl6.addCell(status4);
+             
+                }
+
+                doc.add(tbl6);
+
+             
+            
+             
+  
+                
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(PatientHistoryJPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (DocumentException | IOException ex) {
@@ -765,7 +979,11 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
             }
             doc.close();
         }
-        JOptionPane.showMessageDialog(null,"Report Generated Successfully!");
+ JOptionPane.showMessageDialog(null,"Report Generated Successfully!");
+
+                            
+
+    
     }//GEN-LAST:event_btnGeneratePdfActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -786,6 +1004,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         LabPatientWorkRequest lab= (LabPatientWorkRequest)labTestingTable.getValueAt(selectedRow, 0);
 
         populateTimeline(lab);
+        timeLineLaboratory=lab.getId();
     }//GEN-LAST:event_btnLabTimelineActionPerformed
 
     private void pharTimelineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharTimelineActionPerformed
@@ -798,6 +1017,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         PharmaWorkRequest pharma= (PharmaWorkRequest)pharmaTable.getValueAt(selectedRow, 0);
 
         populateTimeline(pharma);
+        timeLinePharmacy=pharma.getId();
     }//GEN-LAST:event_pharTimelineActionPerformed
 
     
