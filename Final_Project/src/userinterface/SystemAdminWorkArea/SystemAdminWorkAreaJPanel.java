@@ -522,6 +522,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 vaccineReq.setSender(r1);
                 vaccineReq.setVaccine(vaccine);
                 vaccineReq.setRequestDate(new Date());
+                vaccineReq.setSuccess("ongoing");
+                vaccineReq.setPhase("development");
                 Map<String,Date> statusMap = vaccineReq.getStatusMap();
                 statusMap.put("Formulation Phase", new Date());
                 vaccineReq.setStatusMap(statusMap);
@@ -556,6 +558,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 Map<String,Date> statusMap2 = vaccineReq2.getStatusMap();
                 statusMap2.put("Formulation Phase", new Date());
                 vaccineReq2.setStatusMap(statusMap2);
+                vaccineReq2.setSuccess("ongoing");
+                vaccineReq2.setPhase("development");
                 r1.getVaccineWorkQueue().addWorkRequest(vaccineReq2);
                 ecosystem.getVaccineQueue().addWorkRequest(vaccineReq2);
 
@@ -584,6 +588,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 vaccineReq3.setSender(r1);
                 vaccineReq3.setVaccine(vaccine3);
                 vaccineReq3.setRequestDate(new Date());
+                 vaccineReq3.setSuccess("ongoing");
+                vaccineReq3.setPhase("development");
                 Map<String,Date> statusMap3 = vaccineReq3.getStatusMap();
                 statusMap3.put("Formulation Phase", new Date());
                 vaccineReq3.setStatusMap(statusMap3);
@@ -618,6 +624,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 Map<String,Date> statusMap4 = vaccineReq4.getStatusMap();
                 statusMap4.put("Formulation Phase", new Date());
                 vaccineReq4.setStatusMap(statusMap4);
+                vaccineReq4.setSuccess("ongoing");
+                vaccineReq4.setPhase("development");
                 r1.getVaccineWorkQueue().addWorkRequest(vaccineReq4);
                 ecosystem.getVaccineQueue().addWorkRequest(vaccineReq4);
 
@@ -649,6 +657,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 Map<String,Date> statusMap5 = vaccineReq5.getStatusMap();
                 statusMap5.put("Formulation Phase", new Date());
                 vaccineReq5.setStatusMap(statusMap5);
+                vaccineReq5.setSuccess("ongoing");
+                vaccineReq5.setPhase("development");
                 r1.getVaccineWorkQueue().addWorkRequest(vaccineReq5);
                 ecosystem.getVaccineQueue().addWorkRequest(vaccineReq5);
             }

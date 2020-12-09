@@ -11,6 +11,7 @@ import Business.Organization.VaccineCompanyOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -308,8 +309,16 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        VaccineCompReportJPanel sysAdminwjp = (VaccineCompReportJPanel) component;
+        sysAdminwjp.populateAgeGroupChart();
+        sysAdminwjp.populateConditionChart();
+        sysAdminwjp.populateLatestApprovals();
+        sysAdminwjp.populateOnGoingProjects(); 
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 

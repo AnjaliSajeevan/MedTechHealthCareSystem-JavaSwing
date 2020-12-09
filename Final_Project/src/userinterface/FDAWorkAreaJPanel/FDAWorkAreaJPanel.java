@@ -437,6 +437,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         vaccineReq.setSender(account);
         vaccineReq.setResolveDate(new Date());
         vaccineReq.setMessage(txtMessage.getText());
+        vaccineReq.setSuccess("fail");
         business.getVaccineQueue().updateWorkRequest(vaccineReq, business.getVaccineQueue().getVaccineRequestList());
         account.getVaccineWorkQueue().removeWorkRequest(vaccineReq);
         populateTimeline("");
@@ -465,6 +466,8 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         vaccineReq.setSender(account);
         vaccineReq.setResolveDate(new Date());
         vaccineReq.setMessage(txtMessage.getText());
+        vaccineReq.setSuccess("success");
+        vaccineReq.setPhase("prod");
         business.getVaccineQueue().updateWorkRequest(vaccineReq, business.getVaccineQueue().getVaccineRequestList());
         account.getVaccineWorkQueue().removeWorkRequest(vaccineReq);
         populateTimeline("");

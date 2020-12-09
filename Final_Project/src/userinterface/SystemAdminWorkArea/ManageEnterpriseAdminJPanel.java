@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.AdminRole;
 import Business.Role.FDARole;
+import Business.Role.HealthDeptRole;
 import Business.Role.InsuranceAdminRole;
 import Business.Role.LabAdminRole;
 import Business.Role.PharmacyAdminRole;
@@ -324,6 +325,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
          }else if(enterprise.getEnterpriseType().equals(enterprise.getEnterpriseType().Hospital)){
            
          UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());  
+         
+        }else if(enterprise.getEnterpriseType().equals(enterprise.getEnterpriseType().HealthDept)){
+           
+         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HealthDeptRole());  
          
         }
          JOptionPane.showMessageDialog(null, "Admin account added successfully!");
