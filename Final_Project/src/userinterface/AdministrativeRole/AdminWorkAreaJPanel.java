@@ -255,7 +255,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 if(n.getHospital().equals(enterprise.getName()))
                 {
                 appointment = n.getAppointment();
-                System.out.println(n);
+               
                 for (LocalDate dates : appointment.keySet()) {
 
                     if (dates.equals(d)) {
