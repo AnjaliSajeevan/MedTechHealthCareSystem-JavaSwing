@@ -42,7 +42,7 @@ public abstract class Organization {
         PharmacyAdmin("Pharmacy Organization"),DeliveryMan("Pharmacy Organization"),
         VaccineCompanyAdmin("Vaccine Organization"),VaccineScientist("Vaccine Organization"),VaccineTestingStaff("Vaccine Organization"),
         LabAdmin("Laboratory Organization"),LabStaff("Laboratory Organization"),
-        InsuranceAdmin("Insurance Organization"), InsuranceStaff("Insurance Organization"),
+        InsuranceAdmin("Insurance Organization"), InsuranceStaff("Insurance Organization"),HealthDept("HealthDept Organization"),
         FDAAdmin("FDA Organization");
         
         private String value;

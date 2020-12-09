@@ -27,7 +27,8 @@ public abstract class Enterprise extends Organization{
         Laboratory("Laboratory"),
         Insurance("Insurance"),
         FDA("Food and Drug Administration"),
-        Pharmacy("Pharmacy");
+        Pharmacy("Pharmacy"),
+        HealthDept("DepartmentOfHealth");
         
         
         private String value;

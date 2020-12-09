@@ -385,6 +385,7 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
                 vacReq.setReceiver(vacReq.getVaccine().getUsername());
                 vacReq.setResolveDate(new Date());
                 vacReq.setMessage(txtResult.getText());
+                vacReq.setSuccess("drop");
                 request = vacReq;
             }
         }
@@ -448,6 +449,7 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
             Map<String,Date> reqMap = request.getStatusMap();
             reqMap.put("Sent to FDA: "+fdaBox.getSelectedItem().toString(), new Date());
             request.setStatusMap(reqMap);
+            request.setPhase("approval");
             request.setSender(account);
             for (Network network : business.getNetworkList()){
                 for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
