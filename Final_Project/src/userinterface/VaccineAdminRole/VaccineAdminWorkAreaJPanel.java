@@ -268,7 +268,7 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnCompRptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompRptActionPerformed
         // TODO add your handling code here:
-        VaccineCompReportJPanel reportCompJPanel = new VaccineCompReportJPanel(userProcessContainer, business);
+        VaccineCompReportJPanel reportCompJPanel = new VaccineCompReportJPanel(userProcessContainer, account,enterprise,business);
         userProcessContainer.add("reportCompJPanel", reportCompJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

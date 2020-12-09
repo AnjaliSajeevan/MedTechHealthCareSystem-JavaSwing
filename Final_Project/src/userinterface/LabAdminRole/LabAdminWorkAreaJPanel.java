@@ -11,8 +11,13 @@ import Business.Organization.LaboratoryOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
+import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -47,6 +52,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText(enterprise.getName());
         populateLabTests();
          populateStaffBox();
+         populateTimeline("");
     }
     public void populateStaffBox(){
         staffComboBox.removeAllItems();
@@ -106,33 +112,38 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
     }
-    public void populateTimeline(String lab){
-        if(lab.isEmpty()){
-          DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
-        model.setRowCount(0);         
-        }else{
-            LabPatientWorkRequest p = null;
-                  List<LabPatientWorkRequest> requestList = business.getLabPatQueue().getLabPatientRequestList();
-        for(LabPatientWorkRequest req: requestList){
-            if(req.toString().equals(lab)){
-                p = req;
+ private  Map<String,Date> sortByDate(Map<String, Date> map){
+        List<Map.Entry<String, Date>> tempList = new LinkedList<Map.Entry<String, Date>>(map.entrySet());
+        Collections.sort(tempList, new Comparator<Map.Entry<String, Date>>(){
+            public int compare(Map.Entry<String, Date> obj1,Map.Entry<String, Date> obj2) {
+                    return obj1.getValue().compareTo(obj2.getValue());
             }
-        }  
-        if(p!=null){
-           DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
+        });
+
+        Map<String, Date> sortedMap = new LinkedHashMap<String, Date>();
+        for (Map.Entry<String, Date> entry : tempList){
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
+    }
+  
+      public void populateTimeline(LabPatientWorkRequest req){
+       DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
         model.setRowCount(0);
-           Map<String,Date> map = p.getStatusMap();
-            String latestKey = "";
-            for (Map.Entry<String,Date> mapEntry : p.getStatusMap().entrySet()) {
+           Map<String,Date> map = req.getStatusMap();
+           Map<String, Date> Sortedmap = sortByDate(map);
+            for (Map.Entry<String,Date> mapEntry : Sortedmap.entrySet()) {
                             Object row[] = new Object[5];
-                 row[0] = mapEntry.getKey();
-                 row[1] = mapEntry.getValue();
+                 row[0] =mapEntry.getValue(); 
+                 row[1] = mapEntry.getKey();
                   model.addRow(row); 
                }
       }
-        }
-           
-    }      
+            public void populateTimeline(String blank){
+       DefaultTableModel model = (DefaultTableModel)timelineTable.getModel();
+        model.setRowCount(0);
+         
+      }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -431,7 +442,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
         UserAccount ua = (UserAccount)staffComboBox.getSelectedItem();
        labReq.setReceiver(ua);
                     Map<String,Date> reqMap = labReq.getStatusMap();
-        reqMap.put("Request Sent to Staff-"+ua, new Date());
+        reqMap.put("Request Assigned to Staff-"+ua, new Date());
         labReq.setStatusMap(reqMap); 
                 ua.getLabPatientWorkQueue().addLabPatientRequest(labReq);
         account.getLabPatientWorkQueue().removeLabPatientRequest(labReq);
@@ -508,7 +519,7 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         LabPatientWorkRequest l= (LabPatientWorkRequest)respTable.getValueAt(selectedRow, 0);
 
-        populateTimeline(l.toString());
+        populateTimeline(l);
     }//GEN-LAST:event_btnTimeActionPerformed
 
 

@@ -24,6 +24,8 @@ public class VaccineWorkRequest {
     private Date requestDate;
     private Date resolveDate;
     private String enterprise;
+    private String success;
+    private String phase;
     
     public VaccineWorkRequest(){
         requestDate = new Date();
@@ -52,6 +54,14 @@ public class VaccineWorkRequest {
 
     public void setReceiver(UserAccount receiver) {
         this.receiver = receiver;
+    }
+
+    public String getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
     }
 
     public Vaccine getVaccine() {
@@ -92,6 +102,14 @@ public class VaccineWorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+
+    public String getPhase() {
+        return phase;
+    }
+
+    public void setPhase(String phase) {
+        this.phase = phase;
     }
 
     @Override

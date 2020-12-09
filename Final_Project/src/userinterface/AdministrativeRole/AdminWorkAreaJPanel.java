@@ -255,7 +255,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 if(n.getHospital().equals(enterprise.getName()))
                 {
                 appointment = n.getAppointment();
-                System.out.println(n);
+               
                 for (LocalDate dates : appointment.keySet()) {
 
                     if (dates.equals(d)) {
@@ -306,10 +306,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 request.setStatus("Appointment confirmed");
                 request.setCost(123.4);
                 request.setDoctor(doctor);
-
+                    Map<String,Date> reqMap = request.getStatusMap();
+        reqMap.put("Appointment confirmed to doctor-"+doctor, new Date());
+        request.setStatusMap(reqMap); 
             }
             JOptionPane.showMessageDialog(null, "Appointmnent confirmed and assigned to doctor");
             populateTable();
+             business.getHospitalQueue().updateHospitalRequest(request, business.getHospitalQueue().hospitalRequestList());
         }
    
     }//GEN-LAST:event_btnAcceptActionPerformed

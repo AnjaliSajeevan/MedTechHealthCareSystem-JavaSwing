@@ -24,6 +24,6 @@ public class InsuranceClaimRole extends Role{
         return new InsuranceClaimWorkAreaJPanel(userProcessContainer,account, enterprise,business);
     }
     public String toString(){
-        return "InsuranceClaim";
+        return "InsuranceStaff";
     } 
 }

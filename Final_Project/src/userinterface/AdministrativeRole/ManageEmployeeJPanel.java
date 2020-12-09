@@ -182,7 +182,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         if(organizationEmpJComboBox.getSelectedItem().toString().equals("")){
                   JOptionPane.showMessageDialog(null,"Please select Organization for employee!");
                 return;             
-        }
+        }     
         Organization organization = null;
         for(Organization org: organizationDir.getOrganizationList()){
             if(org.getOrganizationType().equals(organizationEmpJComboBox.getSelectedItem())){
@@ -195,7 +195,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         populateTable();
         populateOrganizationEmpComboBox();
          JOptionPane.showMessageDialog(null,"Employee Added successfully!");
-        
+        nameJTextField.setText("");
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
