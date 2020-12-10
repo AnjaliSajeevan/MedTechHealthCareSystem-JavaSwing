@@ -110,6 +110,9 @@ public class Patient extends Employee {
     public void setUserAccount(String userName) {
         this.userName = userName;
     }
+   public String getUserAccount() {
+        return userName;
+    }
 
     public InsurancePolicy getInsurance() {
         return insurance;

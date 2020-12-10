@@ -141,7 +141,6 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
         btnHistory1 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         timelineTable = new javax.swing.JTable();
-        btnTestResponses1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
 
@@ -201,13 +200,6 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
         });
         jScrollPane6.setViewportView(timelineTable);
 
-        btnTestResponses1.setText("View Test Responses");
-        btnTestResponses1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTestResponses1ActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Vaccine Responses and History:");
 
         backJButton.setText("<< Back");
@@ -228,16 +220,13 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnViewVaccine1)
                         .addGap(83, 83, 83)
-                        .addComponent(btnHistory1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTestResponses1)))
-                .addContainerGap())
+                        .addComponent(btnHistory1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(292, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 82, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,7 +241,7 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,12 +250,9 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnHistory1)
                         .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnTestResponses1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnViewVaccine1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGap(25, 25, 25)))
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -301,12 +287,6 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
         populateTimeline(vaccine);
     }//GEN-LAST:event_btnHistory1ActionPerformed
 
-    private void btnTestResponses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestResponses1ActionPerformed
-        // TODO add your handling code here:
-        populateAllDrugRequestTable();
-        populateTimeline("");
-    }//GEN-LAST:event_btnTestResponses1ActionPerformed
-
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         // TODO add your handling code here:
             userProcessContainer.remove(this);
@@ -326,7 +306,6 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JButton btnHistory1;
-    private javax.swing.JButton btnTestResponses1;
     private javax.swing.JButton btnViewVaccine1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane3;
