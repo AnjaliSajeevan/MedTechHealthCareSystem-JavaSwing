@@ -374,6 +374,7 @@ public class BookLabJPanel extends javax.swing.JPanel {
         request.setLabTestType(serviceComboBox.getSelectedItem().toString());
         request.setSlotDate(slotDate);
         request.setSlotTime(slotTime);
+        request.setCovidCase(false);
         Map<String,Date> reqMap = request.getStatusMap();
         reqMap.put("Appointment for "+serviceComboBox.getSelectedItem().toString()+"in "+labComboBox.getSelectedItem().toString()+" created!", new Date());
         request.setStatusMap(reqMap);

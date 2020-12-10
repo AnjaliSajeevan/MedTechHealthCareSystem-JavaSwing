@@ -28,6 +28,8 @@ public class LabPatientWorkRequest {
     private String labTestType;
     private UserAccount receiver;
     private UserAccount sender;
+    private boolean covidCase;
+    private Date completeDate;
     private Map<String,Date> statusMap;
         
    private static int count = 1;
@@ -123,6 +125,22 @@ public class LabPatientWorkRequest {
 
     public void setStatusMap(Map<String, Date> statusMap) {
         this.statusMap = statusMap;
+    }
+
+    public boolean isCovidCase() {
+        return covidCase;
+    }
+
+    public void setCovidCase(boolean covidCase) {
+        this.covidCase = covidCase;
+    }
+
+    public Date getCompleteDate() {
+        return completeDate;
+    }
+
+    public void setCompleteDate(Date completeDate) {
+        this.completeDate = completeDate;
     }
 
 

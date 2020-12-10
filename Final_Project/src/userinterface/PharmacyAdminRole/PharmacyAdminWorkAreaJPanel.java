@@ -558,6 +558,10 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
+                PharmaReportJPanel pharmaJPanel=new PharmaReportJPanel(userProcessContainer,enterprise,business);
+        userProcessContainer.add("pharmaJPanel",pharmaJPanel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void btnAddMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMedActionPerformed

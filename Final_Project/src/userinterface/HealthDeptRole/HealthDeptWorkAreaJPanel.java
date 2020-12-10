@@ -7,13 +7,20 @@ package userinterface.HealthDeptRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userinterface.LabAdminRole.LabReportJPanel;
+import userinterface.PharmacyAdminRole.PharmaReportJPanel;
+import userinterface.VaccineAdminRole.VaccineCompReportJPanel;
 
 /**
  *
- * @author karthik
+ * @author Manasa
  */
 public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -35,7 +42,107 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
         this.business = business;
         this.enterprise = enterprise;
         valueLabel.setText(enterprise.getName());
+        populateComboBox();
     }
+    private void populateComboBox() {
+        networkJComboBox.removeAllItems();
+        networkJComboBox.addItem("");
+
+        for (Network network : business.getNetworkList()) {
+            networkJComboBox.addItem(network);
+        }
+    }
+        public void populateHospitalList(){
+        if((networkJComboBox.getSelectedItem().equals(""))){
+         JOptionPane.showMessageDialog(null, "Please choose a network!", "Warning", JOptionPane.WARNING_MESSAGE);       
+                  return;
+        }
+        DefaultTableModel model = (DefaultTableModel)hospTable.getModel();
+        model.setRowCount(0);
+     
+        Network network = (Network) networkJComboBox.getSelectedItem();
+        for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
+            if((e.getEnterpriseType().getValue()).equals("Hospital")){
+
+             Object row[] = new Object[8];
+                 row[0] = e;
+                 model.addRow(row); 
+            }
+        }
+        }
+       public void populatePharmacyList(){
+        if((networkJComboBox.getSelectedItem().equals(""))){
+         JOptionPane.showMessageDialog(null, "Please choose a network!", "Warning", JOptionPane.WARNING_MESSAGE);       
+                  return;
+        }
+        DefaultTableModel model = (DefaultTableModel)pharmaTable.getModel();
+        model.setRowCount(0);
+     
+        Network network = (Network) networkJComboBox.getSelectedItem();
+        for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
+            if((e.getEnterpriseType().getValue()).equals("Pharmacy")){
+
+             Object row[] = new Object[8];
+                 row[0] = e;
+                 model.addRow(row); 
+            }
+        }
+        }
+        public void populateLaboratoryList(){
+        if((networkJComboBox.getSelectedItem().equals(""))){
+         JOptionPane.showMessageDialog(null, "Please choose a network!", "Warning", JOptionPane.WARNING_MESSAGE);       
+                  return;
+        }
+        DefaultTableModel model = (DefaultTableModel)labTable.getModel();
+        model.setRowCount(0);
+     
+        Network network = (Network) networkJComboBox.getSelectedItem();
+       ;
+        for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
+            if((e.getEnterpriseType().getValue()).equals("Laboratory")){
+
+             Object row[] = new Object[8];
+                 row[0] = e;
+                 model.addRow(row); 
+            }
+        }
+        }
+        public void populateVaccineCompList(){
+        if((networkJComboBox.getSelectedItem().equals(""))){
+         JOptionPane.showMessageDialog(null, "Please choose a network!", "Warning", JOptionPane.WARNING_MESSAGE);       
+                  return;
+        }
+        DefaultTableModel model = (DefaultTableModel)vacTable.getModel();
+        model.setRowCount(0);
+     
+        Network network = (Network) networkJComboBox.getSelectedItem();
+        for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
+            if((e.getEnterpriseType().getValue()).equals("VaccineCompany")){
+
+             Object row[] = new Object[8];
+                 row[0] = e;
+                 model.addRow(row); 
+            }
+        }
+        }
+       public void populateInsuranceCompList(){
+        if((networkJComboBox.getSelectedItem().equals(""))){
+         JOptionPane.showMessageDialog(null, "Please choose a network!", "Warning", JOptionPane.WARNING_MESSAGE);       
+                  return;
+        }
+        DefaultTableModel model = (DefaultTableModel)insureTable.getModel();
+        model.setRowCount(0);
+     
+        Network network = (Network) networkJComboBox.getSelectedItem();
+        for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
+            if((e.getEnterpriseType().getValue()).equals("InsuranceCompany")){
+
+             Object row[] = new Object[8];
+                 row[0] = e;
+                 model.addRow(row); 
+            }
+        }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,85 +155,72 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
 
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnLab = new javax.swing.JButton();
+        btnHosp = new javax.swing.JButton();
+        btnPharma = new javax.swing.JButton();
+        btnVac = new javax.swing.JButton();
+        btnInsure = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        hospTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        labTable = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        vacTable = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        pharmaTable = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        insureTable = new javax.swing.JTable();
+        btnHospStat = new javax.swing.JButton();
+        networkJComboBox = new javax.swing.JComboBox();
+        btnLabStat = new javax.swing.JButton();
+        btnPharmaStat = new javax.swing.JButton();
+        btnVacStat = new javax.swing.JButton();
+        btnInsureStat = new javax.swing.JButton();
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
 
         valueLabel.setText("<value>");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel1.setText("Network:");
 
-        jButton1.setText("View Laboratories");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLab.setText("View Laboratories");
+        btnLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLabActionPerformed(evt);
             }
         });
 
-        jButton2.setText("View Hospital");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnHosp.setText("View Hospital");
+        btnHosp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnHospActionPerformed(evt);
             }
         });
 
-        jButton3.setText("View Patients");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnPharma.setText("View Pharmacy");
+        btnPharma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnPharmaActionPerformed(evt);
             }
         });
 
-        jButton4.setText("View Pharmacy");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnVac.setText("View VaccineCompanies");
+        btnVac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnVacActionPerformed(evt);
             }
         });
 
-        jButton5.setText("View VaccineCompanies");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnInsure.setText("View Insurance Policies");
+        btnInsure.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnInsureActionPerformed(evt);
             }
         });
 
-        jButton6.setText("View Insurance Policies");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        hospTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -134,12 +228,23 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
                 {null}
             },
             new String [] {
-                "Title 1"
+                "Hospital Name"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(hospTable);
+        if (hospTable.getColumnModel().getColumnCount() > 0) {
+            hospTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        labTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -147,12 +252,23 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
                 {null}
             },
             new String [] {
-                "Title 1"
+                "Laboratory Name"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(labTable);
+        if (labTable.getColumnModel().getColumnCount() > 0) {
+            labTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        vacTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -160,12 +276,23 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
                 {null}
             },
             new String [] {
-                "Title 1"
+                "Vaccine Company"
             }
-        ));
-        jScrollPane3.setViewportView(jTable3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(vacTable);
+        if (vacTable.getColumnModel().getColumnCount() > 0) {
+            vacTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        pharmaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -173,12 +300,23 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
                 {null}
             },
             new String [] {
-                "Title 1"
+                "Pharmacy Company"
             }
-        ));
-        jScrollPane4.setViewportView(jTable4);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(pharmaTable);
+        if (pharmaTable.getColumnModel().getColumnCount() > 0) {
+            pharmaTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        insureTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -186,50 +324,63 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
                 {null}
             },
             new String [] {
-                "Title 1"
+                "Insurance Company"
             }
-        ));
-        jScrollPane5.setViewportView(jTable5);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Title 1"
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
-        ));
-        jScrollPane6.setViewportView(jTable6);
+        });
+        jScrollPane6.setViewportView(insureTable);
+        if (insureTable.getColumnModel().getColumnCount() > 0) {
+            insureTable.getColumnModel().getColumn(0).setResizable(false);
+        }
 
-        jButton7.setText("View Statistics");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnHospStat.setText("View Statistics");
+        btnHospStat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnHospStatActionPerformed(evt);
             }
         });
 
-        jButton8.setText("View Statistics");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                networkJComboBoxActionPerformed(evt);
             }
         });
 
-        jButton9.setText("View Statistics");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnLabStat.setText("View Statistics");
+        btnLabStat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnLabStatActionPerformed(evt);
             }
         });
 
-        jButton11.setText("View Statistics");
+        btnPharmaStat.setText("View Statistics");
+        btnPharmaStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPharmaStatActionPerformed(evt);
+            }
+        });
 
-        jButton12.setText("View Statistics");
+        btnVacStat.setText("View Statistics");
+        btnVacStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVacStatActionPerformed(evt);
+            }
+        });
 
-        jButton13.setText("View Statistics");
+        btnInsureStat.setText("View Statistics");
+        btnInsureStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsureStatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -238,64 +389,51 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jButton2)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addGap(38, 38, 38)
-                                        .addComponent(jButton3))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(193, 193, 193)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jButton7)
-                                .addGap(47, 47, 47)
-                                .addComponent(jButton8)
-                                .addGap(47, 47, 47)
-                                .addComponent(jButton9)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton5)
-                                        .addGap(148, 148, 148)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton4)
-                                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jButton12)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton11)))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton6)
-                                    .addComponent(jButton13)))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(265, 265, 265)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnHospStat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(btnHosp, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(btnLab)
+                            .addComponent(btnLabStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnPharma)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnPharmaStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnVac))
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnInsure)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnVacStat, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnInsureStat, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(406, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,102 +444,144 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(valueLabel))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
-                .addGap(18, 18, 18)
+                    .addComponent(btnHosp)
+                    .addComponent(btnLab)
+                    .addComponent(btnPharma)
+                    .addComponent(btnVac)
+                    .addComponent(btnInsure))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHospStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLabStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPharmaStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton8)
-                        .addComponent(jButton9)
-                        .addComponent(jButton11)
-                        .addComponent(jButton12)
-                        .addComponent(jButton13)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addComponent(btnVacStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInsureStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLabActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        populateLaboratoryList();
+    }//GEN-LAST:event_btnLabActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnHospActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        populateHospitalList();
+    }//GEN-LAST:event_btnHospActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnPharmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPharmaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        populatePharmacyList();
+    }//GEN-LAST:event_btnPharmaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnVacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        populateVaccineCompList();
+    }//GEN-LAST:event_btnVacActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnInsureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsureActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        populateInsuranceCompList();
+    }//GEN-LAST:event_btnInsureActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnHospStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospStatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        
+    }//GEN-LAST:event_btnHospStatActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_networkJComboBoxActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnLabStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLabStatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+        int selectedRow = labTable.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a Laboratory from table!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Enterprise ePrise = (Enterprise)labTable.getValueAt(selectedRow, 0);
+        LabReportJPanel labreportCompJPanel = new LabReportJPanel(userProcessContainer,ePrise,business);
+        userProcessContainer.add("labreportCompJPanel", labreportCompJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);       
+    }//GEN-LAST:event_btnLabStatActionPerformed
+
+    private void btnPharmaStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPharmaStatActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = pharmaTable.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a Pharmacy from table!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+         Enterprise ePrise = (Enterprise)pharmaTable.getValueAt(selectedRow, 0);
+        PharmaReportJPanel pharreportCompJPanel = new PharmaReportJPanel(userProcessContainer,ePrise,business);
+        userProcessContainer.add("pharreportCompJPanel", pharreportCompJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnPharmaStatActionPerformed
+
+    private void btnVacStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacStatActionPerformed
+        // TODO add your handling code here:
+                int selectedRow = vacTable.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a VaccineCompany from table!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Enterprise ePrise = (Enterprise)vacTable.getValueAt(selectedRow, 0);
+        VaccineCompReportJPanel vacreportCompJPanel = new VaccineCompReportJPanel(userProcessContainer, account,ePrise,business);
+        userProcessContainer.add("vacreportCompJPanel", vacreportCompJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnVacStatActionPerformed
+
+    private void btnInsureStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsureStatActionPerformed
+        // TODO add your handling code here:
+                int selectedRow = insureTable.getSelectedRow();
+        if(selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a InsuranceCompany from table!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+    }//GEN-LAST:event_btnInsureStatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHosp;
+    private javax.swing.JButton btnHospStat;
+    private javax.swing.JButton btnInsure;
+    private javax.swing.JButton btnInsureStat;
+    private javax.swing.JButton btnLab;
+    private javax.swing.JButton btnLabStat;
+    private javax.swing.JButton btnPharma;
+    private javax.swing.JButton btnPharmaStat;
+    private javax.swing.JButton btnVac;
+    private javax.swing.JButton btnVacStat;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTable hospTable;
+    private javax.swing.JTable insureTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
+    private javax.swing.JTable labTable;
+    private javax.swing.JComboBox networkJComboBox;
+    private javax.swing.JTable pharmaTable;
+    private javax.swing.JTable vacTable;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

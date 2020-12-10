@@ -55,6 +55,10 @@ public class EnterpriseDirectory {
             enterprise=new FDAEnterprise(name);
             enterpriseList.add(enterprise);
         }
+        if(type==Enterprise.EnterpriseType.HealthDept){
+            enterprise=new HealthDeptEnterprise(name);
+            enterpriseList.add(enterprise);
+        }        
         return enterprise;
     }
 
