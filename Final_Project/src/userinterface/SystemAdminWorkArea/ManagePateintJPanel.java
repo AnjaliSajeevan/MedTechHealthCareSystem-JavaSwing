@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,14 +34,16 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
      UserAccount account;
+     
    public ManagePateintJPanel(JPanel userProcessContainer, EcoSystem ecosystem) {
           initComponents();
-          this.userProcessContainer=userProcessContainer;
+        this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
         populatePatientTable();
     }
  public void populatePatientTable(){
         DefaultTableModel model = (DefaultTableModel)patientTable.getModel();
+        
         model.setRowCount(0);
         List<Patient> vaccinetestList = ecosystem.getPatientDirectory().getpatientlist();
         for(Patient tester: vaccinetestList){
@@ -68,14 +71,24 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
         btnCreatePateint = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnchart = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        btnBack.setText("BACK");
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\backIcon.png")); // NOI18N
+        btnBack.setContentAreaFilled(false);
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
+        patientTable.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        patientTable.setForeground(new java.awt.Color(0, 102, 102));
         patientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -97,62 +110,115 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(patientTable);
 
-        btnCreatePateint.setText("Create Patient");
+        btnCreatePateint.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnCreatePateint.setForeground(new java.awt.Color(0, 102, 102));
+        btnCreatePateint.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\createPatient.png")); // NOI18N
+        btnCreatePateint.setText("Create Patient's Profile");
+        btnCreatePateint.setContentAreaFilled(false);
         btnCreatePateint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreatePateintActionPerformed(evt);
             }
         });
 
-        jButton1.setText("View Patient");
+        jButton1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 102, 102));
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\viewPatient.png")); // NOI18N
+        jButton1.setText("View Patient's Details");
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        btnchart.setText("chart");
+        btnchart.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnchart.setForeground(new java.awt.Color(0, 102, 102));
+        btnchart.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\chart.png")); // NOI18N
+        btnchart.setText("  See Statistic ");
+        btnchart.setContentAreaFilled(false);
         btnchart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnchartActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setText("Manage Patient's Details");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\ManagePatient.png")); // NOI18N
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\ManagePatient1.png")); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel4.setText("Patient's Details");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCreatePateint, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(btnCreatePateint)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnchart))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(450, 450, 450))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addGap(183, 183, 183)
+                        .addComponent(jLabel5)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnchart, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(45, 45, 45)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreatePateint)
-                    .addComponent(jButton1)
-                    .addComponent(btnchart))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(btnBack)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCreatePateint)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnchart)
+                .addContainerGap(433, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -231,6 +297,11 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreatePateint;
     private javax.swing.JButton btnchart;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable patientTable;
     // End of variables declaration//GEN-END:variables

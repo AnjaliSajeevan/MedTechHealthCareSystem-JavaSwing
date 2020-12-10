@@ -100,13 +100,13 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
                         .addGap(226, 226, 226)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(btnCovid1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(txtResult, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(btnCovid1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtResult, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(70, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -139,6 +139,17 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
 
     private void btnCovid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCovid1ActionPerformed
         // TODO add your handling code here:
+                 UserAccount pat1 = request.getPatient();
+        Map<String,Date> reqMap = request.getStatusMap();
+        reqMap.put("Patient alerted Covid Positive Result", new Date());
+        request.setStatusMap(reqMap);
+        request.setCovidCase(true);
+        request.setCompleteDate(new Date());
+        request.setMessage(txtResult.getText());
+          pat1.getLabPatientWorkQueue().updateLabPatientRequest(request, pat1.getLabPatientWorkQueue().getLabPatientRequestList());
+        business.getLabPatQueue().updateLabPatientRequest(request, business.getLabPatQueue().getLabPatientRequestList()); 
+                JOptionPane.showMessageDialog(null, "Patient Alerted!", "Information", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_btnCovid1ActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -155,6 +166,8 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
         request.setStatusMap(reqMap);
         request.setSender(account);
         request.setMessage(txtResult.getText());
+        request.setCompleteDate(new Date());
+        
         UserAccount pat1 = request.getPatient();
         pat1.getLabPatientWorkQueue().updateLabPatientRequest(request, pat1.getLabPatientWorkQueue().getLabPatientRequestList());
         business.getLabPatQueue().updateLabPatientRequest(request, business.getLabPatQueue().getLabPatientRequestList());
