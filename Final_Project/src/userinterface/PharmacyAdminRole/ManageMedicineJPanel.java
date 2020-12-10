@@ -99,8 +99,15 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         txtQuant = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
-        txtCond = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        btnEnt = new javax.swing.JRadioButton();
+        btnResp = new javax.swing.JRadioButton();
+        btnHeart = new javax.swing.JRadioButton();
+        btnFever = new javax.swing.JRadioButton();
+        btnDiab = new javax.swing.JRadioButton();
+        btnPain = new javax.swing.JRadioButton();
+        btnCovid = new javax.swing.JRadioButton();
+        btnOther = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
 
         btnUpdate.setText("Update Medicine");
@@ -184,29 +191,69 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Condition");
 
+        btnEnt.setText("ENT");
+        btnEnt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntActionPerformed(evt);
+            }
+        });
+
+        btnResp.setText("Respiratory problems");
+        btnResp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRespActionPerformed(evt);
+            }
+        });
+
+        btnHeart.setText("Heart-Related");
+        btnHeart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHeartActionPerformed(evt);
+            }
+        });
+
+        btnFever.setText("Fever");
+        btnFever.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeverActionPerformed(evt);
+            }
+        });
+
+        btnDiab.setText("Diabetes-Related");
+        btnDiab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiabActionPerformed(evt);
+            }
+        });
+
+        btnPain.setText("Painkiller");
+        btnPain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPainActionPerformed(evt);
+            }
+        });
+
+        btnCovid.setText("Covid-Relief");
+        btnCovid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCovidActionPerformed(evt);
+            }
+        });
+
+        btnOther.setText("Other");
+        btnOther.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOtherActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout medPanelLayout = new javax.swing.GroupLayout(medPanel);
         medPanel.setLayout(medPanelLayout);
         medPanelLayout.setHorizontalGroup(
             medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, medPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127))
             .addGroup(medPanelLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(medPanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCond, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96))
                     .addGroup(medPanelLayout.createSequentialGroup()
                         .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(medPanelLayout.createSequentialGroup()
@@ -222,34 +269,84 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                                 .addComponent(txtDose, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(medPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(medPanelLayout.createSequentialGroup()
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, medPanelLayout.createSequentialGroup()
+                                .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(medPanelLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(btnEnt)
+                                        .addGap(14, 14, 14)
+                                        .addComponent(btnResp)
+                                        .addGap(20, 20, 20))
+                                    .addGroup(medPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnCovid)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(medPanelLayout.createSequentialGroup()
+                                        .addComponent(btnDiab)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnPain))
+                                    .addGroup(medPanelLayout.createSequentialGroup()
+                                        .addComponent(btnHeart)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnFever)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnOther)))
+                                .addGap(424, 424, 424))))))
         );
         medPanelLayout.setVerticalGroup(
             medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, medPanelLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(medPanelLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, medPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtQuant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)))
                 .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel6)
+                    .addComponent(btnDiab)
+                    .addComponent(btnPain)
+                    .addComponent(btnCovid))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(txtCond, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(txtQuant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(btnEnt)
+                    .addComponent(btnResp)
+                    .addComponent(btnHeart)
+                    .addComponent(btnFever)
+                    .addComponent(btnOther))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(medPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jLabel5.setText("Manage Supplies");
@@ -259,16 +356,13 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114)
                 .addComponent(jLabel5)
                 .addGap(298, 298, 298))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(medPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +372,10 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(medPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -297,7 +394,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(medPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -313,7 +410,30 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         txtPrice.setText(String.valueOf(medicine.getPrice()));
         txtDose.setText(String.valueOf(medicine.getDosage()));
         txtQuant.setText(String.valueOf(medicine.getQuantity()));
-        txtCond.setText(String.valueOf(medicine.getCondition()));
+        switch(medicine.getCondition()){
+            case "Covid":
+                btnCovid.setSelected(true);
+                cond = "Covid";
+            case "Other":
+                btnOther.setSelected(true);
+                cond="Other";
+            case "Ent":
+                btnEnt.setSelected(true);
+                cond="Ent";
+            case "Diabetes":
+                btnDiab.setSelected(true);
+                cond="Diabetes";
+            case "Resp":
+                btnResp.setSelected(true);
+                cond="Resp";
+            case "Pain":
+                btnPain.setSelected(true);
+                cond="Pain";
+            case "Heart":
+                btnHeart.setSelected(true);
+                cond="Heart";
+                
+        }
         medPanel.setEnabled(true);
         btnCreate.setEnabled(false);
         btnSave.setEnabled(true);
@@ -328,9 +448,39 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         btnSave.setEnabled(false);
         if(!medName.equals("")){
             txtName.setText(medName);
-            txtCond.setText(cond);
+             switch(cond){
+            case "Covid":
+                btnCovid.setSelected(true);
+                cond = "Covid";
+            case "Other":
+                btnOther.setSelected(true);
+                cond="Other";
+            case "Ent":
+                btnEnt.setSelected(true);
+                cond="Ent";
+            case "Diabetes":
+                btnDiab.setSelected(true);
+                cond="Diabetes";
+            case "Resp":
+                btnResp.setSelected(true);
+                cond="Resp";
+            case "Pain":
+                btnPain.setSelected(true);
+                cond="Pain";
+            case "Heart":
+                btnHeart.setSelected(true);
+                cond="Heart";
+                
+        }
+                btnCovid.setEnabled(false);
+                btnOther.setEnabled(false);
+                btnEnt.setEnabled(false);
+                btnDiab.setEnabled(false);
+                btnResp.setEnabled(false);
+                btnPain.setEnabled(false);
+                 btnHeart.setEnabled(false);
             txtName.setEnabled(false);
-            txtCond.setEnabled(false);
+           
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -394,7 +544,8 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         medicine.setDosage(dose);
         medicine.setPrice(Double.parseDouble(txtPrice.getText()));
         medicine.setQuantity(quant);
-        medicine.setCondition(txtCond.getText());
+        medicine.setCondition(cond);
+        medicine.setUpdateDate();
         int dem = (medicine.getDemand() - medicine.getQuantity());
         if(dem <= 0){
             medicine.setDemand(0);
@@ -408,7 +559,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        if((txtName.getText().equals("")) || (txtPrice.getText().equals("")) ||(txtQuant.getText().equals(""))||(txtDose.getText().equals("") ||(txtCond.getText().equals("")))){
+        if((txtName.getText().equals("")) || (txtPrice.getText().equals("")) ||(txtQuant.getText().equals(""))||(txtDose.getText().equals("")) || cond.equals("")){
             JOptionPane.showMessageDialog(null, "Name, Dose, Quantity,Condition and Price are mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -434,8 +585,8 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             return;
         }
         Medicine med = new Medicine(txtName.getText(),Double.parseDouble(txtPrice.getText()),quant,dose);
-        med.setCondition(txtCond.getText());
-
+        med.setCondition(cond);
+        med.setUpdateDate();
         med.setDemand(0);
 
         enterprise.getMedicineCatalog().addMedicine(med);
@@ -443,12 +594,117 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Medicine Created successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCreateActionPerformed
 
+    private void btnEntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntActionPerformed
+        // TODO add your handling code here:
+                btnPain.setSelected(false);
+        btnResp.setSelected(false);
+        btnHeart.setSelected(false);
+        btnDiab.setSelected(false);
+        btnOther.setSelected(false);
+        btnFever.setSelected(false);
+        btnCovid.setSelected(false);
+        cond = "Ent";
+    }//GEN-LAST:event_btnEntActionPerformed
+
+    private void btnFeverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeverActionPerformed
+        // TODO add your handling code here:
+                btnPain.setSelected(false);
+        btnResp.setSelected(false);
+        btnHeart.setSelected(false);
+        btnDiab.setSelected(false);
+        btnCovid.setSelected(false);
+        btnOther.setSelected(false);
+        btnEnt.setSelected(false);
+        cond = "Fever";
+    }//GEN-LAST:event_btnFeverActionPerformed
+
+    private void btnDiabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiabActionPerformed
+        // TODO add your handling code here:
+                btnPain.setSelected(false);
+        btnResp.setSelected(false);
+        btnHeart.setSelected(false);
+        btnCovid.setSelected(false);
+        btnFever.setSelected(false);
+        btnOther.setSelected(false);
+        btnEnt.setSelected(false);
+        cond = "Diabetes";
+    }//GEN-LAST:event_btnDiabActionPerformed
+
+    private void btnPainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainActionPerformed
+        // TODO add your handling code here:
+                btnCovid.setSelected(false);
+        btnResp.setSelected(false);
+        btnHeart.setSelected(false);
+        btnDiab.setSelected(false);
+        btnFever.setSelected(false);
+        btnEnt.setSelected(false);
+        btnOther.setSelected(false);
+        cond = "Pain";
+    }//GEN-LAST:event_btnPainActionPerformed
+
+    private void btnCovidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCovidActionPerformed
+        // TODO add your handling code here:
+        btnPain.setSelected(false);
+        btnResp.setSelected(false);
+        btnHeart.setSelected(false);
+        btnDiab.setSelected(false);
+        btnFever.setSelected(false);
+        btnEnt.setSelected(false);
+        btnOther.setSelected(false);
+        cond = "Covid";
+        
+    }//GEN-LAST:event_btnCovidActionPerformed
+
+    private void btnHeartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeartActionPerformed
+        // TODO add your handling code here:
+                btnPain.setSelected(false);
+        btnResp.setSelected(false);
+        btnCovid.setSelected(false);
+        btnDiab.setSelected(false);
+        btnFever.setSelected(false);
+        btnEnt.setSelected(false);
+        btnOther.setSelected(false);
+        cond = "Heart";
+    }//GEN-LAST:event_btnHeartActionPerformed
+
+    private void btnRespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRespActionPerformed
+        // TODO add your handling code here:
+                btnPain.setSelected(false);
+        btnCovid.setSelected(false);
+        btnHeart.setSelected(false);
+        btnDiab.setSelected(false);
+        btnFever.setSelected(false);
+        btnEnt.setSelected(false);
+        btnOther.setSelected(false);
+        cond = "Resp";
+    }//GEN-LAST:event_btnRespActionPerformed
+
+    private void btnOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherActionPerformed
+        // TODO add your handling code here:
+                        btnPain.setSelected(false);
+        btnCovid.setSelected(false);
+        btnHeart.setSelected(false);
+        btnDiab.setSelected(false);
+        btnFever.setSelected(false);
+        btnEnt.setSelected(false);
+        btnResp.setSelected(false);
+        cond = "other";
+    }//GEN-LAST:event_btnOtherActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JRadioButton btnCovid;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JRadioButton btnDiab;
+    private javax.swing.JRadioButton btnEnt;
+    private javax.swing.JRadioButton btnFever;
+    private javax.swing.JRadioButton btnHeart;
+    private javax.swing.JRadioButton btnOther;
+    private javax.swing.JRadioButton btnPain;
     private javax.swing.JButton btnRemove;
+    private javax.swing.JRadioButton btnResp;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
@@ -460,7 +716,6 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel medPanel;
     private javax.swing.JTable medTable;
-    private javax.swing.JTextField txtCond;
     private javax.swing.JTextField txtDose;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;

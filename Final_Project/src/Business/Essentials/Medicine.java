@@ -5,6 +5,8 @@
  */
 package Business.Essentials;
 
+import java.util.Date;
+
 /**
  *
  * @author Manasa
@@ -16,6 +18,8 @@ public class Medicine {
     private int dosage;
     private int demand;
     private String condition;
+    private Date createDate;
+    private Date updateDate;
         private int id;
     private static int count = 1;
 
@@ -27,6 +31,7 @@ public class Medicine {
         this.price = price;
         this.quantity = quantity;
         this.dosage = dosage;
+        this.createDate = new Date();
     }
     public int getId() {
         return id;
@@ -77,6 +82,20 @@ public class Medicine {
 
     public void setDemand(int demand) {
         this.demand = demand;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate() {
+        this.updateDate = new Date();
     }
 
     @Override

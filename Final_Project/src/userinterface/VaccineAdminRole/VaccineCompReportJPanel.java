@@ -52,7 +52,6 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
-        this.account = account;
         this.enterprise = enterprise;
         populateSuccessChart();
         populateProjectTimeline();
@@ -60,6 +59,7 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
         populateConditionChart();
         populateLatestApprovals();
         populateOnGoingProjects();
+        valueLabel.setText(enterprise.getName());
     }
 public void populateSuccessChart(){
         int countFail = 0;
