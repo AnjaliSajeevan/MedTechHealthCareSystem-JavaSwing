@@ -75,7 +75,6 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtPolicyName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -87,11 +86,9 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         checkBoxFamily = new javax.swing.JCheckBox();
-        btnLab6 = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        btnPhar5 = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -103,7 +100,6 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         txtEmergencyRoomCare = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtPolicyMax = new javax.swing.JTextField();
-        btnBack = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -134,6 +130,16 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         checkBoxIndividual = new javax.swing.JCheckBox();
         btnSubmit = new javax.swing.JButton();
         jComboBoxAgeGroup = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -142,211 +148,319 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel1.setText("Create Insurance Policy");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 25, -1, -1));
-
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setText("Policy Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 143, -1, -1));
-        add(txtPolicyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 140, 117, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
+        txtPolicyName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtPolicyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 180, -1));
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel4.setText("Monthly Premium ($):");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(83, 103, 142));
         jLabel5.setText("Plan Features:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 110, -1, -1));
 
-        btnTele3.setBackground(new java.awt.Color(204, 204, 204));
+        btnTele3.setBackground(new java.awt.Color(255, 255, 255));
+        btnTele3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnTele3.setText("TeleHealth Services");
-        add(btnTele3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
+        add(btnTele3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 270, -1, -1));
 
-        btnVision4.setBackground(new java.awt.Color(204, 204, 204));
+        btnVision4.setBackground(new java.awt.Color(255, 255, 255));
+        btnVision4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnVision4.setText("Vision");
-        add(btnVision4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
+        add(btnVision4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 170, -1, -1));
 
-        btnHearing7.setBackground(new java.awt.Color(204, 204, 204));
+        btnHearing7.setBackground(new java.awt.Color(255, 255, 255));
+        btnHearing7.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnHearing7.setText("Hearing");
-        add(btnHearing7, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 320, -1, -1));
+        add(btnHearing7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 220, -1, -1));
 
-        btnFitness2.setBackground(new java.awt.Color(204, 204, 204));
+        btnFitness2.setBackground(new java.awt.Color(255, 255, 255));
+        btnFitness2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnFitness2.setText("Fitness Benifits");
-        add(btnFitness2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
+        add(btnFitness2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel6.setText("Age Group :");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel7.setText("Policy Type:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
-        checkBoxFamily.setBackground(new java.awt.Color(204, 204, 204));
+        checkBoxFamily.setBackground(new java.awt.Color(255, 255, 255));
+        checkBoxFamily.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         checkBoxFamily.setText("Family");
         checkBoxFamily.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 checkBoxFamilyMousePressed(evt);
             }
         });
-        add(checkBoxFamily, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
+        add(checkBoxFamily, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
 
-        btnLab6.setBackground(new java.awt.Color(204, 204, 204));
-        btnLab6.setText("Laboratory Services");
-        add(btnLab6, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(83, 103, 142));
         jLabel8.setText("Co-Payment After Deductable:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
+        jLabel9.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel9.setText("Primary Care ($):");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, -1, -1));
 
+        jLabel10.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel10.setText("Specialist Care ($):");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, -1, -1));
 
-        btnPhar5.setBackground(new java.awt.Color(204, 204, 204));
-        btnPhar5.setText("Pharmacy");
-        add(btnPhar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, -1, -1));
-
+        jLabel12.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel12.setText("Emergency Room Care ($):");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, -1, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
 
+        jLabel13.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel13.setText("Laboratory Services ($):");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, 170, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 200, -1));
 
+        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel14.setText("Surgery ($):");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 420, -1, -1));
-        add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 117, -1));
-        add(txtSpecialistCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 420, 50, -1));
-        add(txtPrimaryCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 50, -1));
-        add(txtSurgery, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 420, 50, -1));
-        add(txtLabServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 470, 50, -1));
-        add(txtEmergencyRoomCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 50, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 400, -1, -1));
 
+        txtMonthly.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 120, -1));
+
+        txtSpecialistCare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtSpecialistCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 400, 50, -1));
+
+        txtPrimaryCare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtPrimaryCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 50, -1));
+
+        txtSurgery.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtSurgery, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 400, 50, -1));
+
+        txtLabServices.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtLabServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 50, -1));
+
+        txtEmergencyRoomCare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtEmergencyRoomCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 50, -1));
+
+        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setText("Policy Maximum($):");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
-        add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 117, -1));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
 
-        btnBack.setText("<-Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 28, -1, -1));
+        txtPolicyMax.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 120, -1));
 
-        btnCreate.setBackground(new java.awt.Color(204, 204, 204));
-        btnCreate.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnCreate.setBackground(new java.awt.Color(0, 0, 0));
+        btnCreate.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        btnCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCreate.setText("Create Policy");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
-        add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 492, 160, 40));
+        add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 390, 190, 60));
 
         jLabel11.setText("Hospitals:");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, -1, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, -1, -1));
 
         jLabel16.setText("Laboratories:");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, -1, -1));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 630, -1, -1));
 
         jLabel17.setText("Pharmacy:");
-        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 690, -1, -1));
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 670, -1, -1));
 
-        add(jComboHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 610, 170, -1));
+        add(jComboHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 170, -1));
 
-        btnAddHospital.setBackground(new java.awt.Color(204, 204, 204));
+        btnAddHospital.setBackground(new java.awt.Color(0, 0, 0));
+        btnAddHospital.setForeground(new java.awt.Color(255, 255, 255));
         btnAddHospital.setText("Add");
         btnAddHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddHospitalActionPerformed(evt);
             }
         });
-        add(btnAddHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, -1, -1));
+        add(btnAddHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 590, -1, -1));
 
-        add(jComboLaboratories, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 650, 170, -1));
+        add(jComboLaboratories, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 630, 170, -1));
 
-        btnAddLaboratory.setBackground(new java.awt.Color(204, 204, 204));
+        btnAddLaboratory.setBackground(new java.awt.Color(0, 0, 0));
+        btnAddLaboratory.setForeground(new java.awt.Color(255, 255, 255));
         btnAddLaboratory.setText("Add");
         btnAddLaboratory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddLaboratoryActionPerformed(evt);
             }
         });
-        add(btnAddLaboratory, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 650, -1, -1));
+        add(btnAddLaboratory, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 630, -1, -1));
 
-        add(jComboPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 690, 170, -1));
+        add(jComboPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 670, 170, -1));
 
-        btnAddPharmacy.setBackground(new java.awt.Color(204, 204, 204));
+        btnAddPharmacy.setBackground(new java.awt.Color(0, 0, 0));
+        btnAddPharmacy.setForeground(new java.awt.Color(255, 255, 255));
         btnAddPharmacy.setText("Add");
         btnAddPharmacy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddPharmacyActionPerformed(evt);
             }
         });
-        add(btnAddPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 690, -1, -1));
+        add(btnAddPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 670, -1, -1));
 
-        btnDental.setBackground(new java.awt.Color(204, 204, 204));
+        btnDental.setBackground(new java.awt.Color(255, 255, 255));
+        btnDental.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnDental.setText("Dental");
-        add(btnDental, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        add(btnDental, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 170, -1, -1));
 
+        jLabel40.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel40.setText("Inpatient Admissions ($):");
-        add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 190, -1));
-        add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 50, -1));
+        add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 200, -1));
+
+        txtInpatients.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, 50, -1));
         add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 552, -1, -1));
 
         jList2.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratory:"));
+        jList2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jScrollPane2.setViewportView(jList2);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 607, 178, 140));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 590, 178, 140));
 
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacies"));
+        jList3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jScrollPane3.setViewportView(jList3);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 607, 178, 140));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 590, 178, 140));
 
         jListHospital.setBorder(javax.swing.BorderFactory.createTitledBorder("Hospitals :"));
+        jListHospital.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jListHospital.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(jListHospital);
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 610, 178, 140));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 590, 178, 140));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(83, 103, 142));
         jLabel18.setText("Add hospitals,laboratories and pharmacies to the insurancy policy network:");
-        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, -1, -1));
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, -1, -1));
 
+        jLabel21.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel21.setText("ZipCode:");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
-        add(txtPolicyName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, 110, -1));
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, -1, -1));
 
+        txtPolicyName1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtPolicyName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 120, -1));
+
+        jLabel42.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel42.setText("Annual Out-of Pocket ($):");
-        add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
-        add(txtDeductible4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 117, -1));
+        add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
 
+        txtDeductible4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtDeductible4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 120, -1));
+
+        jLabel23.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel23.setText("Annual Deductible ($):");
-        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
-        add(txtDeductible1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 117, -1));
+        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
-        checkBoxIndividual.setBackground(new java.awt.Color(204, 204, 204));
+        txtDeductible1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        add(txtDeductible1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 180, -1));
+
+        checkBoxIndividual.setBackground(new java.awt.Color(255, 255, 255));
+        checkBoxIndividual.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         checkBoxIndividual.setText("Individual");
         checkBoxIndividual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 checkBoxIndividualMousePressed(evt);
             }
         });
-        add(checkBoxIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
+        add(checkBoxIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
+        btnSubmit.setBackground(new java.awt.Color(0, 0, 0));
+        btnSubmit.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 780, 180, -1));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 780, 200, 60));
 
+        jComboBoxAgeGroup.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jComboBoxAgeGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18-30", "30-45", "45-60", "60-80", "80-100" }));
-        add(jComboBoxAgeGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
+        jComboBoxAgeGroup.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        add(jComboBoxAgeGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 180, -1));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 1110, 10));
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 1110, 10));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("CREATE INSURANCE POLICY");
+
+        btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\anjal\\Pictures\\back_to_75px.png")); // NOI18N
+        btnBack.setBorder(null);
+        btnBack.setBorderPainted(false);
+        btnBack.setContentAreaFilled(false);
+        btnBack.setRequestFocusEnabled(false);
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(305, 305, 305)
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, 100));
+
+        jLabel3.setText("All fields are mandatory(");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 840, 180, -1));
+
+        jLabel19.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel19.setText("*");
+        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, -1));
+
+        jLabel20.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel20.setText("*");
+        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 840, 10, -1));
+
+        jLabel22.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel22.setText("*");
+        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 840, 10, -1));
+
+        jLabel24.setText(")");
+        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 840, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -469,18 +583,18 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
             } else {
                 fitness = "No";
             }
-
-            if (btnLab6.isSelected()) {
-                laboratory = "Yes";
-            } else {
-                laboratory = "No";
-            }
-
-            if (btnPhar5.isSelected()) {
-                pharmacy = "Yes";
-            } else {
-                pharmacy = "No";
-            }
+//
+//            if (btnLab6.isSelected()) {
+//                laboratory = "Yes";
+//            } else {
+//                laboratory = "No";
+//            }
+//
+//            if (btnPhar5.isSelected()) {
+//                pharmacy = "Yes";
+//            } else {
+//                pharmacy = "No";
+//            }
 
             if (btnTele3.isSelected()) {
                 teleHealth = "Yes";
@@ -502,10 +616,10 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
             i.setFitness(fitness);
             i.setHearing(hearing);
             i.setInPatients(inpatients);
-            i.setLaboratory(laboratory);
+//            i.setLaboratory(laboratory);
             i.setMonthlyPremium(monthlyPremium);
             i.setOutOfPocket(OutOfPocket);
-            i.setPharmacy(pharmacy);
+//            i.setPharmacy(pharmacy);
             i.setPolicyMax(policyMax);
             i.setPolicyName(policyName);
             i.setSurgery(surgery);
@@ -696,8 +810,6 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton btnDental;
     private javax.swing.JRadioButton btnFitness2;
     private javax.swing.JRadioButton btnHearing7;
-    private javax.swing.JRadioButton btnLab6;
-    private javax.swing.JRadioButton btnPhar5;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JRadioButton btnTele3;
     private javax.swing.JRadioButton btnVision4;
@@ -717,9 +829,14 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
@@ -733,10 +850,13 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
     private javax.swing.JList<String> jListHospital;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField txtDeductible1;
     private javax.swing.JTextField txtDeductible4;
     private javax.swing.JTextField txtEmergencyRoomCare;

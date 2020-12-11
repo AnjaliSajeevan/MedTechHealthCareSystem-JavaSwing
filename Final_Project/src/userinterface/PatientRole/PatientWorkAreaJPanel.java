@@ -53,107 +53,170 @@ InsuranceAdminOrganization iOrg;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnRegisterForInsurance = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        btnRegisterForInsurance = new javax.swing.JButton();
         btnEmergency = new javax.swing.JButton();
         btnBookLab = new javax.swing.JButton();
         btnMedReq = new javax.swing.JButton();
-        lblUsername = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         btnPatientHistory = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblUsername1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        btnRegisterForInsurance.setText("Insurance Details");
-        btnRegisterForInsurance.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterForInsuranceActionPerformed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(236, 239, 246));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setText("Book Appointment Hospital");
+        jButton3.setBackground(new java.awt.Color(0, 153, 153));
+        jButton3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/icon.png"))); // NOI18N
+        jButton3.setText("Hospital Appointment ");
+        jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton3.setContentAreaFilled(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setOpaque(true);
+        jButton3.setVerifyInputWhenFocusTarget(false);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 250, 300));
 
+        btnRegisterForInsurance.setBackground(new java.awt.Color(89, 194, 180));
+        btnRegisterForInsurance.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnRegisterForInsurance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Capture1234.jpg"))); // NOI18N
+        btnRegisterForInsurance.setText("Insurance Details");
+        btnRegisterForInsurance.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnRegisterForInsurance.setContentAreaFilled(false);
+        btnRegisterForInsurance.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegisterForInsurance.setOpaque(true);
+        btnRegisterForInsurance.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRegisterForInsurance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterForInsuranceActionPerformed(evt);
+            }
+        });
+        add(btnRegisterForInsurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 250, 300));
+
+        btnEmergency.setBackground(new java.awt.Color(181, 198, 189));
+        btnEmergency.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnEmergency.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/5fd285314732b759274096.gif"))); // NOI18N
         btnEmergency.setText("Emergency- Ambulance ");
+        btnEmergency.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnEmergency.setContentAreaFilled(false);
+        btnEmergency.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmergency.setOpaque(true);
+        btnEmergency.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEmergency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmergencyActionPerformed(evt);
             }
         });
+        add(btnEmergency, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 250, 300));
 
+        btnBookLab.setBackground(new java.awt.Color(240, 249, 248));
+        btnBookLab.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnBookLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/5fd2812219e7c897593536.gif"))); // NOI18N
         btnBookLab.setText("Book Appointment for Lab");
+        btnBookLab.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnBookLab.setContentAreaFilled(false);
+        btnBookLab.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBookLab.setOpaque(true);
+        btnBookLab.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnBookLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBookLabActionPerformed(evt);
             }
         });
+        add(btnBookLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 250, 300));
 
+        btnMedReq.setBackground(new java.awt.Color(221, 221, 221));
+        btnMedReq.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnMedReq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/5fd2854932bed868141739.gif"))); // NOI18N
         btnMedReq.setText("Send Medicine Request");
+        btnMedReq.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnMedReq.setContentAreaFilled(false);
+        btnMedReq.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMedReq.setOpaque(true);
+        btnMedReq.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnMedReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMedReqActionPerformed(evt);
             }
         });
+        add(btnMedReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 460, 250, 300));
 
-        lblUsername.setText("<Value>");
-
-        jLabel2.setText("Welcome");
-
+        btnPatientHistory.setBackground(new java.awt.Color(86, 111, 165));
+        btnPatientHistory.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnPatientHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/Capture12345.jpg"))); // NOI18N
         btnPatientHistory.setText("Patient History");
+        btnPatientHistory.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPatientHistory.setContentAreaFilled(false);
+        btnPatientHistory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPatientHistory.setOpaque(true);
+        btnPatientHistory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnPatientHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPatientHistoryActionPerformed(evt);
             }
         });
+        add(btnPatientHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, 250, 300));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnRegisterForInsurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnPatientHistory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMedReq, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBookLab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
+        jPanel2.setBackground(new java.awt.Color(88, 98, 97));
+
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblUsername.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setText("<Value>");
+
+        lblUsername1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        lblUsername1.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername1.setText("WELCOME");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/5fd27b8aeba79306216883.gif"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblUsername1)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(lblUsername)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(195, 195, 195))
+                        .addGap(68, 68, 68))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsername)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(btnRegisterForInsurance)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBookLab)
-                .addGap(24, 24, 24)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(btnEmergency)
-                .addGap(17, 17, 17)
-                .addComponent(btnMedReq)
-                .addGap(18, 18, 18)
-                .addComponent(btnPatientHistory)
-                .addGap(84, 84, 84))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(lblUsername1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblUsername)))
+                .addContainerGap(384, Short.MAX_VALUE))
         );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 850));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterForInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterForInsuranceActionPerformed
@@ -239,11 +302,10 @@ InsuranceAdminOrganization iOrg;
     private javax.swing.JButton btnPatientHistory;
     private javax.swing.JButton btnRegisterForInsurance;
     private javax.swing.JButton jButton3;
-
-    private javax.swing.JButton jButton4;
-
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblUsername1;
     // End of variables declaration//GEN-END:variables
 }
