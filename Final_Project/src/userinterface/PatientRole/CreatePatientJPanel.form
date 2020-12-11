@@ -64,7 +64,7 @@
                       <Component id="jLabel11" min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" pref="18" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" pref="26" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
           </Group>
@@ -1096,14 +1096,14 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\sayu\Desktop\12_9\Final_Project\Final_Project\src\Pictures\personal.png"/>
+                  <Image iconType="3" name="/Pictures/personal.png"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel23">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\sayu\Desktop\12_9\Final_Project\Final_Project\src\Pictures\identification.png"/>
+                  <Image iconType="3" name="/Pictures/identification.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -1132,7 +1132,7 @@
             <Component class="javax.swing.JLabel" name="jLabel30">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\sayu\Desktop\12_9\Final_Project\Final_Project\src\Pictures\health.png"/>
+                  <Image iconType="3" name="/Pictures/health.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -1141,7 +1141,7 @@
             <Component class="javax.swing.JLabel" name="jLabel40">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\sayu\Desktop\12_9\Final_Project\Final_Project\src\Pictures\biometric.png"/>
+                  <Image iconType="3" name="/Pictures/biometric.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -1175,7 +1175,7 @@
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\sayu\Desktop\12_9\Final_Project\Final_Project\src\Pictures\back.png"/>
+          <Image iconType="3" name="/Pictures/back.png"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -1192,7 +1192,7 @@
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\sayu\Desktop\12_9\Final_Project\Final_Project\src\Pictures\patient1.png"/>
+          <Image iconType="3" name="/Pictures/patient1.png"/>
         </Property>
       </Properties>
     </Component>

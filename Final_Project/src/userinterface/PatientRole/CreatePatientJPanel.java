@@ -367,9 +367,9 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         });
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel22.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\personal.png")); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/personal.png"))); // NOI18N
 
-        jLabel23.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\identification.png")); // NOI18N
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/identification.png"))); // NOI18N
 
         jLabel36.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(255, 0, 51));
@@ -379,9 +379,9 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         jLabel38.setForeground(new java.awt.Color(255, 0, 51));
         jLabel38.setText("*");
 
-        jLabel30.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\health.png")); // NOI18N
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/health.png"))); // NOI18N
 
-        jLabel40.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\biometric.png")); // NOI18N
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/biometric.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -702,7 +702,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setFont(new java.awt.Font("Comic Sans MS", 3, 11)); // NOI18N
         btnBack.setForeground(new java.awt.Color(0, 102, 102));
-        btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\back.png")); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/back.png"))); // NOI18N
         btnBack.setBorder(null);
         btnBack.setContentAreaFilled(false);
         btnBack.setPreferredSize(new java.awt.Dimension(125, 99));
@@ -712,7 +712,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\patient1.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/patient1.png"))); // NOI18N
 
         jLabel41.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(0, 102, 102));
@@ -754,7 +754,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 26, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
         );
