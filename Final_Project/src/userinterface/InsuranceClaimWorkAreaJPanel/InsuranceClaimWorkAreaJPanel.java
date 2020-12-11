@@ -12,9 +12,14 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ClaimWorkRequest;
 import Business.WorkQueue.InsuranceWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import userinterface.InsuranceAdminWorkArea.ViewPolicyWorkAreaJPanel;
 
@@ -38,6 +43,21 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         this.account=account;
         this.userProcessContainer=userProcessContainer;
+        
+               jScrollPane1.getViewport().setBackground(Color.WHITE);
+        UIManager.put("tblClaim.gridColor", new ColorUIResource(Color.BLACK));
+       
+        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(Color.BLACK);
+         headerRenderer.setForeground(Color.WHITE);
+
+        for (int i = 0; i < tblClaim.getModel().getColumnCount(); i++) {
+            tblClaim.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        tblClaim.setShowGrid(true);
+       tblClaim.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+    
         populate();
     }
 
@@ -82,8 +102,12 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
         viewPolicy = new javax.swing.JButton();
         btnAccept = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setText("Insurance Claim Work Area");
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel1.setText("INSURANCE CLAIM WORK AREA");
 
         tblClaim.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,6 +125,8 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblClaim.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        tblClaim.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblClaim);
         if (tblClaim.getColumnModel().getColumnCount() > 0) {
             tblClaim.getColumnModel().getColumn(0).setResizable(false);
@@ -133,41 +159,47 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/5fd2f31a7de6f520844542.gif"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(333, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(291, 291, 291))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(viewPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111)
-                        .addComponent(btnAccept)
-                        .addGap(164, 164, 164)
-                        .addComponent(jButton4))
+                        .addGap(177, 177, 177)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viewPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(160, 160, 160)
+                                .addComponent(btnAccept)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(386, 386, 386)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(371, 371, 371)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(98, 98, 98)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewPolicy)
                     .addComponent(btnAccept)
-                    .addComponent(jButton4)
-                    .addComponent(viewPolicy))
-                .addContainerGap(213, Short.MAX_VALUE))
+                    .addComponent(jButton4))
+                .addGap(78, 78, 78)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -239,6 +271,7 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblClaim;
     private javax.swing.JButton viewPolicy;
