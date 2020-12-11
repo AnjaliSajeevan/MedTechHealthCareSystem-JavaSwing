@@ -225,7 +225,7 @@ public void initializePage(){
             }
         });
 
-        backJButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\back.png")); // NOI18N
+        backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/back.png"))); // NOI18N
         backJButton.setContentAreaFilled(false);
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,7 +233,7 @@ public void initializePage(){
             }
         });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\viewProfile.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/viewProfile.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 102, 102));
@@ -340,10 +340,10 @@ public void initializePage(){
         jLabel13.setForeground(new java.awt.Color(0, 102, 102));
         jLabel13.setText("3. Health Record");
 
-        jLabel30.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\health.png")); // NOI18N
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/health.png"))); // NOI18N
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel22.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\personal.png")); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/personal.png"))); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 102, 102));
@@ -361,7 +361,7 @@ public void initializePage(){
         jLabel10.setForeground(new java.awt.Color(0, 102, 102));
         jLabel10.setText("2. Identification Records");
 
-        jLabel23.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\identification.png")); // NOI18N
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/identification.png"))); // NOI18N
 
         jLabel37.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(0, 102, 102));
@@ -391,7 +391,7 @@ public void initializePage(){
         jLabel12.setForeground(new java.awt.Color(0, 102, 102));
         jLabel12.setText("4. Biometrics Record");
 
-        jLabel40.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\biometric.png")); // NOI18N
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/biometric.png"))); // NOI18N
 
         labelFullPic.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 102, 102)));
         labelFullPic.setMaximumSize(new java.awt.Dimension(700, 700));
