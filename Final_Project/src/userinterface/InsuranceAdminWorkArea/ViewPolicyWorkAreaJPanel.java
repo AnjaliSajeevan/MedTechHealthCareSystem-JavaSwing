@@ -8,6 +8,7 @@ package userinterface.InsuranceAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.InsurancePolicy.InsurancePolicy;
+import Business.Network.Network;
 import Business.Patient.Patient;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -15,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Position;
 
 /**
  *
@@ -34,48 +36,71 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.i = i;
-        
-            txtPolicyMax.setEnabled(false);
-            txtPolicyName.setEnabled(false);
-            txtMonthly.setEnabled(false); 
-            txtMin.setEnabled(false);
-            txtPrimaryCare.setEnabled(false);
-            txtAnnualOut.setEnabled(false);
-            txtSpecialistCare.setEnabled(false); 
-            txtEmergencyRoomCare.setEnabled(false);
-            txtSurgery.setEnabled(false);
-            txtLabServices.setEnabled(false);
-            txtInpatients.setEnabled(false);
-            txtZipCode.setEnabled(false);
-            txtMin.setEnabled(false);
-            txtPolicyType.setEnabled(false);
-            
-            
-            saveUpdateBtn.setEnabled(false);
-            viewUpdateBtn.setEnabled(true);
-        
-        
-            txtPolicyMax.setText(i.getPolicyMax());
-            txtPolicyName.setText(i.getPolicyName());
-            txtMonthly.setText(String.valueOf(i.getMonthlyPremium())); 
-            txtMin.setText(String.valueOf(i.getDeductable()));
-            txtPrimaryCare.setText(String.valueOf(i.getPrimaryCare()));
-            txtAnnualOut.setText(i.getOutOfPocket());
-            txtSpecialistCare.setText(String.valueOf(i.getSpecialist())); 
-            txtEmergencyRoomCare.setText(String.valueOf(i.getEmergency()));
-            txtSurgery.setText(String.valueOf(i.getEmergency()));
-            txtLabServices.setText(String.valueOf(i.getEmergency()));
-            txtInpatients.setText(String.valueOf(i.getEmergency()));
-            txtZipCode.setText(i.getZipCode());
-            txtMin.setText(i.getAgeGroup());
-            txtPolicyType.setText(i.getPolicyType());
-            populateTable();
-            populatePharmacy();
-            populateLaboratory();
-            populateHospitals();
-            populatePatients();
-          
+
+        txtPolicyMax.setEnabled(false);
+        txtPolicyName.setEnabled(false);
+        txtMonthly.setEnabled(false);
+        txtMin.setEnabled(false);
+        txtPrimaryCare.setEnabled(false);
+        txtAnnualOut.setEnabled(false);
+        txtSpecialistCare.setEnabled(false);
+        txtEmergencyRoomCare.setEnabled(false);
+        txtSurgery.setEnabled(false);
+        txtLabServices.setEnabled(false);
+        txtInpatients.setEnabled(false);
+        txtZipCode.setEnabled(false);
+        txtMin.setEnabled(false);
+        txtPolicyType.setEnabled(false);
+
+        saveUpdateBtn.setEnabled(false);
+        viewUpdateBtn.setEnabled(true);
+
+        txtPolicyMax.setText(i.getPolicyMax());
+        txtPolicyName.setText(i.getPolicyName());
+        txtMonthly.setText(String.valueOf(i.getMonthlyPremium()));
+        txtMin.setText(String.valueOf(i.getDeductable()));
+        txtPrimaryCare.setText(String.valueOf(i.getPrimaryCare()));
+        txtAnnualOut.setText(i.getOutOfPocket());
+        txtSpecialistCare.setText(String.valueOf(i.getSpecialist()));
+        txtEmergencyRoomCare.setText(String.valueOf(i.getEmergency()));
+        txtSurgery.setText(String.valueOf(i.getEmergency()));
+        txtLabServices.setText(String.valueOf(i.getEmergency()));
+        txtInpatients.setText(String.valueOf(i.getEmergency()));
+        txtZipCode.setText(i.getZipCode());
+        txtMin.setText(i.getAgeGroup());
+        txtPolicyType.setText(i.getPolicyType());
+        populateTable();
+        populatePharmacy();
+        populateLaboratory();
+        populateHospitals();
+        populatePatients();
+        for (Network network : ecosystem.getNetworkList()) {
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if (e.getEnterpriseType().getValue().equals("Hospital")) {
+                    String check1 = e.getName();
+                    int index = HospitalList.getNextMatch(check1, 0, Position.Bias.Forward);
+                    if (index == -1) {
+                        jComboHospital.addItem(e.getName());
+                    }
+                } else if (e.getEnterpriseType().getValue().equals("Pharmacy")) {
+                    String check1 = e.getName();
+                    int index = PharmacyList.getNextMatch(check1, 0, Position.Bias.Forward);
+                    if (index == -1) {
+                        jComboPharmacy.addItem(e.getName());
+                    }
+                } else if (e.getEnterpriseType().getValue().equals("Laboratory")) {
+                    String check1 = e.getName();
+                    int index = LaboratoryList.getNextMatch(check1, 0, Position.Bias.Forward);
+                    if (index == -1) {
+                        jComboLaboratories.addItem(e.getName());
+
+                    }
+                }
+            }
+        }
     }
+
+    
     
     
     public void populateTable()
@@ -102,8 +127,6 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         txtPolicyName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -147,112 +170,128 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         PatientList = new javax.swing.JList<>();
         jComboBoxAgeGroup = new javax.swing.JComboBox<>();
         txtDeductible2 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jComboHospital = new javax.swing.JComboBox<>();
+        jComboLaboratories = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jComboPharmacy = new javax.swing.JComboBox<>();
+        btnAddHospital = new javax.swing.JButton();
+        btnAddLaboratory = new javax.swing.JButton();
+        btnAddPharmacy = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton3.setText("<-Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("View Insurance Policy");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
-        add(txtPolicyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 117, -1));
+        add(txtPolicyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 117, -1));
 
         jLabel2.setText("Policy Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 74, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         jLabel4.setText("Monthly Premium:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 190, -1, -1));
-        add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 190, 117, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 160, -1, -1));
+        add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 160, 80, -1));
 
         jLabel7.setText("Policy Type:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
 
         jLabel6.setText("Age Group :");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
-        add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 130, 110, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+        add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, 110, -1));
 
         jLabel15.setText("Policy Maximum:");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, -1, -1));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(83, 103, 142));
         jLabel8.setText("Co-Payment After Deductable:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
-        add(txtPrimaryCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 50, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        add(txtPrimaryCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 50, -1));
 
         jLabel9.setText("Primary Care:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         jLabel10.setText("Specialist Care:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, -1));
-        add(txtSpecialistCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 50, -1));
-        add(txtSurgery, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 310, 50, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, -1));
+        add(txtSpecialistCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 50, -1));
+        add(txtSurgery, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 50, -1));
 
         jLabel14.setText("Surgery:");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 70, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 320, 70, -1));
 
         jLabel13.setText("Laboratory Services:");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 150, -1));
-        add(txtLabServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 50, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 150, -1));
+        add(txtLabServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 50, -1));
         add(txtEmergencyRoomCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 50, -1));
 
         jLabel12.setText("Emergency Room Care:");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 170, -1));
-        add(txtPolicyType, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, 117, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 170, -1));
+        add(txtPolicyType, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 117, -1));
 
+        saveUpdateBtn.setBackground(new java.awt.Color(0, 0, 0));
+        saveUpdateBtn.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        saveUpdateBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveUpdateBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\anjal\\Pictures\\save_25px.png")); // NOI18N
         saveUpdateBtn.setText("Save");
+        saveUpdateBtn.setBorder(null);
+        saveUpdateBtn.setBorderPainted(false);
         saveUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveUpdateBtnActionPerformed(evt);
             }
         });
-        add(saveUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, 146, 54));
+        add(saveUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 760, 170, 70));
 
+        viewUpdateBtn.setBackground(new java.awt.Color(0, 0, 0));
+        viewUpdateBtn.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        viewUpdateBtn.setForeground(new java.awt.Color(255, 255, 255));
+        viewUpdateBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\anjal\\Pictures\\update_25px.png")); // NOI18N
         viewUpdateBtn.setText("Update");
+        viewUpdateBtn.setBorder(null);
+        viewUpdateBtn.setBorderPainted(false);
         viewUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewUpdateBtnActionPerformed(evt);
             }
         });
-        add(viewUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 710, 139, 54));
+        add(viewUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 760, 180, 70));
 
         jLabel39.setText("Annual Out-of Pocket:");
-        add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
-        add(txtAnnualOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 117, -1));
+        add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, -1, -1));
+        add(txtAnnualOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, 117, -1));
 
         jLabel18.setText("Annual Deductible :");
-        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
-        add(txtMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 100, -1));
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 110, -1, -1));
+        add(txtMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 60, -1));
 
         jLabel40.setText("Inpatient Admissions:");
-        add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 160, -1));
-        add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, 50, -1));
+        add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 270, 160, -1));
+        add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 50, -1));
 
         LaboratoryList.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratories included"));
         jScrollPane2.setViewportView(LaboratoryList);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, 180, 140));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 540, 180, 140));
 
         HospitalList.setBorder(javax.swing.BorderFactory.createTitledBorder("Hospitals included"));
         jScrollPane3.setViewportView(HospitalList);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 160, 140));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 160, 140));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Dental", "Laboratory", "Pharmacy", "Fitness", "Vision", "Hearing", "TeleHealth"
+                "Dental", "Fitness", "Vision", "Hearing", "TeleHealth"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -266,33 +305,119 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 800, 110));
+        add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 800, 110));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(83, 103, 142));
         jLabel5.setText("Plan Features:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
-        add(txtZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 110, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+        add(txtZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 110, -1));
 
         jLabel21.setText("ZipCode:");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
 
         PharmacyList.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacy included"));
         jScrollPane4.setViewportView(PharmacyList);
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 540, 160, 140));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 540, 160, 140));
 
         PatientList.setBorder(javax.swing.BorderFactory.createTitledBorder("Patients in this Policy"));
         jScrollPane6.setViewportView(PatientList);
 
-        add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 540, 190, 140));
+        add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 540, 190, 140));
 
         jComboBoxAgeGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18-30", "30-45", "45-60", "60-80", "80-100" }));
-        add(jComboBoxAgeGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
-        add(txtDeductible2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 100, -1));
+        add(jComboBoxAgeGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 70, -1));
+        add(txtDeductible2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 110, 80, -1));
+
+        jLabel11.setText("Hospitals:");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, -1, -1));
+
+        add(jComboHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 450, 170, -1));
+
+        add(jComboLaboratories, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 540, 170, -1));
+
+        jLabel16.setText("Laboratories:");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 510, -1, -1));
+
+        jLabel17.setText("Pharmacy:");
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 600, -1, -1));
+
+        add(jComboPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 630, 170, -1));
+
+        btnAddHospital.setBackground(new java.awt.Color(0, 0, 0));
+        btnAddHospital.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddHospital.setText("Add");
+        btnAddHospital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddHospitalActionPerformed(evt);
+            }
+        });
+        add(btnAddHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 450, -1, -1));
+
+        btnAddLaboratory.setBackground(new java.awt.Color(0, 0, 0));
+        btnAddLaboratory.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddLaboratory.setText("Add");
+        btnAddLaboratory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddLaboratoryActionPerformed(evt);
+            }
+        });
+        add(btnAddLaboratory, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 540, -1, -1));
+
+        btnAddPharmacy.setBackground(new java.awt.Color(0, 0, 0));
+        btnAddPharmacy.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddPharmacy.setText("Add");
+        btnAddPharmacy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPharmacyActionPerformed(evt);
+            }
+        });
+        add(btnAddPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 630, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("VIEW INSURANCE POLICY");
+
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\anjal\\Pictures\\back_to_75px.png")); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addGap(357, 357, 357)
+                .addComponent(jLabel1)
+                .addContainerGap(468, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton3)
+                .addGap(0, 15, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, 90));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 1100, 10));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 1100, 10));
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
@@ -365,6 +490,65 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnAddHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddHospitalActionPerformed
+
+        
+            String x = (String) jComboHospital.getSelectedItem();
+
+            i.addHospitals(x);
+
+            DefaultListModel DLM = new DefaultListModel();
+
+            for (int counter = 0; counter < i.getHospitalList().size(); counter++) {
+                DLM.addElement(i.getHospitalList().get(counter));
+            }
+
+            HospitalList.setModel(DLM);
+            int y = jComboHospital.getSelectedIndex();
+            jComboHospital.removeItemAt(y);
+        
+
+    }//GEN-LAST:event_btnAddHospitalActionPerformed
+
+    private void btnAddLaboratoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLaboratoryActionPerformed
+        
+            String x = (String) jComboLaboratories.getSelectedItem();
+
+            i.addLaboratory(x);
+
+            DefaultListModel DLL = new DefaultListModel();
+
+            for(int counter=0;counter<i.getLaboratoryList().size();counter++)
+            {DLL.addElement(i.getLaboratoryList().get(counter));
+            }
+
+            LaboratoryList.setModel(DLL);
+            int y=jComboLaboratories.getSelectedIndex();
+            jComboLaboratories.removeItemAt(y);
+      
+    }//GEN-LAST:event_btnAddLaboratoryActionPerformed
+
+    private void btnAddPharmacyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPharmacyActionPerformed
+        // TODO add your handling code here:
+        
+            String x = (String) jComboPharmacy.getSelectedItem();
+
+            i.addPharmacy(x);
+
+            DefaultListModel DLP = new DefaultListModel();
+
+            {for(int counter=0;counter<i.getPharmacyList().size();counter++)
+                {DLP.addElement(i.getPharmacyList().get(counter));
+                }
+
+                PharmacyList.setModel(DLP);
+                int y=jComboPharmacy.getSelectedIndex();
+                jComboPharmacy.removeItemAt(y);
+            }
+        
+
+    }//GEN-LAST:event_btnAddPharmacyActionPerformed
+
     public void populateHospitals()
     {DefaultListModel DLM = new DefaultListModel();
             
@@ -406,14 +590,23 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JList<String> LaboratoryList;
     private javax.swing.JList<String> PatientList;
     private javax.swing.JList<String> PharmacyList;
+    private javax.swing.JButton btnAddHospital;
+    private javax.swing.JButton btnAddLaboratory;
+    private javax.swing.JButton btnAddPharmacy;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBoxAgeGroup;
+    private javax.swing.JComboBox<String> jComboHospital;
+    private javax.swing.JComboBox<String> jComboLaboratories;
+    private javax.swing.JComboBox<String> jComboPharmacy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
@@ -425,11 +618,14 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton saveUpdateBtn;
     private javax.swing.JTextField txtAnnualOut;
