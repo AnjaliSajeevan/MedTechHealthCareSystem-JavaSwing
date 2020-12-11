@@ -42,6 +42,8 @@ public class ClaimWorkRequest {
     public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
+
+
     
     public String getInsuranceNo() {
         return insuranceNo;

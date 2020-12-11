@@ -39,7 +39,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
     UserAccount account;
     InsuranceAdminOrganization iOrg;
     String i;
-    ClaimWorkRequest cr;
+    ClaimWorkRequest cr ;
     public PatientInsuranceWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecosystem,InsuranceAdminOrganization organization) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
@@ -640,7 +640,8 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        cr.setFeedback(jTextField1.getText());
+        String s= jTextField1.getText();
+        cr.setFeedback(s);
         cr.setStatus("Feedback Provided");
         
     }//GEN-LAST:event_jButton1ActionPerformed

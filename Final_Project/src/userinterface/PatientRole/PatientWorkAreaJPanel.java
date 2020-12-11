@@ -59,14 +59,13 @@ InsuranceAdminOrganization iOrg;
         btnBookLab = new javax.swing.JButton();
         btnMedReq = new javax.swing.JButton();
         btnPatientHistory = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        lblUsername = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(20, 18, 30));
+        setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(236, 239, 246));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -85,7 +84,7 @@ InsuranceAdminOrganization iOrg;
                 jButton3ActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, 250, 300));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 250, 300));
 
         btnRegisterForInsurance.setBackground(new java.awt.Color(89, 194, 180));
         btnRegisterForInsurance.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -101,7 +100,7 @@ InsuranceAdminOrganization iOrg;
                 btnRegisterForInsuranceActionPerformed(evt);
             }
         });
-        add(btnRegisterForInsurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 250, 300));
+        add(btnRegisterForInsurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 250, 300));
 
         btnEmergency.setBackground(new java.awt.Color(181, 198, 189));
         btnEmergency.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -117,7 +116,7 @@ InsuranceAdminOrganization iOrg;
                 btnEmergencyActionPerformed(evt);
             }
         });
-        add(btnEmergency, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 250, 300));
+        add(btnEmergency, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 250, 300));
 
         btnBookLab.setBackground(new java.awt.Color(240, 249, 248));
         btnBookLab.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -133,7 +132,7 @@ InsuranceAdminOrganization iOrg;
                 btnBookLabActionPerformed(evt);
             }
         });
-        add(btnBookLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 250, 300));
+        add(btnBookLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 250, 300));
 
         btnMedReq.setBackground(new java.awt.Color(221, 221, 221));
         btnMedReq.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -149,7 +148,7 @@ InsuranceAdminOrganization iOrg;
                 btnMedReqActionPerformed(evt);
             }
         });
-        add(btnMedReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 520, 250, 300));
+        add(btnMedReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 460, 250, 300));
 
         btnPatientHistory.setBackground(new java.awt.Color(86, 111, 165));
         btnPatientHistory.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -165,32 +164,7 @@ InsuranceAdminOrganization iOrg;
                 btnPatientHistoryActionPerformed(evt);
             }
         });
-        add(btnPatientHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 150, 250, 300));
-
-        jPanel1.setBackground(new java.awt.Color(73, 42, 63));
-
-        lblUsername.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsername.setText("<Value>");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(620, Short.MAX_VALUE)
-                .addComponent(lblUsername)
-                .addGap(548, 548, 548))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(lblUsername)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1260, 120));
+        add(btnPatientHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, 250, 300));
 
         jPanel2.setBackground(new java.awt.Color(35, 33, 54));
 
@@ -202,6 +176,10 @@ InsuranceAdminOrganization iOrg;
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Patient Portal");
+
+        lblUsername.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setText("<Value>");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -218,20 +196,26 @@ InsuranceAdminOrganization iOrg;
                             .addComponent(jLabel10)
                             .addComponent(jLabel9))
                         .addGap(36, 36, 36))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(lblUsername)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(256, 256, 256)
+                .addGap(215, 215, 215)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addComponent(lblUsername)
+                .addContainerGap(393, Short.MAX_VALUE))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 740));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 850));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterForInsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterForInsuranceActionPerformed
@@ -320,7 +304,6 @@ InsuranceAdminOrganization iOrg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
