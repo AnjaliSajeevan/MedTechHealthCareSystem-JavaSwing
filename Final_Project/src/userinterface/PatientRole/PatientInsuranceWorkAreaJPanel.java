@@ -221,6 +221,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/back_to_501px.png"))); // NOI18N
         btnBack.setBorder(null);
         btnBack.setBorderPainted(false);
         btnBack.setContentAreaFilled(false);
