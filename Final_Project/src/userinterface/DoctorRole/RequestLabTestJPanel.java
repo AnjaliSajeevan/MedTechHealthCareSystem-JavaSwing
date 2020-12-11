@@ -64,19 +64,28 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnSubmit.setBackground(new java.awt.Color(0, 0, 0));
+        btnSubmit.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
-        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 200, 40));
-        add(txtResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 260, -1));
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 200, 60));
+        add(txtResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, 260, -1));
 
-        backJButton.setText("<<Back");
+        backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/back_to_501px.png"))); // NOI18N
+        backJButton.setToolTipText("");
+        backJButton.setBorder(null);
+        backJButton.setBorderPainted(false);
+        backJButton.setContentAreaFilled(false);
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -84,21 +93,28 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("Patient Diagonosis");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 180, 30));
+        enterpriseLabel.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        enterpriseLabel.setText("PATIENT DIAGNOSIS");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 260, 30));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setText("Message");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, 20));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, 20));
 
+        jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Yes" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, -1, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel4.setText("Admit Patient:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
 
+        jComboBox2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Room", "Deluxe Room", "ICU" }));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 160, -1));
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 160, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/5fd2e9831848f978715749_1.gif"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, -1, 330));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -182,6 +198,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtResult;
