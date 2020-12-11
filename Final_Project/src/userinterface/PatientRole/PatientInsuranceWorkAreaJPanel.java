@@ -205,6 +205,10 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         btnInsuranceRegistration.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnInsuranceRegistration.setForeground(new java.awt.Color(255, 255, 255));
         btnInsuranceRegistration.setText("Insurance Registraton ");
+        btnInsuranceRegistration.setBorder(null);
+        btnInsuranceRegistration.setBorderPainted(false);
+        btnInsuranceRegistration.setContentAreaFilled(false);
+        btnInsuranceRegistration.setOpaque(true);
         btnInsuranceRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsuranceRegistrationActionPerformed(evt);
@@ -215,6 +219,10 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         btnInsuranceClaim.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnInsuranceClaim.setForeground(new java.awt.Color(255, 255, 255));
         btnInsuranceClaim.setText("Insurance Claim");
+        btnInsuranceClaim.setBorder(null);
+        btnInsuranceClaim.setBorderPainted(false);
+        btnInsuranceClaim.setContentAreaFilled(false);
+        btnInsuranceClaim.setOpaque(true);
         btnInsuranceClaim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsuranceClaimActionPerformed(evt);
@@ -235,12 +243,12 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         tab.setLayout(tabLayout);
         tabLayout.setHorizontalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnInsuranceRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-            .addComponent(btnInsuranceClaim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnInsuranceClaim, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
             .addGroup(tabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnInsuranceRegistration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         tabLayout.setVerticalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
