@@ -15,6 +15,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import static java.lang.Boolean.FALSE;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -66,6 +68,38 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
          this.setSize(1466, 902);
                  populateAllDrugRequestTable();
         populateTimeline("");
+        jTabbedPane1.setBackground(Color.WHITE);
+                DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(java.awt.Color.BLACK);
+         headerRenderer.setForeground(java.awt.Color.WHITE);
+
+        for (int i = 0; i < activeTable.getModel().getColumnCount(); i++) {
+            activeTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        activeTable.setShowGrid(true);
+       activeTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+
+        for (int i = 0; i < approveTable.getModel().getColumnCount(); i++) {
+            approveTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        approveTable.setShowGrid(true);
+       approveTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+       
+               for (int i = 0; i < responseTable.getModel().getColumnCount(); i++) {
+            responseTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        responseTable.setShowGrid(true);
+       responseTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+
+        for (int i = 0; i < timelineTable.getModel().getColumnCount(); i++) {
+            timelineTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        timelineTable.setShowGrid(true);
+       timelineTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
     }
      public void populateAllDrugRequestTable(){
              DefaultTableModel model = (DefaultTableModel)responseTable.getModel();
@@ -456,7 +490,6 @@ public void populateProjectTimeline(){
                 .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        activeTable.setBackground(new java.awt.Color(204, 204, 204));
         activeTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         activeTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
         activeTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -505,7 +538,6 @@ public void populateProjectTimeline(){
 
         jTabbedPane1.addTab("OnGoing Projects", jPanel1);
 
-        approveTable.setBackground(new java.awt.Color(204, 204, 204));
         approveTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         approveTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
         approveTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -544,7 +576,7 @@ public void populateProjectTimeline(){
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -582,7 +614,7 @@ public void populateProjectTimeline(){
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(successpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Success Rate", jPanel3);
@@ -619,7 +651,7 @@ public void populateProjectTimeline(){
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ageGroupPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Age-Group Analysis", jPanel4);
@@ -696,7 +728,8 @@ public void populateProjectTimeline(){
 
         jTabbedPane1.addTab("Vaccine Project Timeline", jPanel6);
 
-        responseTable.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
         responseTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         responseTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 12)); // NOI18N
         responseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -730,7 +763,6 @@ public void populateProjectTimeline(){
             }
         });
 
-        timelineTable.setBackground(new java.awt.Color(204, 204, 204));
         timelineTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         timelineTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
         timelineTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -764,20 +796,20 @@ public void populateProjectTimeline(){
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1017, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jScrollPane6)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(429, 429, 429)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(407, 407, 407))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTimeline)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -794,8 +826,8 @@ public void populateProjectTimeline(){
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1050, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -806,8 +838,8 @@ public void populateProjectTimeline(){
                         .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(73, 73, 73)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

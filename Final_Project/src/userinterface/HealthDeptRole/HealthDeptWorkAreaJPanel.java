@@ -461,13 +461,14 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHospStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLabStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPharmaStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnVacStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnInsureStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnInsureStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnHospStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLabStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPharmaStat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -514,7 +515,7 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         Enterprise ePrise = (Enterprise)labTable.getValueAt(selectedRow, 0);
-        LabReportJPanel labreportCompJPanel = new LabReportJPanel(userProcessContainer,ePrise,business);
+        LabReportJPanel labreportCompJPanel = new LabReportJPanel(userProcessContainer,account,ePrise,business);
         userProcessContainer.add("labreportCompJPanel", labreportCompJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);       
@@ -528,7 +529,7 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
          Enterprise ePrise = (Enterprise)pharmaTable.getValueAt(selectedRow, 0);
-        PharmaReportJPanel pharreportCompJPanel = new PharmaReportJPanel(userProcessContainer,ePrise,business);
+        PharmaReportJPanel pharreportCompJPanel = new PharmaReportJPanel(userProcessContainer,account,ePrise,business);
         userProcessContainer.add("pharreportCompJPanel", pharreportCompJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

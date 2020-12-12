@@ -17,11 +17,14 @@ import Business.Vaccine.VaccineTester;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import userinterface.VaccineScientistRole.ViewVaccineJPanel;
 
@@ -52,6 +55,31 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         populateStaffBox();
         populateDrugRequestTable();
          populateLabTestTable();
+                 DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(java.awt.Color.BLACK);
+         headerRenderer.setForeground(java.awt.Color.WHITE);
+
+        for (int i = 0; i < vaccineRequestTable.getModel().getColumnCount(); i++) {
+            vaccineRequestTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        vaccineRequestTable.setShowGrid(true);
+       vaccineRequestTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+
+        for (int i = 0; i < testorsTable.getModel().getColumnCount(); i++) {
+            testorsTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        testorsTable.setShowGrid(true);
+       testorsTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+
+        for (int i = 0; i < testRequestTable.getModel().getColumnCount(); i++) {
+            testRequestTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        testRequestTable.setShowGrid(true);
+       testRequestTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+       jTabbedPane1.setBackground(Color.WHITE);
     }
 
     /**
@@ -221,7 +249,6 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        vaccineRequestTable.setBackground(new java.awt.Color(204, 204, 204));
         vaccineRequestTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         vaccineRequestTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 12)); // NOI18N
         vaccineRequestTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -310,7 +337,6 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(testerSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
                 .addComponent(btnSelectTester, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
         );
@@ -340,7 +366,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -418,7 +444,6 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        testorsTable.setBackground(new java.awt.Color(204, 204, 204));
         testorsTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         testorsTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
         testorsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -546,7 +571,6 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        testRequestTable.setBackground(new java.awt.Color(204, 204, 204));
         testRequestTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         testRequestTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
         testRequestTable.setModel(new javax.swing.table.DefaultTableModel(

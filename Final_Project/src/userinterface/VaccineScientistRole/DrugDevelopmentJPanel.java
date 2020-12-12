@@ -16,6 +16,7 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import static java.lang.Boolean.FALSE;
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,6 +32,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,6 +60,16 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
         this.vaccine = null;
         populateDrugProjectTable();
         this.setSize(1466, 902);
+                        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(java.awt.Color.BLACK);
+         headerRenderer.setForeground(java.awt.Color.WHITE);
+
+        for (int i = 0; i < drugProjectTable.getModel().getColumnCount(); i++) {
+            drugProjectTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        drugProjectTable.setShowGrid(true);
+       drugProjectTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
     }
         public void populateDrugProjectTable(){
           DefaultTableModel model = (DefaultTableModel)drugProjectTable.getModel();
@@ -151,8 +163,6 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        drugProjectTable.setBackground(new java.awt.Color(204, 204, 204));
-        drugProjectTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
         drugProjectTable.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
         drugProjectTable.setForeground(new java.awt.Color(0, 0, 51));
         drugProjectTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -180,8 +190,9 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Drug Project List");
 
-        btnProceed.setFont(new java.awt.Font("Sukhumvit Set", 0, 14)); // NOI18N
-        btnProceed.setForeground(new java.awt.Color(0, 0, 51));
+        btnProceed.setBackground(new java.awt.Color(0, 0, 51));
+        btnProceed.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        btnProceed.setForeground(new java.awt.Color(255, 255, 255));
         btnProceed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/proceedReq.png"))); // NOI18N
         btnProceed.setText("Proceed Drug Request");
         btnProceed.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
@@ -308,6 +319,7 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        backJButton1.setBackground(new java.awt.Color(255, 255, 255));
         backJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         backJButton1.setForeground(new java.awt.Color(0, 51, 153));
         backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home.png"))); // NOI18N
@@ -332,16 +344,16 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
                     .addGroup(introPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
-                .addGap(289, 289, 289)
-                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(221, 221, 221)
+                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
         );
         introPanelLayout.setVerticalGroup(
             introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(introPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, introPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(backJButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(introPanelLayout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

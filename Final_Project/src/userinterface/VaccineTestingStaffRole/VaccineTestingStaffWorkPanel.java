@@ -12,8 +12,10 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import userinterface.VaccineScientistRole.ViewVaccineJPanel;
 
@@ -46,6 +48,16 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         this.setSize(1466, 902);
 
         populateLabTestTable();
+                DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(java.awt.Color.BLACK);
+         headerRenderer.setForeground(java.awt.Color.WHITE);
+
+        for (int i = 0; i < testRequestTable.getModel().getColumnCount(); i++) {
+            testRequestTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        testRequestTable.setShowGrid(true);
+       testRequestTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
     }
 
     /**
