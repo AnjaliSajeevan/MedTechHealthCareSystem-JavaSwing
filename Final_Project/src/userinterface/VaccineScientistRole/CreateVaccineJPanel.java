@@ -108,7 +108,9 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
 
+        btnCreate.setBackground(new java.awt.Color(0, 0, 51));
         btnCreate.setFont(new java.awt.Font("Sukhumvit Set", 0, 18)); // NOI18N
+        btnCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/addMed.png"))); // NOI18N
         btnCreate.setText("CREATE VACCINE");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +137,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        backJButton.setBackground(new java.awt.Color(255, 255, 255));
         backJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         backJButton.setForeground(new java.awt.Color(0, 51, 153));
         backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home.png"))); // NOI18N
@@ -156,9 +159,9 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                 .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
-                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         introPanelLayout.setVerticalGroup(
             introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -614,10 +617,9 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(128, 128, 128)
                                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(95, 95, 95)
-                                .addComponent(jLabel3)
-                                .addGap(177, 177, 177)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabel3)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
         layout.setVerticalGroup(
@@ -632,11 +634,12 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                         .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(235, 235, 235)

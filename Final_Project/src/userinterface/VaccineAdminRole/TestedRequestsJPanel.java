@@ -15,6 +15,8 @@ import Business.Vaccine.Vaccine;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
 import static java.lang.Boolean.TRUE;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -49,6 +52,18 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
         populateTestedTable("");
         populateVaccines();
         populateFDAEnterprises();
+        jTabbedPane1.setBackground(Color.WHITE);
+                  DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(java.awt.Color.BLACK);
+         headerRenderer.setForeground(java.awt.Color.WHITE);
+
+        for (int i = 0; i < testRequestTable.getModel().getColumnCount(); i++) {
+            testRequestTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        testRequestTable.setShowGrid(true);
+       testRequestTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -416,13 +431,15 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtResult, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(326, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(btnRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Route Back", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         fdaBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -475,8 +492,8 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
                             .addComponent(fdaBox, 0, 322, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnFDA, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)
+                        .addComponent(btnFDA, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
                         .addComponent(jLabel11))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(294, 294, 294)
@@ -492,8 +509,8 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(btnFDA, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(btnFDA, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vaccinecomboBox1)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -505,7 +522,7 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtResult1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Send To FDA", jPanel3);

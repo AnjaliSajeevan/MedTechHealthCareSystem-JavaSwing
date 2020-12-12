@@ -14,6 +14,7 @@ import Business.Vaccine.Vaccine;
 import Business.WorkQueue.VaccineWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
 import static java.lang.Boolean.FALSE;
 import java.util.Collections;
 import java.util.Comparator;
@@ -29,6 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,6 +56,16 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
         this.business = business;
         this.enterprise = enterprise;
         populateDrugRequestTable();
+                        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(java.awt.Color.BLACK);
+         headerRenderer.setForeground(java.awt.Color.WHITE);
+
+        for (int i = 0; i < drugRequestTable.getModel().getColumnCount(); i++) {
+            drugRequestTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        drugRequestTable.setShowGrid(true);
+       drugRequestTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
         this.setSize(1466, 902);
     }
         public void populateDrugRequestTable(){
@@ -109,9 +121,9 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         lblEnterprise = new javax.swing.JLabel();
         lblAccount = new javax.swing.JLabel();
+        backJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        backJButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -141,8 +153,9 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
         drugRequestTable.setGridColor(new java.awt.Color(51, 51, 51));
         jScrollPane5.setViewportView(drugRequestTable);
 
+        btnProceedApproval.setBackground(new java.awt.Color(0, 0, 51));
         btnProceedApproval.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnProceedApproval.setForeground(new java.awt.Color(0, 0, 51));
+        btnProceedApproval.setForeground(new java.awt.Color(255, 255, 255));
         btnProceedApproval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/proceedApproval.png"))); // NOI18N
         btnProceedApproval.setText("Proceed for Approval");
         btnProceedApproval.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
@@ -170,6 +183,17 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        backJButton.setBackground(new java.awt.Color(255, 255, 255));
+        backJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(0, 51, 153));
+        backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home.png"))); // NOI18N
+        backJButton.setText("Home");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout introPanelLayout = new javax.swing.GroupLayout(introPanel);
         introPanel.setLayout(introPanelLayout);
         introPanelLayout.setHorizontalGroup(
@@ -182,7 +206,9 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
                         .addGap(134, 134, 134)
                         .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         introPanelLayout.setVerticalGroup(
             introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,6 +220,9 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
                     .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, introPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(backJButton))
         );
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -202,38 +231,25 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/clinicalTrial.png"))); // NOI18N
 
-        backJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        backJButton.setForeground(new java.awt.Color(0, 51, 153));
-        backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home.png"))); // NOI18N
-        backJButton.setText("Home");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(135, 135, 135)
-                .addComponent(btnProceedApproval, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1049, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(introPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1049, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addComponent(introPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(260, 260, 260)
+                .addComponent(btnProceedApproval, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,14 +260,15 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProceedApproval, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                        .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnProceedApproval, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

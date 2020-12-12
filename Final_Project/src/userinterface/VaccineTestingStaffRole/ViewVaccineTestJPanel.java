@@ -12,10 +12,13 @@ import Business.Vaccine.Vaccine;
 import Business.Vaccine.VaccineTester;
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.util.Date;
 import java.util.Map;
+import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import userinterface.VaccineAdminRole.ViewTestersJPanel;
 
@@ -44,6 +47,17 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
         this.manage = manage;
         this.setSize(900, 600);
         populateTestResults();
+                DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(java.awt.Color.BLACK);
+         headerRenderer.setForeground(java.awt.Color.WHITE);
+
+        for (int i = 0; i < testRequestTable.getModel().getColumnCount(); i++) {
+            testRequestTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        testRequestTable.setShowGrid(true);
+       testRequestTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
+       
     }
     
     public void populateTestResults(){
@@ -98,7 +112,6 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        testRequestTable.setBackground(new java.awt.Color(204, 204, 204));
         testRequestTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
         testRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,7 +132,7 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        testRequestTable.setGridColor(new java.awt.Color(51, 51, 51));
+        testRequestTable.setGridColor(new java.awt.Color(0, 0, 51));
         jScrollPane5.setViewportView(testRequestTable);
 
         btnViewTester.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
