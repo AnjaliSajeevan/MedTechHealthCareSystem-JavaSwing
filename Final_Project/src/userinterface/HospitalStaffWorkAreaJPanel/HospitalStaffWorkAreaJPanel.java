@@ -84,14 +84,13 @@ public void populateEssentialTable(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        essentialTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtRoomCount = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -99,36 +98,95 @@ public void populateEssentialTable(){
         txtICU = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtDeluxe = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        essentialTable = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel2.setText("Hospital Staff- Essentials Management");
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/staff.png"))); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Hospital Staff- Essentials Management");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        btnCreate.setText("Create ");
+        btnCreate.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnCreate.setForeground(new java.awt.Color(0, 102, 102));
+        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/addProduct.png"))); // NOI18N
+        btnCreate.setText("Add");
+        btnCreate.setContentAreaFilled(false);
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
+        jPanel2.add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 160, 70));
 
+        btnView.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnView.setForeground(new java.awt.Color(0, 102, 102));
+        btnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/viewProduct.png"))); // NOI18N
         btnView.setText("View");
+        btnView.setContentAreaFilled(false);
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
-        jPanel2.add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 70, -1));
+        jPanel2.add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, 190, 70));
 
+        btnDelete.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(0, 102, 102));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/deleteProduct.png"))); // NOI18N
         btnDelete.setText("Delete");
+        btnDelete.setBorderPainted(false);
+        btnDelete.setContentAreaFilled(false);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 70, -1));
+        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 180, -1));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel1.setText("General Ward");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, 20));
+
+        txtRoomCount.setText(" ");
+        txtRoomCount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRoomCountActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtRoomCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, 140, 20));
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel3.setText("Room Avaliability Count");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 210, 20));
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel4.setText("ICU ");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, 20));
+
+        txtICU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtICUActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtICU, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 140, 20));
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel5.setText("Deluxe Room");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, -1, 20));
+        jPanel2.add(txtDeluxe, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 140, 20));
 
         essentialTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,75 +199,57 @@ public void populateEssentialTable(){
                 "Name", "Quantity"
             }
         ));
+        essentialTable.setAutoscrolls(false);
+        essentialTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        essentialTable.setGridColor(new java.awt.Color(0, 51, 51));
+        essentialTable.setSelectionBackground(new java.awt.Color(153, 255, 153));
         jScrollPane1.setViewportView(essentialTable);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 330, 90));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 390, 90));
 
-        jLabel1.setText("General Ward");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, -1, -1));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/hospital_room.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, -1));
 
-        txtRoomCount.setText(" ");
-        txtRoomCount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRoomCountActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtRoomCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 140, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jLabel3.setText("Room Avaliability Count");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
-        jLabel4.setText("ICU ");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
-
-        txtICU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtICUActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtICU, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 140, -1));
-
-        jLabel5.setText("Deluxe Room");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
-        jPanel2.add(txtDeluxe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 140, -1));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel6)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 847, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel6)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 746, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 200, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -287,8 +327,10 @@ public void populateEssentialTable(){
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtDeluxe;
     private javax.swing.JTextField txtICU;
