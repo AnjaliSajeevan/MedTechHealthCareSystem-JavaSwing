@@ -607,7 +607,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         Vaccine vaccine= (Vaccine)vaccineRequestTable.getValueAt(selectedRow, 1);
 
-        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(userProcessContainer,account,business,vaccine,false);
+        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(userProcessContainer,account,business,vaccine,false,false);
         userProcessContainer.add("viewVaccineJPanel",viewVaccineJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
