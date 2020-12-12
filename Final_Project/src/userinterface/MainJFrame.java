@@ -242,7 +242,7 @@ public class MainJFrame extends javax.swing.JFrame {
         
         Enterprise inEnterprise=null;
         Organization inOrganization = null;
-        Organization.Type org=null;
+
         
         if(userAccount==null){
             //Step 2: Go inside each network and check each enterprise
@@ -252,12 +252,10 @@ public class MainJFrame extends javax.swing.JFrame {
                     userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
                     if(userAccount==null){
                        //Step 3:check against each organization for each enterprise
-                      for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
-                            for (Organization.Type type : Organization.Type.values()){
+                       for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
                            userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
-                           
+                           if(userAccount!=null){
                                inEnterprise=enterprise;
-                               org=type;
                                inOrganization=organization;
                                break;
                            }
