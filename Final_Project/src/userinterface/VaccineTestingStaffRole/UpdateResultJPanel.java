@@ -148,8 +148,10 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnSubmit.setBackground(new java.awt.Color(0, 0, 51));
         btnSubmit.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
-        btnSubmit.setForeground(new java.awt.Color(0, 0, 51));
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/sendFDA.png"))); // NOI18N
         btnSubmit.setText("SUBMIT RESULT");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,13 +187,13 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSuc)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnFail))
-                            .addComponent(txtDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                            .addComponent(btnSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

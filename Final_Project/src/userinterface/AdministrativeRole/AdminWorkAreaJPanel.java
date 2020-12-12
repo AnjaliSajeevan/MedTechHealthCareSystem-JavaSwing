@@ -223,7 +223,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         pnl1Layout.setHorizontalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
-                .addContainerGap(318, Short.MAX_VALUE)
+                .addContainerGap(351, Short.MAX_VALUE)
                 .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
                         .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -332,8 +332,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl2Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnAccept)
-                                        .addGap(217, 217, 217))
+                                        .addComponent(btnAccept))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl2Layout.createSequentialGroup()
                                         .addGap(67, 67, 67)
                                         .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -348,6 +347,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                                                 .addComponent(jLabel5)
                                                 .addGap(113, 113, 113)
                                                 .addComponent(availableDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(1, 1, 1)
                                 .addComponent(btnDecline))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnl2Layout.createSequentialGroup()
@@ -356,7 +356,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(pnl2Layout.createSequentialGroup()
                         .addGap(323, 323, 323)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
         pnl2Layout.setVerticalGroup(
             pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
