@@ -727,7 +727,7 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
             LocalDate locBirthDate= LocalDate.parse(txtDOB.getText(),dateFormatter);
             LocalDate today = LocalDate.now();
             Period p = Period.between(locBirthDate, today);
-            System.out.println("Age="+p.getYears());
+            
             age = p.getYears();
             String emailRegex = "^(.+)@(.+)[.](.+)$";
             Pattern emailPattern = Pattern.compile(emailRegex);
@@ -786,8 +786,7 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
                 doc.setPhotograph(txtPhoto.getText());
                 doc.setUpdateDate();
                  doc.setHospital(enterprise.getName());
-                System.out.println("tHE HOSPITAL" +doc.getHospital()); 
-                System.out.println("view pandel doc"+doc);
+               
                 business.getDoctorDirectory().updateDoctor(doc);
                 JOptionPane.showMessageDialog(null,"Doctor details updated successfully!!!");
 

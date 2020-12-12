@@ -339,7 +339,6 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         tblPolicy.setBackground(new java.awt.Color(83, 103, 142));
-        tblPolicy.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         tblPolicy.setForeground(new java.awt.Color(255, 255, 255));
         tblPolicy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -419,7 +418,6 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         tblPatient.setBackground(new java.awt.Color(83, 103, 142));
         tblPatient.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 0));
-        tblPatient.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         tblPatient.setForeground(new java.awt.Color(255, 255, 255));
         tblPatient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -494,7 +492,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlCard3Layout.createSequentialGroup()
                                 .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(129, 129, 129)
+                                .addGap(167, 167, 167)
                                 .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(196, 196, 196))
@@ -509,11 +507,11 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(110, Short.MAX_VALUE))
         );
