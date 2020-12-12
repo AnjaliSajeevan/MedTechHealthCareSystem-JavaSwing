@@ -515,7 +515,7 @@ public class HealthDeptWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         Enterprise ePrise = (Enterprise)labTable.getValueAt(selectedRow, 0);
-        LabReportJPanel labreportCompJPanel = new LabReportJPanel(userProcessContainer,ePrise,business);
+        LabReportJPanel labreportCompJPanel = new LabReportJPanel(userProcessContainer,account,ePrise,business);
         userProcessContainer.add("labreportCompJPanel", labreportCompJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);       
