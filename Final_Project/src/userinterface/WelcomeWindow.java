@@ -84,9 +84,9 @@ public class WelcomeWindow extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(102, 102, 255));
         jMenuBar1.setForeground(new java.awt.Color(51, 102, 255));
 
-        jMenu1.setIcon(new javax.swing.ImageIcon("/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/folder.png")); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/shutdown.png"))); // NOI18N
 
-        exitItem.setIcon(new javax.swing.ImageIcon("/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/exit.png")); // NOI18N
+        exitItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/exit.png"))); // NOI18N
         exitItem.setText("Exit Application");
         exitItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,9 +97,9 @@ public class WelcomeWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon("/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/add.png")); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/add.png"))); // NOI18N
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon("/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/addemployee.png")); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/addemployee.png"))); // NOI18N
         jMenuItem4.setText("LOGIN NOW!");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,9 +110,9 @@ public class WelcomeWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon("/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/search.jpg")); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/search2.png"))); // NOI18N
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon("/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/search3.png")); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/search3.png"))); // NOI18N
         jMenuItem2.setText("Contact");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +121,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem2);
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/edit.png"))); // NOI18N
         jMenuItem1.setText("Write FeedBack");
         jMenu3.add(jMenuItem1);
 
@@ -141,7 +142,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
+            .addGap(0, 1162, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

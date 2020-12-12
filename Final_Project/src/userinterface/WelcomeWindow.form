@@ -15,14 +15,14 @@
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/folder.png"/>
+              <Image iconType="3" name="/Pictures/shutdown.png"/>
             </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="exitItem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/exit.png"/>
+                  <Image iconType="3" name="/Pictures/exit.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exit Application"/>
               </Properties>
@@ -35,14 +35,14 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/add.png"/>
+              <Image iconType="3" name="/Pictures/add.png"/>
             </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/addemployee.png"/>
+                  <Image iconType="3" name="/Pictures/addemployee.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="LOGIN NOW!"/>
               </Properties>
@@ -55,14 +55,14 @@
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/search.jpg"/>
+              <Image iconType="3" name="/Pictures/search2.png"/>
             </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/Users/karthik/NetBeansProjects/DayCare/DayCare/src/Pics/search3.png"/>
+                  <Image iconType="3" name="/Pictures/search3.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Contact"/>
               </Properties>
@@ -72,6 +72,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Pictures/edit.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Write FeedBack"/>
               </Properties>
             </MenuItem>
@@ -115,7 +118,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="898" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="1162" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
