@@ -5,6 +5,8 @@
  */
 package Business.Essentials;
 
+import java.util.Date;
+
 /**
  *
  * @author abhishekashwathnarayanvenkat
@@ -15,6 +17,16 @@ public class Product {
 //    private int price;
 //    private int modelNumber;
     private int avail;
+    private String manufacture;
+    private String description;
+    private String expdate;
+    public String getManufacture() {
+        return manufacture;
+    }
+
+    public void setManufacture(String manufacture) {
+        this.manufacture = manufacture;
+    }
     private String enterpriseName;
   
     
@@ -27,6 +39,22 @@ public class Product {
 
     public void setAvail(int avail) {
         this.avail = avail;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getExpdate() {
+        return expdate;
+    }
+
+    public void setExpdate(String expdate) {
+        this.expdate = expdate;
     }
     
    

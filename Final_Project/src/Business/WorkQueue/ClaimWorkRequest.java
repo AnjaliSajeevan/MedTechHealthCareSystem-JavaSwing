@@ -33,7 +33,18 @@ public class ClaimWorkRequest {
     private Patient patient;
     private String hospital;
     private String insuranceNo;
+    private String feedback;
 
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+
+    
     public String getInsuranceNo() {
         return insuranceNo;
     }
