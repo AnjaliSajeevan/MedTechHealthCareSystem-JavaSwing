@@ -68,13 +68,15 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 902));
 
-        loginJButton.setBackground(new java.awt.Color(0, 0, 0));
+        loginJButton.setBackground(new java.awt.Color(102, 102, 102));
         loginJButton.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
-        loginJButton.setForeground(new java.awt.Color(255, 255, 255));
         loginJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/padlock_25px.png"))); // NOI18N
         loginJButton.setText("Login");
         loginJButton.setBorder(null);
+        loginJButton.setBorderPainted(false);
+        loginJButton.setContentAreaFilled(false);
         loginJButton.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/lock_25px.png"))); // NOI18N
+        loginJButton.setOpaque(true);
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginJButtonActionPerformed(evt);
@@ -109,14 +111,16 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password");
 
-        logoutJButton.setBackground(new java.awt.Color(0, 0, 0));
+        logoutJButton.setBackground(new java.awt.Color(102, 102, 102));
         logoutJButton.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
-        logoutJButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/padlock_25px.png"))); // NOI18N
         logoutJButton.setText("Logout");
         logoutJButton.setBorder(null);
+        logoutJButton.setBorderPainted(false);
+        logoutJButton.setContentAreaFilled(false);
         logoutJButton.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/lock_25px.png"))); // NOI18N
         logoutJButton.setEnabled(false);
+        logoutJButton.setOpaque(true);
         logoutJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutJButtonActionPerformed(evt);
@@ -134,7 +138,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(passwordField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(userNameJTextField)
+                    .addComponent(userNameJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -143,10 +147,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(loginJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +173,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(logoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(loginJLabel)
-                .addContainerGap(502, Short.MAX_VALUE))
+                .addContainerGap(491, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -237,7 +241,8 @@ public class MainJFrame extends javax.swing.JFrame {
         UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
         
         Enterprise inEnterprise=null;
-        Organization inOrganization=null;
+        Organization inOrganization = null;
+
         
         if(userAccount==null){
             //Step 2: Go inside each network and check each enterprise
