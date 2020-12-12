@@ -196,7 +196,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(0, 0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tab.setBackground(new java.awt.Color(35, 33, 54));
@@ -243,7 +243,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         tab.setLayout(tabLayout);
         tabLayout.setHorizontalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnInsuranceClaim, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+            .addComponent(btnInsuranceClaim, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
             .addGroup(tabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
@@ -391,7 +391,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnView))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addContainerGap(389, Short.MAX_VALUE))
         );
         pnl2Layout.setVerticalGroup(
             pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,6 +461,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(73, 42, 63)));
 
         jButton3.setBackground(new java.awt.Color(35, 33, 54));
@@ -495,7 +496,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
                                         .addComponent(jButton1)))
                                 .addGap(77, 77, 77)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(477, Short.MAX_VALUE))
+                .addContainerGap(470, Short.MAX_VALUE))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,7 +521,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
 
         pnl.add(pnl1, "card2");
 
-        add(pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 0, -1, 921));
+        add(pnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 0, 1270, 921));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
