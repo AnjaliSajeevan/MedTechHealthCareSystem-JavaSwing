@@ -42,6 +42,7 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.vaccine = vaccine;
         this.manage = manage;
+        this.setSize(900, 600);
         populateTestResults();
     }
     
@@ -94,8 +95,11 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
         testRequestTable = new javax.swing.JTable();
         btnViewTester = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        testRequestTable.setBackground(new java.awt.Color(204, 204, 204));
+        testRequestTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
         testRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -115,8 +119,12 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        testRequestTable.setGridColor(new java.awt.Color(51, 51, 51));
         jScrollPane5.setViewportView(testRequestTable);
 
+        btnViewTester.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        btnViewTester.setForeground(new java.awt.Color(0, 0, 51));
+        btnViewTester.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/search2.png"))); // NOI18N
         btnViewTester.setText("View Tester Details");
         btnViewTester.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,14 +132,9 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Vaccine Test Lab Results");
-
-        btnBack.setText("BACK");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -140,15 +143,12 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(108, 108, 108)
-                                .addComponent(jLabel1))
-                            .addComponent(btnViewTester, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(284, 284, 284)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                        .addComponent(btnViewTester, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,12 +156,10 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(btnViewTester, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnViewTester, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -180,16 +178,8 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewTesterActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnViewTester;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane5;
