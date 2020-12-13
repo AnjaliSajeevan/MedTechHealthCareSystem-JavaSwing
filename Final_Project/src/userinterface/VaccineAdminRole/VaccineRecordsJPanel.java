@@ -47,7 +47,13 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         populateAllDrugRequestTable();
         populateTimeline("");
-         this.setSize(1466, 902);
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel1.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(1, 130, 1228, 782);
+        jPanel2.setSize(1134,600);
+
+        responseTable.setSize(1032, 225);
+        timelineTable.setSize(1032, 225);
                  DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);

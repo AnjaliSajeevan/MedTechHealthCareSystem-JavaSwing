@@ -51,6 +51,12 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         this.testerNum = 0;
         this.setSize(1466, 902);
         jTabbedPane1.setSize(1000, 700);
+                        introPanel.setBounds(171, 33, 1293, 101);
+        jLabel7.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(1, 130, 1228, 782);
+        jPanel2.setSize(1190,600);
+        jPanel5.setSize(1190,600);
+
         lblVaccineReq.setText("");
         populateStaffBox();
         populateDrugRequestTable();
@@ -58,6 +64,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
                  DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);
+         
 
         for (int i = 0; i < vaccineRequestTable.getModel().getColumnCount(); i++) {
             vaccineRequestTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
@@ -414,7 +421,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
                     .addComponent(routeMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(250, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btnRouteBack, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRouteBack, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -770,11 +777,6 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             }else{
                 activeSelectionPanel.setVisible(true);
             }
-            int selectedRow = vaccineRequestTable.getSelectedRow();
-            if(selectedRow<0){
-                JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
             populateTesterTable();
         }else if(this.jTabbedPane1.getSelectedIndex() == 4){//View Tester
                if(jPanel5.getComponentCount() > 0){
@@ -782,12 +784,12 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
     }
             int selectedRow = testorsTable.getSelectedRow();
             if(selectedRow<0 ){
-                JOptionPane.showMessageDialog(null, "Please select one Testor to view details!", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please select one Tester to view details!", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             VaccineTester tester= (VaccineTester)testorsTable.getValueAt(selectedRow, 0);
-            ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,false);
+            ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,false,true);
             jPanel5.add(viewTestersJPanel);
         }else if(this.jTabbedPane1.getSelectedIndex() == 5){//vaccine testing Staff
             populateLabTestTable();
@@ -948,6 +950,28 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
 
     private void btnSelectTesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectTesterActionPerformed
         // TODO add your handling code here:
+        boolean activeSelection = false;
+  List<VaccineWorkRequest> requestList = account.getVaccineWorkQueue().getVaccineRequestList();
+        for(VaccineWorkRequest req: requestList){
+                    Map<String,Date> map = req.getStatusMap();
+                    String latestKey = "";
+            for (Map.Entry<String,Date> mapEntry : req.getStatusMap().entrySet()) {  
+                if(latestKey.equals("")){
+            latestKey = mapEntry.getKey();
+                }
+                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+                    latestKey = mapEntry.getKey();
+                }
+               }
+            if(latestKey.equals("Selecting Vaccine Testers") ){
+                activeSelection = true;
+            }
+        }
+                
+        if(activeSelection == true){        
+   JOptionPane.showMessageDialog(null, "There is a Vaccine Request already for Selecting Testers!\nPlease select the testers and process the active request.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;                                 
+            }       
         int rows = testRequestTable.getRowCount();
         if(rows > 0){
             JOptionPane.showMessageDialog(null, "There is a Vaccine Request already waiting to be sent for testing!\nPlease assign and process the active lab request.", "Warning", JOptionPane.WARNING_MESSAGE);

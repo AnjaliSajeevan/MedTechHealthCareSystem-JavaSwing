@@ -68,7 +68,12 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         lblRole.setText("Company Admin");
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
-         this.setSize(1466, 902);
+        this.setSize(1466, 902);
+        introPanel.setBounds(171, 33, 1293, 101);
+        jLabel4.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(1, 115, 1228, 782);
+        jPanel3.setSize(1190,600);
+        jPanel4.setSize(1190,600);
                          DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);
@@ -369,7 +374,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
             .addGap(0, 651, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("LabTests", jPanel3);
+        jTabbedPane1.addTab("Vaccine Details", jPanel3);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -382,7 +387,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
             .addGap(0, 651, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Vaccine Details", jPanel4);
+        jTabbedPane1.addTab("Lab Tests", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -680,7 +685,6 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
         if(this.jTabbedPane1.getSelectedIndex() == 0){ //view all Requests
-                        jPanel4.remove(0);
         populateTimeline("");
         populateAllDrugRequestTable();
         }else if(this.jTabbedPane1.getSelectedIndex() == 1){//view timeline
@@ -694,31 +698,35 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         VaccineWorkRequest vaccine= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
 
         populateTimeline(vaccine);    
-        }else if(this.jTabbedPane1.getSelectedIndex() == 2){//view vaccine request
+        }else if(this.jTabbedPane1.getSelectedIndex() == 3){//view vaccine request
+                            if(jPanel4.getComponentCount() > 0){
+    jPanel4.remove(0);
+    }
+            
          int selectedRow = vaccineRequestTable.getSelectedRow();
         if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine row from Vaccine Requests!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
         VaccineEnterprise e =(VaccineEnterprise) vaccineReq.getVaccine().getEnterprise();
-        ViewVaccineTestJPanel viewLabJPanel=new ViewVaccineTestJPanel(jPanel3,account,e,business,vaccineReq.getVaccine());
-        jPanel3.add(viewLabJPanel);         
-        }else if(this.jTabbedPane1.getSelectedIndex() == 3){//Lab results
-                if(jPanel4.getComponentCount() > 0){
-    jPanel4.remove(0);
+        ViewVaccineTestJPanel viewLabJPanel=new ViewVaccineTestJPanel(jPanel4,account,e,business,vaccineReq.getVaccine());
+        jPanel4.add(viewLabJPanel);         
+        }else if(this.jTabbedPane1.getSelectedIndex() == 2){//Lab results
+                if(jPanel3.getComponentCount() > 0){
+    jPanel3.remove(0);
     }
                 int selectedRow = vaccineRequestTable.getSelectedRow();
         if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine row From Vaccine Requests!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
 
-        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(jPanel4,account,business,vaccineReq.getVaccine(),false,false);
-        jPanel4.add(viewVaccineJPanel);   
+        ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(jPanel3,account,business,vaccineReq.getVaccine(),false,false);
+        jPanel3.add(viewVaccineJPanel);   
         }else if(this.jTabbedPane1.getSelectedIndex() == 4){//Decision
             populateManufacturer();
                  int selectedRow = vaccineRequestTable.getSelectedRow();
@@ -730,6 +738,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         lblVaccine.setText("Vaccine Request ID:"+vaccineReq);
         decisionPanel.setVisible(true);
         }
+     
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void manuComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manuComboBoxActionPerformed

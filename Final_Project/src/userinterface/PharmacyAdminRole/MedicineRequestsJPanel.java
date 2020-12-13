@@ -62,6 +62,11 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
         this.setSize(1466, 902);
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel10.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(1, 115, 1228, 782);
+        jPanel2.setSize(1190,600);
+        jPanel3.setSize(1190,600);
         populatePatientRequests();
         populateDeliv();
         DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
