@@ -30,6 +30,7 @@ JPanel userProcessContainer;
      UserAccount account;
      Enterprise enterprise;
      String patient;
+     Patient pa;
 InsuranceAdminOrganization iOrg;
      
     public PatientWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise,EcoSystem ecosystem,InsuranceAdminOrganization organization) {
@@ -39,9 +40,16 @@ InsuranceAdminOrganization iOrg;
         this.enterprise = enterprise;
         this.iOrg=organization;
         this.account=account;
+        for(Patient p : ecosystem.getPatientDirectory().getpatientlist())
+        {    System.out.println(p.getUserAccount().toString());
+                System.out.println(account.getUsername().toString());
+        if(p.getUserAccount().toString().equals(account.getUsername().toString()))  
+        { pa=p; 
+            }
         
-        lblUsername.setText(account.getEmployee().getName());
-       
+        }
+        
+        lblUsername.setText(pa.getPatientname());
     }
 
     /**
@@ -197,7 +205,7 @@ InsuranceAdminOrganization iOrg;
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(lblUsername)
-                        .addGap(68, 68, 68))))
+                        .addGap(59, 59, 59))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +219,7 @@ InsuranceAdminOrganization iOrg;
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(lblUsername1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblUsername)))
                 .addContainerGap(384, Short.MAX_VALUE))
         );

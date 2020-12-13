@@ -8,6 +8,8 @@ import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.ClaimWorkQueue;
+import Business.WorkQueue.DrugDemandQueue;
+import Business.WorkQueue.DrugSupplyQueue;
 import Business.WorkQueue.EmergencyQueue;
 import Business.WorkQueue.LabPatientWorkQueue;
 import Business.WorkQueue.LabTestWorkQueue;
@@ -32,6 +34,8 @@ public abstract class Organization {
     private PharmaWorkQueue pharmaQueue;
     private LabPatientWorkQueue labPatQueue;
     private EmergencyQueue emergencyQueue;
+    private DrugDemandQueue pharmaDemandQueue;
+    private DrugSupplyQueue pharmaSupplyQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
@@ -42,8 +46,8 @@ public abstract class Organization {
         PharmacyAdmin("Pharmacy Organization"),DeliveryMan("Pharmacy Organization"),
         VaccineCompanyAdmin("Vaccine Organization"),VaccineScientist("Vaccine Organization"),VaccineTestingStaff("Vaccine Organization"),
         LabAdmin("Laboratory Organization"),LabStaff("Laboratory Organization"),
-        InsuranceAdmin("Insurance Organization"), InsuranceStaff("Insurance Organization"),HealthDept("HealthDept Organization"),
-        FDAAdmin("FDA Organization");
+        InsuranceAdmin("Insurance Organization"), InsuranceStaff("Insurance Organization"),
+        FDAAdmin("FDA Organization"),ManufactureAdmin("Manufacturing Organization");
         
         private String value;
         private Type(String value) {
@@ -65,8 +69,11 @@ public abstract class Organization {
         emergencyQueue = new EmergencyQueue();
         hospitalQueue=new PatientHospitalAppointmentWorkQueue();
         labQueue = new LabTestWorkQueue();
+        pharmaDemandQueue = new DrugDemandQueue();
+        pharmaSupplyQueue = new DrugSupplyQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+
         organizationID = counter;
         ++counter;
     }
@@ -154,7 +161,22 @@ public abstract class Organization {
     public void setEmergencyQueue(EmergencyQueue emergencyQueue) {
         this.emergencyQueue = emergencyQueue;
     }
-    
+
+   public DrugDemandQueue getPharmaDemandQueue() {
+        return pharmaDemandQueue;
+    }
+
+    public void setPharmaDemandQueue(DrugDemandQueue pharmaDemandQueue) {
+        this.pharmaDemandQueue = pharmaDemandQueue;
+    }
+
+    public DrugSupplyQueue getPharmaSupplyQueue() {
+        return pharmaSupplyQueue;
+    }
+
+    public void setPharmaSupplyQueue(DrugSupplyQueue pharmaSupplyQueue) {
+        this.pharmaSupplyQueue = pharmaSupplyQueue;
+    }
     public String getOrganizationType(){
         return name;
     }

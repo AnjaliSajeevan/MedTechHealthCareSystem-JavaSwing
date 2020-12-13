@@ -424,13 +424,18 @@ private EcoSystem business;
         } 
         }
         }
+           System.out.print(userName)    ;
+            System.out.print(password)    ;
+            System.out.print(employee)    ;
+            System.out.print(role)    ;
+           
         organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
         if(role.toString().equals("Doctor"))
         {
             Doctor d= new Doctor();
             d.setUserName(userName);
             d.setName(userName);
-            System.out.println("mange user acc USername"+ d.getUserName());
+           
             business.getDoctorDirectory().addDoctor(d);
         }
                   JOptionPane.showMessageDialog(null, "Account Created Successfully!");

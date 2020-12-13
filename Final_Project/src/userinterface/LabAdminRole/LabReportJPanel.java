@@ -39,11 +39,14 @@ public class LabReportJPanel extends javax.swing.JPanel {
         private JPanel userProcessContainer;
     private EcoSystem business;  
     private Enterprise enterprise;
-    public LabReportJPanel(JPanel userProcessContainer,Enterprise enterprise,EcoSystem business ) {
+    private UserAccount account;
+    public LabReportJPanel(JPanel userProcessContainer,UserAccount account,Enterprise enterprise,EcoSystem business ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = business;
         this.enterprise = enterprise;
+        this.account=account;
+        this.setSize(1466, 902);
         populateAgeGroupChart();
         populateServices();
         populateCovidCases();
@@ -368,7 +371,7 @@ public void populateServices(){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        LabRecordsJPanel viewRepJPanel = new LabRecordsJPanel(userProcessContainer,enterprise,business);
+        LabRecordsJPanel viewRepJPanel = new LabRecordsJPanel(userProcessContainer,account,enterprise,business);
         userProcessContainer.add("viewRepJPanel", viewRepJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
