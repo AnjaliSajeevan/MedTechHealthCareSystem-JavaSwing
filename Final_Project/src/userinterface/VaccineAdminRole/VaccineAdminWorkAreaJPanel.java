@@ -42,6 +42,17 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
         this.setSize(1466, 902);
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel4.setBounds(1, 1, 160, 113);
+        jSplitPane1.setBounds(2, 140, 1195, 550);
+        manageOrganizationJButton.setBounds(424, 451, 393, 166);
+        btnVaccineReq.setBounds(424, 617, 393, 166);
+        btnCompRpt.setBounds(424, 783, 393, 166);
+        btnTestors.setBounds(887, 451, 393, 166);
+        btnCheckTests.setBounds(887, 617, 393, 166);
+        btnMedReport.setBounds(887, 783, 393, 166);
+        btnResp.setBounds(711,141,393,166);
+
         this.business = business;
     }
 
@@ -290,8 +301,8 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnResp, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTestors, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(manageOrganizationJButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnTestors, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageOrganizationJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCheckTests)
@@ -337,7 +348,7 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
 
-        ManageOrgJPanel manageOrgJPanel = new ManageOrgJPanel(userProcessContainer,account,organization,enterprise,business);
+        ManageOrgJPanel manageOrgJPanel = new ManageOrgJPanel(userProcessContainer,account,organization,enterprise,business,"Vaccine Organization");
         userProcessContainer.add("manageOrgJPanel", manageOrgJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -377,6 +388,10 @@ public class VaccineAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnMedReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedReportActionPerformed
         // TODO add your handling code here:
+          MedicalDemandJPanel medDemandPanel = new MedicalDemandJPanel(userProcessContainer, account,enterprise,business);
+        userProcessContainer.add("medDemandPanel", medDemandPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);      
     }//GEN-LAST:event_btnMedReportActionPerformed
 
     private void btnRespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRespActionPerformed

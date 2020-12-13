@@ -57,6 +57,11 @@ public class DrugRespJPanel extends javax.swing.JPanel {
         this.business = business;
         this.enterprise = enterprise;
         this.vaccine=null;
+                this.setSize(1466, 902);
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel1.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(2, 140, 1195, 550);
+        jPanel2.setSize(1235,274);
         DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);
@@ -203,9 +208,10 @@ public class DrugRespJPanel extends javax.swing.JPanel {
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        backJButton1.setBackground(new java.awt.Color(0, 0, 102));
         backJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        backJButton1.setForeground(new java.awt.Color(0, 51, 153));
-        backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home.png"))); // NOI18N
+        backJButton1.setForeground(new java.awt.Color(255, 255, 255));
+        backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton1.setText("Home");
         backJButton1.setPreferredSize(new java.awt.Dimension(1162, 100));
         backJButton1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -220,33 +226,31 @@ public class DrugRespJPanel extends javax.swing.JPanel {
         introPanelLayout.setHorizontalGroup(
             introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(introPanelLayout.createSequentialGroup()
-                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(introPanelLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(237, 237, 237)
+                        .addGap(116, 116, 116)
                         .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(introPanelLayout.createSequentialGroup()
-                        .addGap(398, 398, 398)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 352, Short.MAX_VALUE)
-                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         introPanelLayout.setVerticalGroup(
             introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(introPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(introPanelLayout.createSequentialGroup()
+                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, introPanelLayout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(introPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, introPanelLayout.createSequentialGroup()
                         .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3))))
+                        .addContainerGap())))
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/clinicalresults.png"))); // NOI18N
@@ -319,7 +323,7 @@ public class DrugRespJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1235, Short.MAX_VALUE)
+            .addGap(0, 1104, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,15 +393,11 @@ public class DrugRespJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1256, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,7 +436,7 @@ if(this.jTabbedPane1.getSelectedIndex() == 0){//all drug responses
         }
 
         VaccineWorkRequest vaccineReq= (VaccineWorkRequest)responseTable.getValueAt(selectedRow, 0);
-               ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(jPanel2,account,business,vaccineReq.getVaccine(),true,true);
+               ViewVaccineJPanel viewVaccineJPanel=new ViewVaccineJPanel(jPanel2,account,business,vaccineReq.getVaccine(),false,true);
          jPanel2.add(viewVaccineJPanel);
 
         

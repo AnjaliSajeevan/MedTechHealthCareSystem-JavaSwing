@@ -9,14 +9,24 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.VaccineCompanyOrganization;
 import Business.UserAccount.UserAccount;
+import Business.Vaccine.VaccineTester;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.VaccineWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Font;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import userinterface.VaccineAdminRole.ViewTestersJPanel;
 import userinterface.VaccineScientistRole.ViewVaccineJPanel;
 
 /**
@@ -46,6 +56,11 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
         this.setSize(1466, 902);
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel4.setBounds(1, 1, 160, 113);
+        jSplitPane1.setBounds(2, 140, 1195, 550);
+        jLabel4.setBounds(1,135,230,33);
+        jTabbedPane1.setBounds(402, 142, 882, 485);
 
         populateLabTestTable();
                 DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
@@ -94,6 +109,46 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         
         }
     }
+      private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+            message.setFrom(new InternetAddress(from));
+            InternetAddress[] toAddress = new InternetAddress[to.length];
+
+            // To get the array of addresses
+            for( int i = 0; i < to.length; i++ ) {
+                toAddress[i] = new InternetAddress(to[i]);
+            }
+
+            for( int i = 0; i < toAddress.length; i++) {
+                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+            }
+
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }
+        catch (AddressException ae) {
+            ae.printStackTrace();
+        }
+        catch (MessagingException me) {
+            me.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,6 +178,7 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         btnEmaill = new javax.swing.JButton();
         btnAdminister = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -224,7 +280,7 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(58, 58, 58)
                 .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -300,8 +356,8 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdminister, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEmaill, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Clinical Trial List", jPanel3);
@@ -314,10 +370,23 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGap(0, 439, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Update Observation", jPanel4);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 861, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 439, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("View Tester Profile", jPanel5);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -329,9 +398,7 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
 
         jSplitPane1.setRightComponent(jPanel2);
@@ -348,7 +415,7 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(introPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,8 +426,7 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
                         .addGap(15, 15, 15)
                         .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jSplitPane1)
-                .addGap(214, 214, 214))
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -373,7 +439,6 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         }
         LabTestWorkRequest labReq= (LabTestWorkRequest)testRequestTable.getValueAt(selectedRow, 0);
 
-        //email testers
         labReq.setResult("Vaccine Administered");
         JOptionPane.showMessageDialog(null,"Vaccine administered on the tester!!!");
         populateLabTestTable();
@@ -386,9 +451,10 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a Test row!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        LabTestWorkRequest labReq= (LabTestWorkRequest)testRequestTable.getValueAt(selectedRow, 0);
+        LabTestWorkRequest labReq= (LabTestWorkRequest)testRequestTable.getValueAt(selectedRow, 0);       
+        String toemail=labReq.getTester().getEmail();
+     //   sendFromGMail("medtech2254", "AedGroup@9", new String[]{toemail},"Dear Tester, You have been chosed for a clinical trial lab testing for a novel vaccine. Please report to the laboratory in this week for the test to be done!","Lab Testing Request");
 
-        //email testers
         labReq.setResult("Email Sent");
         JOptionPane.showMessageDialog(null,"Email sent to Vaccine testers!!!");
         populateLabTestTable();
@@ -408,8 +474,20 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
 
         UpdateResultJPanel updateResJPanel=new UpdateResultJPanel(userProcessContainer,business,enterprise,account,labReq);
         jPanel4.add(updateResJPanel);
-        }
+        }else if(this.jTabbedPane1.getSelectedIndex() == 2){//View tester profile
+                       if(jPanel5.getComponentCount() > 0){
+    jPanel5.remove(0);
+    }
+            int selectedRow = testRequestTable.getSelectedRow();
+            if(selectedRow<0 ){
+                JOptionPane.showMessageDialog(null, "Please select one Testor to view details!", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
+            VaccineTester tester= (VaccineTester)testRequestTable.getValueAt(selectedRow, 3);
+            ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,false,true);
+            jPanel5.add(viewTestersJPanel);
+        }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
 
@@ -425,6 +503,7 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;

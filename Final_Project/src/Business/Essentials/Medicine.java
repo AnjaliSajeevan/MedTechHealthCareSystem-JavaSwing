@@ -5,6 +5,7 @@
  */
 package Business.Essentials;
 
+import Business.UserAccount.UserAccount;
 import java.util.Date;
 
 /**
@@ -20,6 +21,7 @@ public class Medicine {
     private String condition;
     private Date createDate;
     private Date updateDate;
+    private UserAccount manufacturer;
         private int id;
     private static int count = 1;
 
@@ -86,6 +88,14 @@ public class Medicine {
 
     public Date getCreateDate() {
         return createDate;
+    }
+
+    public UserAccount getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(UserAccount manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
 

@@ -47,7 +47,13 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         populateAllDrugRequestTable();
         populateTimeline("");
-         this.setSize(1466, 902);
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel1.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(1, 130, 1228, 782);
+        jPanel2.setSize(1134,600);
+
+        responseTable.setSize(1032, 225);
+        timelineTable.setSize(1032, 225);
                  DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);
@@ -193,9 +199,10 @@ public class VaccineRecordsJPanel extends javax.swing.JPanel {
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        backJButton1.setBackground(new java.awt.Color(0, 0, 102));
         backJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        backJButton1.setForeground(new java.awt.Color(0, 51, 153));
-        backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home.png"))); // NOI18N
+        backJButton1.setForeground(new java.awt.Color(255, 255, 255));
+        backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton1.setText("Home");
         backJButton1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         backJButton1.addActionListener(new java.awt.event.ActionListener() {

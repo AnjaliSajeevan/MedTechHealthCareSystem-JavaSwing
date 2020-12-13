@@ -26,15 +26,23 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
     private Organization organization;
     private Enterprise enterprise;
     private EcoSystem business;  
-        
-    public ManageOrgJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
+    private String org;
+    public ManageOrgJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business,String org) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.organization = organization;
         this.business = business;
         this.enterprise = enterprise;
+        this.org = org;
         this.setSize(1466, 902);
+                this.setSize(1466, 902);
+                introPanel.setBounds(1, 33, 1293, 101);
+        jTabbedPane1.setBounds(2, 115, 882, 485);
+                     ManageOrganizationJPanel manageVaccineOrganizationJPanel = new ManageOrganizationJPanel(jPanel1, enterprise.getOrganizationDirectory(),"Vaccine Organization");
+                   manageVaccineOrganizationJPanel.setSize(1100, 600);
+                   jPanel1.add(manageVaccineOrganizationJPanel);      
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +57,7 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        introPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         backJButton1 = new javax.swing.JButton();
 
@@ -64,11 +73,11 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 896, Short.MAX_VALUE)
+            .addGap(0, 1135, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
+            .addGap(0, 379, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Manage Organization", jPanel1);
@@ -77,11 +86,11 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 896, Short.MAX_VALUE)
+            .addGap(0, 1135, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
+            .addGap(0, 379, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Manage Employee", jPanel2);
@@ -90,22 +99,26 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 896, Short.MAX_VALUE)
+            .addGap(0, 1135, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
+            .addGap(0, 379, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Manage User", jPanel3);
 
+        introPanel.setBackground(new java.awt.Color(51, 51, 51));
+        introPanel.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Symbol", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Organization Management");
 
+        backJButton1.setBackground(new java.awt.Color(51, 51, 51));
         backJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        backJButton1.setForeground(new java.awt.Color(0, 51, 153));
-        backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home.png"))); // NOI18N
+        backJButton1.setForeground(new java.awt.Color(255, 255, 255));
+        backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton1.setText("Home");
         backJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,29 +126,43 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout introPanelLayout = new javax.swing.GroupLayout(introPanel);
+        introPanel.setLayout(introPanelLayout);
+        introPanelLayout.setHorizontalGroup(
+            introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, introPanelLayout.createSequentialGroup()
+                .addContainerGap(302, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(79, 79, 79)
+                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
+        );
+        introPanelLayout.setVerticalGroup(
+            introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(introPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(87, 87, 87)
-                        .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backJButton1)
-                    .addComponent(jLabel1))
+                .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -148,26 +175,27 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
-        
-                ManageOrganizationJPanel manageVaccineOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),"Vaccine Organization");
-        userProcessContainer.add("manageVaccineOrganizationJPanel", manageVaccineOrganizationJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+     if(this.jTabbedPane1.getSelectedIndex() == 0){//manage organization
+                   ManageOrganizationJPanel manageVaccineOrganizationJPanel = new ManageOrganizationJPanel(jPanel1, enterprise.getOrganizationDirectory(),"Vaccine Organization");
+                   manageVaccineOrganizationJPanel.setSize(1100, 600);
+                   jPanel1.add(manageVaccineOrganizationJPanel);
+              }else if(this.jTabbedPane1.getSelectedIndex() == 1){//manage employee
+                      ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(jPanel2, enterprise.getOrganizationDirectory());
+                manageEmployeeJPanel.setSize(1100, 600);
+                      jPanel2.add(manageEmployeeJPanel);
+              }else if(this.jTabbedPane1.getSelectedIndex() == 2){//manage user
+                          ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(jPanel3, enterprise,business);
+            muajp.setSize(1100, 600);
+                          jPanel3.add(muajp);
+              }  
+
     }                                                         
-
-    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
-
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }                                                     
+                                                 
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         if(this.jTabbedPane1.getSelectedIndex() == 0){//view tester detail
-        ManageOrganizationJPanel manageVaccineOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),"Vaccine Organization");
+        ManageOrganizationJPanel manageVaccineOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),org);
         jPanel1.add(manageVaccineOrganizationJPanel);
         }else if(this.jTabbedPane1.getSelectedIndex() == 1){//manage Employee
         ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
@@ -181,6 +209,7 @@ public class ManageOrgJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton1;
+    private javax.swing.JPanel introPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

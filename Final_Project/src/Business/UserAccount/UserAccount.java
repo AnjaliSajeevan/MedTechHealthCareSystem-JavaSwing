@@ -7,6 +7,8 @@ package Business.UserAccount;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.ClaimWorkQueue;
+import Business.WorkQueue.DrugDemandQueue;
+import Business.WorkQueue.DrugSupplyQueue;
 import Business.WorkQueue.EmergencyQueue;
 import Business.WorkQueue.LabPatientWorkQueue;
 import Business.WorkQueue.WorkQueue;
@@ -32,6 +34,8 @@ public class UserAccount {
     private EmergencyQueue emergencyQueue;
     private PatientHospitalAppointmentWorkQueue hospitalWorkQueue;
     private ClaimWorkQueue claimWorkQueue; 
+    private DrugDemandQueue pharmaDemandQueue;
+    private DrugSupplyQueue pharmaSupplyQueue;
 
     public UserAccount() {
         workQueue = new WorkQueue();
@@ -42,6 +46,8 @@ public class UserAccount {
         emergencyQueue = new EmergencyQueue();
         hospitalWorkQueue= new PatientHospitalAppointmentWorkQueue();
         claimWorkQueue = new ClaimWorkQueue();
+        pharmaDemandQueue = new DrugDemandQueue();
+        pharmaSupplyQueue = new DrugSupplyQueue();
     }
 
     public ClaimWorkQueue getClaimWorkQueue() {
@@ -115,7 +121,22 @@ public class UserAccount {
     public void setEmergencyQueue(EmergencyQueue emergencyQueue) {
         this.emergencyQueue = emergencyQueue;
     }
-    
+    public DrugDemandQueue getPharmaDemandQueue() {
+        return pharmaDemandQueue;
+    }
+
+    public void setPharmaDemandQueue(DrugDemandQueue pharmaDemandQueue) {
+        this.pharmaDemandQueue = pharmaDemandQueue;
+    }
+
+    public DrugSupplyQueue getPharmaSupplyQueue() {
+        return pharmaSupplyQueue;
+    }
+
+    public void setPharmaSupplyQueue(DrugSupplyQueue pharmaSupplyQueue) {
+        this.pharmaSupplyQueue = pharmaSupplyQueue;
+    }
+
 
 
     public PatientHospitalAppointmentWorkQueue getHospitalWorkQueue() {

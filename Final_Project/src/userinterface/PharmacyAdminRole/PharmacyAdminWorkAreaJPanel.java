@@ -59,6 +59,15 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
         this.setSize(1466, 902);
+                        introPanel.setBounds(171, 33, 1293, 101);
+        jLabel4.setBounds(1, 1, 160, 113);
+        jSplitPane1.setBounds(2, 140, 1195, 550);
+        manageOrganizationJButton.setBounds(718, 170, 393, 166);
+        btnResp.setBounds(1000, 520, 393, 166);
+       
+        btnTestors.setBounds(1000, 141, 393, 166);
+        btnCheckTests.setBounds(516,141,393,166);
+         btnCompRpt.setBounds(516, 520, 393, 166);
 
     }
     /**
@@ -272,7 +281,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(btnResp, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(125, 125, 125))))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(321, 321, 321)
+                .addGap(318, 318, 318)
                 .addComponent(manageOrganizationJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -283,7 +292,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTestors)
                     .addComponent(btnCheckTests))
-                .addGap(29, 29, 29)
+                .addGap(37, 37, 37)
                 .addComponent(manageOrganizationJButton)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -323,7 +332,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
 
-        ManageOrgJPanel manageOrgJPanel = new ManageOrgJPanel(userProcessContainer,account,organization,enterprise,business);
+        ManageOrgJPanel manageOrgJPanel = new ManageOrgJPanel(userProcessContainer,account,organization,enterprise,business,"Pharmacy Organization");
         userProcessContainer.add("manageOrgJPanel", manageOrgJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

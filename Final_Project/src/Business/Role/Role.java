@@ -29,7 +29,8 @@ public abstract class Role {
         VaccineScientists("VaccineScientists"),
         InsuranceAdmin("InsuranceAdmin"),
         InsuranceStaff("InsuranceStaff"),
-        FDAAdmin("FDAAdmin");
+        FDAAdmin("FDAAdmin"),
+        ManufactureAdmin("ManufactureAdmin");
         
         private String value;
         private RoleType(String value){
