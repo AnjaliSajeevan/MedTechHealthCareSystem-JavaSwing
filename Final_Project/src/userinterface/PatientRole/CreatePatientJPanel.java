@@ -15,6 +15,7 @@ import Business.UserAccount.UserAccount;
 import Business.Utility.SmsSender;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.io.BufferedReader;
 import static java.lang.Boolean.TRUE;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,10 +25,16 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -139,6 +146,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -356,7 +364,6 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 102, 102));
-        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\pic\\add patient.png")); // NOI18N
         btnSave.setText("Save Details");
         btnSave.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 102, 102), new java.awt.Color(204, 204, 204)));
         btnSave.setContentAreaFilled(false);
@@ -718,6 +725,13 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         jLabel41.setForeground(new java.awt.Color(0, 102, 102));
         jLabel41.setText("Back...");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/upload.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -736,8 +750,11 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel41))
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                                .addComponent(jButton1)))))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -748,13 +765,15 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel41))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 20, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
         );
@@ -987,6 +1006,94 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+       
+         String filepath = "PatientList.csv";
+         File file = new File(filepath);
+         String line =null;
+         String name;
+         String add1;
+         String add2;
+         String add3;        
+         String contact;   
+         String gender ;  
+         String dates;
+         int age;              
+         String email;       
+         String ssn;
+         String allergy;
+         String other;
+         String username;
+         String password;
+        
+         
+                
+         try {
+              
+              
+            BufferedReader br = new BufferedReader(new FileReader(file));
+             
+              
+             for(int  i=0;i<10;i++)
+        {
+               
+                      while((line = br.readLine()) != null ){
+                          String[] temp = line.split(",");
+                          name=temp[0];
+                          add1=temp[1];
+                          add2=temp[2];
+                          add3=temp[3];
+                          dates=temp[4];
+                          contact=temp[5];
+                          gender=temp[6];
+                          email=temp[7];
+                          allergy=temp[8];
+                          other=temp[9];
+                          ssn=temp[10];
+                          username=temp[11];
+                          password=temp[12];
+                          
+                          DateTimeFormatter dateFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                          LocalDate locBirthDate= LocalDate.parse(dates,dateFormatter);
+                          LocalDate today = LocalDate.now();
+                          Period p = Period.between(locBirthDate, today);
+                          age = p.getYears();
+                          
+                          
+                          Patient tester = new Patient();
+                          tester.setPatientname(name);
+                          tester.setAddress1(add1);
+                          tester.setAddress2(add2);
+                          tester.setAddress3(add3);
+                          tester.setContact(contact);
+                          tester.setGender(gender);
+                          tester.setDOB(dates);
+                          tester.setAge(age);
+                          tester.setEmail(email);
+                          tester.setSsn(ssn);
+                          tester.setAllergy(allergy);
+                          tester.setHealthOther(other);
+                          tester.setCondition(condition);
+                          tester.setUpdateDate();
+                          tester.setUserAccount(username);
+                          tester.getId();
+                          business.getPatientDirectory().addPatient(tester);
+                          Employee employee=business.getEmployeeDirectory().createEmployee(username);
+                          UserAccount account = business.getUserAccountDirectory().createUserAccount(username, password, employee, new PatientRole());
+                          
+                      } 
+        }
+         JOptionPane.showMessageDialog(null, "Data Successfully Loaded");
+                  }catch (IOException ex) {
+                      Logger.getLogger(CreatePatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                 
+              }
+         
+         
+
+    }//GEN-LAST:event_jButton1ActionPerformed
  private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
@@ -1046,6 +1153,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton btnOther;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpload;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

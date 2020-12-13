@@ -177,7 +177,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -200,14 +200,13 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         pnlCard1Layout.setHorizontalGroup(
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard1Layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
-                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard1Layout.createSequentialGroup()
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(232, 232, 232))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(185, 185, 185))))
+                .addContainerGap(162, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(185, 185, 185))
+            .addGroup(pnlCard1Layout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCard1Layout.setVerticalGroup(
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +215,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(329, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard1, "card6");
@@ -260,7 +259,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         pnlCard2Layout.setHorizontalGroup(
             pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard2Layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(189, Short.MAX_VALUE)
                 .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard2Layout.createSequentialGroup()
                         .addComponent(userJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,7 +284,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(userJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard2, "card4");
@@ -392,7 +391,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(pnlCard4Layout.createSequentialGroup()
                         .addGap(238, 238, 238)
                         .addComponent(jLabel6)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         pnlCard4Layout.setVerticalGroup(
             pnlCard4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,7 +408,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnViewPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard4, "card7");
@@ -483,7 +482,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         pnlCard3Layout.setHorizontalGroup(
             pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard3Layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard3Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -513,7 +512,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard3, "card5");
@@ -608,7 +607,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnHome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -633,10 +632,10 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnInsurancePolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(btnInsuranceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
 
-        pnlTab.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-13, -20, 490, 920));
+        pnlTab.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-13, -20, 410, 930));
 
         jSplitPane1.setLeftComponent(pnlTab);
 
@@ -651,7 +650,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        add(jPanel3, java.awt.BorderLayout.CENTER);
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1258, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -773,8 +772,9 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         else
         {
-            InsuranceWorkRequest request = (InsuranceWorkRequest) tblPolicy.getValueAt(selectedRow, 0);
+            InsuranceWorkRequest request = (InsuranceWorkRequest) tblPatient.getValueAt(selectedRow, 0);
             request.setStatus("Declined");
+             populateTable();
         }
     }//GEN-LAST:event_btnDeclineActionPerformed
 

@@ -327,34 +327,32 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl2Layout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnl2Layout.createSequentialGroup()
-                                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnAccept))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl2Layout.createSequentialGroup()
-                                        .addGap(67, 67, 67)
-                                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl2Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(31, 31, 31)
-                                                .addComponent(jComboBoxTimeSlot, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(81, 81, 81)
-                                                .addComponent(btnSubmit))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl2Layout.createSequentialGroup()
-                                                .addGap(48, 48, 48)
-                                                .addComponent(jLabel5)
-                                                .addGap(113, 113, 113)
-                                                .addComponent(availableDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(1, 1, 1)
-                                .addComponent(btnDecline))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnAccept)
+                                    .addGroup(pnl2Layout.createSequentialGroup()
+                                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel4))
+                                        .addGap(27, 27, 27)))
+                                .addGap(30, 30, 30)
+                                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnDecline, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
+                                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(availableDoctor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxTimeSlot, 0, 129, Short.MAX_VALUE))
+                                        .addGap(24, 24, 24)))
+                                .addGap(5, 5, 5)
+                                .addComponent(btnSubmit)
+                                .addGap(152, 152, 152))))
                     .addGroup(pnl2Layout.createSequentialGroup()
                         .addGap(398, 398, 398)
                         .addComponent(jLabel2))
                     .addGroup(pnl2Layout.createSequentialGroup()
-                        .addGap(323, 323, 323)
+                        .addGap(340, 340, 340)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(229, Short.MAX_VALUE))
         );
@@ -368,19 +366,19 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxTimeSlot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSubmit)
-                    .addComponent(jLabel4))
-                .addGap(55, 55, 55)
+                    .addComponent(jLabel4)
+                    .addComponent(btnSubmit))
+                .addGap(35, 35, 35)
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(availableDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addGap(81, 81, 81)
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel7)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         pnl.add(pnl2, "card3");
@@ -416,24 +414,28 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else {
-            System.out.println(business.getDoctorDirectory().getdoctorlist());
-            for (Doctor n : business.getDoctorDirectory().getdoctorlist()) {
-                
-                if(n.getHospital().equals(enterprise.getName()))
-                {
-                appointment = n.getAppointment();
-               
-                for (LocalDate dates : appointment.keySet()) {
 
-                    if (dates.equals(d)) {
-          
-                        {                            
-                            for (String timess : appointment.get(dates)) {
-                                if (timess.equals(time)) {
-                                    doctor = n.toString();
-                                    System.out.println(doctor);
-                                    availableDoctor.addItem(doctor);
-                                   System.out.println("END");
+            for (Doctor n : business.getDoctorDirectory().getdoctorlist()) {
+
+                if (n.getHospital().equals(enterprise.getName())) {
+                    appointment = n.getAppointment();
+                    if (appointment==null) {
+                        JOptionPane.showMessageDialog(null, "No doctors available for the selected time");
+                    } else {
+                        for (LocalDate dates : appointment.keySet()) {
+
+                            if (dates.equals(d)) {
+
+                                {
+                                    for (String timess : appointment.get(dates)) {
+                                        if (timess.equals(time)) {
+                                            doctor = n.toString();
+                                            System.out.println(doctor);
+                                            availableDoctor.addItem(doctor);
+
+                                        }
+
+                                    }
                                 }
 
                             }
@@ -441,10 +443,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
                     }
                 }
-
-            }
-            }
-        }
+            }    }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
@@ -466,7 +465,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                             doc.removeAppointment(dates, selected);
                             appointment.get(d).remove(selected);
                         }
-                        System.out.println(doc.getAppointment());
+                      
                     }
                 }
 
@@ -492,8 +491,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         } else {
             PatientHospitalAppointmentWorkRequest request = (PatientHospitalAppointmentWorkRequest) tblpatientAppointment.getValueAt(selectedRow, 0);
-        request.setStatus("Appointment confirmed");
+        request.setStatus("Appointment declined");
         }
+        populateTable();
     }//GEN-LAST:event_btnDeclineActionPerformed
 
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
