@@ -26,6 +26,7 @@ public class VaccineWorkRequest {
     private String enterprise;
     private String success;
     private String phase;
+    private UserAccount manufacturer;
     
     public VaccineWorkRequest(){
         requestDate = new Date();
@@ -110,6 +111,14 @@ public class VaccineWorkRequest {
 
     public void setPhase(String phase) {
         this.phase = phase;
+    }
+
+    public UserAccount getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(UserAccount manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     @Override

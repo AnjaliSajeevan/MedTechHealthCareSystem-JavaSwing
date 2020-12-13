@@ -10,9 +10,9 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.AdminRole;
 import Business.Role.FDARole;
-import Business.Role.HealthDeptRole;
 import Business.Role.InsuranceAdminRole;
 import Business.Role.LabAdminRole;
+import Business.Role.ManufactureAdminRole;
 import Business.Role.PharmacyAdminRole;
 import Business.Role.VaccineAdminRole;
 import Business.UserAccount.UserAccount;
@@ -371,9 +371,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
            
          UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());  
          
-        }else if(enterprise.getEnterpriseType().equals(enterprise.getEnterpriseType().HealthDept)){
+        }else if(enterprise.getEnterpriseType().equals(enterprise.getEnterpriseType().DrugManufacturer)){
            
-         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HealthDeptRole());  
+         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new ManufactureAdminRole());  
          
         }
          JOptionPane.showMessageDialog(null, "Admin account added successfully!");

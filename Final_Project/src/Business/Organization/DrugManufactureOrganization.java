@@ -5,8 +5,8 @@
  */
 package Business.Organization;
 
-import Business.Role.FDARole;
-import Business.Role.HealthDeptRole;
+
+import Business.Role.ManufactureAdminRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -14,11 +14,11 @@ import java.util.ArrayList;
  *
  * @author Manasa
  */
-public class HealthDeptOrganization extends Organization{
+public class DrugManufactureOrganization extends Organization{
    private String organizationType;
     
-    public HealthDeptOrganization(String organizationType) {
-        super(Organization.Type.HealthDept.getValue());
+    public DrugManufactureOrganization(String organizationType) {
+        super(Organization.Type.ManufactureAdmin.getValue());
          this.organizationType = organizationType;
     }
     
@@ -28,7 +28,7 @@ public class HealthDeptOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new HealthDeptRole());
+        roles.add(new ManufactureAdminRole());
         return roles;
     }
      
