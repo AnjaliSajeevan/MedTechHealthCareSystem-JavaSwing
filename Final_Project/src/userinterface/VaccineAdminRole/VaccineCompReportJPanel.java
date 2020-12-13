@@ -68,6 +68,19 @@ public class VaccineCompReportJPanel extends javax.swing.JPanel {
          this.setSize(1466, 902);
                  populateAllDrugRequestTable();
         populateTimeline("");
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel4.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(1, 130, 1228, 782);
+        jPanel1.setSize(1190,740);
+        jPanel2.setSize(1190,740);
+        jPanel3.setSize(1190,740);
+        jPanel4.setSize(1190,740);
+        jPanel5.setSize(1190,740);
+        jPanel6.setSize(1190,740);
+        jPanel7.setSize(1190,740);
+        responseTable.setSize(1032, 225);
+        timelineTable.setSize(1032, 225);
+        
         jTabbedPane1.setBackground(Color.WHITE);
                 DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
@@ -527,14 +540,14 @@ public void populateProjectTimeline(){
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1023, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(522, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("OnGoing Projects", jPanel1);
@@ -572,7 +585,7 @@ public void populateProjectTimeline(){
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1029, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1044, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,7 +607,7 @@ public void populateProjectTimeline(){
             .addGroup(successpanelLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(jLabel9)
-                .addContainerGap(833, Short.MAX_VALUE))
+                .addContainerGap(848, Short.MAX_VALUE))
         );
         successpanelLayout.setVerticalGroup(
             successpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -668,7 +681,7 @@ public void populateProjectTimeline(){
             .addGroup(conditionPanelLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(jLabel11)
-                .addContainerGap(804, Short.MAX_VALUE))
+                .addContainerGap(819, Short.MAX_VALUE))
         );
         conditionPanelLayout.setVerticalGroup(
             conditionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,7 +717,7 @@ public void populateProjectTimeline(){
             .addGroup(timelinePanelLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(jLabel12)
-                .addContainerGap(761, Short.MAX_VALUE))
+                .addContainerGap(776, Short.MAX_VALUE))
         );
         timelinePanelLayout.setVerticalGroup(
             timelinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -792,15 +805,17 @@ public void populateProjectTimeline(){
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(424, Short.MAX_VALUE)
+                .addComponent(btnTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(408, 408, 408))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1017, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
-            .addComponent(jScrollPane6)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(407, 407, 407))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jScrollPane6)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -808,10 +823,10 @@ public void populateProjectTimeline(){
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTimeline)
+                .addComponent(btnTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Project History", jPanel7);

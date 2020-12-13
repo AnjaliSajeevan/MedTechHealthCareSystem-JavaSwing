@@ -59,7 +59,13 @@ public class ManufacturerWorkAreaJPanel extends javax.swing.JPanel {
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
         populateNewMedTable();
-        this.setSize(1466, 902);
+                this.setSize(1466, 902);
+        introPanel.setBounds(171, 33, 1293, 101);
+        jLabel10.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(1, 115, 1228, 782);
+        jPanel1.setSize(1190,600);
+        jPanel2.setSize(1190,600);
+        jPanel7.setSize(1190,600);
         DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);
@@ -648,7 +654,7 @@ public class ManufacturerWorkAreaJPanel extends javax.swing.JPanel {
         Vaccine vaccine= (Vaccine)vaccineRequestTable.getValueAt(selectedRow, 1);
         VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
         account.getVaccineWorkQueue().removeWorkRequest(vaccineReq);
-
+        vaccineReq.setManufacturer(account);
         Medicine med = new Medicine(vaccine.getName(),Double.parseDouble(txtPrice.getText()),quant,dose);
         med.setCondition(vaccine.getCondition());
         med.setUpdateDate();
@@ -770,7 +776,11 @@ public class ManufacturerWorkAreaJPanel extends javax.swing.JPanel {
         int updateQ = (medicine.getQuantity()+quant);
         medicine.setQuantity(updateQ);
         int demandQ = (medicine.getDemand()-quant);
-        medicine.setDemand(demandQ);
+                   if(demandQ < 0){
+                medicine.setDemand(0);
+            }else{
+            medicine.setDemand(demandQ);
+            }
         DrugManufacturingEnterprise e = (DrugManufacturingEnterprise) enterprise;
         e.getMedicineCatalog().updateMedicine(medicine);
         populateMedTable();

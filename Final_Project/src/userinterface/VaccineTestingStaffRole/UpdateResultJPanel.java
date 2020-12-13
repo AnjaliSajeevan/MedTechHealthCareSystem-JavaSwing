@@ -151,7 +151,7 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
         btnSubmit.setBackground(new java.awt.Color(0, 0, 51));
         btnSubmit.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
-        btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/sendFDA.png"))); // NOI18N
+        btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/treatment_50px.png"))); // NOI18N
         btnSubmit.setText("SUBMIT RESULT");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

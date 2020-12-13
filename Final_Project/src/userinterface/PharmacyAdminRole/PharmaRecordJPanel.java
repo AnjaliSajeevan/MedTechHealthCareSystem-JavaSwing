@@ -49,7 +49,12 @@ public class PharmaRecordJPanel extends javax.swing.JPanel {
                 DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);
-
+        this.setSize(1466, 902);
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel7.setBounds(1, 1, 160, 113);
+        jTabbedPane2.setBounds(1, 115, 1228, 782);
+        jPanel14.setSize(1190,600);
+        jPanel15.setSize(1190,600);
                for (int i = 0; i < respTable.getModel().getColumnCount(); i++) {
             respTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
         }

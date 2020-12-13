@@ -17,7 +17,6 @@ public class DrugSupplyQueue {
     private ArrayList<DrugSupplyWorkRequest> supplyRequest;
 
     public DrugSupplyQueue() {
-        System.out.println("reached creating supplyqueue");
         supplyRequest = new ArrayList<DrugSupplyWorkRequest>();
     }
 

@@ -241,11 +241,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\anjal\Downloads\5fd3a69ced29a044757172.gif"/>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lab">
               <Properties>

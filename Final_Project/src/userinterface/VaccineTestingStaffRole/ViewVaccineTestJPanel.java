@@ -185,7 +185,7 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
         }
 
         VaccineTester tester= (VaccineTester)testRequestTable.getValueAt(selectedRow, 3);
-        ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,false);
+        ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,false,false);
         userProcessContainer.add("viewTestersJPanel", viewTestersJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
