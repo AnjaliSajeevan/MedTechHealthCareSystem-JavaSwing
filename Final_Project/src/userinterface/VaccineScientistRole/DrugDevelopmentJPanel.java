@@ -452,8 +452,8 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
 if(this.jTabbedPane3.getSelectedIndex() == 0){//all new drug requests
     populateDrugProjectTable();
 }else if(this.jTabbedPane3.getSelectedIndex() == 1){//view each vaccine details
-    if(jPanel2.getComponentCount() > 0){
-    jPanel2.remove(0);
+    if(jPanel1.getComponentCount() > 0){
+    jPanel1.remove(0);
     }
            int selectedRow = drugProjectTable.getSelectedRow();
         if(selectedRow<0){

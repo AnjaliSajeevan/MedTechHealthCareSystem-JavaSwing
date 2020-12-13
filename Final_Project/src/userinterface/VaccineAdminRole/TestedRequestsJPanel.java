@@ -453,6 +453,12 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
             }
         });
 
+        txtResult1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtResult1ActionPerformed(evt);
+            }
+        });
+
         jLabel9.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
         jLabel9.setText("Select FDA Company to sent the Vaccine Request:");
 
@@ -718,6 +724,10 @@ populateVaccines();
     private void vaccinecomboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaccinecomboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_vaccinecomboBox1ActionPerformed
+
+    private void txtResult1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResult1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtResult1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

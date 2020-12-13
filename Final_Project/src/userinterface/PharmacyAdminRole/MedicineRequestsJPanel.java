@@ -62,19 +62,11 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
         this.setSize(1466, 902);
-        populateNewMedTable();
         populatePatientRequests();
         populateDeliv();
         DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);
-
-        for (int i = 0; i < vaccineRequestTable.getModel().getColumnCount(); i++) {
-            vaccineRequestTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
-        }
-        
-        vaccineRequestTable.setShowGrid(true);
-       vaccineRequestTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
                for (int i = 0; i < respTable.getModel().getColumnCount(); i++) {
             respTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
         }
@@ -96,22 +88,7 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
        
 
     }
-    public void populateNewMedTable(){
-              DefaultTableModel model = (DefaultTableModel)vaccineRequestTable.getModel();
-        model.setRowCount(0);
-        List<VaccineWorkRequest> requestList = account.getVaccineWorkQueue().getVaccineRequestList();
-        for(VaccineWorkRequest req: requestList){
 
-            Object row[] = new Object[5];
-                 row[0] = req;
-                 row[1] = req.getVaccine();
-                 row[2] = req.getVaccine().getCondition();
-                 row[3] = req.getResolveDate();          
-                 model.addRow(row); 
-            }
-        
-    
-    }
  private  Map<String,Date> sortByDate(Map<String, Date> map){
         List<Map.Entry<String, Date>> tempList = new LinkedList<Map.Entry<String, Date>>(map.entrySet());
         Collections.sort(tempList, new Comparator<Map.Entry<String, Date>>(){
@@ -236,18 +213,6 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
         backJButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        vaccineRequestTable = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        txtQuant = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtPrice = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtDose = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        btnAddSupply = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         medicineTable = new javax.swing.JTable();
@@ -335,129 +300,6 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
                 jTabbedPane1MouseClicked(evt);
             }
         });
-
-        vaccineRequestTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "RequestID", "Medicine", "Type", "ApproveDate"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(vaccineRequestTable);
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
-
-        jLabel4.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel4.setText("Quantity");
-
-        txtPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPriceActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel3.setText("Price");
-
-        jLabel2.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel2.setText("Dosage(mg)");
-
-        btnAddSupply.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/add.png"))); // NOI18N
-        btnAddSupply.setText("Add to Supply");
-        btnAddSupply.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddSupplyActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel5.setText("Select New Request and fill up below details to add supply");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                    .addComponent(txtDose)
-                    .addComponent(txtQuant))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAddSupply)
-                    .addComponent(jLabel5))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddSupply, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(28, 28, 28))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(303, 303, 303)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(372, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("New Medicine Requests", jPanel1);
 
         medicineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -627,7 +469,7 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1072, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
         jPanel6Layout.setVerticalGroup(
@@ -644,14 +486,14 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1112, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Medicine Request Logs", jPanel3);
@@ -684,49 +526,6 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddSupplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplyActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = vaccineRequestTable.getSelectedRow();
-        if(selectedRow<0){
-            JOptionPane.showMessageDialog(null, "Please select a Vaccine row!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        int dose = 0;
-        int quant = 0;
-        try{
-            dose = Integer.parseInt(txtDose.getText());
-            quant = Integer.parseInt(txtQuant.getText());
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Please enter dosage and quantity in integer format only", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        if((dose <= 0) ||(quant <= 0)){
-            JOptionPane.showMessageDialog(null, "Dosage and quantity need tp be more than zero!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        String priceRegex ="[0-9]+\\.[0-9]{2,}";
-        Pattern namePattern = Pattern.compile(priceRegex);
-        Matcher checkFirstName = namePattern.matcher(txtPrice.getText());
-        boolean checkNameMatch = checkFirstName.matches();
-        if(!(checkNameMatch == TRUE)){
-            JOptionPane.showMessageDialog(null, "Please enter Price in decimal format only!!\n(mininmum 2 digits after decimal)", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        Vaccine vaccine= (Vaccine)vaccineRequestTable.getValueAt(selectedRow, 1);
-        VaccineWorkRequest vaccineReq= (VaccineWorkRequest)vaccineRequestTable.getValueAt(selectedRow, 0);
-        account.getVaccineWorkQueue().removeWorkRequest(vaccineReq);
-        
-        Medicine med = new Medicine(vaccine.getName(),Double.parseDouble(txtPrice.getText()),quant,dose);
-        med.setCondition(vaccine.getCondition());
-        med.setUpdateDate();
-        med.setDemand(0);
-        PharmacyEnterprise enterPrise = (PharmacyEnterprise) enterprise;
-        enterPrise.getMedicineCatalog().addMedicine(med);
-       populateNewMedTable();
-       
-        JOptionPane.showMessageDialog(null, "Medicine Added to supply successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnAddSupplyActionPerformed
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
         // TODO add your handling code here:
@@ -877,15 +676,9 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButton1ActionPerformed
 
-    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPriceActionPerformed
-
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
-        if(this.jTabbedPane1.getSelectedIndex() == 0){//new medicine request
-                  populateNewMedTable();
-        }else if(this.jTabbedPane1.getSelectedIndex() ==  1){//patient medicine request
+ if(this.jTabbedPane1.getSelectedIndex() ==  0){//patient medicine request
         populatePatientRequests();
         populateDeliv();
         }else if(this.jTabbedPane1.getSelectedIndex() ==  2){//medicine request logs
@@ -916,26 +709,18 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton1;
-    private javax.swing.JButton btnAddSupply;
     private javax.swing.JButton btnCheck;
     private javax.swing.JButton btnProcess;
     private javax.swing.JComboBox delivComboBox;
     private javax.swing.JPanel introPanel;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -945,9 +730,5 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
     private javax.swing.JTable medicineTable;
     private javax.swing.JTable respTable;
     private javax.swing.JTable timelineTable;
-    private javax.swing.JTextField txtDose;
-    private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtQuant;
-    private javax.swing.JTable vaccineRequestTable;
     // End of variables declaration//GEN-END:variables
 }
