@@ -59,8 +59,8 @@ public class DoctorAvailability extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboTime = new javax.swing.JComboBox<>();
         btnSubmit = new javax.swing.JButton();
+        jComboTime = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         dateTo = new com.toedter.calendar.JDateChooser();
         dateFrom = new com.toedter.calendar.JDateChooser();
@@ -72,16 +72,10 @@ public class DoctorAvailability extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Available Time:");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Available Date From:");
-
-        jComboTime.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jComboTime.setForeground(new java.awt.Color(0, 102, 102));
-        jComboTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00 - 16:00", "16:00 - 23:00", "01:00 - 08:00", "LEAVE" }));
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -90,8 +84,11 @@ public class DoctorAvailability extends javax.swing.JPanel {
             }
         });
 
+        jComboTime.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jComboTime.setForeground(new java.awt.Color(0, 102, 102));
+        jComboTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00 - 16:00", "16:00 - 23:00", "01:00 - 08:00", "LEAVE" }));
+
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 102, 102));
         jLabel7.setText("Available Date To:");
 
         dateFrom.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,7 +100,6 @@ public class DoctorAvailability extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Available Days and Time Slots");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/avaliabletimeslot.png"))); // NOI18N
@@ -163,13 +159,12 @@ public class DoctorAvailability extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(dateTo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(334, 334, 334)
-                        .addComponent(btnSubmit))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(254, 254, 254)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(416, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -187,9 +182,9 @@ public class DoctorAvailability extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1599, 1599, 1599)
-                .addComponent(btnSubmit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(162, 162, 162)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(461, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

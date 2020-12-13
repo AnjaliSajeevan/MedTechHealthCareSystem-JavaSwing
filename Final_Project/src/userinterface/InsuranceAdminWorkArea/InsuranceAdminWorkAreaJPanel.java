@@ -201,13 +201,12 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard1Layout.createSequentialGroup()
                 .addContainerGap(162, Short.MAX_VALUE)
-                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard1Layout.createSequentialGroup()
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(232, 232, 232))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(185, 185, 185))))
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(185, 185, 185))
+            .addGroup(pnlCard1Layout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCard1Layout.setVerticalGroup(
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -773,8 +772,9 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         else
         {
-            InsuranceWorkRequest request = (InsuranceWorkRequest) tblPolicy.getValueAt(selectedRow, 0);
+            InsuranceWorkRequest request = (InsuranceWorkRequest) tblPatient.getValueAt(selectedRow, 0);
             request.setStatus("Declined");
+             populateTable();
         }
     }//GEN-LAST:event_btnDeclineActionPerformed
 
