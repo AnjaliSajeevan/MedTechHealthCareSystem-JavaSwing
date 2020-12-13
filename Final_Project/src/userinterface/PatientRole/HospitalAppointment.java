@@ -198,8 +198,6 @@ public class HospitalAppointment extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Choose appointment Date and Time:");
 
-        txtDetails.setForeground(new java.awt.Color(255, 255, 255));
-
         jComboBoxHospitalList.setForeground(new java.awt.Color(255, 255, 255));
 
         btnSubmit.setBackground(new java.awt.Color(102, 102, 102));
@@ -343,6 +341,8 @@ public class HospitalAppointment extends javax.swing.JPanel {
         r.setTime(selected);
         r.setStatus("Appointment requested");
         r.setInsurance(Insurancepolicy);
+        r.setDoctor("not assigned");
+        r.setDoctor("not available");
         Map<String,Date> reqMap = r.getStatusMap();
         reqMap.put("New Appointment Request: "+hospital, new Date());
         r.setStatusMap(reqMap); 

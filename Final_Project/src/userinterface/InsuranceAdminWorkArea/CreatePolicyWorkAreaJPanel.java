@@ -135,11 +135,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -275,6 +271,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel17.setText("Pharmacy:");
         add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 670, -1, -1));
 
+        jComboHospital.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         add(jComboHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 170, -1));
 
         btnAddHospital.setBackground(new java.awt.Color(0, 0, 0));
@@ -287,6 +284,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnAddHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 590, -1, -1));
 
+        jComboLaboratories.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         add(jComboLaboratories, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 630, 170, -1));
 
         btnAddLaboratory.setBackground(new java.awt.Color(0, 0, 0));
@@ -299,6 +297,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnAddLaboratory, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 630, -1, -1));
 
+        jComboPharmacy.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         add(jComboPharmacy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 670, 170, -1));
 
         btnAddPharmacy.setBackground(new java.awt.Color(0, 0, 0));
@@ -325,19 +324,19 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 552, -1, -1));
 
         jList2.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratory:"));
-        jList2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jList2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(jList2);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 590, 178, 140));
 
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("Pharmacies"));
-        jList3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jList3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jScrollPane3.setViewportView(jList3);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 590, 178, 140));
 
         jListHospital.setBorder(javax.swing.BorderFactory.createTitledBorder("Hospitals :"));
-        jListHospital.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jListHospital.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jListHospital.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(jListHospital);
 
@@ -407,7 +406,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CREATE INSURANCE POLICY");
 
-        btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\anjal\\Pictures\\back_to_75px.png")); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/double_left_50px.png"))); // NOI18N
         btnBack.setBorder(null);
         btnBack.setBorderPainted(false);
         btnBack.setContentAreaFilled(false);
@@ -441,26 +440,10 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, 100));
 
-        jLabel3.setText("All fields are mandatory(");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 840, 180, -1));
-
         jLabel19.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 0, 51));
         jLabel19.setText("*");
         add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, -1));
-
-        jLabel20.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel20.setText("*");
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 840, 10, -1));
-
-        jLabel22.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel22.setText("*");
-        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 840, 10, -1));
-
-        jLabel24.setText(")");
-        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 840, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -645,6 +628,10 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private void btnAddHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddHospitalActionPerformed
 
         boolean t = ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList().isEmpty();
+        if(i==null)
+        {t=true;
+        }
+        
         if (t == false) {
             String x = (String) jComboHospital.getSelectedItem();
 
@@ -689,7 +676,11 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAddLaboratoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLaboratoryActionPerformed
      boolean t =ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList().isEmpty();
-      if (t==false)
+      if(i==null)
+        {t=true;
+        }
+     
+     if (t==false)
       {  
        String x = (String) jComboLaboratories.getSelectedItem();
     
@@ -714,7 +705,11 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private void btnAddPharmacyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPharmacyActionPerformed
         // TODO add your handling code here:
         boolean t =ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList().isEmpty();
-      if (t==false)
+      if(i==null)
+        {t=true;
+        }
+        
+        if (t==false)
       {
         String x = (String) jComboPharmacy.getSelectedItem();
     
@@ -831,12 +826,8 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
