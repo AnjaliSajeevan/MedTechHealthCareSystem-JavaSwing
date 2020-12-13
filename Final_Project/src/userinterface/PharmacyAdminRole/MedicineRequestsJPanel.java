@@ -250,9 +250,10 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        backJButton1.setBackground(new java.awt.Color(0, 102, 102));
         backJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        backJButton1.setForeground(new java.awt.Color(0, 102, 102));
-        backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home.png"))); // NOI18N
+        backJButton1.setForeground(new java.awt.Color(255, 255, 255));
+        backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton1.setText("Home");
         backJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -493,7 +494,7 @@ public class MedicineRequestsJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Medicine Request Logs", jPanel3);
