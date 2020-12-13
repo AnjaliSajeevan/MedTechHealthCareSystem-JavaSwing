@@ -52,9 +52,15 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
         this.setSize(1466, 902);
+                introPanel.setBounds(171, 33, 1293, 101);
+        jLabel7.setBounds(1, 1, 160, 113);
+        jTabbedPane1.setBounds(1, 115, 1228, 782);
+        jPanel1.setSize(1190,600);
+        jPanel3.setSize(1190,600);
         populateMedTable();
         populateNewMedTable();
         populateSupplyTable();
+        populateMedQuoteBox();
                                 DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.BLACK);
          headerRenderer.setForeground(java.awt.Color.WHITE);
@@ -124,7 +130,8 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                     medQuoteBox.removeAllItems();
                     medQuoteBox.addItem("");
                     for(Medicine med :enterprise.getMedicineCatalog().getMedicineList()){
-                        if(!med.getManufacturer().toString().equals("")){
+                        
+                        if(med.getManufacturer() !=null){
                         medQuoteBox.addItem(med);
                         }
                     }
@@ -1110,7 +1117,11 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             int newQuant = (medicineUpdate.getQuantity()+supplyQ);
             medicineUpdate.setQuantity(newQuant);
             int demandNew =(medicineUpdate.getDemand()-supplyQ);
+            if(demandNew < 0){
+                medicineUpdate.setDemand(0);
+            }else{
             medicineUpdate.setDemand(demandNew);
+            }
             enterprise.getMedicineCatalog().updateMedicine(medicineUpdate);
         }
         account.getPharmaSupplyQueue().removeSupplyRequest(req);

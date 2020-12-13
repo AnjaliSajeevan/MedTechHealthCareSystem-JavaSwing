@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -43,6 +42,10 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.organization = organization;
         this.setSize(1466, 902);
+        introPanel.setBounds(171, 33, 1293, 101);
+        jLabel4.setBounds(1, 1, 160, 113);
+        btnCreate.setBounds(1207, 135, 258, 73);
+        jPanel4.setBounds(2, 150, 1049, 384);
     }
     
     /**
@@ -386,7 +389,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 64, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblPreservation)
                     .addComponent(lblSide))
@@ -494,7 +497,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jLabel7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(979, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,13 +610,14 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                         .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(128, 128, 128)
+                                .addGap(476, 476, 476)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(90, 90, 90)
-                                .addComponent(jLabel3)))))
+                                .addGap(56, 56, 56)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
@@ -848,6 +852,22 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             business.getVaccineQueue().addWorkRequest(vaccineReq);
 
             JOptionPane.showMessageDialog(null,"Vaccine Added Successfully!!!");
+            txtName.setText("");
+            txtDesc.setText("");
+            txtCore.setText("");
+            txtAllergens.setText("");
+            txtPreservations.setText("");
+            txtOther.setText("");
+            txtSide.setText("");
+            btnDiabetes.setSelected(false);
+            btnCovid.setSelected(false);
+            btnHeart.setSelected(false);
+            btnResp.setSelected(false);
+            quantityMinAgeSpinner.setValue(0);
+            quantityMaxAgeSpinner.setValue(0);
+            mornDosage.setValue(0);
+            afterDosage.setValue(0);
+            nightDosage.setValue(0);
         }
     }//GEN-LAST:event_btnCreateActionPerformed
 

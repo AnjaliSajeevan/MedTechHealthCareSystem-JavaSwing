@@ -24,6 +24,7 @@ import Business.Role.InsuranceAdminRole;
 import Business.Role.InsuranceClaimRole;
 import Business.Role.LabAdminRole;
 import Business.Role.LabStaffRole;
+import Business.Role.ManufactureAdminRole;
 import Business.Role.PatientRole;
 import Business.Role.PharmacyAdminRole;
 import Business.Role.VaccineAdminRole;
@@ -540,6 +541,20 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         String name12 = "Sunshine";
         name = name12+" "+type;
         network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        
+        //Create Drug Manufacturing Unit
+                for (Enterprise.EnterpriseType temp7 : Enterprise.EnterpriseType.values()) {
+            if(temp7.toString().equals("DrugManufacturer")){
+                type = temp7;
+            }
+        }
+        String name13 = "DrugFactory";
+        name = name13+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        String name14 = "BulkIndustry";
+        name = name14+" "+type;
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
 
         //Load Admins
         for(Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()){
@@ -971,6 +986,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             if(e.getName().equals("BioHealthCare Food and Drug Administration")){
                 Employee fdaEmp2 = e.getEmployeeDirectory().createEmployee("fdaEmp2");
                 e.getUserAccountDirectory().createUserAccount("fda2", "fda2", fdaEmp2, new FDARole());
+            }
+            if(e.getName().equals("DrugFactory DrugManufacturer")){
+                Employee manuEmp1 = e.getEmployeeDirectory().createEmployee("manufacturer1");
+                e.getUserAccountDirectory().createUserAccount("drug1", "drug1", manuEmp1, new ManufactureAdminRole());
+            }
+            if(e.getName().equals("BulkIndustry DrugManufacturer")){
+                Employee manuEmp2 = e.getEmployeeDirectory().createEmployee("manufacturer2");
+                e.getUserAccountDirectory().createUserAccount("drug2", "drug2", manuEmp2, new ManufactureAdminRole());
             }
             if(e.getName().equals("Sunshine Insurance")){
                 Employee insEmp = e.getEmployeeDirectory().createEmployee("insureEmp1");

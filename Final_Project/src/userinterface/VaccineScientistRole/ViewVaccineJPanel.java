@@ -38,7 +38,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         this.vaccine = vaccine;
         this.manage = manage;
         this.pane= pane;
-        this.setSize(830, 530);
+        this.setSize(1190,600);
         initializePage();
     }
 
