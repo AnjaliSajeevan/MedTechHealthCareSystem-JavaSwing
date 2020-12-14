@@ -282,13 +282,13 @@ public class ManagePateintJPanel extends javax.swing.JPanel {
         }
        
         DefaultPieDataset piedataset= new DefaultPieDataset();
-        piedataset.setValue("Below 26", countA);
-        piedataset.setValue("from 26 to 35",countB );
-        piedataset.setValue("from 36 to 45",countC);
-        piedataset.setValue("from 46 to 100",countD);
-        JFreeChart chart=ChartFactory.createPieChart("Pie Chart", piedataset, true, true, true);
+        piedataset.setValue("Below 26 age", countA);
+        piedataset.setValue("from 26 to 35 age",countB );
+        piedataset.setValue("from 36 to 45 age",countC);
+        piedataset.setValue("from 46 to 100 age",countD);
+        JFreeChart chart=ChartFactory.createPieChart("Pie Chart age", piedataset, true, true, true);
         PiePlot p=(PiePlot)chart.getPlot();
-        ChartFrame frame=new ChartFrame("Pie Chart", chart);
+        ChartFrame frame=new ChartFrame("Pie Chart for Patient Age group", chart);
         frame.setVisible(true);
         frame.setSize(450,500);
     }//GEN-LAST:event_btnchartActionPerformed

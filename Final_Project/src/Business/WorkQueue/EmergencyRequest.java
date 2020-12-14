@@ -6,8 +6,11 @@
 package Business.WorkQueue;
 
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 /**
  *
@@ -21,16 +24,30 @@ public class EmergencyRequest {
     private String enterprise;
     private String msg;
     private String result;
-    private int id;
+    private String id;
     private Map<String,Date> statusMap;
    private static int count = 1;
    private String location;
 
     public EmergencyRequest() {
-        id = count;
-        count++;
+    
         createDate = new Date();
         statusMap = new HashMap<String,Date>();
+         
+        List<Integer> numbers = new ArrayList();
+        for(int i = 0; i < 10; i++){
+        numbers.add(i);
+        }
+
+        Collections.shuffle(numbers);
+
+    String result = "";
+    for(int i = 0; i < 4; i++){
+        result += numbers.get(i).toString();
+        id="E"+result;
+
+    }
+        
     }
 
     public UserAccount getSender() {
@@ -86,7 +103,7 @@ public class EmergencyRequest {
         this.result = result;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

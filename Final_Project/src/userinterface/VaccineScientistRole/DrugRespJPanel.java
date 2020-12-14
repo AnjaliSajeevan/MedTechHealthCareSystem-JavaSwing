@@ -267,7 +267,7 @@ public class DrugRespJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         responseTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2));
-        responseTable.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        responseTable.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         responseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},

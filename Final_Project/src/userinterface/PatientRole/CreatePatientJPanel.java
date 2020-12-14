@@ -821,6 +821,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String toemail;
+        String phone = null;
         int comp = 0;
         String username=txtUsername.getText();
         String password=txtPassword.getText();
@@ -885,7 +886,7 @@ if (passwordPatternCorrect()==false){
             }
             if(!txtPhone.getText().equalsIgnoreCase("")){
 
-                String phone = (txtPhone.getText());
+                phone = "8573997267";
 
                 String phoneRegex = "^[0-9]{10}$";
                 Pattern phonePattern = Pattern.compile(phoneRegex);
@@ -989,8 +990,8 @@ if (passwordPatternCorrect()==false){
                         //                    }
                     //                }
                 JOptionPane.showMessageDialog(null,"Patient added successfully!!!");
-                sendFromGMail("medtech2254", "AedGroup@9", new String[]{toemail},"Thank you for Registaring with MedTech health care, We are here to help you!!","Registration Confirmation");
-                SmsSender.sendSms(txtPhone.getText(), "Thank you for Registaring with MedTech health care, your mobile number is registered!!");
+                sendFromGMail("medtech2254", "AedGroup@9", new String[]{toemail},"Registration Confirmation- MEDTECH HEALTH CARE","Thank you for Registaring with MedTech health care, We are here to help you!!");
+                SmsSender.sendSms(phone, "Thank you for Registaring with MedTech health care, your mobile number is registered!!");
                 System.out.println("email bbcm");
                 //String from, String pass, String[] to, String subject, String body
                 txtName.setText("");
