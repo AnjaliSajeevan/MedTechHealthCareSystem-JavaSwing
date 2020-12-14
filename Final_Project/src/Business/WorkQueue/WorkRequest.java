@@ -26,6 +26,15 @@ public abstract class WorkRequest {
     private String insurancepolicy;
     private String requestNo;
     private String enterprise;
+    private String feedback;
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
 
     public String getEnterprise() {
         return enterprise;
