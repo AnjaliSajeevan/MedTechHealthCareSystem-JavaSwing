@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.AdminOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.EmergencyRequest;
+import java.awt.Font;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import userinterface.PatientRole.EmergencyJPanel;
 
@@ -39,7 +41,18 @@ public class AmbulanceDriverWorkAreaJPanel extends javax.swing.JPanel {
         this.account = account;
         this.ecosystem = ecosystem;
         this.enterprise = enterprise;
+        this.setSize(1466, 902);
         populateTable();
+                      DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(java.awt.Color.BLACK);
+         headerRenderer.setForeground(java.awt.Color.WHITE);
+
+        for (int i = 0; i < emerTable.getModel().getColumnCount(); i++) {
+            emerTable.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
+        }
+        
+        emerTable.setShowGrid(true);
+       emerTable.getTableHeader().setFont(new Font("SansSerif 14 Plain",Font.BOLD,16));
     }
 
     /**
@@ -76,13 +89,13 @@ public class AmbulanceDriverWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         emerTable = new javax.swing.JTable();
         btnUpdate = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        jLabel2.setText("Ambulance Work Area JPanel");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         emerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +118,10 @@ public class AmbulanceDriverWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(emerTable);
 
+        btnUpdate.setBackground(new java.awt.Color(102, 0, 0));
+        btnUpdate.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/edit.png"))); // NOI18N
         btnUpdate.setText("UPDATE STATUS");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,12 +129,19 @@ public class AmbulanceDriverWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(102, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home_25px.png"))); // NOI18N
         jButton1.setText("Get Current Location");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel2.setText("AMBULANCE DRIVER WORK PANEL");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -127,29 +151,29 @@ public class AmbulanceDriverWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(193, 193, 193))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(333, 333, 333))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(60, 60, 60)
+                .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -165,6 +189,7 @@ public class AmbulanceDriverWorkAreaJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Patient reached Hospital successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
         Map<String,Date> reqMap = eReq.getStatusMap();
         reqMap.put("Patient Admitted to Hospital -"+eReq.getHospital(), new Date());
+        reqMap.put("Patient Admitted", new Date());
         eReq.setStatusMap(reqMap);
         ecosystem.getEmergencyQueue().updateEmergencyRequest(eReq, ecosystem.getEmergencyQueue().getEmergencyRequestList());
         account.getEmergencyQueue().removeEmergencyRequest(eReq);

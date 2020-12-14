@@ -368,6 +368,11 @@ public class LabAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnRecord1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecord1ActionPerformed
         // TODO add your handling code here:
+          LabRecordsJPanel labRecordPanel = new LabRecordsJPanel(userProcessContainer,account,enterprise,business);
+        userProcessContainer.add("labRecordPanel", labRecordPanel);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);       
     }//GEN-LAST:event_btnRecord1ActionPerformed
 
 

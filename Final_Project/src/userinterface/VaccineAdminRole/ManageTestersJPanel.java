@@ -100,24 +100,24 @@ public class ManageTestersJPanel extends javax.swing.JPanel {
 
         introPanel.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel5.setFont(new java.awt.Font("Sukhumvit Set", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Manage Clinical Trial Testers");
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 18)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblAccount.setBackground(new java.awt.Color(51, 51, 51));
-        lblAccount.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblAccount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblAccount.setForeground(new java.awt.Color(255, 255, 255));
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         backJButton1.setBackground(new java.awt.Color(0, 0, 102));
-        backJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        backJButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         backJButton1.setForeground(new java.awt.Color(255, 255, 255));
         backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton1.setText("Home");
@@ -240,14 +240,14 @@ public class ManageTestersJPanel extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        lblTester.setFont(new java.awt.Font("Symbol", 1, 24)); // NOI18N
+        lblTester.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblTester.setForeground(new java.awt.Color(102, 0, 0));
         lblTester.setText("Tester");
 
-        jLabel13.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel13.setText("Confirm Removal of Below Tester ID:");
 
-        btnDel.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        btnDel.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDel.setForeground(new java.awt.Color(0, 0, 51));
         btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/clear.png"))); // NOI18N
         btnDel.setText("Confirm Delete");

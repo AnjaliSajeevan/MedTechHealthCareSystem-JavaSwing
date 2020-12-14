@@ -29,7 +29,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private OrganizationDirectory directory;
     private JPanel userProcessContainer;
     private String orgtype;
-    
+    private boolean card;
     /**
      * Creates new form ManageOrganizationJPanel
      */
@@ -57,6 +57,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         populateTable();
         populateCombo();
     }
+
     
     private void populateCombo(){
         organizationJComboBox.removeAllItems();

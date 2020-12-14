@@ -7,7 +7,9 @@ package userinterface.PatientRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Essentials.Product;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.EmergencyRequest;
@@ -17,11 +19,21 @@ import javax.swing.JPanel;
   import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -64,7 +76,46 @@ JPanel userProcessContainer;
          }
      }
     }
+ private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
 
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+            message.setFrom(new InternetAddress(from));
+            InternetAddress[] toAddress = new InternetAddress[to.length];
+
+            // To get the array of addresses
+            for( int i = 0; i < to.length; i++ ) {
+                toAddress[i] = new InternetAddress(to[i]);
+            }
+
+            for( int i = 0; i < toAddress.length; i++) {
+                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+            }
+
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }
+        catch (AddressException ae) {
+            ae.printStackTrace();
+        }
+        catch (MessagingException me) {
+            me.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,10 +288,11 @@ JPanel userProcessContainer;
         // TODO add your handling code here:
         UserAccount ambAccount = null;
         if(txtMsg.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Message is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Detailed Message is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
 
         }
+        
         EmergencyRequest request = new EmergencyRequest();
         request.setEnterprise(patient.getPrimaryHospital());
         request.setHospital(patient.getPrimaryHospital());
@@ -250,22 +302,100 @@ JPanel userProcessContainer;
         Map<String,Date> reqMap = request.getStatusMap();
         reqMap.put("Emergency Request created!", new Date());
         request.setStatusMap(reqMap);
+        request.setEnterprise(patient.getPrimaryHospital());
         ecosystem.getEmergencyQueue().addEmergencyRequest(request);
+        List<UserAccount> ambList = new ArrayList<UserAccount>();
         for (Network network : ecosystem.getNetworkList()){
             for (Enterprise enterpriseCheck : network.getEnterpriseDirectory().getEnterpriseList()){
                 if(enterpriseCheck.getName().equals(patient.getPrimaryHospital())){
-                    for (UserAccount ua : enterpriseCheck.getUserAccountDirectory().getUserAccountList()) {
+                    for(Organization org : enterpriseCheck.getOrganizationDirectory().getOrganizationList()){
+                    for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                         if(ua.getRole().toString().equals("AmbulanceDriver")){
                             ua.getEmergencyQueue().addEmergencyRequest(request);
-                            ambAccount = ua;
+                            ambList.add(ua);
                         }
+                    }
                     }
                 }
             }
         }
+        int cases = 0;
+        for(UserAccount u : ambList){
+            if(cases == 0){
+                cases = u.getEmergencyQueue().getEmergencyRequestList().size();
+                ambAccount  = u;
+            }else{
+                if(cases > u.getEmergencyQueue().getEmergencyRequestList().size()){
+                    ambAccount  = u;
+                    cases = u.getEmergencyQueue().getEmergencyRequestList().size();
+            }                
+            }
+
+        }
+        
+        ambAccount.getEmergencyQueue().addEmergencyRequest(request);
         reqMap.put("Request sent to ambulance-!"+ambAccount, new Date());
+                List<Product> productList = ecosystem.getProductCatalog().getProductcatalog(); 
+        String room = "";  
+        int ICURoom = 0;
+        int deluxRoom = 0;
+        int generalRoom = 0;
+        for(Product p: productList){
+            if(p.getProdName().equalsIgnoreCase("ICU")){
+                generalRoom = p.getAvail();
+                int roomQuant = p.getAvail();
+                if(roomQuant > 0){
+                    room = p.getProdName();
+                    int newQuant = (roomQuant-1);
+                    if(newQuant < 0){
+                        p.setAvail(0);
+                    }else{
+                        p.setAvail(newQuant);
+                    }
+                }
+            }
+        }
+        if(room.equals("")){
+          for(Product p: productList){
+            if(p.getProdName().equalsIgnoreCase("delux Room")|| p.getProdName().equalsIgnoreCase("dr") ){
+                generalRoom = p.getAvail();
+                int roomQuant = p.getAvail();
+                if(roomQuant > 0){
+                    room = p.getProdName();
+                    int newQuant = (roomQuant-1);
+                    if(newQuant < 0){
+                        p.setAvail(0);
+                    }else{
+                        p.setAvail(newQuant);
+                    }
+                }
+            }
+        }
+        }
+        
+        if(room.equals("")){
+                 for(Product p: productList){
+            if(p.getProdName().equalsIgnoreCase("General Room")|| p.getProdName().equalsIgnoreCase("gr") ){
+                generalRoom = p.getAvail();
+                int roomQuant = p.getAvail();
+                if(roomQuant > 0){
+                    room = p.getProdName();
+                    int newQuant = (roomQuant-1);
+                    if(newQuant < 0){
+                        p.setAvail(0);
+                    }else{
+                        p.setAvail(newQuant);
+                    }
+                }
+            }
+        }   
+            
+        }
+
+
+
         ecosystem.getEmergencyQueue().addEmergencyRequest(request);
-     JOptionPane.showMessageDialog(null,"Request submitted!\nHospital -"+patient.getPrimaryHospital()+" has been notified and Ambulance -"+ambAccount+" is on the way!", "Information", JOptionPane.INFORMATION_MESSAGE);
+     JOptionPane.showMessageDialog(null,"Request submitted!\nHospital -"+patient.getPrimaryHospital()+" has been notified, "+room+" has been booked and Ambulance -"+ambAccount+" is on the way!", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
@@ -320,8 +450,11 @@ JPanel userProcessContainer;
             return;
 
         }
+        int room = 0;
         String msg = "Notified Primary hospital -"+patient.getPrimaryHospital();
-        //send email.
+                       sendFromGMail("medtech2254", "AedGroup@9", new String[]{"manasabhat794@gmail.com"},"Emergency Request has been raised to your hospital! Patient has been allocated Room No: "+room+" and Emergency Doctor Notified. Immediate Action Required.","HIGH-PRIORITY!!! -Emergency Request Raised!");
+                JOptionPane.showMessageDialog(null,msg, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+             
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void txtMsgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMsgActionPerformed

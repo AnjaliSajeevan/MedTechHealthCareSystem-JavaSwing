@@ -239,6 +239,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         e.setServices(sList);
        JOptionPane.showMessageDialog(null, "Service Name added successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);       
       populateServices();
+      txtService.setText("");
     }//GEN-LAST:event_btnServicesActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
@@ -252,7 +253,7 @@ public class ManageServicesJPanel extends javax.swing.JPanel {
         String s = (String) serviceTable.getValueAt(selectedRow, 0);
                 LabEnterprise e = (LabEnterprise) enterprise;
                 List<String> sList = e.getServices();
-                sList.remove(txtService.getText());
+                sList.remove(s);
         e.setServices(sList);
          JOptionPane.showMessageDialog(null, "Service Name removed successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);       
       populateServices();

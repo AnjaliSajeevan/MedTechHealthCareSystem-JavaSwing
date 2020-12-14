@@ -107,7 +107,6 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
 
         jScrollPane5 = new javax.swing.JScrollPane();
         testRequestTable = new javax.swing.JTable();
-        btnViewTester = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -135,16 +134,6 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
         testRequestTable.setGridColor(new java.awt.Color(0, 0, 51));
         jScrollPane5.setViewportView(testRequestTable);
 
-        btnViewTester.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
-        btnViewTester.setForeground(new java.awt.Color(0, 0, 51));
-        btnViewTester.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/search2.png"))); // NOI18N
-        btnViewTester.setText("View Tester Details");
-        btnViewTester.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewTesterActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Vaccine Test Lab Results");
@@ -158,42 +147,25 @@ public class ViewVaccineTestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(284, 284, 284)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-                        .addComponent(btnViewTester, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5))
-                .addContainerGap())
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnViewTester, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnViewTesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewTesterActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = testRequestTable.getSelectedRow();
-        if(selectedRow<0 || selectedRow>1){
-            JOptionPane.showMessageDialog(null, "Please select one Lab Test to view tester details!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        VaccineTester tester= (VaccineTester)testRequestTable.getValueAt(selectedRow, 3);
-        ViewTestersJPanel viewTestersJPanel = new ViewTestersJPanel(userProcessContainer, business,enterprise,tester,false,false);
-        userProcessContainer.add("viewTestersJPanel", viewTestersJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnViewTesterActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnViewTester;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable testRequestTable;

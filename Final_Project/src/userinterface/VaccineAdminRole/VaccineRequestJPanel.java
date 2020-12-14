@@ -279,22 +279,22 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(vaccineRequestTable);
 
-        jLabel14.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 51));
         jLabel14.setText("Vaccine Requests to be sent for Clinical Trial:");
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel15.setFont(new java.awt.Font("Symbol", 1, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 51));
         jLabel15.setText("Process Vaccine Request");
 
-        jLabel13.setFont(new java.awt.Font("Symbol", 0, 12)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 51));
         jLabel13.setText("Select From the Table Vaccine Request to be sent for Clinical Trial");
 
-        btnSelectTester.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        btnSelectTester.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnSelectTester.setForeground(new java.awt.Color(0, 0, 51));
         btnSelectTester.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/proceedReq.png"))); // NOI18N
         btnSelectTester.setText("Proceed For Testers Selection");
@@ -305,7 +305,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setText("Number of Patients to be Tested");
 
@@ -392,14 +392,14 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("View Vaccine", jPanel2);
 
-        jLabel9.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel9.setText("Provide detailed reason for closure of the Drug Project:");
 
-        jLabel10.setFont(new java.awt.Font("Sukhumvit Set", 1, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 51));
         jLabel10.setText("Route Back Vaccine to Scientist:");
 
-        btnRouteBack.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        btnRouteBack.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnRouteBack.setForeground(new java.awt.Color(102, 0, 0));
         btnRouteBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/routeBack.png"))); // NOI18N
         btnRouteBack.setText("Route Back Request");
@@ -434,14 +434,14 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(routeMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(347, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Route Back", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnDeselect.setFont(new java.awt.Font("Symbol", 0, 12)); // NOI18N
+        btnDeselect.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDeselect.setForeground(new java.awt.Color(0, 0, 51));
         btnDeselect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/clear.png"))); // NOI18N
         btnDeselect.setText("Deselect All");
@@ -474,7 +474,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(testorsTable);
 
-        btnStaffAsgn.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        btnStaffAsgn.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnStaffAsgn.setForeground(new java.awt.Color(0, 0, 51));
         btnStaffAsgn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/proceedReq.png"))); // NOI18N
         btnStaffAsgn.setText("Proceed For Staff Assignment");
@@ -488,14 +488,14 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         activeSelectionPanel.setBackground(new java.awt.Color(204, 255, 255));
         activeSelectionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lblTesterNum.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        lblTesterNum.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblTesterNum.setForeground(new java.awt.Color(0, 0, 51));
         lblTesterNum.setText("Number of Testers: ");
 
-        lblVaccineReq.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblVaccineReq.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblVaccineReq.setText("VaccineReq");
 
-        jLabel17.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 51));
         jLabel17.setText("Choose Testers for recently proceeded Vaccine Request:");
 
@@ -533,7 +533,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(activeSelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDeselect, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnStaffAsgn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -601,7 +601,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(testRequestTable);
 
-        jButton4.setFont(new java.awt.Font("Symbol", 0, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 51));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/proceedReq.png"))); // NOI18N
         jButton4.setText("Proceed with Testing");
@@ -612,7 +612,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 51));
         jLabel19.setText("Select Vaccine Testing Staff for Clinical Trial:");
 
@@ -650,24 +650,24 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
 
         introPanel.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel8.setFont(new java.awt.Font("Sukhumvit Set", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Clinical Trials Testers Selection");
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 18)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblAccount.setBackground(new java.awt.Color(51, 51, 51));
-        lblAccount.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblAccount.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblAccount.setForeground(new java.awt.Color(255, 255, 255));
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         backJButton.setBackground(new java.awt.Color(0, 0, 102));
-        backJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        backJButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton.setText("Home");

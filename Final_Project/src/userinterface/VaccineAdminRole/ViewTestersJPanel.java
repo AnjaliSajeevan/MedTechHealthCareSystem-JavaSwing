@@ -202,15 +202,15 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Symbol", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setText("View Tester Profile");
 
-        jLabel4.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 51));
         jLabel4.setText("Enter all the details and Click");
 
-        jLabel5.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 51));
         jLabel5.setText(") are Mandatory Fields");
 
@@ -218,22 +218,22 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 0, 51));
         jLabel7.setText("*");
 
-        jLabel8.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 51));
         jLabel8.setText("Fields marked (");
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Symbol", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 51));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/personal.png"))); // NOI18N
         jLabel9.setText("Person Information and Address");
 
-        jLabel10.setFont(new java.awt.Font("Symbol", 1, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 51));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/identification.png"))); // NOI18N
         jLabel10.setText(" Identification Records");
 
-        jLabel12.setFont(new java.awt.Font("Symbol", 1, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 51));
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/biometric.png"))); // NOI18N
         jLabel12.setText("Biometrics Record");
@@ -242,29 +242,29 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         jLabel19.setForeground(new java.awt.Color(255, 0, 51));
         jLabel19.setText("*");
 
-        jLabel24.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 51));
         jLabel24.setText("1.4. Contact Number");
 
         txtPhone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel25.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 51));
         jLabel25.setText("1.3. Date Of Birth");
 
         txtDOB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel26.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 51));
         jLabel26.setText("1.2. Address");
 
         txtGeo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel14.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 51));
         jLabel14.setText("1.6. Email Address");
 
-        jLabel27.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 0, 51));
         jLabel27.setText("1.1. Name");
 
@@ -272,11 +272,11 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
 
         txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel15.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 51));
         jLabel15.setText("1.5. Gender");
 
-        jLabel29.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(0, 0, 51));
         jLabel29.setText("2.2. Health Plan Benefeciary Number");
 
@@ -294,7 +294,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         jLabel35.setForeground(new java.awt.Color(255, 0, 51));
         jLabel35.setText("*");
 
-        jLabel37.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel37.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(0, 0, 51));
         jLabel37.setText("Mandatory to fill atleast one Identification Record");
 
@@ -307,15 +307,15 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         jSeparator4.setForeground(new java.awt.Color(102, 0, 0));
         jSeparator4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel31.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 0, 51));
         jLabel31.setText("2.1. Social Security Number");
 
-        jLabel17.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 51));
         jLabel17.setText("4.1 Full Face Photograph");
 
-        jLabel36.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel36.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(0, 0, 51));
         jLabel36.setText("2.3. License Number");
 
@@ -326,7 +326,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         txtPhoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
         btnSave.setBackground(new java.awt.Color(102, 102, 102));
-        btnSave.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 0, 51));
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/save.png"))); // NOI18N
         btnSave.setText("SAVE");
@@ -337,7 +337,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnUpload.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnUpload.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnUpload.setForeground(new java.awt.Color(0, 0, 51));
         btnUpload.setText("Upload");
         btnUpload.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +350,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         labelFullPic.setMaximumSize(new java.awt.Dimension(700, 700));
         labelFullPic.setMinimumSize(new java.awt.Dimension(120, 120));
 
-        jLabel1.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("(.jpg .jpeg .gif .png files allowed)");
 
@@ -358,7 +358,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
         jLabel2.setText("\"SAVE\"");
 
-        jLabel6.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 51));
         jLabel6.setText("Maximum photo size allowed: 350 * 250");
 
@@ -370,29 +370,29 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
         jLabel39.setForeground(new java.awt.Color(255, 0, 51));
         jLabel39.setText("*");
 
-        jLabel13.setFont(new java.awt.Font("Symbol", 1, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 51));
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/health.png"))); // NOI18N
         jLabel13.setText("Health Record");
 
-        jLabel18.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 51));
         jLabel18.setText("3.3 Condition");
 
         txtAllergy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel20.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 51));
         jLabel20.setText("3.1 Any Allergies");
 
         txtOtherProbs.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel21.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 51));
         jLabel21.setText("3.2 Other Health related data:");
 
         btnUpdate.setBackground(new java.awt.Color(102, 102, 102));
-        btnUpdate.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(0, 0, 51));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/edit.png"))); // NOI18N
         btnUpdate.setText("UPDATE");
@@ -403,6 +403,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
+        backJButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/backIcon.png"))); // NOI18N
         backJButton.setText("Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -411,7 +412,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnMale.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnMale.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnMale.setForeground(new java.awt.Color(0, 0, 51));
         btnMale.setText("Male");
         btnMale.addActionListener(new java.awt.event.ActionListener() {
@@ -420,7 +421,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnOther.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnOther.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnOther.setForeground(new java.awt.Color(0, 0, 51));
         btnOther.setText("Other");
         btnOther.addActionListener(new java.awt.event.ActionListener() {
@@ -429,7 +430,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnFemale.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnFemale.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnFemale.setForeground(new java.awt.Color(0, 0, 51));
         btnFemale.setText("Female");
         btnFemale.addActionListener(new java.awt.event.ActionListener() {
@@ -438,7 +439,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnResp.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnResp.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnResp.setForeground(new java.awt.Color(0, 0, 51));
         btnResp.setText("Respiratory Problems");
         btnResp.addActionListener(new java.awt.event.ActionListener() {
@@ -447,7 +448,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnHealthy.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnHealthy.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnHealthy.setForeground(new java.awt.Color(0, 0, 51));
         btnHealthy.setText("Healthy");
         btnHealthy.addActionListener(new java.awt.event.ActionListener() {
@@ -456,7 +457,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDiabetes.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnDiabetes.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDiabetes.setForeground(new java.awt.Color(0, 0, 51));
         btnDiabetes.setText("Diabetes");
         btnDiabetes.addActionListener(new java.awt.event.ActionListener() {
@@ -465,7 +466,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCovid.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnCovid.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCovid.setForeground(new java.awt.Color(0, 0, 51));
         btnCovid.setText("Covid");
         btnCovid.addActionListener(new java.awt.event.ActionListener() {
@@ -474,7 +475,7 @@ public class ViewTestersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnHeart.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnHeart.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnHeart.setForeground(new java.awt.Color(0, 0, 51));
         btnHeart.setText("Heart Problems");
         btnHeart.addActionListener(new java.awt.event.ActionListener() {

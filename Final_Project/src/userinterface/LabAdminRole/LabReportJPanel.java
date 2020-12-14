@@ -137,7 +137,7 @@ public void populateServices(){
         }
     category.setValue(count, "Number of LabTests", i);
     }
-    JFreeChart chart=ChartFactory.createBarChart("ProjectTimeline Chart", "Services", "LabTests", category, PlotOrientation.VERTICAL, false, true, false);
+    JFreeChart chart=ChartFactory.createBarChart("Services Chart", "Services", "LabTests", category, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot p= (CategoryPlot)chart.getPlot();
         p.setRangeGridlinePaint(Color.BLUE);
         ChartFrame frame=new ChartFrame("LabTest Services Chart", chart);

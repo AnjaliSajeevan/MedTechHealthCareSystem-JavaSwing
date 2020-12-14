@@ -101,24 +101,24 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
 
         introPanel.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel1.setFont(new java.awt.Font("Sukhumvit Set", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("VaccineScientist Portal");
 
         lblName.setBackground(new java.awt.Color(51, 51, 51));
-        lblName.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblName.setForeground(new java.awt.Color(255, 255, 255));
         lblName.setText("Enterprise:");
         lblName.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblRole.setBackground(new java.awt.Color(51, 51, 51));
-        lblRole.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblRole.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblRole.setForeground(new java.awt.Color(255, 255, 255));
         lblRole.setText("Enterprise:");
         lblRole.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -135,7 +135,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(140, 140, 140)
                 .addComponent(jLabel1)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
         introPanelLayout.setVerticalGroup(
             introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -156,7 +156,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Welcome!");
 
@@ -196,14 +196,14 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(78, 78, 78)
                 .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnFormulate.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnFormulate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnFormulate.setForeground(new java.awt.Color(0, 51, 153));
         btnFormulate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/drugDiscovery.png"))); // NOI18N
         btnFormulate.setText("Drug Discovery");
@@ -215,7 +215,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDrugDevelopment.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnDrugDevelopment.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnDrugDevelopment.setForeground(new java.awt.Color(0, 51, 153));
         btnDrugDevelopment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/drugDev.png"))); // NOI18N
         btnDrugDevelopment.setText("Drug Development");
@@ -227,7 +227,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 51, 153));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/clinicalTrial.png"))); // NOI18N
         jButton3.setText("Send Drugs for Clinical Trials");
@@ -238,7 +238,7 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDrugResp.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnDrugResp.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnDrugResp.setForeground(new java.awt.Color(0, 51, 153));
         btnDrugResp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/clinicalresults.png"))); // NOI18N
         btnDrugResp.setText("View Drug Responses");
@@ -256,13 +256,13 @@ public class VaccineScientistWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnFormulate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDrugResp, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                     .addComponent(btnDrugDevelopment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
