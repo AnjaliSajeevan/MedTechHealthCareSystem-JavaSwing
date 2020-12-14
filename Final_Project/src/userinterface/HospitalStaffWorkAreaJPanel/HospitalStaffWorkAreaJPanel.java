@@ -53,13 +53,13 @@ public void populateEssentialTable(){
         List<Product> productList = ecosystem.getProductCatalog().getProductcatalog(); 
         
         for(Product tester: productList){
-            if(tester.getProdName().equalsIgnoreCase("Room") ){
+            if(tester.getProdName().equalsIgnoreCase("General Room") || tester.getProdName().equalsIgnoreCase("gr")){
                 int countR=tester.getAvail();
                 txtRoomCount.setText(String.valueOf(countR));
-            }if(tester.getProdName().equalsIgnoreCase("Deluxe Room") ){
+            }else if(tester.getProdName().equalsIgnoreCase("Deluxe Room")|| tester.getProdName().equalsIgnoreCase("dr") ){
                 int countR=tester.getAvail();
                 txtDeluxe.setText(String.valueOf(countR));
-            }
+            }else
             if(tester.getProdName().equalsIgnoreCase("ICU") ){
                 int countR=tester.getAvail();
                 txtICU.setText(String.valueOf(countR));
@@ -154,7 +154,7 @@ public void populateEssentialTable(){
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
-        jLabel1.setText("General Ward");
+        jLabel1.setText("General Room");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, 20));
 
         txtRoomCount.setText(" ");
