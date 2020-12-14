@@ -324,17 +324,18 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         pnl1.setLayout(pnl1Layout);
         pnl1Layout.setHorizontalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
-                .addContainerGap(351, Short.MAX_VALUE)
+            .addGroup(pnl1Layout.createSequentialGroup()
+                .addContainerGap(306, Short.MAX_VALUE)
                 .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
                         .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(manageOrganizationJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(userJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(178, 178, 178))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(256, 256, 256))
+                        .addGap(434, 434, 434))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(301, 301, 301))))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,42 +459,38 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl2Layout.createSequentialGroup()
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnl2Layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnl2Layout.createSequentialGroup()
-                                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btnAccept)
-                                            .addGroup(pnl2Layout.createSequentialGroup()
-                                                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jLabel4))
-                                                .addGap(27, 27, 27)))
-                                        .addGap(30, 30, 30)
-                                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnDecline, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                                                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(availableDoctor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jComboBoxTimeSlot, 0, 129, Short.MAX_VALUE))
-                                                .addGap(24, 24, 24)))
-                                        .addGap(5, 5, 5)
-                                        .addComponent(btnSubmit)
-                                        .addGap(152, 152, 152))))
-                            .addGroup(pnl2Layout.createSequentialGroup()
-                                .addGap(398, 398, 398)
-                                .addComponent(jLabel2))
-                            .addGroup(pnl2Layout.createSequentialGroup()
-                                .addGap(229, 229, 229)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnl2Layout.createSequentialGroup()
-                        .addGap(397, 397, 397)
-                        .addComponent(btnProceedEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(332, Short.MAX_VALUE))
+                        .addGap(398, 398, 398)
+                        .addComponent(jLabel2))
+                    .addGroup(pnl2Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnl2Layout.createSequentialGroup()
+                                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(btnAccept))
+                                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnl2Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(availableDoctor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxTimeSlot, 0, 129, Short.MAX_VALUE))
+                                        .addGap(61, 61, 61)
+                                        .addComponent(btnSubmit))
+                                    .addGroup(pnl2Layout.createSequentialGroup()
+                                        .addGap(60, 60, 60)
+                                        .addComponent(btnDecline)))
+                                .addGap(152, 152, 152))))
+                    .addGroup(pnl2Layout.createSequentialGroup()
+                        .addGap(408, 408, 408)
+                        .addComponent(btnProceedEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl2Layout.createSequentialGroup()
+                        .addGap(336, 336, 336)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         pnl2Layout.setVerticalGroup(
             pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,17 +508,17 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(availableDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81)
+                .addGap(27, 27, 27)
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnProceedEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnl.add(pnl2, "card3");
@@ -591,19 +588,19 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(pnl3Layout.createSequentialGroup()
                 .addGroup(pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8))
-                    .addGroup(pnl3Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
-                        .addGroup(pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnl3Layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(100, 100, 100)
+                                .addGap(97, 97, 97)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(354, Short.MAX_VALUE))
+                                .addGap(39, 39, 39)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(pnl3Layout.createSequentialGroup()
+                        .addGap(274, 274, 274)
+                        .addComponent(jLabel8)))
+                .addContainerGap(488, Short.MAX_VALUE))
         );
         pnl3Layout.setVerticalGroup(
             pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -611,14 +608,14 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addGap(31, 31, 31)
+                .addGap(110, 110, 110)
                 .addGroup(pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jLabel9)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(94, 94, 94)
+                    .addComponent(jButton1))
+                .addGap(90, 90, 90)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(346, Short.MAX_VALUE))
         );
 
         pnl.add(pnl3, "card4");
@@ -656,30 +653,30 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         } else {
 
             for (Doctor n : business.getDoctorDirectory().getdoctorlist()) {
-                System.out.println(n);
+               
                 if ((n.getHospital()==null)){
                     e="No doctors available";
                 }else{
                     if(n.getHospital().equals(enterprise.getName())) {
                     appointment = n.getAppointment();
-                    System.out.println(appointment);
+                    
                     if (appointment == null || appointment.isEmpty()) {
                         e = "No doctors available for the selected time";
                     } else {
                         for (LocalDate dates : appointment.keySet()) {
-
                             if (dates.equals(d)) {
                                 for (String timess : appointment.get(dates)) {
                                     if (timess.equals(time)) {
                                         doctor = n.toString();
-                                        System.out.println(doctor);
                                         availableDoctor.addItem(doctor);
                                            doctorCheck=n.toString();
+                                    }else{
+                                        e="No slots available for doctor";
                                     }
 
                                 }
                             }else{
-                                e="No time slot available for doctors";
+                                e="No doctors available on this day";
                             }
 
                         }
@@ -688,8 +685,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
             }
-            if (doctorCheck.equals("")) {
-                JOptionPane.showMessageDialog(null, e);
+            if ((doctorCheck.equals(""))) {
+                if(e.equals("")){e="No doctors available";}
+               JOptionPane.showMessageDialog(null, e);
             }
         }
 
@@ -714,7 +712,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 if (dates.equals(d)) {
                     for (Doctor doc : business.getDoctorDirectory().getdoctorlist()) {
                         if (doc.getName().equals(doctor)) {
-                            System.out.println(doctor);
+                          
                             doc.removeAppointment(dates, selected);
                          
                         }

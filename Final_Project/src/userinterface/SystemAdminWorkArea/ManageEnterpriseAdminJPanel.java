@@ -69,7 +69,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     Object[] row = new Object[3];
                     row[0] = enterprise;
                     row[1] = network;
-                    row[2] = userAccount.getUsername();
+                    row[2] = userAccount;
 
                     model.addRow(row);
                 }
@@ -445,9 +445,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         int confirmed = JOptionPane.showConfirmDialog(null, "Are you Sure you want to delete the admin account?","Confirm Delete",JOptionPane.YES_NO_OPTION);
             if(confirmed == JOptionPane.YES_OPTION){
                 Enterprise enterprise= (Enterprise)enterpriseJTable.getValueAt(selectedRow, 0);
-                Network networkName = (Network)enterpriseJTable.getValueAt(selectedRow, 1);
-                        networkName.getEnterpriseDirectory().removeEnterprise(enterprise);
-                        JOptionPane.showMessageDialog(null, "Enterprise removed successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                UserAccount account= (UserAccount)enterpriseJTable.getValueAt(selectedRow, 2);
+                enterprise.getUserAccountDirectory().removeUserAccount(account);
+//                Network networkName = (Network)enterpriseJTable.getValueAt(selectedRow, 1);
+//                        networkName.getEnterpriseDirectory().removeEnterprise(enterprise);
+                        JOptionPane.showMessageDialog(null, "Enterprise admin removed successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
             populateTable();
     }//GEN-LAST:event_btnRemActionPerformed

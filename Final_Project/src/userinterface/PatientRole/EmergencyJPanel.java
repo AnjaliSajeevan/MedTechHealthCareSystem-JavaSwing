@@ -168,7 +168,7 @@ JPanel userProcessContainer;
         btnShare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnShare.setForeground(new java.awt.Color(255, 255, 255));
         btnShare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/maps_50px.png"))); // NOI18N
-        btnShare.setText("Share Current  Location");
+        btnShare.setText("Share patients address");
         btnShare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShareActionPerformed(evt);
@@ -286,6 +286,35 @@ JPanel userProcessContainer;
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        
+         String address1=patient.getAddress1();
+        String address2=patient.getAddress2();
+        String address3=patient.getAddress3();
+        String combined = address1+" "+address2+" "+address3;
+        String[] split=combined.split(" ");
+        String name = "";
+        String names="";
+        String nameFinal = "";
+        int numberOfItems = split.length;
+        System.out.println(combined);
+        for (int i=numberOfItems-1; i>=0; i--)
+        {
+            if(i>0){
+
+                String first =  split[i] ;
+                name =  first + "+"+ name ;
+
+            }
+            else{
+                String first =  split[i] ;
+                names = first+"+"+name;
+            }
+        }
+        names = names.substring(0, names.length()-1);
+
+        location = names;
+        
+        
         UserAccount ambAccount = null;
         if(txtMsg.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Detailed Message is mandatory!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -311,7 +340,7 @@ JPanel userProcessContainer;
                     for(Organization org : enterpriseCheck.getOrganizationDirectory().getOrganizationList()){
                     for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                         if(ua.getRole().toString().equals("AmbulanceDriver")){
-                            ua.getEmergencyQueue().addEmergencyRequest(request);
+                          //  ua.getEmergencyQueue().addEmergencyRequest(request);
                             ambList.add(ua);
                         }
                     }
@@ -394,7 +423,7 @@ JPanel userProcessContainer;
 
 
 
-        ecosystem.getEmergencyQueue().addEmergencyRequest(request);
+        ecosystem.getEmergencyQueue().updateEmergencyRequest(request, ecosystem.getEmergencyQueue().getEmergencyRequestList());
      JOptionPane.showMessageDialog(null,"Request submitted!\nHospital -"+patient.getPrimaryHospital()+" has been notified, "+room+" has been booked and Ambulance -"+ambAccount+" is on the way!", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -433,7 +462,7 @@ JPanel userProcessContainer;
         names = names.substring(0, names.length()-1);
 
         location = names;
-        System.out.println(names);
+      
         String url = "https://www.google.com/maps/place/"+location;
         try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
@@ -452,7 +481,7 @@ JPanel userProcessContainer;
         }
         int room = 0;
         String msg = "Notified Primary hospital -"+patient.getPrimaryHospital();
-                       sendFromGMail("medtech2254", "AedGroup@9", new String[]{"manasabhat794@gmail.com"},"Emergency Request has been raised to your hospital! Patient has been allocated Room No: "+room+" and Emergency Doctor Notified. Immediate Action Required.","HIGH-PRIORITY!!! -Emergency Request Raised!");
+                       sendFromGMail("medtech2254", "AedGroup@9", new String[]{"anjalisajeev@gmail.com"},"HIGH-PRIORITY!!! -Emergency Request Raised!","Emergency Request has been raised to your hospital! Patient has been allocated room and hospital Notified. Immediate Action Required.");
                 JOptionPane.showMessageDialog(null,msg, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
              
     }//GEN-LAST:event_btnSendActionPerformed

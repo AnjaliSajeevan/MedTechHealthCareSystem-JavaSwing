@@ -171,7 +171,7 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        drugProjectTable.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        drugProjectTable.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         drugProjectTable.setForeground(new java.awt.Color(0, 0, 51));
         drugProjectTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

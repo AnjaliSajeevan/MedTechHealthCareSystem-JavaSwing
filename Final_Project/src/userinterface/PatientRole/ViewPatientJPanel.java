@@ -199,7 +199,7 @@ public void initializePage(){
         btnSave.setBackground(new java.awt.Color(102, 102, 102));
         btnSave.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 102, 102));
-        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\save.png")); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/save.png"))); // NOI18N
         btnSave.setText("SAVE");
         btnSave.setBorder(null);
         btnSave.setContentAreaFilled(false);
@@ -216,7 +216,7 @@ public void initializePage(){
         btnSave1.setBackground(new java.awt.Color(102, 102, 102));
         btnSave1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnSave1.setForeground(new java.awt.Color(0, 102, 102));
-        btnSave1.setIcon(new javax.swing.ImageIcon("C:\\Users\\sayu\\Desktop\\12_9\\Final_Project\\Final_Project\\src\\Pictures\\update.png")); // NOI18N
+        btnSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/update.png"))); // NOI18N
         btnSave1.setText("UPDATE");
         btnSave1.setBorder(null);
         btnSave1.setContentAreaFilled(false);

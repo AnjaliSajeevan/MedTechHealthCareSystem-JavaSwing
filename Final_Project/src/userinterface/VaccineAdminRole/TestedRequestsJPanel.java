@@ -342,7 +342,7 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSearchByVaccine.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnSearchByVaccine.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnSearchByVaccine.setForeground(new java.awt.Color(0, 0, 51));
         btnSearchByVaccine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/search3.png"))); // NOI18N
         btnSearchByVaccine.setText("Search All Results By VaccineID");
@@ -376,7 +376,7 @@ public class TestedRequestsJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSearchByVaccine))
                             .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
