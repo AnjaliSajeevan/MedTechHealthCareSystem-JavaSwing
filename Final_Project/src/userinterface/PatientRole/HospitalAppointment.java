@@ -321,10 +321,13 @@ public class HospitalAppointment extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        if(txtDetails.getText().equals(""))
+        { JOptionPane.showMessageDialog(null, "Please fill the appointment details", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else{
        date=dateApp.getDate();
        LocalDate dates=new java.sql.Date(date.getTime()).toLocalDate();
        String selected=(String) jComboBoxTime.getSelectedItem();
-       System.out.println(selected);
+      
        String hospital;
         boolean primary= jCheckBoxPrimaryHospital.isSelected();
         if(primary==true)
@@ -364,7 +367,7 @@ public class HospitalAppointment extends javax.swing.JPanel {
             model.addRow(row);
              JOptionPane.showMessageDialog(null,"Successfully requested appointment");
              
-
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void dateAppMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateAppMouseClicked

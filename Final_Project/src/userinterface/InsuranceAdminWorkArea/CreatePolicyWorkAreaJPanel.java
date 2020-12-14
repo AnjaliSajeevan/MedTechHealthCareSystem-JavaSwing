@@ -14,6 +14,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.MenuComponent;
+import java.awt.event.KeyEvent;
 import static java.lang.Boolean.TRUE;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -227,6 +228,11 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 400, -1, -1));
 
         txtMonthly.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtMonthly.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMonthlyKeyPressed(evt);
+            }
+        });
         add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 120, -1));
 
         txtSpecialistCare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -242,6 +248,16 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(txtLabServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 50, -1));
 
         txtEmergencyRoomCare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtEmergencyRoomCare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmergencyRoomCareActionPerformed(evt);
+            }
+        });
+        txtEmergencyRoomCare.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmergencyRoomCareKeyPressed(evt);
+            }
+        });
         add(txtEmergencyRoomCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 50, -1));
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -249,6 +265,11 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
 
         txtPolicyMax.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtPolicyMax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPolicyMaxKeyPressed(evt);
+            }
+        });
         add(txtPolicyMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 120, -1));
 
         btnCreate.setBackground(new java.awt.Color(0, 0, 0));
@@ -359,6 +380,11 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
 
         txtDeductible4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtDeductible4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDeductible4KeyPressed(evt);
+            }
+        });
         add(txtDeductible4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 120, -1));
 
         jLabel23.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -366,6 +392,11 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         txtDeductible1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtDeductible1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDeductible1KeyPressed(evt);
+            }
+        });
         add(txtDeductible1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 180, -1));
 
         checkBoxIndividual.setBackground(new java.awt.Color(255, 255, 255));
@@ -778,6 +809,66 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
         
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtDeductible1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDeductible1KeyPressed
+        // TODO add your handling code here:
+         char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9' || c ==',')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtDeductible1.setEditable(true);
+        }else{
+           txtDeductible1.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers !");
+        }
+    }//GEN-LAST:event_txtDeductible1KeyPressed
+
+    private void txtEmergencyRoomCareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmergencyRoomCareActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmergencyRoomCareActionPerformed
+
+    private void txtEmergencyRoomCareKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmergencyRoomCareKeyPressed
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9' || c ==',')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtEmergencyRoomCare.setEditable(true);
+        }else{
+           txtEmergencyRoomCare.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtEmergencyRoomCareKeyPressed
+
+    private void txtPolicyMaxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPolicyMaxKeyPressed
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9' || c ==',')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtPolicyMax.setEditable(true);
+        }else{
+           txtPolicyMax.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtPolicyMaxKeyPressed
+
+    private void txtMonthlyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMonthlyKeyPressed
+        // TODO add your handling code here:
+         char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9' || c ==',')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtMonthly.setEditable(true);
+        }else{
+          txtMonthly.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtMonthlyKeyPressed
+
+    private void txtDeductible4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDeductible4KeyPressed
+        // TODO add your handling code here:
+        
+                char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9' || c ==',')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtDeductible4.setEditable(true);
+        }else{
+          txtDeductible4.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtDeductible4KeyPressed
    public boolean checkNumber(String s){
       String nORegex = "^[0-9]*$";
         Pattern phonePattern = Pattern.compile(nORegex);       

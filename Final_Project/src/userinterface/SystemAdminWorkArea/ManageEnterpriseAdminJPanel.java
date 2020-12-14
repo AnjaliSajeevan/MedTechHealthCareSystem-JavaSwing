@@ -409,6 +409,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                         networkName.getEnterpriseDirectory().removeEnterprise(enterprise);
                         JOptionPane.showMessageDialog(null, "Enterprise removed successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
+            populateTable();
     }//GEN-LAST:event_btnRemActionPerformed
 
     private void enterpriseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseJComboBoxActionPerformed

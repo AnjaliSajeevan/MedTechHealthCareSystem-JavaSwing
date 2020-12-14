@@ -560,7 +560,7 @@ public class RegisterForInsurance extends javax.swing.JPanel {
         else
         {
             InsurancePolicy a = (InsurancePolicy) tblSearch.getValueAt(selectedRow, 0);
-            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a);
+            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a,false);
             userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

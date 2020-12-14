@@ -424,10 +424,7 @@ private EcoSystem business;
         } 
         }
         }
-           System.out.print(userName)    ;
-            System.out.print(password)    ;
-            System.out.print(employee)    ;
-            System.out.print(role)    ;
+          
            
         organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
         if(role.toString().equals("Doctor"))
@@ -435,6 +432,7 @@ private EcoSystem business;
             Doctor d= new Doctor();
             d.setUserName(userName);
             d.setName(userName);
+            d.setHospital(enterprise.getName());
            
             business.getDoctorDirectory().addDoctor(d);
         }

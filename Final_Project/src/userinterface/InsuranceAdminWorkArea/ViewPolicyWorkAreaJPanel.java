@@ -30,12 +30,13 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
     InsurancePolicy i;
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-
-    public ViewPolicyWorkAreaJPanel(JPanel userProcessContainer, EcoSystem ecosystem, InsurancePolicy i) {
+    boolean b;
+    public ViewPolicyWorkAreaJPanel(JPanel userProcessContainer, EcoSystem ecosystem, InsurancePolicy i,boolean b) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.i = i;
+        this.b=b;
 
         txtPolicyMax.setEnabled(false);
         txtPolicyName.setEnabled(false);
@@ -52,15 +53,19 @@ public class ViewPolicyWorkAreaJPanel extends javax.swing.JPanel {
         txtMin.setEnabled(false);
         txtPolicyType.setEnabled(false);
         jComboBoxAgeGroup.setEnabled(false);
-        saveBtn.setEnabled(false);
-        UpdateBtn.setEnabled(true);
+        
         txtDeductible2.setEnabled(false);
         btnAddHospital.setEnabled(false);
         btnAddLaboratory.setEnabled(false);
         btnAddPharmacy.setEnabled(false);
         
-        
-        
+        if (b==false){
+            saveBtn.setEnabled(false);
+        UpdateBtn.setEnabled(false);
+        }else{
+        saveBtn.setEnabled(false);
+        UpdateBtn.setEnabled(true);
+        }
         
         
         txtPolicyMax.setText(i.getPolicyMax());

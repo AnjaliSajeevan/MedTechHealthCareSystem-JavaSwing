@@ -121,7 +121,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         Patient patient = null;
         String result = txtResult.getText();
         request.setResult(result);
-        request.setStatus("Consultation done");
+        request.setStatus("Consultation completed");
         String combo = (String) jComboBox1.getSelectedItem();
         String room = (String) jComboBox2.getSelectedItem();
         if(combo.equals("Yes"))
@@ -173,8 +173,8 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
          Map<String,Date> reqMap2 = request.getStatusMap();
             reqMap2.put("Claim Requested:"+request.getInsurance(), new Date());
         request.setStatusMap(reqMap2); 
-             ecosystem.getHospitalQueue().updateHospitalRequest(request, ecosystem.getHospitalQueue().hospitalRequestList());
-         ecosystem.getClaimWorkQueue().getWorkRequestList().add(r);
+        ecosystem.getHospitalQueue().updateHospitalRequest(request, ecosystem.getHospitalQueue().hospitalRequestList());
+        ecosystem.getClaimWorkQueue().getWorkRequestList().add(r);
         userAccount.getClaimWorkQueue().getWorkRequestList().add(r);
         JOptionPane.showMessageDialog(null, "Successfully Submitted");
         

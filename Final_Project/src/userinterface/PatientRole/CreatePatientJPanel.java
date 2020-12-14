@@ -14,6 +14,7 @@ import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.Utility.SmsSender;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.io.BufferedReader;
 import static java.lang.Boolean.TRUE;
@@ -42,6 +43,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import userinterface.SystemAdminWorkArea.ManagePateintJPanel;
 /**
@@ -803,7 +805,24 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 return;
             }
         }
-
+if (usernamePatternCorrect()==false){
+    jLabel16.setForeground (Color.red);
+    txtUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
+    JOptionPane.showMessageDialog(null, "Username should be in the format of xx_xx@xx.xx");
+    return;
+} else{
+    jLabel16.setForeground (Color.GREEN);
+    txtUsername.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+}
+if (passwordPatternCorrect()==false){
+    jLabel18.setForeground (Color.red);
+    txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
+    JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+    return;
+}else{
+    jLabel18.setForeground (Color.GREEN);
+    txtPassword.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+}
         //Validation of Mandatory fields.
 
         if(txtName.getText().equalsIgnoreCase("")){
@@ -967,7 +986,19 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
-
+private boolean usernamePatternCorrect(){
+        Pattern p=Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Matcher m=p.matcher(txtUsername.getText());
+        boolean b=m.matches();
+        return b;
+    }
+    private boolean passwordPatternCorrect(){
+        Pattern p1;
+        p1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1=p1.matcher(txtPassword.getText());
+        boolean b1=m1.matches();
+        return b1;
+    }
     private void btnOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherActionPerformed
         // TODO add your handling code here:
         gender = "Other";
