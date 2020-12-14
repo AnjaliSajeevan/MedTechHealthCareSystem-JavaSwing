@@ -53,12 +53,6 @@ private JPanel userProcessContainer;
         txtName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtMan = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtdes = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtexpdate = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -69,7 +63,6 @@ private JPanel userProcessContainer;
         jLabel4.setText("Add Essential Product");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/back.png"))); // NOI18N
-        jButton1.setActionCommand("");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -145,24 +138,6 @@ private JPanel userProcessContainer;
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel3.setText("Manufacturer");
-
-        txtMan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtManActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel6.setText("Description");
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel7.setText("Expiry Date");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -170,22 +145,16 @@ private JPanel userProcessContainer;
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(235, 235, 235)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMan, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtexpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(191, 191, 191))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(228, 228, 228))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(270, 270, 270)
-                .addComponent(btnCreate)
+                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -199,21 +168,9 @@ private JPanel userProcessContainer;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtMan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtexpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
+                .addGap(72, 72, 72)
                 .addComponent(btnCreate)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -223,7 +180,7 @@ private JPanel userProcessContainer;
             .addGroup(layout.createSequentialGroup()
                 .addGap(277, 277, 277)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -247,10 +204,6 @@ private JPanel userProcessContainer;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantityActionPerformed
 
-    private void txtManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtManActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtManActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 //        userProcessContainer.remove(this);
@@ -270,11 +223,12 @@ private JPanel userProcessContainer;
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         Product p=ecosystem.getProductCatalog().addProduct();
+      
         p.setProdName(txtName.getText());
         p.setAvail(Integer.parseInt(txtQuantity.getText()));
-        p.setManufacture(txtMan.getText());
-        p.setExpdate(txtexpdate.getText());
-        p.setDescription(txtdes.getText());
+//        p.setManufacture(txtMan.getText());
+//        p.setExpdate(txtexpdate.getText());
+//        p.setDescription(txtdes.getText());
         JOptionPane.showMessageDialog(null, "Esssential is Registered Successfully!");
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -284,17 +238,11 @@ private JPanel userProcessContainer;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtMan;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtQuantity;
-    private javax.swing.JTextField txtdes;
-    private javax.swing.JTextField txtexpdate;
     // End of variables declaration//GEN-END:variables
 }
