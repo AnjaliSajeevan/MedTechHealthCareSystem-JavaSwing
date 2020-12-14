@@ -42,6 +42,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.account=account;
         this.enterprise=enterprise;
         DocName.setText(account.getEmployee().getName());
+        DocName1.setText(enterprise.getName());
         populateTable();
     }
     
@@ -54,8 +55,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
           {System.out.println(account.getEmployee().getName());
           }else{
           
-          System.out.println(account.getEmployee().getName());
+         
             if (request.getDoctor().equals(account.getEmployee().getName())) {
+                if(!(request.getStatus().equals("Appointment declined"))){
                 String message;
                 if (request.getResult() == null) {
                     message = "Not available yet";
@@ -74,7 +76,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
             patient = request.getSender();
         }
-    
+            }
         }
         }
 }
@@ -100,6 +102,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         DocName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        DocName1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -192,6 +196,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
         DocName.setBackground(new java.awt.Color(255, 255, 255));
+        DocName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         DocName.setText("<value>");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -199,6 +204,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("Doctor Work Panel");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/medical_doctor_100px.png"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel5.setText("Hospital:");
+
+        DocName1.setBackground(new java.awt.Color(255, 255, 255));
+        DocName1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        DocName1.setText("<value>");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -209,9 +222,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(DocName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DocName, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(DocName1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +240,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(DocName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DocName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(DocName1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -287,41 +306,51 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void btnCheckPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckPatientActionPerformed
         // TODO add your handling code here:
         boolean patientActive = false;
-       for(PatientHospitalAppointmentWorkRequest w:ecosystem.getHospitalQueue().hospitalRequestList()){
-                               Map<String,Date> map = w.getStatusMap();
-                    String latestKey = "";
-            for (Map.Entry<String,Date> mapEntry : w.getStatusMap().entrySet()) {  
-                if(latestKey.equals("")){
-            latestKey = mapEntry.getKey();
-                }
-                if((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0){
+        for (PatientHospitalAppointmentWorkRequest w : ecosystem.getHospitalQueue().hospitalRequestList()) {
+            Map<String, Date> map = w.getStatusMap();
+            String latestKey = "";
+            for (Map.Entry<String, Date> mapEntry : w.getStatusMap().entrySet()) {
+                if (latestKey.equals("")) {
                     latestKey = mapEntry.getKey();
                 }
-               }
-            if(latestKey.equals("Handling Patient")){
+                if ((map.get(latestKey).compareTo(map.get(mapEntry.getKey()))) < 0) {
+                    latestKey = mapEntry.getKey();
+                }
+            }
+            if (latestKey.equals("Checking Patient")) {
                 patientActive = true;
             }
-       }
-       
-       if(patientActive == true){
-               JOptionPane.showMessageDialog(null, "Already one patient being handled!\nPlease complete the appointment with existing patient to handle next patient", "Warning", JOptionPane.WARNING_MESSAGE);        
-       }
+        }
+        
+        
+        
+        
+        if (patientActive == true) {
+            JOptionPane.showMessageDialog(null, "Already one patient being handled!\nPlease complete the appointment with existing patient to handle next patient", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
 
-        } else {
+        } else if (patientActive == false) {
             PatientHospitalAppointmentWorkRequest request = (PatientHospitalAppointmentWorkRequest) jTable1.getValueAt(selectedRow, 0);
-            
-            Map<String,Date> reqMap = request.getStatusMap();
-            reqMap.put("Handling Patient", new Date());
-        request.setStatusMap(reqMap); 
-             ecosystem.getHospitalQueue().updateHospitalRequest(request, ecosystem.getHospitalQueue().hospitalRequestList());    
-        RequestLabTestJPanel ppanel = new RequestLabTestJPanel(userProcessContainer,account,enterprise,ecosystem,request);
-        userProcessContainer.add("RequestLabTestJPanel", ppanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+
+            if (request.getStatus().equals("Consultation completed")) {
+                JOptionPane.showMessageDialog(null, "Appointment already consulted", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+
+                Map<String, Date> reqMap = request.getStatusMap();
+                reqMap.put("Checking Patient", new Date());
+                request.setStatusMap(reqMap);
+                request.setStatus("Checking Patient");
+                ecosystem.getHospitalQueue().updateHospitalRequest(request, ecosystem.getHospitalQueue().hospitalRequestList());
+                RequestLabTestJPanel ppanel = new RequestLabTestJPanel(userProcessContainer, account, enterprise, ecosystem, request);
+                userProcessContainer.add("RequestLabTestJPanel", ppanel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
         }
     }//GEN-LAST:event_btnCheckPatientActionPerformed
 
@@ -363,6 +392,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DocName;
+    private javax.swing.JLabel DocName1;
     private javax.swing.JButton btnAvailability;
     private javax.swing.JButton btnCheckPatient;
     private javax.swing.JButton btnView;
@@ -371,6 +401,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

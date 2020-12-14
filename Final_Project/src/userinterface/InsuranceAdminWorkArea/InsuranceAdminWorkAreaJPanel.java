@@ -488,16 +488,16 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(256, 256, 256))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard3Layout.createSequentialGroup()
-                        .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(pnlCard3Layout.createSequentialGroup()
                                 .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(167, 167, 167)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(196, 196, 196))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(232, 232, 232))))
         );
         pnlCard3Layout.setVerticalGroup(
             pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,12 +507,12 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(73, 73, 73)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard3, "card5");
@@ -691,7 +691,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         else
         {
             InsurancePolicy a = (InsurancePolicy) tblPolicy.getValueAt(selectedRow, 0);
-            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a);
+            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a,true);
             userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -706,7 +706,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         if(selectedRow >=0)
         {
             int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult= JOptionPane.showConfirmDialog(null,"Would you like to delete restaurant details?","Warning",dialogButton);
+            int dialogResult= JOptionPane.showConfirmDialog(null,"Would you like to delete insurance policy?","Warning",dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION) {
 
                 InsurancePolicy a = (InsurancePolicy) tblPolicy.getValueAt(selectedRow, 0);
@@ -732,9 +732,9 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"Successfully Accepted");
+      
         populateRequest();
-        populateTable();
+       
 
         }
 
@@ -747,16 +747,23 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
 
             else
-            {
+            {  
                 InsuranceWorkRequest request = (InsuranceWorkRequest) tblPatient.getValueAt(selectedRow, 0);
+                 if(request.getStatus().equals("Accepted")||request.getStatus().equals("Declined")){
+                     JOptionPane.showMessageDialog(null,"Request already  processed","Warning", JOptionPane.WARNING_MESSAGE);
+                 }
+                
+                 else{
                 request.setStatus("Accepted");
                 request.setResolveDate(new Date());
                 for (InsurancePolicy r: ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
                     if(r.getEnterprise().equals(enterprise.getName()))
                     {if(request.getInsurancepolicy().equals(r.getPolicyName()))
                         r.addPatient(request.getSender().toString());
-
+                      JOptionPane.showMessageDialog(null,"Successfully Accepted");
+                       populateTable();
                     }
+                }
                 }
             }
     }//GEN-LAST:event_btnAcceptActionPerformed
@@ -773,8 +780,13 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         else
         {
             InsuranceWorkRequest request = (InsuranceWorkRequest) tblPatient.getValueAt(selectedRow, 0);
+             if(request.getStatus().equals("Accepted")||request.getStatus().equals("Declined")||request.getStatus().equals("Consultation completed")){
+                     JOptionPane.showMessageDialog(null,"Request already processed","Warning", JOptionPane.WARNING_MESSAGE);
+                 }else{
             request.setStatus("Declined");
-             populateTable();
+           
+            populateTable();
+        }
         }
     }//GEN-LAST:event_btnDeclineActionPerformed
 

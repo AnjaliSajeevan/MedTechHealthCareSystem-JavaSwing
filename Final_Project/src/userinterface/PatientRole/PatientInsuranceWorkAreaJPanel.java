@@ -191,8 +191,6 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblClaim = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
@@ -451,19 +449,6 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         tblClaim.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane3.setViewportView(tblClaim);
 
-        jButton1.setBackground(new java.awt.Color(73, 42, 63));
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Submit Feedback");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(73, 42, 63)));
-
         jButton3.setBackground(new java.awt.Color(35, 33, 54));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/available_updates_40px.png"))); // NOI18N
         jButton3.setBorder(null);
@@ -487,13 +472,8 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnl1Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnl1Layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jButton1)))
+                                .addGap(236, 236, 236)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(77, 77, 77)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(470, Short.MAX_VALUE))
@@ -507,11 +487,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(81, 81, 81)
+                        .addGap(128, 128, 128)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(165, 165, 165))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
@@ -564,6 +540,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         populateTree();
+        populateComboBox();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
@@ -579,7 +556,7 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
 
             for (InsurancePolicy a : ecosystem.getInsurancePolicyDirectory().getInsurancePolicyList()) {
                 if (a.getPolicyName().equals(inspolicy)) {
-                    ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a);
+                    ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a,false);
                     userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
                     CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                     layout.next(userProcessContainer);
@@ -648,14 +625,6 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String s= jTextField1.getText();
-        cr.setFeedback(s);
-        cr.setStatus("Feedback Provided");
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnInsuranceRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsuranceRegistrationActionPerformed
         // TODO add your handling code here:
          pnl.removeAll();
@@ -681,7 +650,6 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnRegisterForInsurance;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnView;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBoxHospitalList;
@@ -692,7 +660,6 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnl;
     private javax.swing.JPanel pnl1;
     private javax.swing.JPanel pnl2;

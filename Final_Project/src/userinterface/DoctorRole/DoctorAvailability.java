@@ -243,8 +243,7 @@ public class DoctorAvailability extends javax.swing.JPanel {
             
             LocalDate dFrom=new java.sql.Date(dfrom.getTime()).toLocalDate();
             LocalDate dTo=new java.sql.Date(dto.getTime()).toLocalDate();
-            System.out.println(dFrom);
-            System.out.println(dTo);
+            
             for (LocalDate date = dFrom; date.isBefore(dTo.plusDays(1)); date = date.plusDays(1))
             {
             appointment.put(date,doc.getTimeSlotList());

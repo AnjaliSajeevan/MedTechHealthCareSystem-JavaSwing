@@ -216,11 +216,15 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
         else
         {
         ClaimWorkRequest request = (ClaimWorkRequest) tblClaim.getValueAt(selectedRow, 0);
+         if(request.getStatus().equals("Claim Accepted")||request.getStatus().equals("Claim Declined")){
+                     JOptionPane.showMessageDialog(null,"Request already processed","Warning", JOptionPane.WARNING_MESSAGE);
+                 }else{
         request.setStatus("Claim Accepted");
         request.setResolveDate(new Date());
         request.setMessage("Cleared and closed");
         populate();
-    }                 
+    }    
+        }
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -235,9 +239,14 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
         else
         {
         ClaimWorkRequest request = (ClaimWorkRequest) tblClaim.getValueAt(selectedRow, 0);
+        if(request.getStatus().equals("Claim Accepted")||request.getStatus().equals("Claim Declined")){
+                     JOptionPane.showMessageDialog(null,"Request already processed","Warning", JOptionPane.WARNING_MESSAGE);
+                 }else{
+        
         request.setStatus("Claim Declined");
         request.setMessage("Additional,Not covered by insurance");
         populate();
+        }
     }                 
     
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -256,7 +265,7 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
         {
         ClaimWorkRequest request = (ClaimWorkRequest) tblClaim.getValueAt(selectedRow, 0);
             InsurancePolicy a=request.getInsurancepolicy();
-            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a);
+            ViewPolicyWorkAreaJPanel vpeaj = new ViewPolicyWorkAreaJPanel(userProcessContainer, ecosystem, a,false);
             userProcessContainer.add("ViewPolicyWorkAreaJPanel", vpeaj);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
