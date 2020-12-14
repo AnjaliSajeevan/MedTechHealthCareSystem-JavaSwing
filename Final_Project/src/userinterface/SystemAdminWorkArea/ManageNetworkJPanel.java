@@ -215,6 +215,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         for(Network n: system.getNetworkList()){
             if(n.getName().equals(nameJTextField.getText())){
                 JOptionPane.showMessageDialog(null,"Network aleady exists for given name!");
+                nameJTextField.setText("");
                 return;   
             }
         }

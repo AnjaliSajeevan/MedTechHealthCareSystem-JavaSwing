@@ -146,7 +146,7 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
         jScrollPane5.setViewportView(drugRequestTable);
 
         btnProceedApproval.setBackground(new java.awt.Color(0, 0, 51));
-        btnProceedApproval.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnProceedApproval.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnProceedApproval.setForeground(new java.awt.Color(255, 255, 255));
         btnProceedApproval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/proceedApproval.png"))); // NOI18N
         btnProceedApproval.setText("Proceed for Approval");
@@ -159,24 +159,24 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
 
         introPanel.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel5.setFont(new java.awt.Font("Sukhumvit Set", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Drug Processing Portal");
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 18)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblAccount.setBackground(new java.awt.Color(51, 51, 51));
-        lblAccount.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblAccount.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblAccount.setForeground(new java.awt.Color(255, 255, 255));
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         backJButton.setBackground(new java.awt.Color(0, 0, 102));
-        backJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        backJButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton.setText("Home");
@@ -207,7 +207,7 @@ public class DevelopedVaccineJPanel extends javax.swing.JPanel {
             .addGroup(introPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))

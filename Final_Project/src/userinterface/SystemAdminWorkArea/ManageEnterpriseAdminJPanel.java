@@ -352,7 +352,18 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String name = nameJTextField.getText();
         
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+         boolean foundAdmin = false;
+        for(UserAccount ua:enterprise.getUserAccountDirectory().getUserAccountList()){
+               if(ua.getRole().toString().contains("Admin")){
+                   foundAdmin = true;
+               }
+           }
+           if(foundAdmin == true){
+                       JOptionPane.showMessageDialog(null, "Enterprise selected already has an Admin!");
+            return;  
+        } 
         if(enterprise.getEnterpriseType().getValue().equals("Pharmacy")){
+            
          UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PharmacyAdminRole());               
         
         }else if(enterprise.getEnterpriseType().getValue().equals("Laboratory")){
@@ -385,6 +396,25 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+       String adminMissing = "";
+        for(Network n: system.getNetworkList()){
+        for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
+            boolean foundAdmin = false;
+           for(UserAccount ua:e.getUserAccountDirectory().getUserAccountList()){
+               if(ua.getRole().toString().contains("Admin")){
+                   foundAdmin = true;
+               }
+           }
+           if(foundAdmin == false){
+              adminMissing +=e.getName()+" ";
+        } 
+        }
+        }
+        
+        if(!adminMissing.equals("")){
+          int confirmed = JOptionPane.showConfirmDialog(null, "Below Enterprises do not have Admin accounts set up:\n"+adminMissing+"\n Are you sure you want to exit?","Confirm Exit",JOptionPane.YES_NO_OPTION);
+            if(confirmed == JOptionPane.YES_OPTION){          
+        
         userProcessContainer.remove(this);
          Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
@@ -392,6 +422,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         sysAdminwjp.populateTree();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+            }
+        }else{
+            userProcessContainer.remove(this);
+         Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        sysAdminwjp.populateTree();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);    
+        }
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnRemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemActionPerformed

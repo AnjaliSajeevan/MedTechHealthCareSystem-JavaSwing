@@ -289,7 +289,7 @@ public class ManageTimeJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
                    
         int selectedRow = slotTable.getSelectedRow();
-        if(selectedRow <= 0){
+        if(selectedRow <0){
                      JOptionPane.showMessageDialog(null, "Please select a slot from table!", "Warning", JOptionPane.WARNING_MESSAGE);       
                   return;
         }

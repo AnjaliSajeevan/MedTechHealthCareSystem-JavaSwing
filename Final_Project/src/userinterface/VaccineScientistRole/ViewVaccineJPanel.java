@@ -204,6 +204,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
+        backJButton.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,9 +212,10 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Symbol", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("View Vaccine");
 
+        btnSave.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnSave.setText("Save");
         btnSave.setEnabled(false);
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +224,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnUpdate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,22 +232,22 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 51));
         jLabel20.setText("Vaccine ID:");
 
         txtUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
         txtUsername.setEnabled(false);
 
-        lblUsername.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblUsername.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(0, 0, 51));
         lblUsername.setText("Formulated By:");
 
-        lblCreate.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblCreate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblCreate.setForeground(new java.awt.Color(0, 0, 51));
         lblCreate.setText("Create Date:");
 
-        lblUpdate.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblUpdate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblUpdate.setForeground(new java.awt.Color(0, 0, 51));
         lblUpdate.setText("Update Date:");
 
@@ -263,11 +266,11 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         txtAllergens.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
         txtAllergens.setEnabled(false);
 
-        lblAllergens.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblAllergens.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblAllergens.setForeground(new java.awt.Color(0, 0, 51));
         lblAllergens.setText("Any Allergens:");
 
-        lblCore.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblCore.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblCore.setForeground(new java.awt.Color(0, 0, 51));
         lblCore.setText("Core Component:");
 
@@ -277,27 +280,27 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         txtDesc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
         txtDesc.setEnabled(false);
 
-        lblDesc.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(0, 0, 51));
         lblDesc.setText("Description:");
 
-        lblName.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(0, 0, 51));
         lblName.setText("Name:");
 
-        lblAge.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblAge.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblAge.setForeground(new java.awt.Color(0, 0, 51));
         lblAge.setText("Age-Group:");
 
-        jLabel13.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 51));
         jLabel13.setText("(in years)");
 
-        lblCond.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblCond.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblCond.setForeground(new java.awt.Color(0, 0, 51));
         lblCond.setText("Usage For Condition:");
 
-        lblMax.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblMax.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblMax.setForeground(new java.awt.Color(0, 0, 51));
         lblMax.setText("Max:");
 
@@ -307,15 +310,15 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         quantityMinAgeSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         quantityMinAgeSpinner.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        lblMin.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblMin.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblMin.setForeground(new java.awt.Color(0, 0, 51));
         lblMin.setText("Min :");
 
-        lblAdministration.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblAdministration.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblAdministration.setForeground(new java.awt.Color(0, 0, 51));
         lblAdministration.setText("Administration:");
 
-        btnIntra.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnIntra.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnIntra.setForeground(new java.awt.Color(0, 0, 51));
         btnIntra.setText("Intravenous");
         btnIntra.addActionListener(new java.awt.event.ActionListener() {
@@ -324,7 +327,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnPills.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnPills.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnPills.setForeground(new java.awt.Color(0, 0, 51));
         btnPills.setText("Pills");
         btnPills.addActionListener(new java.awt.event.ActionListener() {
@@ -333,11 +336,11 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblDosage.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblDosage.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblDosage.setForeground(new java.awt.Color(0, 0, 51));
         lblDosage.setText("Dosage:");
 
-        btnHeart.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnHeart.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnHeart.setForeground(new java.awt.Color(0, 0, 51));
         btnHeart.setText("Heart Disease");
         btnHeart.addActionListener(new java.awt.event.ActionListener() {
@@ -346,7 +349,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDiabetes.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnDiabetes.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDiabetes.setForeground(new java.awt.Color(0, 0, 51));
         btnDiabetes.setText("Diabetes");
         btnDiabetes.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +358,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCovid.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnCovid.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCovid.setForeground(new java.awt.Color(0, 0, 51));
         btnCovid.setText("Covid");
         btnCovid.addActionListener(new java.awt.event.ActionListener() {
@@ -364,7 +367,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnMorning.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnMorning.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnMorning.setForeground(new java.awt.Color(0, 0, 51));
         btnMorning.setText("Morning");
         btnMorning.addActionListener(new java.awt.event.ActionListener() {
@@ -376,22 +379,22 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         mornDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         mornDosage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel10.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 51));
         jLabel10.setText("(milligrams)");
 
-        jLabel21.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 51));
         jLabel21.setText("(milligrams)");
 
         afterDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         afterDosage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        btnAfternoon.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnAfternoon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnAfternoon.setForeground(new java.awt.Color(0, 0, 51));
         btnAfternoon.setText("Afternoon");
 
-        btnResp.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnResp.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnResp.setForeground(new java.awt.Color(0, 0, 51));
         btnResp.setText("Respiratory problems");
         btnResp.addActionListener(new java.awt.event.ActionListener() {
@@ -400,21 +403,21 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnNight.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnNight.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnNight.setForeground(new java.awt.Color(0, 0, 51));
         btnNight.setText("Night");
 
         nightDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         nightDosage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel22.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 51));
         jLabel22.setText("(milligrams)");
 
         txtOther.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
         txtOther.setEnabled(false);
 
-        lblOther.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblOther.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblOther.setForeground(new java.awt.Color(0, 0, 51));
         lblOther.setText("Other Instructions:");
 
@@ -424,11 +427,11 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         txtSide.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
         txtSide.setEnabled(false);
 
-        lblPreservation.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblPreservation.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblPreservation.setForeground(new java.awt.Color(0, 0, 51));
         lblPreservation.setText("Preservation instructions:");
 
-        lblSide.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblSide.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblSide.setForeground(new java.awt.Color(0, 0, 51));
         lblSide.setText("Possible Side Effects:");
 
@@ -557,7 +560,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                             .addComponent(btnDiabetes)
                             .addComponent(btnCovid)
                             .addComponent(btnResp))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,7 +604,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                             .addComponent(txtSide, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblOther)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(txtOther, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -643,9 +646,9 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUsername)
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -655,13 +658,11 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
                             .addComponent(lblCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtUpdateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblUpdate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblUpdate))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

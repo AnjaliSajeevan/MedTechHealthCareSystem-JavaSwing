@@ -9,11 +9,20 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.LaboratoryOrganization;
 import Business.UserAccount.UserAccount;
+import Business.Utility.SmsSender;
 import Business.WorkQueue.LabPatientWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Date;
 import java.util.Map;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -36,6 +45,46 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
         this.business = business;
         this.account = account;
         this.request = req;
+    }
+     private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+            message.setFrom(new InternetAddress(from));
+            InternetAddress[] toAddress = new InternetAddress[to.length];
+
+            // To get the array of addresses
+            for( int i = 0; i < to.length; i++ ) {
+                toAddress[i] = new InternetAddress(to[i]);
+            }
+
+            for( int i = 0; i < toAddress.length; i++) {
+                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+            }
+
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }
+        catch (AddressException ae) {
+            ae.printStackTrace();
+        }
+        catch (MessagingException me) {
+            me.printStackTrace();
+        }
     }
 
     /**
@@ -63,12 +112,12 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
 
         txtResult.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
 
-        jLabel6.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 102));
         jLabel6.setText("In case of Covid Positive result, please alert the patient!");
 
         btnCovid1.setBackground(new java.awt.Color(153, 0, 0));
-        btnCovid1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnCovid1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCovid1.setForeground(new java.awt.Color(255, 255, 255));
         btnCovid1.setText("ALERT COVID MESSAGE");
         btnCovid1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +126,7 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSubmit.setFont(new java.awt.Font("Symbol", 0, 12)); // NOI18N
+        btnSubmit.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(0, 102, 102));
         btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/save.png"))); // NOI18N
         btnSubmit.setText("SUBMIT RESULT");
@@ -108,7 +157,7 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnBack1.setBackground(new java.awt.Color(255, 255, 204));
-        btnBack1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnBack1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnBack1.setForeground(new java.awt.Color(0, 102, 102));
         btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/back_to_50px_1.png"))); // NOI18N
         btnBack1.setText("Go Back");
@@ -158,7 +207,7 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jLabel8.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 102, 102));
         jLabel8.setText("Write Detail Observation on the Laboratory Result:");
 
@@ -177,11 +226,12 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnCovid1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)))
-                .addGap(42, 42, 42))
+                        .addGap(69, 69, 69))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,16 +242,15 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
                         .addGap(38, 38, 38)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtResult, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(btnCovid1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtResult, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSubmit)
-                        .addGap(33, 33, 33))
+                        .addComponent(btnSubmit))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jLabel6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCovid1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -216,6 +265,8 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
         request.setMessage(txtResult.getText());
           pat1.getLabPatientWorkQueue().updateLabPatientRequest(request, pat1.getLabPatientWorkQueue().getLabPatientRequestList());
         business.getLabPatQueue().updateLabPatientRequest(request, business.getLabPatQueue().getLabPatientRequestList()); 
+                        SmsSender.sendSms("8573997267", "Hi "+request.getPatient().getUsername()+"! We are reaching you with regard to the recent Lab Test conducted and it shows Covid Positive results!Please quarantine and get yourself tested after 15 days!");
+
                 JOptionPane.showMessageDialog(null, "Patient Alerted!", "Information", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_btnCovid1ActionPerformed
@@ -240,15 +291,20 @@ public class ProcessTestJPanel extends javax.swing.JPanel {
         pat1.getLabPatientWorkQueue().updateLabPatientRequest(request, pat1.getLabPatientWorkQueue().getLabPatientRequestList());
         business.getLabPatQueue().updateLabPatientRequest(request, business.getLabPatQueue().getLabPatientRequestList());
      //   ua.getLabPatientWorkQueue().addLabPatientRequest(request);
+     account.getLabPatientWorkQueue().removeLabPatientRequest(request);
      txtResult.setText("");
         JOptionPane.showMessageDialog(null, "Result Submitted successfuly!", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         // TODO add your handling code here:
-                    userProcessContainer.remove(this);
-            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-            layout.previous(userProcessContainer);
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        LabStaffWorkAreaJPanel sysAdminwjp = (LabStaffWorkAreaJPanel) component;
+        sysAdminwjp.populateTestingTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBack1ActionPerformed
 
 

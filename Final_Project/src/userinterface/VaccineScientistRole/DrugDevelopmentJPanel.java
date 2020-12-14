@@ -199,7 +199,7 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
         jLabel1.setText("Drug Project List");
 
         btnProceed.setBackground(new java.awt.Color(0, 0, 51));
-        btnProceed.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        btnProceed.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnProceed.setForeground(new java.awt.Color(255, 255, 255));
         btnProceed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/proceedReq.png"))); // NOI18N
         btnProceed.setText("Proceed Drug Request");
@@ -220,7 +220,7 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
                         .addGap(322, 322, 322)
                         .addComponent(jLabel1)
                         .addGap(202, 202, 202)
-                        .addComponent(btnProceed, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnProceed))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1175, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -256,7 +256,7 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         btnRemove.setBackground(new java.awt.Color(204, 204, 204));
-        btnRemove.setFont(new java.awt.Font("Sukhumvit Set", 0, 18)); // NOI18N
+        btnRemove.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btnRemove.setForeground(new java.awt.Color(51, 0, 0));
         btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/clear.png"))); // NOI18N
         btnRemove.setText("Remove Project");
@@ -268,10 +268,10 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
 
         reasonText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel2.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Provide detailed reason for closure of the Drug Project:");
 
-        jLabel7.setFont(new java.awt.Font("Sukhumvit Set", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 51));
         jLabel7.setText("Remove Vaccine: ");
 
@@ -306,31 +306,31 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
                 .addComponent(reasonText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("RemoveVaccine", jPanel3);
 
         introPanel.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel4.setFont(new java.awt.Font("Sukhumvit Set", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Drug Development Portal");
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 18)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblAccount.setBackground(new java.awt.Color(51, 51, 51));
-        lblAccount.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblAccount.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblAccount.setForeground(new java.awt.Color(255, 255, 255));
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         backJButton1.setBackground(new java.awt.Color(0, 0, 102));
-        backJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        backJButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         backJButton1.setForeground(new java.awt.Color(255, 255, 255));
         backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton1.setText("Home");
@@ -354,8 +354,8 @@ public class DrugDevelopmentJPanel extends javax.swing.JPanel {
                     .addGroup(introPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
-                .addGap(221, 221, 221)
-                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(191, 191, 191)
+                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
         );
         introPanelLayout.setVerticalGroup(

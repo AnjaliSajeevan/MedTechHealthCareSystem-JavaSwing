@@ -112,7 +112,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
 
         btnCreate.setBackground(new java.awt.Color(0, 0, 51));
-        btnCreate.setFont(new java.awt.Font("Sukhumvit Set", 0, 18)); // NOI18N
+        btnCreate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/addMed.png"))); // NOI18N
         btnCreate.setText("CREATE VACCINE");
@@ -124,24 +124,24 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
 
         introPanel.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel2.setFont(new java.awt.Font("Sukhumvit Set", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Drug Discovery Portal");
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 18)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblAccount.setBackground(new java.awt.Color(51, 51, 51));
-        lblAccount.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblAccount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblAccount.setForeground(new java.awt.Color(255, 255, 255));
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         backJButton.setBackground(new java.awt.Color(0, 0, 102));
-        backJButton.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        backJButton.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton.setText("Home");
@@ -159,11 +159,11 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             .addGroup(introPanelLayout.createSequentialGroup()
                 .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(119, 119, 119)
-                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
-                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
         introPanelLayout.setVerticalGroup(
@@ -190,11 +190,11 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
 
         txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
-        lblName.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(0, 0, 51));
         lblName.setText("Name:");
 
-        lblDesc.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblDesc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(0, 0, 51));
         lblDesc.setText("Description:");
 
@@ -205,7 +205,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblCore.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblCore.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblCore.setForeground(new java.awt.Color(0, 0, 51));
         lblCore.setText("Core Component:");
 
@@ -218,11 +218,11 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblAllergens.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblAllergens.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblAllergens.setForeground(new java.awt.Color(0, 0, 51));
         lblAllergens.setText("Any Allergens:");
 
-        btnIntra.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnIntra.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnIntra.setForeground(new java.awt.Color(0, 0, 51));
         btnIntra.setText("Intravenous");
         btnIntra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
@@ -232,11 +232,11 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblAdministration.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblAdministration.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblAdministration.setForeground(new java.awt.Color(0, 0, 51));
         lblAdministration.setText("Administration:");
 
-        btnPills.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnPills.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnPills.setForeground(new java.awt.Color(0, 0, 51));
         btnPills.setText("Pills");
         btnPills.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
@@ -252,23 +252,23 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         quantityMinAgeSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         quantityMinAgeSpinner.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
-        lblMin.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblMin.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblMin.setForeground(new java.awt.Color(0, 0, 51));
         lblMin.setText("Min :");
 
-        lblMax.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblMax.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblMax.setForeground(new java.awt.Color(0, 0, 51));
         lblMax.setText("Max:");
 
-        lblAge.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblAge.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblAge.setForeground(new java.awt.Color(0, 0, 51));
         lblAge.setText("Age-Group:");
 
-        jLabel13.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 51));
         jLabel13.setText("(in years)");
 
-        btnHeart.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnHeart.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnHeart.setForeground(new java.awt.Color(0, 0, 51));
         btnHeart.setText("Heart Disease");
         btnHeart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
@@ -278,11 +278,11 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblCond.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblCond.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblCond.setForeground(new java.awt.Color(0, 0, 51));
         lblCond.setText("Usage For Condition:");
 
-        btnDiabetes.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnDiabetes.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDiabetes.setForeground(new java.awt.Color(0, 0, 51));
         btnDiabetes.setText("Diabetes");
         btnDiabetes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
@@ -292,7 +292,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCovid.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnCovid.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCovid.setForeground(new java.awt.Color(0, 0, 51));
         btnCovid.setText("Covid");
         btnCovid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
@@ -302,7 +302,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnResp.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnResp.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnResp.setForeground(new java.awt.Color(0, 0, 51));
         btnResp.setText("Respiratory problems");
         btnResp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
@@ -312,7 +312,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnNight.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnNight.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnNight.setForeground(new java.awt.Color(0, 0, 51));
         btnNight.setText("Night");
         btnNight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
@@ -322,12 +322,12 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnAfternoon.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnAfternoon.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnAfternoon.setForeground(new java.awt.Color(0, 0, 51));
         btnAfternoon.setText("Afternoon");
         btnAfternoon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
 
-        btnMorning.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnMorning.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnMorning.setForeground(new java.awt.Color(0, 0, 51));
         btnMorning.setText("Morning");
         btnMorning.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
@@ -337,7 +337,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblDosage.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblDosage.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblDosage.setForeground(new java.awt.Color(0, 0, 51));
         lblDosage.setText("Dosage:");
 
@@ -350,13 +350,13 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         nightDosage.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         nightDosage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
-        jLabel21.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 51));
         jLabel21.setText("(milligrams)");
 
         txtOther.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
-        lblOther.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblOther.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblOther.setForeground(new java.awt.Color(0, 0, 51));
         lblOther.setText("Other Instructions:");
 
@@ -364,11 +364,11 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
 
         txtSide.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
-        lblPreservation.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblPreservation.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblPreservation.setForeground(new java.awt.Color(0, 0, 51));
         lblPreservation.setText("Preservation instructions:");
 
-        lblSide.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        lblSide.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblSide.setForeground(new java.awt.Color(0, 0, 51));
         lblSide.setText("Possible Side Effects:");
 
@@ -380,7 +380,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Drug Usage");
 
-        jLabel7.setFont(new java.awt.Font("Sukhumvit Set", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Precautions");
 
@@ -497,7 +497,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jLabel7)))
-                .addContainerGap(979, Short.MAX_VALUE))
+                .addContainerGap(995, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -618,7 +618,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
         layout.setVerticalGroup(
