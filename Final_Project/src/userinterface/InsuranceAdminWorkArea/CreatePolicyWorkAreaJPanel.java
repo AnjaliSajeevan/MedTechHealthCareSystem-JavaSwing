@@ -236,15 +236,35 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(txtMonthly, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 120, -1));
 
         txtSpecialistCare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSpecialistCare.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSpecialistCareKeyPressed(evt);
+            }
+        });
         add(txtSpecialistCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 400, 50, -1));
 
         txtPrimaryCare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtPrimaryCare.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrimaryCareKeyPressed(evt);
+            }
+        });
         add(txtPrimaryCare, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 50, -1));
 
         txtSurgery.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSurgery.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSurgeryKeyPressed(evt);
+            }
+        });
         add(txtSurgery, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 400, 50, -1));
 
         txtLabServices.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtLabServices.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLabServicesKeyPressed(evt);
+            }
+        });
         add(txtLabServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 50, -1));
 
         txtEmergencyRoomCare.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -341,6 +361,11 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 200, -1));
 
         txtInpatients.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtInpatients.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtInpatientsKeyPressed(evt);
+            }
+        });
         add(txtInpatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, 50, -1));
         add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 552, -1, -1));
 
@@ -554,8 +579,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
             String fitness;
             String vision;
             String hearing;
-            String laboratory;
-            String pharmacy;
+            
             String teleHealth;
             String policyType = null;
             
@@ -828,7 +852,7 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
     private void txtEmergencyRoomCareKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmergencyRoomCareKeyPressed
         // TODO add your handling code here:
         char c =evt.getKeyChar();
-        if ((c >= '0' && c <= '9' || c ==',')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+        if ((c >= '0' && c <= '9')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
             txtEmergencyRoomCare.setEditable(true);
         }else{
            txtEmergencyRoomCare.setEditable(false);
@@ -869,6 +893,61 @@ public class CreatePolicyWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter only numbers!");
         }
     }//GEN-LAST:event_txtDeductible4KeyPressed
+
+    private void txtSpecialistCareKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSpecialistCareKeyPressed
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtSpecialistCare.setEditable(true);
+        }else{
+           txtSpecialistCare.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtSpecialistCareKeyPressed
+
+    private void txtInpatientsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInpatientsKeyPressed
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtInpatients.setEditable(true);
+        }else{
+           txtInpatients.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtInpatientsKeyPressed
+
+    private void txtLabServicesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLabServicesKeyPressed
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtLabServices.setEditable(true);
+        }else{
+          txtLabServices.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtLabServicesKeyPressed
+
+    private void txtSurgeryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSurgeryKeyPressed
+        // TODO add your handling code here:
+         char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtSurgery.setEditable(true);
+        }else{
+          txtSurgery.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtSurgeryKeyPressed
+
+    private void txtPrimaryCareKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrimaryCareKeyPressed
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtPrimaryCare.setEditable(true);
+        }else{
+          txtPrimaryCare.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+    }//GEN-LAST:event_txtPrimaryCareKeyPressed
    public boolean checkNumber(String s){
       String nORegex = "^[0-9]*$";
         Pattern phonePattern = Pattern.compile(nORegex);       

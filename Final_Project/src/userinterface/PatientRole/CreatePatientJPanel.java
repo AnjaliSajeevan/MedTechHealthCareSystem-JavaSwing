@@ -16,6 +16,7 @@ import Business.Utility.SmsSender;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import static java.lang.Boolean.TRUE;
 import java.text.ParseException;
@@ -144,6 +145,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         jLabel30 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -194,6 +196,11 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         jLabel24.setText("Contact Number");
 
         txtPhone.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPhoneKeyPressed(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 102, 102));
@@ -216,6 +223,16 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         jLabel27.setText("Name");
 
         txtEmail.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
 
         txtName.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -258,6 +275,11 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         jLabel17.setText("Full Face Photograph");
 
         txtSSN.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtSSN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSSNKeyPressed(evt);
+            }
+        });
 
         txtPhoto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -392,6 +414,8 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
 
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/biometric.png"))); // NOI18N
 
+        jLabel42.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/cancel_25px.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -465,7 +489,9 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                                                             .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(28, 28, 28)
-                                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
@@ -680,7 +706,8 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                                             .addComponent(jLabel14)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jLabel34)
-                                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1125,6 +1152,56 @@ private boolean usernamePatternCorrect(){
          
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtPhoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneKeyPressed
+        // TODO add your handling code here:
+         char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtPhone.setEditable(true);
+        }else{
+          txtPhone.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+        
+        
+    }//GEN-LAST:event_txtPhoneKeyPressed
+
+    private void txtSSNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSSNKeyPressed
+        // TODO add your handling code here:
+         char c =evt.getKeyChar();
+        if ((c >= '0' && c <= '9' || c =='-')||(c == KeyEvent.VK_BACK_SPACE)||(c == KeyEvent.VK_DELETE)){
+            txtSSN.setEditable(true);
+        }else{
+          txtSSN.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Please enter only numbers!");
+        }
+        
+    }//GEN-LAST:event_txtSSNKeyPressed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        // TODO add your handling code here:
+            String emailRegex = "^(.+)@(.+)[.](.+)$";
+            String str=txtEmail.getText();
+            
+            char Ch= evt.getKeyChar();
+            if(Ch>=33 && Ch<=126)
+                str+=Ch;
+            Pattern emailPattern = Pattern.compile(emailRegex);
+            Matcher checkEmail = emailPattern.matcher(txtEmail.getText());
+            boolean checkMatch = checkEmail.matches();
+            if(checkMatch==true){
+                jLabel42.setText("✔");
+                jLabel42.setForeground(Color.GREEN);
+            }
+            else{
+                 jLabel42.setText("✘");
+                 jLabel42.setForeground(Color.RED);
+            }
+    }//GEN-LAST:event_txtEmailKeyTyped
  private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
@@ -1221,6 +1298,7 @@ private boolean usernamePatternCorrect(){
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
