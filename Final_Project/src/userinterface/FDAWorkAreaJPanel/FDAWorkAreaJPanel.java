@@ -223,29 +223,29 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
 
         introPanel.setBackground(new java.awt.Color(51, 0, 51));
 
-        jLabel3.setFont(new java.awt.Font("Sukhumvit Set", 0, 48)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("FDA Admin Portal");
 
         lblName.setBackground(new java.awt.Color(51, 51, 51));
-        lblName.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblName.setForeground(new java.awt.Color(255, 255, 255));
         lblName.setText("Enterprise:");
         lblName.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblRole.setBackground(new java.awt.Color(51, 51, 51));
-        lblRole.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblRole.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblRole.setForeground(new java.awt.Color(255, 255, 255));
         lblRole.setText("Enterprise:");
         lblRole.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        lblAccount.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        lblAccount.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblAccount.setForeground(new java.awt.Color(255, 255, 255));
         lblAccount.setText("Logged In as: ");
 
@@ -324,7 +324,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Vaccine Requests", jPanel1);
@@ -358,7 +358,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("View Timeline", jPanel2);
@@ -371,7 +371,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGap(0, 655, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Vaccine Details", jPanel3);
@@ -384,25 +384,25 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGap(0, 655, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Lab Tests", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 0, 51));
         jLabel5.setText("Please verify all the Vaccine  and Trial Details to make a decision on the Request");
 
-        jLabel6.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 0, 51));
         jLabel6.setText("FDA Decision on Vaccine Request");
 
         decisionPanel.setBackground(new java.awt.Color(255, 255, 255));
         decisionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        btnCertify.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnCertify.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCertify.setForeground(new java.awt.Color(51, 0, 51));
         btnCertify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/approveFDA.png"))); // NOI18N
         btnCertify.setText("Certify Vaccine");
@@ -414,6 +414,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
 
         txtMessage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 51)));
 
+        btnSucRate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnSucRate.setForeground(new java.awt.Color(51, 0, 51));
         btnSucRate.setText("View Success Rate ");
         btnSucRate.addActionListener(new java.awt.event.ActionListener() {
@@ -422,24 +423,24 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblSuccessRate.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblSuccessRate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblSuccessRate.setForeground(new java.awt.Color(0, 51, 204));
         lblSuccessRate.setText("successRate");
 
-        jLabel7.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 0, 51));
         jLabel7.setText("Write a detailed Message justifying the decision on Vaccine :");
 
-        lblVaccine.setFont(new java.awt.Font("Sukhumvit Set", 1, 18)); // NOI18N
+        lblVaccine.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblVaccine.setForeground(new java.awt.Color(51, 0, 51));
         lblVaccine.setText("Vaccine Request:");
         lblVaccine.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
-        jLabel8.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 0, 51));
         jLabel8.setText("Select the Manufacturing Unit in case of Approval:");
 
-        btnReject.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnReject.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnReject.setForeground(new java.awt.Color(51, 0, 51));
         btnReject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/reject.png"))); // NOI18N
         btnReject.setText("Reject Vaccine");
@@ -533,7 +534,7 @@ public class FDAWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(decisionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Decision", jPanel5);

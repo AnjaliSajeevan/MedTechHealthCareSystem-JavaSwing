@@ -43,7 +43,7 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
         populateTestingTable();
                 this.setSize(1466, 902);
                         lblName.setText(account.getEmployee().getName());
-        lblRole.setText("Laboratory Admin");
+        lblRole.setText("Laboratory Staff");
         lblEnterprise.setText(enterprise.getName());
         lblAccount.setText("Logged in as: "+account.getUsername());
               DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
@@ -240,8 +240,8 @@ public class LabStaffWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)

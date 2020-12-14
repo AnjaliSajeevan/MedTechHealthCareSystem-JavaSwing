@@ -190,6 +190,8 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         btnAddSupply = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         newDose = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         medPanel = new javax.swing.JPanel();
         txtName = new javax.swing.JTextField();
@@ -220,24 +222,24 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
 
         introPanel.setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel8.setFont(new java.awt.Font("Sukhumvit Set", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Manage Medicine Supplies");
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 18)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblAccount.setBackground(new java.awt.Color(51, 51, 51));
-        lblAccount.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblAccount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblAccount.setForeground(new java.awt.Color(255, 255, 255));
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         backJButton1.setBackground(new java.awt.Color(0, 102, 102));
-        backJButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        backJButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         backJButton1.setForeground(new java.awt.Color(255, 255, 255));
         backJButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/home2.png"))); // NOI18N
         backJButton1.setText("Home");
@@ -258,12 +260,12 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                         .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
                         .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE))
                     .addGroup(introPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
-                        .addGap(104, 104, 104)))
-                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)))
+                .addComponent(backJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(372, 372, 372))
         );
         introPanelLayout.setVerticalGroup(
@@ -310,7 +312,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(medTable);
 
         btnRemove.setBackground(new java.awt.Color(0, 102, 102));
-        btnRemove.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        btnRemove.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnRemove.setForeground(new java.awt.Color(255, 255, 255));
         btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/clear.png"))); // NOI18N
         btnRemove.setText("Remove");
@@ -346,7 +348,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 102, 102));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/treatment_50px.png"))); // NOI18N
         jButton1.setText("SEND DEMAND REQUEST");
@@ -356,15 +358,15 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 102, 102));
         jLabel9.setText("MEDICINE:");
 
-        jLabel10.setFont(new java.awt.Font("Symbol", 1, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 102, 102));
         jLabel10.setText("Choose the Medicine and Quantity required to send Demand Request to the Manufacturing Unit");
 
-        jLabel11.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 102, 102));
         jLabel11.setText("QUANTITY:");
 
@@ -382,29 +384,27 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(200, 200, 200)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(medQuoteBox, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(medQuoteBox, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jLabel10)))
-                .addContainerGap(298, Short.MAX_VALUE))
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(296, 296, 296)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(413, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jLabel10)
-                .addGap(141, 141, 141)
+                .addGap(133, 133, 133)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(medQuoteBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -412,7 +412,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(89, 89, 89)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(411, Short.MAX_VALUE))
+                .addContainerGap(417, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Send Demand Request", jPanel2);
@@ -440,11 +440,11 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(vaccineRequestTable);
 
-        jLabel12.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 102, 102));
         jLabel12.setText("Update the Price and Quantity for newly developed medicines to add it into the inventory:");
 
-        jLabel13.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 102, 102));
         jLabel13.setText("Add the quantity obtained from the Manufacturing Unit  into the inventory");
 
@@ -470,7 +470,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         jScrollPane5.setViewportView(supplyTable);
 
         jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/add.png"))); // NOI18N
         jButton2.setText("UPDATE INVENTORY");
@@ -480,7 +480,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel14.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 102, 102));
         jLabel14.setText("Quantity");
 
@@ -490,12 +490,12 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 102, 102));
         jLabel15.setText("Price");
 
         btnAddSupply.setBackground(new java.awt.Color(0, 102, 102));
-        btnAddSupply.setFont(new java.awt.Font("Symbol", 0, 14)); // NOI18N
+        btnAddSupply.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         btnAddSupply.setForeground(new java.awt.Color(255, 255, 255));
         btnAddSupply.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/add.png"))); // NOI18N
         btnAddSupply.setText("Add to Supply");
@@ -505,7 +505,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 102, 102));
         jLabel17.setText("Dosage");
 
@@ -515,45 +515,70 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(102, 0, 51));
+        jLabel18.setText("Medicine Supply from Manufacturing Unit");
+
+        jLabel19.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(102, 0, 51));
+        jLabel19.setText("New Medicine Samples from Manufacturing Unit");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(newQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(18, 18, 18)
-                .addComponent(newPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addComponent(newDose, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAddSupply, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel13))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(367, 367, 367)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(365, 365, 365)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(320, 320, 320)
+                        .addComponent(jLabel18)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane5)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newQuant, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
+                        .addComponent(newPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addComponent(newDose, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddSupply, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(327, 327, 327)
+                .addComponent(jLabel19)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -564,13 +589,15 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel17)
                     .addComponent(newDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddSupply, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Update Inventory", jPanel3);
@@ -580,16 +607,16 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
         medPanel.setBackground(new java.awt.Color(255, 255, 255));
         medPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
 
-        jLabel1.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Name");
 
-        jLabel2.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Dosage(mg)");
 
         btnCreate.setBackground(new java.awt.Color(0, 102, 102));
-        btnCreate.setFont(new java.awt.Font("Symbol", 0, 18)); // NOI18N
+        btnCreate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/add.png"))); // NOI18N
         btnCreate.setText("CREATE NEW MEDICINE");
@@ -599,11 +626,11 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 102));
         jLabel6.setText("Please choose the most relevant Condition for Medicine:");
 
-        btnEnt.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnEnt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnEnt.setForeground(new java.awt.Color(0, 102, 102));
         btnEnt.setText("ENT");
         btnEnt.addActionListener(new java.awt.event.ActionListener() {
@@ -612,7 +639,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnResp.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnResp.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnResp.setForeground(new java.awt.Color(0, 102, 102));
         btnResp.setText("Respiratory problems");
         btnResp.addActionListener(new java.awt.event.ActionListener() {
@@ -621,7 +648,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnHeart.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnHeart.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnHeart.setForeground(new java.awt.Color(0, 102, 102));
         btnHeart.setText("Heart-Related");
         btnHeart.addActionListener(new java.awt.event.ActionListener() {
@@ -630,7 +657,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnFever.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnFever.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnFever.setForeground(new java.awt.Color(0, 102, 102));
         btnFever.setText("Fever");
         btnFever.addActionListener(new java.awt.event.ActionListener() {
@@ -639,7 +666,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDiab.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnDiab.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnDiab.setForeground(new java.awt.Color(0, 102, 102));
         btnDiab.setText("Diabetes-Related");
         btnDiab.addActionListener(new java.awt.event.ActionListener() {
@@ -648,7 +675,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnPain.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnPain.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnPain.setForeground(new java.awt.Color(0, 102, 102));
         btnPain.setText("Painkiller");
         btnPain.addActionListener(new java.awt.event.ActionListener() {
@@ -657,7 +684,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCovid.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnCovid.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCovid.setForeground(new java.awt.Color(0, 102, 102));
         btnCovid.setText("Covid-Relief");
         btnCovid.addActionListener(new java.awt.event.ActionListener() {
@@ -666,7 +693,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnOther.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnOther.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnOther.setForeground(new java.awt.Color(0, 102, 102));
         btnOther.setText("Other");
         btnOther.addActionListener(new java.awt.event.ActionListener() {
@@ -675,11 +702,11 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Symbol", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 102, 102));
         jLabel5.setText("Medicine Details");
 
-        jLabel4.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Quantity");
 
@@ -689,7 +716,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Price");
 
@@ -800,7 +827,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel16.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 102, 102));
         jLabel16.setText("Add new Medicines:");
 
@@ -813,7 +840,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(medPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -822,7 +849,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(medPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(357, Short.MAX_VALUE))
+                .addContainerGap(351, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Add New Medicine", jPanel4);
@@ -853,7 +880,7 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
                         .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 847, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1167,6 +1194,8 @@ public class ManageMedicineJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

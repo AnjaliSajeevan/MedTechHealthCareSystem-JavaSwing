@@ -277,6 +277,9 @@ if(networkJComboBox.getSelectedItem().toString().equals("") || enterpriseTypeJCo
                 for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
                     if(e.getName().equalsIgnoreCase(name)){
           JOptionPane.showMessageDialog(null, "Enterprise name already exists!");
+                  populateTable();
+        populateComboBox();
+        nameJTextField.setText(""); 
             return;                       
                     }
                 }

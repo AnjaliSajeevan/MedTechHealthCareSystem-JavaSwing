@@ -26,7 +26,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private OrganizationDirectory organizationDir;
     private JPanel userProcessContainer;
-    
+    private boolean card;
     /**
      * Creates new form ManageOrganizationJPanel
      */
@@ -53,10 +53,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         
         populateTable();
         populateOrganizationEmpComboBox();
-    }
-    
-    
-    
+    } 
     public void populateOrganizationEmpComboBox(){
         organizationEmpJComboBox.removeAllItems();
         organizationEmpJComboBox.addItem("");

@@ -79,7 +79,7 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Update Clinical Trial Result");
 
-        jLabel2.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
         jLabel2.setText("Tester/Patient ID:");
 
@@ -91,11 +91,11 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 51));
         jLabel5.setText("Result:");
 
-        jLabel6.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 51));
         jLabel6.setText("Detail Observation:");
 
@@ -106,7 +106,7 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSuc.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnSuc.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnSuc.setForeground(new java.awt.Color(0, 0, 51));
         btnSuc.setText("Success");
         btnSuc.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +115,7 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnFail.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnFail.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnFail.setForeground(new java.awt.Color(0, 0, 51));
         btnFail.setText("Failure");
         btnFail.addActionListener(new java.awt.event.ActionListener() {
@@ -132,11 +132,11 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
         jLabel3.setText("Testing ID:");
 
-        jLabel4.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 51));
         jLabel4.setText("VaccineID:");
 
@@ -149,7 +149,7 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
         });
 
         btnSubmit.setBackground(new java.awt.Color(0, 0, 51));
-        btnSubmit.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        btnSubmit.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/treatment_50px.png"))); // NOI18N
         btnSubmit.setText("SUBMIT RESULT");
@@ -227,7 +227,7 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -999,18 +999,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 e.getUserAccountDirectory().createUserAccount("in1", "in1", insEmp, new InsuranceAdminRole());
                 org = e.getOrganizationDirectory().createOrganization(Organization.Type.InsuranceStaff);
                 employee =org.getEmployeeDirectory().createEmployee("isStaff1");
-                org.getUserAccountDirectory().createUserAccount("inStaff1", "instaff1", employee, new InsuranceClaimRole());
+                org.getUserAccountDirectory().createUserAccount("instaff1", "instaff1", employee, new InsuranceClaimRole());
                 employee =org.getEmployeeDirectory().createEmployee("isStaff2");
-                org.getUserAccountDirectory().createUserAccount("inStaff2", "instaff2", employee, new InsuranceClaimRole());
+                org.getUserAccountDirectory().createUserAccount("instaff2", "instaff2", employee, new InsuranceClaimRole());
             }
             if(e.getName().equals("NHLife Insurance")){
                 Employee insEmp = e.getEmployeeDirectory().createEmployee("insureEmp2");
                 e.getUserAccountDirectory().createUserAccount("in2", "in2", insEmp, new InsuranceAdminRole());
                 org = e.getOrganizationDirectory().createOrganization(Organization.Type.InsuranceStaff);
                 employee =org.getEmployeeDirectory().createEmployee("isStaff3");
-                org.getUserAccountDirectory().createUserAccount("inStaff3", "instaff3", employee, new InsuranceClaimRole());
+                org.getUserAccountDirectory().createUserAccount("instaff3", "instaff3", employee, new InsuranceClaimRole());
                 employee =org.getEmployeeDirectory().createEmployee("isStaff4");
-                org.getUserAccountDirectory().createUserAccount("inStaff4", "instaff4", employee, new InsuranceClaimRole());
+                org.getUserAccountDirectory().createUserAccount("instaff4", "instaff4", employee, new InsuranceClaimRole());
             }
             if(e.getName().equals("NewHampshire Hospital")){
                 Employee hospE = e.getEmployeeDirectory().createEmployee("hospE");

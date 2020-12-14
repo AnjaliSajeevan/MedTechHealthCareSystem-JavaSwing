@@ -101,24 +101,24 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         introPanel.setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel1.setFont(new java.awt.Font("Sukhumvit Set", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("PharmacyCompany Admin Portal");
 
         lblName.setBackground(new java.awt.Color(51, 51, 51));
-        lblName.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(255, 255, 255));
         lblName.setText("Enterprise:");
         lblName.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblRole.setBackground(new java.awt.Color(51, 51, 51));
-        lblRole.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblRole.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblRole.setForeground(new java.awt.Color(255, 255, 255));
         lblRole.setText("Enterprise:");
         lblRole.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblEnterprise.setBackground(new java.awt.Color(51, 51, 51));
-        lblEnterprise.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblEnterprise.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         lblEnterprise.setText("Enterprise:");
         lblEnterprise.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -130,26 +130,30 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(introPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(95, 95, 95)
-                .addComponent(jLabel1)
-                .addContainerGap(252, Short.MAX_VALUE))
+                    .addComponent(lblEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(introPanelLayout.createSequentialGroup()
+                        .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         introPanelLayout.setVerticalGroup(
             introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(introPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(introPanelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, introPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(2, 2, 2)))
                 .addComponent(lblEnterprise))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, introPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(7, 7, 7))
         );
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/ID.png"))); // NOI18N
@@ -160,7 +164,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Welcome!");
 
@@ -169,7 +173,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setText("to Admin Page! ");
 
         lblAccount.setBackground(new java.awt.Color(51, 51, 51));
-        lblAccount.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        lblAccount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblAccount.setForeground(new java.awt.Color(255, 255, 255));
         lblAccount.setText("Enterprise:");
         lblAccount.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -178,37 +182,35 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(179, 179, 179)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addGap(78, 78, 78)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnCompRpt.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        btnCompRpt.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnCompRpt.setForeground(new java.awt.Color(0, 51, 51));
         btnCompRpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/vacreport.png"))); // NOI18N
         btnCompRpt.setText("Display Pharmacy Report");
@@ -219,7 +221,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnTestors.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        btnTestors.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnTestors.setForeground(new java.awt.Color(0, 51, 51));
         btnTestors.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/manageMed.png"))); // NOI18N
         btnTestors.setText("Manage Medicine Supplies");
@@ -230,7 +232,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnResp.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        btnResp.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnResp.setForeground(new java.awt.Color(0, 51, 51));
         btnResp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/vaccineRecord.png"))); // NOI18N
         btnResp.setText("Pharmacy Records");
@@ -241,7 +243,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCheckTests.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        btnCheckTests.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnCheckTests.setForeground(new java.awt.Color(0, 51, 51));
         btnCheckTests.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/patientMedRequest.png"))); // NOI18N
         btnCheckTests.setText("Medicine Requests");
@@ -252,7 +254,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageOrganizationJButton.setFont(new java.awt.Font("Sukhumvit Set", 1, 14)); // NOI18N
+        manageOrganizationJButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         manageOrganizationJButton.setForeground(new java.awt.Color(0, 51, 51));
         manageOrganizationJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/manageemployee.png"))); // NOI18N
         manageOrganizationJButton.setText("Manage Organization");
@@ -268,7 +270,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(93, 116, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnCheckTests, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,8 +314,8 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1361, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(introPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
