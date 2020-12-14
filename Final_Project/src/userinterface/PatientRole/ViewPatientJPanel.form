@@ -535,7 +535,7 @@
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\sayu\Desktop\12_9\Final_Project\Final_Project\src\Pictures\save.png"/>
+              <Image iconType="3" name="/Pictures/save.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SAVE"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -570,7 +570,7 @@
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\sayu\Desktop\12_9\Final_Project\Final_Project\src\Pictures\update.png"/>
+              <Image iconType="3" name="/Pictures/update.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="UPDATE"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

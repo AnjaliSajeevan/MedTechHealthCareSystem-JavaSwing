@@ -482,10 +482,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
         tblpatientAppointment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Appointment No.", "Date", "Time", "Status", "Hospital", "Doctor", "Result"
@@ -506,10 +503,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
         hospTimeline.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Date", "Status"
@@ -543,26 +537,25 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                     .addGroup(pnl1Layout.createSequentialGroup()
                         .addGap(147, 147, 147)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnl1Layout.createSequentialGroup()
-                            .addGap(272, 272, 272)
-                            .addComponent(jLabel1))
-                        .addGroup(pnl1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnl1Layout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addComponent(jLabel1))
                     .addGroup(pnl1Layout.createSequentialGroup()
                         .addGap(354, 354, 354)
-                        .addComponent(btnHosTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                        .addComponent(btnHosTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addGap(104, 104, 104)
+                .addGap(109, 109, 109)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(43, 43, 43)
                 .addComponent(btnHosTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -578,10 +571,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
         labTestingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "LabID", "Laboratory", "TestName", "PatientName", "Status", "Message"
@@ -599,10 +589,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
         labTimeline.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Date", "Status"
@@ -670,10 +657,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
         pharmaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "PharmacyID", "Medicine", "DeliveryStaff", "Status", "Message"
@@ -694,10 +678,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
         pharmaTimeline.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Date", "Status"
@@ -804,9 +785,11 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
     private void btnGeneratePdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePdfActionPerformed
         
         String e="";
-        
-        
-        
+       if((tblpatientAppointment.getRowCount()==0 )|| (hospTimeline.getRowCount()==0 )||(labTimeline.getRowCount()==0 )||(labTestingTable.getRowCount()==0 )||(pharmaTable.getRowCount()==0 )||(pharmaTimeline.getRowCount()==0 ))
+       {
+            JOptionPane.showMessageDialog(null, "Data not sufficient for  generating report!", "Warning", JOptionPane.WARNING_MESSAGE);
+       }else{
+                
         String path = "";
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -1133,6 +1116,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(null,e);
         }
+       }
     }//GEN-LAST:event_btnGeneratePdfActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

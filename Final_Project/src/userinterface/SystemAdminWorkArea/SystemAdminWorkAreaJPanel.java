@@ -293,7 +293,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2))
                     .addGroup(pnl1Layout.createSequentialGroup()
                         .addGap(178, 178, 178)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVacLoad))
                     .addGroup(pnl1Layout.createSequentialGroup()
                         .addGap(319, 319, 319)
                         .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,13 +305,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(281, 281, 281)
                         .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnManageAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnl1Layout.createSequentialGroup()
-                                .addComponent(btnManagePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(btnVacLoad))
+                            .addComponent(btnManagePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnManageNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,16 +322,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnManageAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnl1Layout.createSequentialGroup()
                         .addComponent(btnManagePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addGap(277, 277, 277)
-                        .addComponent(lab))
+                        .addComponent(jLabel1))
                     .addComponent(btnVacLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addGap(277, 277, 277)
+                .addComponent(lab)
                 .addGap(38, 38, 38))
         );
 
@@ -1032,51 +1031,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 employee =org.getEmployeeDirectory().createEmployee("ambuEmp2");
                 org.getUserAccountDirectory().createUserAccount("amb2", "amb2", employee, new AmbulanceDriverRole());
 
-                //Creating patients
-                Patient patient1 = new Patient();
-                patient1.setPatientname("Kari");
-                patient1.setAddress1("252 Kennedy Drive");
-                patient1.setAddress2("Malden");
-                patient1.setAddress3("Ma-02148");
-                patient1.setContact(String.valueOf(1234567890));
-                patient1.setGender("Female");
-                patient1.setDOB("12/12/2000");
-                patient1.setAge(20);
-                patient1.setEmail("sdfgds@gfds.gfds");
-                patient1.setSsn("");
-                patient1.setAllergy("");
-                patient1.setHealthOther("");
-                patient1.setCondition("Diabetes");
-                patient1.setPhotograph("sdfgf");
-                patient1.setUpdateDate();
-                patient1.setUserAccount("pat1");
-
-                ecosystem.getPatientDirectory().addPatient(patient1);
-                Employee ePat=ecosystem.getEmployeeDirectory().createEmployee("pat1");
-                e.getUserAccountDirectory().createUserAccount("pat1", "pat1", ePat, new PatientRole());
-
-                Patient patient2 = new Patient();
-                patient2.setPatientname("Mark");
-                patient2.setAddress1("252 Kennedy Drive");
-                patient2.setAddress2("Malden");
-                patient2.setAddress3("Ma-02148");
-                patient2.setContact(String.valueOf(1234567890));
-                patient2.setGender("Male");
-                patient2.setDOB("12/12/1980");
-                patient2.setAge(40);
-                patient2.setEmail("sdfgds@gfds.gfds");
-                patient2.setSsn("");
-                patient2.setAllergy("");
-                patient2.setHealthOther("");
-                patient2.setCondition("Covid");
-                patient2.setPhotograph("sdfgf");
-                patient2.setUpdateDate();
-                patient2.setUserAccount("pat1");
-
-                ecosystem.getPatientDirectory().addPatient(patient2);
-                Employee ePat2=ecosystem.getEmployeeDirectory().createEmployee("pat2");
-                e.getUserAccountDirectory().createUserAccount("pat2", "pat2", ePat2, new PatientRole());
-
+                
             }
             if(e.getName().equals("Excellence Hospital")){
                 Employee hospE = e.getEmployeeDirectory().createEmployee("hospE2");
@@ -1087,50 +1042,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 employee =org.getEmployeeDirectory().createEmployee("ambuEmp2");
                 org.getUserAccountDirectory().createUserAccount("amb4", "amb4", employee, new AmbulanceDriverRole());
 
-                //Creating patients
-                Patient patient1 = new Patient();
-                patient1.setPatientname("Ray");
-                patient1.setAddress1("252 Kennedy Drive");
-                patient1.setAddress2("Malden");
-                patient1.setAddress3("Ma-02148");
-                patient1.setContact(String.valueOf(1234567890));
-                patient1.setGender("Female");
-                patient1.setDOB("10/12/2001");
-                patient1.setAge(19);
-                patient1.setEmail("sdfgds@gfds.gfds");
-                patient1.setSsn("");
-                patient1.setAllergy("");
-                patient1.setHealthOther("");
-                patient1.setCondition("Covid");
-                patient1.setPhotograph("sdfgf");
-                patient1.setUpdateDate();
-                patient1.setUserAccount("pat3");
-
-                ecosystem.getPatientDirectory().addPatient(patient1);
-                Employee ePat=ecosystem.getEmployeeDirectory().createEmployee("pat3");
-                e.getUserAccountDirectory().createUserAccount("pat3", "pat3", ePat, new PatientRole());
-
-                Patient patient2 = new Patient();
-                patient2.setPatientname("Kevin");
-                patient2.setAddress1("252 Kennedy Drive");
-                patient2.setAddress2("Malden");
-                patient2.setAddress3("Ma-02148");
-                patient2.setContact(String.valueOf(1234567890));
-                patient2.setGender("Male");
-                patient2.setDOB("12/12/1980");
-                patient2.setAge(40);
-                patient2.setEmail("sdfgds@gfds.gfds");
-                patient2.setSsn("");
-                patient2.setAllergy("");
-                patient2.setHealthOther("");
-                patient2.setCondition("Covid");
-                patient2.setPhotograph("sdfgf");
-                patient2.setUpdateDate();
-                patient2.setUserAccount("pat4");
-
-                ecosystem.getPatientDirectory().addPatient(patient2);
-                Employee ePat2=ecosystem.getEmployeeDirectory().createEmployee("pat4");
-                e.getUserAccountDirectory().createUserAccount("pat4", "pat4", ePat2, new PatientRole());
+               
 
             }
         }

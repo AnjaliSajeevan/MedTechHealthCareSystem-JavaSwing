@@ -102,11 +102,12 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         for (WorkRequest request : ecosystem.getWorkQueue().getWorkRequestList()) {
             if (account.getUsername().equals(request.getSender().getUsername())) {
 
-                Object[] row = new Object[4];
+                Object[] row = new Object[5];
                 row[0] = request;
                 row[1] = request.getInsurancepolicy();
                 row[2] = request.getRequestDate();
                 row[3] = request.getStatus();
+                row[4] = request.getEnterprise().toString();
                 model.addRow(row);
                     
                 if(request.getStatus().equals("Accepted")){
@@ -287,11 +288,11 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "InsuranceRequestNo.", "Policy Name", "Requested Date", "Status"
+                "InsuranceRequestNo.", "Policy Name", "Requested Date", "Status", "Insurance Company"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -301,6 +302,13 @@ public class PatientInsuranceWorkAreaJPanel extends javax.swing.JPanel {
         tblStatus.setSelectionBackground(new java.awt.Color(255, 255, 255));
         tblStatus.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblStatus);
+        if (tblStatus.getColumnModel().getColumnCount() > 0) {
+            tblStatus.getColumnModel().getColumn(0).setResizable(false);
+            tblStatus.getColumnModel().getColumn(1).setResizable(false);
+            tblStatus.getColumnModel().getColumn(2).setResizable(false);
+            tblStatus.getColumnModel().getColumn(3).setResizable(false);
+            tblStatus.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         btnCancelInsurance.setBackground(new java.awt.Color(73, 42, 63));
         btnCancelInsurance.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N

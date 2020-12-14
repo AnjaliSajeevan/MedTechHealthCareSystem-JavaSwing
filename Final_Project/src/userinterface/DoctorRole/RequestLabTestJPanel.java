@@ -110,7 +110,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
 
         jComboBox2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Room", "Deluxe Room", "ICU" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Room", "Deluxe Room", "ICU" }));
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 160, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/5fd2e9831848f978715749_1.gif"))); // NOI18N
@@ -126,7 +126,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         String room = (String) jComboBox2.getSelectedItem();
         if(combo.equals("Yes"))
                 {for(Product tester: ecosystem.getProductCatalog().getProductcatalog()){
-                    if (tester.getProdName().equalsIgnoreCase("Room")) {
+                    if (tester.getProdName().equalsIgnoreCase("General Room")) {
                         int countR = tester.getAvail()-1;
                         tester.setAvail(countR);
                         request.setCost(300);

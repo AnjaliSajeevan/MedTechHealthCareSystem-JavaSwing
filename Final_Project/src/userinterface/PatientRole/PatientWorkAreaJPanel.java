@@ -239,7 +239,7 @@ InsuranceAdminOrganization iOrg;
         // TODO add your handling code here:
         for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
             if(p.getUserName().equals(account.getUsername())){
-                System.out.print(p.getInsurance());
+               
                if( p.getInsurance()==null){
                    JOptionPane.showMessageDialog(null,"Please register with an insurance first!", "Warning", JOptionPane.WARNING_MESSAGE);
                }else{
@@ -257,7 +257,7 @@ InsuranceAdminOrganization iOrg;
         // TODO add your handling code here:
         for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
             if(p.getUserName().equals(account.getUsername())){
-                System.out.print(p.getInsurance());
+                
                if( p.getInsurance()==null){
                    JOptionPane.showMessageDialog(null,"Please register with an insurance first", "Warning", JOptionPane.WARNING_MESSAGE);
                }else{
@@ -274,8 +274,7 @@ InsuranceAdminOrganization iOrg;
         // TODO add your handling code here:
         for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
             if(p.getUserName().equals(account.getUsername())){
-                System.out.print(p.getInsurance());
-               if( p.getInsurance()==null){
+                  if( p.getInsurance()==null){
                    JOptionPane.showMessageDialog(null,"Please register with an insurance first!", "Warning", JOptionPane.WARNING_MESSAGE);
                }else{RequestMedicineJPanel reqMedJPanel=new RequestMedicineJPanel(userProcessContainer,account, enterprise,ecosystem);
         userProcessContainer.add("reqMedJPanel",reqMedJPanel);
@@ -296,10 +295,20 @@ InsuranceAdminOrganization iOrg;
 
     private void btnEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmergencyActionPerformed
         // TODO add your handling code here:
-                        EmergencyJPanel emergencyJPanel=new EmergencyJPanel(userProcessContainer,account,ecosystem);
+         for(Patient p:ecosystem.getPatientDirectory().getpatientlist()){
+            if(p.getUserName().equals(account.getUsername())){
+                  if( p.getInsurance()==null){
+                   JOptionPane.showMessageDialog(null,"Primary hospital is mandatory for emergency request!", "Warning", JOptionPane.WARNING_MESSAGE);
+               }
+                  else
+                  {
+        EmergencyJPanel emergencyJPanel=new EmergencyJPanel(userProcessContainer,account,ecosystem);
         userProcessContainer.add("emergencyJPanel",emergencyJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+                  }
+            }
+         }
     }//GEN-LAST:event_btnEmergencyActionPerformed
 
 

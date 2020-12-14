@@ -204,7 +204,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jLabel3))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
