@@ -6,9 +6,12 @@
 package userinterface.InsuranceAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.InsurancePolicy.InsurancePolicy;
 import Business.Organization.InsuranceAdminOrganization;
+import Business.Patient.Patient;
+import Business.Role.PatientRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.InsuranceWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -16,7 +19,16 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -26,6 +38,7 @@ import javax.swing.table.DefaultTableModel;
 import userinterface.AdministrativeRole.ManageEmployeeJPanel;
 import userinterface.AdministrativeRole.ManageOrganizationJPanel;
 import userinterface.AdministrativeRole.ManageUserAccountJPanel;
+import userinterface.PatientRole.CreatePatientJPanel;
 
 /**
  *
@@ -159,6 +172,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblPolicy = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         pnlCard3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPatient = new javax.swing.JTable();
@@ -369,15 +383,22 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
             tblPolicy.getColumnModel().getColumn(2).setPreferredWidth(10);
         }
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/import_csv_50px.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlCard4Layout = new javax.swing.GroupLayout(pnlCard4);
         pnlCard4.setLayout(pnlCard4Layout);
         pnlCard4Layout.setHorizontalGroup(
             pnlCard4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard4Layout.createSequentialGroup()
                 .addGroup(pnlCard4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCard4Layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jLabel1))
                     .addGroup(pnlCard4Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -392,13 +413,21 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(238, 238, 238)
                         .addComponent(jLabel6)))
                 .addContainerGap(103, Short.MAX_VALUE))
+            .addGroup(pnlCard4Layout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(61, 61, 61))
         );
         pnlCard4Layout.setVerticalGroup(
             pnlCard4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard4Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(pnlCard4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(74, 74, 74)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlCard4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -408,7 +437,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnViewPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard4, "card7");
@@ -760,10 +789,10 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
                     if(r.getEnterprise().equals(enterprise.getName()))
                     {if(request.getInsurancepolicy().equals(r.getPolicyName()))
                         r.addPatient(request.getSender().toString());
-                      JOptionPane.showMessageDialog(null,"Successfully Accepted");
                        populateTable();
                     }
                 }
+                 JOptionPane.showMessageDialog(null,"Successfully Accepted");
                 }
             }
     }//GEN-LAST:event_btnAcceptActionPerformed
@@ -822,6 +851,106 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
         pnlCards.revalidate();
     }//GEN-LAST:event_btnInsuranceRequestActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String filepath = "InsurancePolicy.csv";
+         File file = new File(filepath);
+         String line =null;
+         { 
+            String dental;
+            String fitness;
+            String vision;
+            String hearing;
+            String teleHealth;
+            String policyType;
+            String zipCode;
+            String policyName;
+            double monthlyPremium;
+            double deductable;
+            String policyMax;
+            String OutOfPocket;
+            String ageGroup;
+            int primaryCare ;
+            int specialist;
+            int emergency;
+            int surgery;
+            int laboratoryservices;
+            int inpatients;
+        
+         
+                
+         try {
+              
+              
+            BufferedReader br = new BufferedReader(new FileReader(file));
+             
+              
+             for(int  j=0;j<10;j++)
+        {
+               
+                      while((line = br.readLine()) != null ){
+                          String[] temp = line.split(",");
+                          policyName=temp[0];
+                          policyType=temp[1];
+                          monthlyPremium=Double.parseDouble(temp[2]);
+                          OutOfPocket=temp[3];
+                          deductable=Double.parseDouble(temp[4]);
+                          policyMax=temp[5];
+                          ageGroup=temp[6];
+                          zipCode=temp[7];
+                          primaryCare=Integer.parseInt(temp[8]);
+                          specialist=Integer.parseInt(temp[9]);
+                          emergency=Integer.parseInt(temp[10]);
+                          surgery=Integer.parseInt(temp[11]);
+                          laboratoryservices=Integer.parseInt(temp[12]);
+                          inpatients=Integer.parseInt(temp[13]);
+                           dental=temp[14];
+                          fitness=temp[15];
+                          vision=temp[16];
+                          hearing=temp[17];
+                          teleHealth=temp[18];
+                          
+                                                              
+                           InsurancePolicy i = ecosystem.getInsurancePolicyDirectory().addInsurancePolicy();
+                          i.setAgeGroup(ageGroup);
+                          i.setDental(dental);
+                          i.setEmergency(emergency);
+                          i.setFitness(fitness);
+                          i.setHearing(hearing);
+                          i.setInPatients(inpatients);
+                          i.setMonthlyPremium(monthlyPremium);
+                          i.setOutOfPocket(OutOfPocket);
+                          i.setPolicyMax(policyMax);
+                          i.setPolicyName(policyName);
+                          i.setSurgery(surgery);
+                          i.setTeleHealth(teleHealth);
+                          i.setSpecialist(specialist);
+                          i.setPrimaryCare(primaryCare);
+                          i.setPolicyType(policyType);
+                          i.setLaboratoryservices(laboratoryservices);
+                          i.setVision(vision);
+                          i.setDeductable(deductable);
+                          i.setZipCode(zipCode);
+                          i.setUserName(account.getUsername());
+                          i.setEnterprise(enterprise.getName());
+                      } 
+        }
+         JOptionPane.showMessageDialog(null, "Data Successfully Loaded");
+                  }catch (IOException ex) {
+                      Logger.getLogger(CreatePatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                 
+              }
+         
+         
+
+        
+        
+         }
+        
+        
+        populateTree();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
@@ -833,6 +962,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnInsuranceRequest;
     private javax.swing.JButton btnOrganisation;
     private javax.swing.JButton btnViewPolicy;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

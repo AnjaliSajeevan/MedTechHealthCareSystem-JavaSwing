@@ -250,7 +250,7 @@ public class DoctorAvailability extends javax.swing.JPanel {
             }
             
             doc.setAppointment(appointment);
-           System.out.println(appointment);
+          
             
         }
                   
