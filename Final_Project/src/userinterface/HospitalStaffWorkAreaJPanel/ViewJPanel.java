@@ -10,6 +10,7 @@ import Business.Essentials.Product;
 import Business.Essentials.ProductCatalog;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -34,19 +35,19 @@ public class ViewJPanel extends javax.swing.JPanel {
          //txtPolicyMax.setEnabled(false);
          txtName.setEnabled(false);
          txtQuantity.setEnabled(false);
-         txtMan.setEnabled(false);
-         txtdes.setEnabled(false);
-         txtexpdate.setEnabled(false);
+//         txtMan.setEnabled(false);
+//         txtdes.setEnabled(false);
+//         txtexpdate.setEnabled(false);
          
-         saveUpdateBtn.setEnabled(false);
+        saveBtn.setEnabled(false);
          viewUpdateBtn.setEnabled(true);
          // System.out.println("p.getProdName()  "+p.getProdName());
         
         txtName.setText(p.getProdName());
         txtQuantity.setText(String.valueOf(p.getAvail()));
-        txtMan.setText(p.getManufacture());
-        txtexpdate.setText(p.getExpdate());
-        txtdes.setText(p.getDescription());
+//        txtMan.setText(p.getManufacture());
+//        txtexpdate.setText(p.getExpdate());
+//        txtdes.setText(p.getDescription());
                 
         
     }
@@ -65,14 +66,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtMan = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtdes = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtexpdate = new javax.swing.JTextField();
         viewUpdateBtn = new javax.swing.JButton();
-        saveUpdateBtn = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -103,24 +98,6 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel8.setText("Manufacturer");
-
-        txtMan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtManActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel9.setText("Description");
-
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel10.setText("Expiry Date");
-
         viewUpdateBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         viewUpdateBtn.setForeground(new java.awt.Color(0, 102, 102));
         viewUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/update.png"))); // NOI18N
@@ -133,15 +110,15 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
 
-        saveUpdateBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        saveUpdateBtn.setForeground(new java.awt.Color(0, 102, 102));
-        saveUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/save.png"))); // NOI18N
-        saveUpdateBtn.setText("Save");
-        saveUpdateBtn.setBorderPainted(false);
-        saveUpdateBtn.setContentAreaFilled(false);
-        saveUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(0, 102, 102));
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/save.png"))); // NOI18N
+        saveBtn.setText("Save");
+        saveBtn.setBorderPainted(false);
+        saveBtn.setContentAreaFilled(false);
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveUpdateBtnActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
 
@@ -154,24 +131,17 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
-                    .addComponent(viewUpdateBtn)
-                    .addComponent(jLabel10)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(viewUpdateBtn))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMan, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtexpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(191, 191, 191))
+                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(192, 192, 192))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(saveUpdateBtn)
+                        .addGap(91, 91, 91)
+                        .addComponent(saveBtn)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -185,23 +155,11 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtMan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtexpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                .addGap(229, 229, 229)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewUpdateBtn)
-                    .addComponent(saveUpdateBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(saveBtn))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 153));
@@ -257,7 +215,7 @@ public class ViewJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(292, Short.MAX_VALUE)
+                .addContainerGap(289, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(268, 268, 268))
         );
@@ -267,7 +225,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -289,27 +247,13 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void viewUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUpdateBtnActionPerformed
         // TODO add your handling code here:
-            txtName.setEditable(true);
+            txtName.setEnabled(true);
          txtQuantity.setEnabled(true);
-         txtMan.setEditable(true);
-         
-         p.setProdName(txtName.getText());
-         p.setAvail(Integer.parseInt(txtQuantity.getText()));
-         p.setManufacture(txtMan.getText());
-          saveUpdateBtn.setEnabled(false);
+//         txtMan.setEnabled(true);
+          saveBtn.setEnabled(true);
         viewUpdateBtn.setEnabled(true);
         
     }//GEN-LAST:event_viewUpdateBtnActionPerformed
-
-    private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
-        // TODO add your handling code here:
-        txtName.setEditable(false);
-         txtQuantity.setEnabled(false);
-         txtMan.setEditable(false);
-         
-          saveUpdateBtn.setEnabled(false);
-            viewUpdateBtn.setEnabled(true);
-    }//GEN-LAST:event_saveUpdateBtnActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
@@ -319,28 +263,31 @@ public class ViewJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantityActionPerformed
 
-    private void txtManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtManActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtManActionPerformed
+             System.out.println("inside save ");
+        System.out.println("inside save "+txtName.getText());
+        p.setProdName(txtName.getText());
+        p.setAvail(Integer.parseInt(txtQuantity.getText()));
+//        p.setManufacture(txtMan.getText());
+
+        JOptionPane.showMessageDialog(null,"Details updated successfully!!!");
+        saveBtn.setEnabled(false);
+        viewUpdateBtn.setEnabled(true);
+    }//GEN-LAST:event_saveBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton saveUpdateBtn;
-    private javax.swing.JTextField txtMan;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtQuantity;
-    private javax.swing.JTextField txtdes;
-    private javax.swing.JTextField txtexpdate;
     private javax.swing.JButton viewUpdateBtn;
     // End of variables declaration//GEN-END:variables
 }
