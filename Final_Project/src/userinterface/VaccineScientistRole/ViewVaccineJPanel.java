@@ -81,7 +81,7 @@ public class ViewVaccineJPanel extends javax.swing.JPanel {
         txtCore.setText(vaccine.getCoreComponents());
         txtCore.setEnabled(false);
         txtCore.setForeground(Color.black);
-        lblVaccine.setText(String.valueOf(vaccine.getId()));
+        lblVaccine.setText(vaccine.getId());
         lblVaccine.setEnabled(false);
         lblVaccine.setForeground(Color.black);
         if(vaccine.getAdministration().equals(btnPills.getName())){

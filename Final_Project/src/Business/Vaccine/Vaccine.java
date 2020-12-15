@@ -6,8 +6,11 @@ package Business.Vaccine;
 
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,7 +20,7 @@ import java.util.Map;
 public class Vaccine {
     
     private String name;
-    private int id;
+    private String id;
    // private static int count = 1;
     private String description;
     private String coreComponents;
@@ -38,13 +41,25 @@ public class Vaccine {
     private int testerNum;
     private boolean tested;
     
-    public Vaccine(int id) {
+    public Vaccine() {
         dosage = new HashMap<String,Integer>();
         this.setCreateDate();
-        this.id = id;
+               List<Integer> numbers = new ArrayList();
+        for(int i = 0; i < 10; i++){
+        numbers.add(i);
+        }
+
+        Collections.shuffle(numbers);
+
+    String result = "";
+    for(int i = 0; i < 4; i++){
+        result += numbers.get(i).toString();
+        id="VAC"+result;
+
+    }
     }
  
-    public int getId() {
+    public String getId() {
         return id;
     }
 

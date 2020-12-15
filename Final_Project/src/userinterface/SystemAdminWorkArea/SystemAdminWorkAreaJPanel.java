@@ -456,7 +456,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         //For Testing purpose only. MUST be deleted for final push.
-        for(Network n: ecosystem.getNetworkList()){
+   /*     for(Network n: ecosystem.getNetworkList()){
             if(n.getName().equals("NewHampshire")){
                 JOptionPane.showMessageDialog(null,"Network already Loaded!");
                 return;
@@ -691,7 +691,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
                 //Creating Vaccine Requests
 
-                Vaccine vaccine = new Vaccine(1);
+                Vaccine vaccine = new Vaccine();
                 vaccine.setName("Vaccine1");
                 vaccine.setDescription("Used for Resp");
                 vaccine.setCoreComponents("Mol");
@@ -728,7 +728,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 r1.getVaccineWorkQueue().addWorkRequest(vaccineReq);
                 ecosystem.getVaccineQueue().addWorkRequest(vaccineReq);
 
-                Vaccine vaccine2 = new Vaccine(2);
+                Vaccine vaccine2 = new Vaccine();
                 vaccine2.setName("Vaccine2");
                 vaccine2.setDescription("Used for Covid");
                 vaccine2.setCoreComponents("Mol");
@@ -761,7 +761,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 r1.getVaccineWorkQueue().addWorkRequest(vaccineReq2);
                 ecosystem.getVaccineQueue().addWorkRequest(vaccineReq2);
 
-                Vaccine vaccine3 = new Vaccine(3);
+                Vaccine vaccine3 = new Vaccine();
                 vaccine3.setName("Vaccine3");
                 vaccine3.setDescription("Used for Diab");
                 vaccine3.setCoreComponents("Mol");
@@ -794,7 +794,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 r1.getVaccineWorkQueue().addWorkRequest(vaccineReq3);
                 ecosystem.getVaccineQueue().addWorkRequest(vaccineReq3);
 
-                Vaccine vaccine4 = new Vaccine(4);
+                Vaccine vaccine4 = new Vaccine();
                 vaccine4.setName("Vaccine4");
                 vaccine4.setDescription("Used for Resp");
                 vaccine4.setCoreComponents("Mol");
@@ -827,7 +827,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 r1.getVaccineWorkQueue().addWorkRequest(vaccineReq4);
                 ecosystem.getVaccineQueue().addWorkRequest(vaccineReq4);
 
-                Vaccine vaccine5 = new Vaccine(5);
+                Vaccine vaccine5 = new Vaccine();
                 vaccine5.setName("Vaccine5");
                 vaccine5.setDescription("Used for Resp");
                 vaccine5.setCoreComponents("Mol");
@@ -1047,7 +1047,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
 
-        JOptionPane.showMessageDialog(null,"Load Complete!");
+        JOptionPane.showMessageDialog(null,"Load Complete!");*/
     }//GEN-LAST:event_btnVacLoadActionPerformed
 
 

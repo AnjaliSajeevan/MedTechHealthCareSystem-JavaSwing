@@ -853,7 +853,7 @@ public class VaccineRequestJPanel extends javax.swing.JPanel {
                 }
             }
             if(latestKey.equals("LabTest Created")){
-                if(labReq.getVaccine().getId() == vaccineReq.getVaccine().getId()){
+                if(labReq.getVaccine().getId().equals(vaccineReq.getVaccine().getId())){
                     labReq.setReceiver((UserAccount)staffComboBox.getSelectedItem());
                     labReq.setResult("Testing InProgress");
                     for(Organization org:enterprise.getOrganizationDirectory().getOrganizationList()) {

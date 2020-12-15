@@ -291,7 +291,10 @@ public class UpdateResultJPanel extends javax.swing.JPanel {
             business.getLabQueue().updateLabRequest(labReq, business.getLabQueue().getLabRequestList());
             account.getLabTestWorkQueue().removeLabRequest(labReq);
             JOptionPane.showMessageDialog(null, "Lab Result submitted successfully!", "Warning", JOptionPane.WARNING_MESSAGE);
-
+txtTest.setText("");
+txtVac.setText("");
+txtDetail.setText("");
+txtPatient.setText("");
         }else{
             JOptionPane.showMessageDialog(null, error, "Warning", JOptionPane.WARNING_MESSAGE);
 

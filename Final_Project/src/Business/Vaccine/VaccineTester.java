@@ -5,7 +5,10 @@
 package Business.Vaccine;
 
 import Business.Enterprise.Enterprise;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -15,7 +18,7 @@ public class VaccineTester {
     
     private String name;
     private String address;
-    private int id;
+    private String id;
     private static int count = 1;
     private String DOB;
     private int age;
@@ -34,12 +37,23 @@ public class VaccineTester {
     private Enterprise enterprise;
 
     public VaccineTester() {
-        id = count;
-        count++;
+        List<Integer> numbers = new ArrayList();
+        for(int i = 0; i < 10; i++){
+        numbers.add(i);
+        }
+
+        Collections.shuffle(numbers);
+
+    String result = "";
+    for(int i = 0; i < 4; i++){
+        result += numbers.get(i).toString();
+        id="VT"+result;
+
+    }
         this.setCreateDate();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

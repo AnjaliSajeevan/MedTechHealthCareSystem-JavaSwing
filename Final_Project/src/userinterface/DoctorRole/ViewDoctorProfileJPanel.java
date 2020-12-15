@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -710,7 +711,7 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
                     error="\nFor Phone number - Please enter only 10 digits!";
                 }
             }
-
+            boolean tryExp = false;
             try{
                 SimpleDateFormat fmt = new SimpleDateFormat("dd/mm/yyyy");
                 String dateString = txtDOB.getText();
@@ -718,17 +719,25 @@ public class ViewDoctorProfileJPanel extends javax.swing.JPanel {
                 String formattedDate = fmt.format(fmt.parse(dateString));
                 if (!(formattedDate.equals(dateString))) {
                     error+="\nFor Date Of Birth - Please enter in \"dd/mm/yyyy\" pattern only!";
+                    tryExp = true;
                 }
-            }catch (ParseException ex) {
-                error+="\nFor Date Of Birth - Please enter in \"dd/mm/yyyy\" pattern only!";
-            }
-
-            DateTimeFormatter dateFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                            DateTimeFormatter dateFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate locBirthDate= LocalDate.parse(txtDOB.getText(),dateFormatter);
             LocalDate today = LocalDate.now();
             Period p = Period.between(locBirthDate, today);
             
             age = p.getYears();
+            }catch (ParseException ex) {
+                if(tryExp == false){
+                error+="\nFor Date Of Birth - Please enter in \"dd/mm/yyyy\" pattern only!";
+                tryExp  = true;
+                }
+            }catch (DateTimeParseException  ex2){
+                if(tryExp == false){
+                 error+="\nFor Date Of Birth - Please enter in \"dd/mm/yyyy\" pattern only!";   
+                }
+            }
+            
             String emailRegex = "^(.+)@(.+)[.](.+)$";
             Pattern emailPattern = Pattern.compile(emailRegex);
             Matcher checkEmail = emailPattern.matcher(txtEmail.getText());
