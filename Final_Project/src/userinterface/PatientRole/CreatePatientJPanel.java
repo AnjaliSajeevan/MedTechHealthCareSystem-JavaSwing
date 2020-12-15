@@ -836,7 +836,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
 if (usernamePatternCorrect()==false){
     jLabel16.setForeground (Color.red);
     txtUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
-    JOptionPane.showMessageDialog(null, "Username should be in the format of xx_xx@xx.xx");
+    JOptionPane.showMessageDialog(null, "UserName pattern invalid:\nShould be 7 characters only\nMust include one UPPER CASE character,one lower case character and one digit");
     return;
 } else{
     jLabel16.setForeground (Color.GREEN);
@@ -845,7 +845,7 @@ if (usernamePatternCorrect()==false){
 if (passwordPatternCorrect()==false){
     jLabel18.setForeground (Color.red);
     txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
-    JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+    JOptionPane.showMessageDialog(null, "Password should be at least 7 digits and contain \nAt least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
     return;
 }else{
     jLabel18.setForeground (Color.GREEN);
@@ -1015,14 +1015,14 @@ if (passwordPatternCorrect()==false){
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
 private boolean usernamePatternCorrect(){
-        Pattern p=Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Pattern p=Pattern.compile("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{7})");
         Matcher m=p.matcher(txtUsername.getText());
         boolean b=m.matches();
         return b;
     }
     private boolean passwordPatternCorrect(){
         Pattern p1;
-        p1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        p1 = Pattern.compile("((?=.*[a-z])(?=.*[0-9])(?=.*[$*#&])(?=.*[A-Z]).{7})");
         Matcher m1=p1.matcher(txtPassword.getText());
         boolean b1=m1.matches();
         return b1;

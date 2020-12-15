@@ -8,8 +8,11 @@ package Business.WorkQueue;
 import Business.UserAccount.UserAccount;
 import Business.Vaccine.Vaccine;
 import Business.Vaccine.VaccineTester;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +22,7 @@ import java.util.Map;
 public class LabTestWorkRequest {
        private Vaccine vaccine;
     private VaccineTester tester;
-    private int id;
+    private String id;
     private String result;
     private boolean complete;
     private String message;
@@ -31,8 +34,19 @@ public class LabTestWorkRequest {
    private static int count = 1;
 
     public LabTestWorkRequest() {
-        id = count;
-        count++;
+        List<Integer> numbers = new ArrayList();
+        for(int i = 0; i < 10; i++){
+        numbers.add(i);
+        }
+
+        Collections.shuffle(numbers);
+
+    String result = "";
+    for(int i = 0; i < 4; i++){
+        result += numbers.get(i).toString();
+        id="LT"+result;
+
+    }
         statusMap = new HashMap<String,Date>();
     }
 
@@ -72,7 +86,7 @@ public class LabTestWorkRequest {
         return String.valueOf(id);
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

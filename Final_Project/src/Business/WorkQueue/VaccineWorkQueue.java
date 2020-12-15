@@ -31,14 +31,14 @@ public class VaccineWorkQueue {
     
         public void updateWorkRequest(VaccineWorkRequest w,List<VaccineWorkRequest> vaccineRequestList){
             for(VaccineWorkRequest work: vaccineRequestList){
-                if(work.getVaccine().getId()== w.getVaccine().getId()){
+                if(work.getVaccine().getId().equals(w.getVaccine().getId())){
                    work=w;
                 }
             }
         }
         public VaccineWorkRequest getWorkRequest(VaccineWorkRequest w){
             for(VaccineWorkRequest work: vaccineRequestList){
-                if(work.getVaccine().getId()  == w.getVaccine().getId()){
+                if(work.getVaccine().getId().equals(w.getVaccine().getId())){
                     return work;
                 }
             }

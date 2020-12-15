@@ -471,15 +471,19 @@ public class VaccineTestingStaffWorkPanel extends javax.swing.JPanel {
         if(this.jTabbedPane1.getSelectedIndex() == 0){//all trials
            populateLabTestTable();
 }else if(this.jTabbedPane1.getSelectedIndex() == 1){//update result
+    if(jPanel4.getComponentCount() > 0){
+        jPanel4.remove(0);
+    }
         int selectedRow = testRequestTable.getSelectedRow();
         if(selectedRow<0){
             JOptionPane.showMessageDialog(null, "Please select a Test row!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         LabTestWorkRequest labReq= (LabTestWorkRequest)testRequestTable.getValueAt(selectedRow, 0);
-
         UpdateResultJPanel updateResJPanel=new UpdateResultJPanel(userProcessContainer,business,enterprise,account,labReq);
+
         jPanel4.add(updateResJPanel);
+         populateLabTestTable();
         }else if(this.jTabbedPane1.getSelectedIndex() == 2){//View tester profile
                        if(jPanel5.getComponentCount() > 0){
     jPanel5.remove(0);
