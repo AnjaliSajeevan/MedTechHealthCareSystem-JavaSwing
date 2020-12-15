@@ -19,6 +19,8 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -321,7 +323,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        if(networkJComboBox.getSelectedItem().toString().equals("")){
+         if(networkJComboBox.getSelectedItem().toString().equals("")){
            JOptionPane.showMessageDialog(null, "Please select Network!");
             return;              
         }
@@ -362,6 +364,26 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                        JOptionPane.showMessageDialog(null, "Enterprise selected already has an Admin!");
             return;  
         } 
+       String usernamePattern = "((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{7})";
+            Pattern userPat = Pattern.compile(usernamePattern);
+            Matcher checkUser = userPat.matcher(username);
+            boolean userMatch = checkUser.matches();  
+             System.out.println(userMatch);
+             if(userMatch == false){
+                          JOptionPane.showMessageDialog(null, "UserName pattern invalid:\nShould be 7 characters only\nMust include one UPPER CASE character,one lower case character and one digit");
+            return;               
+             }
+    
+
+        String pwdRegex = "((?=.*[a-z])(?=.*[0-9])(?=.*[$*#&])(?=.*[A-Z]).{7})";
+                Pattern pwdPattern = Pattern.compile(pwdRegex);
+                Matcher pwdCheck = pwdPattern.matcher(password);
+                boolean checkPwd = pwdCheck.matches();
+               System.out.println(checkPwd);
+             if(checkPwd == false){
+                          JOptionPane.showMessageDialog(null, "Password pattern invalid! \nNeeds to be 7 characters long and should have atleast:\nOne UPPER CASE character\nOne lower case character\nOne digit\nOne special character[$*#&]");
+            return;               
+             }
         if(enterprise.getEnterpriseType().getValue().equals("Pharmacy")){
             
          UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PharmacyAdminRole());               

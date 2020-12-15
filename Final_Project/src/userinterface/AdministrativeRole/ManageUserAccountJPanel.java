@@ -403,6 +403,26 @@ private boolean card;
      }
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
+               String usernamePattern = "((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{7})";
+            Pattern userPat = Pattern.compile(usernamePattern);
+            Matcher checkUser = userPat.matcher(userName);
+            boolean userMatch = checkUser.matches();  
+             System.out.println(userMatch);
+             if(userMatch == false){
+                          JOptionPane.showMessageDialog(null, "UserName pattern invalid:\nShould be 7 characters only\nMust include one UPPER CASE character,one lower case character and one digit");
+            return;               
+             }
+    
+
+        String pwdRegex = "((?=.*[a-z])(?=.*[0-9])(?=.*[$*#&])(?=.*[A-Z]).{7})";
+                Pattern pwdPattern = Pattern.compile(pwdRegex);
+                Matcher pwdCheck = pwdPattern.matcher(password);
+                boolean checkPwd = pwdCheck.matches();
+               System.out.println(checkPwd);
+             if(checkPwd == false){
+                          JOptionPane.showMessageDialog(null, "Password pattern invalid! \nNeeds to be 7 characters long and should have atleast:\nOne UPPER CASE character\nOne lower case character\nOne digit\nOne special character[$*#&]");
+            return;
+             }
         Organization organization = null;
         for(Organization org:enterprise.getOrganizationDirectory().getOrganizationList()) {
             if(organizationJComboBox.getSelectedItem().equals(org.getOrganizationType())){
@@ -444,6 +464,8 @@ private boolean card;
         }
                   JOptionPane.showMessageDialog(null, "Account Created Successfully!");
         popData();
+        passwordJTextField.setText("");
+        nameJTextField.setText("");
     }//GEN-LAST:event_createUserJButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

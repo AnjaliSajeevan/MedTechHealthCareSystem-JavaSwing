@@ -786,12 +786,7 @@ public class CreateVaccineJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,error);
         }else{
             VaccineEnterprise enterPrise = (VaccineEnterprise)enterprise;
-            int lastId = 0;
-            for(Vaccine v : enterPrise.getVaccineDirectory().getVaccineList()){
-                lastId = v.getId();
-            }
-            lastId = lastId+1;
-            Vaccine vaccine = new Vaccine(lastId);
+            Vaccine vaccine = new Vaccine();
             vaccine.setName(txtName.getText());
             vaccine.setDescription(txtDesc.getText());
             vaccine.setCoreComponents(txtCore.getText());
