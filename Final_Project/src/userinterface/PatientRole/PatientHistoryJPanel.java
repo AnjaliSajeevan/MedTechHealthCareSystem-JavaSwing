@@ -7,6 +7,7 @@ package userinterface.PatientRole;
 
 import Business.EcoSystem;
 import Business.Essentials.Medicine;
+import Business.Patient.Patient;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabPatientWorkRequest;
 import Business.WorkQueue.PatientHospitalAppointmentWorkRequest;
@@ -75,7 +76,16 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         populateTable();
         populateTableLab();
         populateTablePhar();
-        patient = account.getEmployee().getName();
+        
+        for(Patient p: ecosystem.getPatientDirectory().getpatientlist()){
+
+            if(account.getUsername().toString().equals(p.getUserName())){
+               
+                patient=p.getPatientname();
+        }
+        }
+        
+        
         jLabel5.setText(patient);
         
         tblpatientAppointment.getTableHeader().setFont(new java.awt.Font("SansSerif 14 Plain",java.awt.Font.BOLD,15));
@@ -544,9 +554,9 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                         .addGap(354, 354, 354)
                         .addComponent(btnHosTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnl1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         pnl1Layout.setVerticalGroup(
             pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -619,36 +629,34 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
         pnl2Layout.setHorizontalGroup(
             pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                .addGap(0, 237, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(244, 244, 244))
+            .addGroup(pnl2Layout.createSequentialGroup()
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(249, 249, 249))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                        .addComponent(btnLabTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(367, 367, 367))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
+                    .addGroup(pnl2Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl2Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl2Layout.createSequentialGroup()
+                        .addGap(372, 372, 372)
+                        .addComponent(btnLabTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         pnl2Layout.setVerticalGroup(
             pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl2Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(54, 54, 54)
                 .addComponent(jLabel2)
-                .addGap(85, 85, 85)
+                .addGap(103, 103, 103)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(47, 47, 47)
                 .addComponent(btnLabTimeline, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(54, 54, 54)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         pnl.add(pnl2, "card2");
@@ -827,11 +835,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 cell.setBackgroundColor(Color.cyan);
                 tbl.addCell(cell);
 
-                PdfPCell cell0=new PdfPCell(new Phrase(" "));
-                cell0.setColspan(7);
-                cell0.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell0.setBackgroundColor(Color.white);
-                tbl.addCell(cell0);
+               
 
                 tbl.addCell("Appointment ID");
                 tbl.addCell("Date");
@@ -841,11 +845,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 tbl.addCell("Doctor");
                 tbl.addCell("Result");
 
-                PdfPCell cell1=new PdfPCell(new Phrase(" "));
-                cell1.setColspan(7);
-                cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell1.setBackgroundColor(Color.white);
-                tbl.addCell(cell1);
+               
 
                 for (int i = 0; i < tblpatientAppointment.getRowCount(); i++) {
                     String appointmentID = tblpatientAppointment.getValueAt(i, 0).toString();
@@ -867,9 +867,7 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
                 doc.add(tbl);
 
-                PdfPCell blankRow1 = new PdfPCell(new Paragraph("\n"));
-                blankRow1.setFixedHeight(5f);
-                blankRow1.setColspan(7);
+                
                 doc.add( Chunk.NEWLINE );
 
                 PdfPTable tb4 = new PdfPTable(2);
@@ -884,39 +882,26 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 cell9.setBackgroundColor(Color.cyan);
                 tb4.addCell(cell9);
 
-                PdfPCell cell10=new PdfPCell(new Phrase(" "));
-                cell10.setColspan(7);
-                cell10.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell10.setBackgroundColor(Color.white);
-                tb4.addCell(cell10);
+                
 
                 tb4.addCell("Date");
                 tb4.addCell("Status");
 
-                PdfPCell cell11=new PdfPCell(new Phrase(" "));
-                cell11.setColspan(7);
-                cell11.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell11.setBackgroundColor(Color.white);
-                tb4.addCell(cell11);
+             
 
                 for (int i = 0; i < hospTimeline.getRowCount(); i++) {
-                    if(hospTimeline.getValueAt(i, 0).toString()==null){
-                        e="Please choose a row for timeline for hospital";
-                    }else{
+                   
                     String datesss = hospTimeline.getValueAt(i, 0).toString();
                     String status2 = hospTimeline.getValueAt(i, 1).toString();
 
                     tb4.addCell(datesss);
                     tb4.addCell(status2);
 
-                
-                    }
+                }
                 doc.add(tb4);
-                    }
+                    
 
-                PdfPCell blankRow5 = new PdfPCell(new Paragraph("\n"));
-                blankRow5.setFixedHeight(5f);
-                blankRow5.setColspan(7);
+                
                 doc.add( Chunk.NEWLINE );
 
                 PdfPTable tbl2 = new PdfPTable(6);
@@ -927,11 +912,11 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 cell2.setBackgroundColor(Color.cyan);
                 tbl2.addCell(cell2);
 
-                PdfPCell cell4=new PdfPCell(new Phrase(" "));
-                cell4.setColspan(7);
-                cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell4.setBackgroundColor(Color.white);
-                tbl2.addCell(cell4);
+//                PdfPCell cell4=new PdfPCell(new Phrase(" "));
+//                cell4.setColspan(7);
+//                cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                cell4.setBackgroundColor(Color.white);
+//                tbl2.addCell(cell4);
 
                 tbl2.addCell("Lab ID");
                 tbl2.addCell("Laboratory");
@@ -940,11 +925,11 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 tbl2.addCell("Status");
                 tbl2.addCell("Message");
 
-                PdfPCell cell5=new PdfPCell(new Phrase(" "));
-                cell5.setColspan(7);
-                cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell5.setBackgroundColor(Color.white);
-                tbl2.addCell(cell5);
+//                PdfPCell cell5=new PdfPCell(new Phrase(" "));
+//                cell5.setColspan(7);
+//                cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                cell5.setBackgroundColor(Color.white);
+//                tbl2.addCell(cell5);
 
                 for (int i = 0; i < labTestingTable.getRowCount(); i++) {
                     String labID = labTestingTable.getValueAt(i, 0).toString();
@@ -965,9 +950,9 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
 
                 doc.add(tbl2);
 
-                PdfPCell blankRow2 = new PdfPCell(new Paragraph("\n"));
-                blankRow2.setFixedHeight(5f);
-                blankRow2.setColspan(7);
+//                PdfPCell blankRow2 = new PdfPCell(new Paragraph("\n"));
+//                blankRow2.setFixedHeight(5f);
+//                blankRow2.setColspan(7);
                 doc.add( Chunk.NEWLINE );
 
                 PdfPTable tbl5 = new PdfPTable(2);
@@ -983,38 +968,38 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 cell19.setBackgroundColor(Color.cyan);
                 tbl5.addCell(cell19);
 
-                PdfPCell cell14=new PdfPCell(new Phrase(" "));
-                cell14.setColspan(7);
-                cell14.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell14.setBackgroundColor(Color.white);
-                tbl5.addCell(cell14);
+//                PdfPCell cell14=new PdfPCell(new Phrase(" "));
+//                cell14.setColspan(7);
+//                cell14.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                cell14.setBackgroundColor(Color.white);
+//                tbl5.addCell(cell14);
 
                 tb4.addCell("Date");
                 tb4.addCell("Status");
 
-                PdfPCell cell15=new PdfPCell(new Phrase(" "));
-                cell15.setColspan(7);
-                cell15.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell15.setBackgroundColor(Color.white);
-                tbl5.addCell(cell15);
+//                PdfPCell cell15=new PdfPCell(new Phrase(" "));
+//                cell15.setColspan(7);
+//                cell15.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                cell15.setBackgroundColor(Color.white);
+//                tbl5.addCell(cell15);
 
                 for (int i = 0; i < labTimeline.getRowCount(); i++) {
-                    if(labTimeline.getValueAt(i, 0).toString()==null){
-                        e="Please choose a row for timeline for laboratory";
-                    }else{
+//                    if(labTimeline.getValueAt(i, 0).toString()==null){
+//                        e="Please choose a row for timeline for laboratory";
+//                    }else{
                     String datesss1 = labTimeline.getValueAt(i, 0).toString();
                     String status3 = labTimeline.getValueAt(i, 1).toString();
 
                     tbl5.addCell(datesss1);
                     tbl5.addCell(status3);
 
+//                }
                 }
-
                 doc.add(tbl5);
-                }
-                PdfPCell blankRow9 = new PdfPCell(new Paragraph("\n"));
-                blankRow9.setFixedHeight(5f);
-                blankRow9.setColspan(7);
+                
+//                PdfPCell blankRow9 = new PdfPCell(new Paragraph("\n"));
+//                blankRow9.setFixedHeight(5f);
+//                blankRow9.setColspan(7);
                 doc.add( Chunk.NEWLINE );
 
                 PdfPTable tbl3 = new PdfPTable(5);
@@ -1025,11 +1010,11 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 cell3.setBackgroundColor(Color.cyan);
                 tbl3.addCell(cell3);
 
-                PdfPCell cell6=new PdfPCell(new Phrase(" "));
-                cell6.setColspan(7);
-                cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell6.setBackgroundColor(Color.white);
-                tbl3.addCell(cell6);
+//                PdfPCell cell6=new PdfPCell(new Phrase(" "));
+//                cell6.setColspan(7);
+//                cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                cell6.setBackgroundColor(Color.white);
+//                tbl3.addCell(cell6);
 
                 tbl3.addCell("PharmacyID");
                 tbl3.addCell("Medicine");
@@ -1037,11 +1022,11 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 tbl3.addCell("Status");
                 tbl3.addCell("Message");
 
-                PdfPCell cell7=new PdfPCell(new Phrase(" "));
-                cell7.setColspan(7);
-                cell7.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell7.setBackgroundColor(Color.white);
-                tbl3.addCell(cell7);
+//                PdfPCell cell7=new PdfPCell(new Phrase(" "));
+//                cell7.setColspan(7);
+//                cell7.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                cell7.setBackgroundColor(Color.white);
+//                tbl3.addCell(cell7);
 
                 for (int i = 0; i < pharmaTable.getRowCount(); i++) {
                     String pharmacyID = pharmaTable.getValueAt(i, 0).toString();
@@ -1075,35 +1060,35 @@ public class PatientHistoryJPanel extends javax.swing.JPanel {
                 cell199.setBackgroundColor(Color.cyan);
                 tbl6.addCell(cell199);
 
-                PdfPCell cell16=new PdfPCell(new Phrase(" "));
-                cell16.setColspan(7);
-                cell16.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell16.setBackgroundColor(Color.white);
-                tbl6.addCell(cell16);
+//                PdfPCell cell16=new PdfPCell(new Phrase(" "));
+//                cell16.setColspan(7);
+//                cell16.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                cell16.setBackgroundColor(Color.white);
+//                tbl6.addCell(cell16);
 
                 tbl6.addCell("Date");
                 tbl6.addCell("Status");
 
-                PdfPCell cell17=new PdfPCell(new Phrase(" "));
-                cell17.setColspan(7);
-                cell17.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell17.setBackgroundColor(Color.white);
-                tbl6.addCell(cell17);
+//                PdfPCell cell17=new PdfPCell(new Phrase(" "));
+//                cell17.setColspan(7);
+//                cell17.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                cell17.setBackgroundColor(Color.white);
+//                tbl6.addCell(cell17);
 
                 for (int i = 0; i < pharmaTimeline.getRowCount(); i++) {
-                     if(pharmaTimeline.getValueAt(i, 0).toString()==null){
-                        e="Please choose a row for timeline for pharmacy";
-                    }else{
+//                     if(pharmaTimeline.getValueAt(i, 0).toString()==null){
+//                        e="Please choose a row for timeline for pharmacy";
+//                    }else{
                     String datesss2 = pharmaTimeline.getValueAt(i, 0).toString();
                     String status4 = pharmaTimeline.getValueAt(i, 1).toString();
 
                     tbl6.addCell(datesss2);
                     tbl6.addCell(status4);
 
+//                     }
                 }
-
                 doc.add(tbl6);
-                }
+                
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(PatientHistoryJPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (DocumentException | IOException ex) {
