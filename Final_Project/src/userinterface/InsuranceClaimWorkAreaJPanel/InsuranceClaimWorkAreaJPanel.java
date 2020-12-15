@@ -205,7 +205,7 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"Successfully Accepted");
+       
         int selectedRow =  tblClaim.getSelectedRow();
         if(selectedRow <0)
         {
@@ -222,13 +222,14 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
         request.setStatus("Claim Accepted");
         request.setResolveDate(new Date());
         request.setMessage("Cleared and closed");
+        JOptionPane.showMessageDialog(null,"Successfully Accepted");
         populate();
     }    
         }
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      JOptionPane.showMessageDialog(null,"Successfully Accepted");
+    
         int selectedRow =  tblClaim.getSelectedRow();
         if(selectedRow <0)
         {
@@ -242,7 +243,7 @@ public class InsuranceClaimWorkAreaJPanel extends javax.swing.JPanel {
         if(request.getStatus().equals("Claim Accepted")||request.getStatus().equals("Claim Declined")){
                      JOptionPane.showMessageDialog(null,"Request already processed","Warning", JOptionPane.WARNING_MESSAGE);
                  }else{
-        
+          JOptionPane.showMessageDialog(null,"Successfully Accepted");
         request.setStatus("Claim Declined");
         request.setMessage("Additional,Not covered by insurance");
         populate();

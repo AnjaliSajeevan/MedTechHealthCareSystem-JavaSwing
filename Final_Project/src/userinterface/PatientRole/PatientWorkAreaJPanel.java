@@ -41,8 +41,7 @@ InsuranceAdminOrganization iOrg;
         this.iOrg=organization;
         this.account=account;
         for(Patient p : ecosystem.getPatientDirectory().getpatientlist())
-        {    System.out.println(p.getUserAccount().toString());
-                System.out.println(account.getUsername().toString());
+        {   
         if(p.getUserAccount().toString().equals(account.getUsername().toString()))  
         { pa=p; 
             }
