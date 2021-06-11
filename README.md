@@ -1,6 +1,6 @@
 # MedTech Healthcare Application
 
-The MedTech Healthcare application is an improved application for the healthcare system. This application is a single stop for patients to place all their healthcare requirements like hospital visits, lab testing, pharmacy requirements along with the insurance coverage. It keeps track of patients their health records and automatically process the insurance coverage.This application also helps to track and facilitates new drugs, test the drugs and attain FDA approval. Once approved it sends the dug to the drug manufacture enterprise to be mass produced and be available in the pharmacy.
+The MedTech Healthcare is an improved java application for the healthcare system. This application is a single stop for patients to place all their healthcare needs like hospital visits, lab testing, pharmacy requirements along with insurance coverage. It keeps a track of patient health records and automatically process the insurance coverage.This application also helps to track and facilitates new drugs, test the drugs and attain FDA approval. Once approved it sends the drug to mass produced by the drug manufacture enterprise and be available in the pharmacy.
 
 ![MedTech Healthcare Application](demo/p3.JPG)
 
